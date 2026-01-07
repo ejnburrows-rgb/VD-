@@ -1,0 +1,27 @@
+node_modules/
+
+# Next.js
+.next/
+out/
+.build/
+
+# Prisma
+/prisma/node_modules/
+/node_modules/.prisma/
+
+# Env
+.env
+.env.*.local
+.env.local
+.env.production
+.env.test
+
+# OS
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
+
+# Misc
+*.log

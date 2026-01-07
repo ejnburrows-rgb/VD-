@@ -1,0 +1,96 @@
+generator client {
+    provider = "prisma-client-js"
+    binaryTargets = ["native", "linux-musl-arm64-openssl-3.0.x"]
+  output = "../node_modules/.prisma/client"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model Video {
+  id               String   @id @default(cuid())
+  youtubeUrl       String   @unique
+  youtubeId        String   @unique
+  title            String
+  duration         String
+  thumbnailUrl     String?
+  audioPath        String?
+  transcript       String?
+  processedAt      DateTime @default(now())
+  processingTime   Int? // in seconds
+  status           ProcessingStatus @default(PENDING)
+  
+  decimas          Decima[]
+  poets            Poet[]
+  analysis         Analysis?
+  
+  @@map("videos")
+}
+
+model Poet {
+  id          String   @id @default(cuid())
+  name        String
+  videoId     String
+  turnNumber  Int?
+  
+  video       Video    @relation(fields: [videoId], references: [id], onDelete: Cascade)
+  decimas     Decima[]
+  
+  @@unique([videoId, name])
+  @@map("poets")
+}
+
+model Decima {
+  id              String   @id @default(cuid())
+  number          Int
+  lines           String[] // Array of 10 lines
+  rhymeScheme     String   @default("ABBAACCDDC")
+  meter           String   @default("Octosílabos")
+  isComplete      Boolean  @default(true)
+  isRegular       Boolean  @default(true)
+  timestamp       String? // mm:ss - mm:ss
+  
+  videoId         String
+  poetId          String
+  
+  video           Video    @relation(fields: [videoId], references: [id], onDelete: Cascade)
+  poet            Poet     @relation(fields: [poetId], references: [id], onDelete: Cascade)
+  
+  // Analysis fields
+  technicalMastery     String?
+  poeticDevices        String?
+  culturalElements     String?
+  emotionalResonance   String?
+  improvisation        String?
+  topThreeReason       String?
+  isTopThree          Boolean  @default(false)
+  topThreeRank        Int?
+  
+  @@map("decimas")
+}
+
+model Analysis {
+  id                    String   @id @default(cuid())
+  videoId               String   @unique
+  
+  // Summary from Perplexity (RESUMEN FINAL section)
+  summary               String?  @db.Text
+  
+  // Deep analysis (content after summary and before Top 3)
+  deepAnalysis          String?  @db.Text
+  
+  video                 Video    @relation(fields: [videoId], references: [id], onDelete: Cascade)
+  
+  @@map("analyses")
+}
+
+enum ProcessingStatus {
+  PENDING
+  DOWNLOADING
+  TRANSCRIBING
+  ANALYZING
+  COMPLETED
+  ERROR
+}
