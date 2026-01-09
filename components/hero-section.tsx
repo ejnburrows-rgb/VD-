@@ -25,7 +25,7 @@ export function HeroSection() {
         </div>
         
         {/* Gradient SOLO en bottom - NO full screen */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 via-transparent to-transparent z-1" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 via-transparent to-transparent z-[1]" />
         
         {/* Centered card - positioned at bottom */}
         <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 w-[90%] max-w-2xl z-20">
