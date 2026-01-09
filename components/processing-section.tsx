@@ -8,6 +8,8 @@ import { Textarea } from './ui/textarea'
 
 type InputMode = 'youtube' | 'text'
 
+// Updated: Removed Gemini AI processing section and updated placeholder
+
 export function ProcessingSection() {
   const [inputMode, setInputMode] = useState<InputMode>('youtube')
   const [youtubeUrl, setYoutubeUrl] = useState('')
