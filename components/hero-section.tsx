@@ -10,19 +10,19 @@ export function HeroSection() {
   return (
     <>
       <section className="relative w-full h-[600px] overflow-hidden">
-        {/* Background image */}
+        {/* Background image with subtle dimming */}
         <Image
           src="/calixto-gonzalez-hero.jpg"
           alt="Calixto González en el puerto de Hialeah"
           fill
-          className="object-cover object-top"
+          className="object-cover object-top brightness-[0.85]"
           priority
           quality={90}
           sizes="100vw"
         />
 
-        {/* subtle vignette */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/60" />
+        {/* Subtle dark overlay for gentle fade effect */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-black/35 to-black/50" />
 
         {/* Centered translucent writing square */}
         <div className="absolute inset-0 flex items-center justify-center px-4">

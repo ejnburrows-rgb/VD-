@@ -4,10 +4,10 @@ import { jsPDF } from 'jspdf'
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { videoId: string } }
+  { params }: { params: Promise<{ videoId: string }> }
 ) {
   try {
-    const { videoId } = params
+    const { videoId } = await params
 
     const video = await prisma.video.findUnique({
       where: { id: videoId },

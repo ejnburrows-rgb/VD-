@@ -3,10 +3,10 @@ import { prisma } from '@/lib/db'
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { videoId: string } }
+  { params }: { params: Promise<{ videoId: string }> }
 ) {
   try {
-    const { videoId } = params
+    const { videoId } = await params
 
     const video = await prisma.video.findUnique({
       where: { id: videoId },

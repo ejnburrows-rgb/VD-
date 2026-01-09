@@ -132,27 +132,6 @@ export function ProcessingSection() {
               <strong>Google Gemini</strong> para identificar décimas, poetas y turnos automáticamente.
             </p>
           </div>
-
-          {/* Gemini AI Processing Section */}
-          <div className="bg-gradient-to-r from-emerald-50 to-teal-50 p-4 rounded-lg border-l-4 border-emerald-500">
-            <div className="flex items-start gap-3">
-              <div className="flex-shrink-0 text-2xl">✨</div>
-              <div className="flex-1">
-                <p className="font-semibold text-emerald-900 text-sm mb-2">
-                  🎯 Procesamiento inteligente con Gemini AI
-                </p>
-                <p className="text-sm text-emerald-800 mb-2">
-                  Sigue las <strong>INSTRUCCIONES CRÍTICAS</strong> para transcripción de canturías.
-                  <span className="font-semibold"> ¡Rápido y preciso!</span>
-                </p>
-                <div className="text-xs text-emerald-700 space-y-1">
-                  <p>⏱️ Proceso: Descarga + Transcripción (2-4 min)</p>
-                  <p>✅ Formatea: Décimas en estructura ABBAACCDDC</p>
-                  <p>🎯 Identifica: Poetas, turnos y métrica automáticamente</p>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
 
@@ -265,7 +244,7 @@ export function ProcessingSection() {
             </div>
             <Input
               type="text"
-              placeholder="Ej: Eduardo Duque, Anamarys Gil, etc."
+              placeholder="Ej: Nombre del primer poeta que canta"
               value={singerName}
               onChange={(e) => setSingerName(e.target.value)}
               className="w-full bg-white border-[#C8A05C]/30"
@@ -303,7 +282,7 @@ export function ProcessingSection() {
             />
             <Input
               type="text"
-              placeholder="Ej: Eduardo Duque, Anamarys Gil, etc."
+              placeholder="Ej: Nombre del primer poeta que canta"
               value={singerName}
               onChange={(e) => setSingerName(e.target.value)}
               className="w-full mt-3 bg-white border-[#C8A05C]/30"
