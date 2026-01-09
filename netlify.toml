@@ -6,10 +6,16 @@
   NODE_VERSION = "18"
   NPM_FLAGS = "--legacy-peer-deps"
 
+# Netlify Next.js plugin - handles routing and serverless functions automatically
 [[plugins]]
   package = "@netlify/plugin-nextjs"
 
-# Environment variables (set in Netlify dashboard)
+# Note: The Next.js plugin automatically:
+# - Handles API routes as serverless functions
+# - Sets up redirects and rewrites
+# - Configures ISR (Incremental Static Regeneration)
+
+# Environment variables (set in Netlify dashboard):
 # GROQ_API_KEY
 # GEMINI_API_KEY
 # DATABASE_URL

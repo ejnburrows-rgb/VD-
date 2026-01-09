@@ -164,46 +164,75 @@ viajera-digital/
 - **Red**: `#DC2626` - Botón YouTube, errores
 - **Mint Green**: `#D1FAE5` - Info boxes
 
-## 🚀 Deploy en Vercel
+## 🚀 Deploy en Netlify
 
-### Opción 1: Deploy Automático
+### Opción 1: Deploy desde Dashboard (Recomendado)
 
-1. **Conectar repositorio a Vercel**
-   - Ve a [vercel.com](https://vercel.com)
-   - Importa tu repositorio de GitHub/GitLab
-   - Vercel detectará Next.js automáticamente
+1. **Ir a Netlify**
+   - Ve a [app.netlify.com](https://app.netlify.com)
+   - Inicia sesión con GitHub
 
-2. **Configurar variables de entorno**
-   - En el dashboard de Vercel, ve a Settings > Environment Variables
+2. **Importar proyecto**
+   - Click en **"Add new site"** → **"Import an existing project"**
+   - Selecciona **GitHub** y autoriza Netlify
+   - Busca y selecciona tu repositorio: **VD-**
+
+3. **Configurar build**
+   - Netlify detectará Next.js automáticamente
+   - Verifica la configuración:
+     - **Branch to deploy**: `main`
+     - **Build command**: `npm run build`
+     - **Publish directory**: `.next`
+
+4. **Configurar variables de entorno**
+   - Click en **"Show advanced"** → **"New variable"**
    - Agrega todas las variables de `.env.local`:
      - `GROQ_API_KEY`
      - `GEMINI_API_KEY`
      - `DATABASE_URL`
-     - `NEXT_PUBLIC_APP_URL`
+     - `NEXT_PUBLIC_APP_URL` (actualiza después del deploy con tu URL real)
 
-3. **Deploy**
-   - Vercel desplegará automáticamente en cada push
-   - O haz click en "Deploy" manualmente
+5. **Deploy**
+   - Click en **"Deploy site"**
+   - Espera 2-5 minutos para completar
+   - Obtendrás una URL tipo: `https://nombre-aleatorio.netlify.app`
 
-### Opción 2: Deploy Manual
+### Opción 2: Deploy con CLI
 
 ```bash
-# Instalar Vercel CLI
-npm i -g vercel
+# Instalar Netlify CLI
+npm install -g netlify-cli
 
 # Login
-vercel login
+netlify login
 
 # Deploy
-vercel --prod
+netlify deploy --prod
 ```
 
-### Configuración de Vercel
+O usa el script incluido:
 
-- **Framework Preset**: Next.js
+```powershell
+# En PowerShell
+.\deploy-netlify.ps1
+```
+
+### Configuración de Netlify
+
+- **Framework**: Next.js 14 (detectado automáticamente)
 - **Build Command**: `npm run build`
-- **Output Directory**: `.next`
-- **Install Command**: `npm install`
+- **Publish Directory**: `.next`
+- **Node Version**: 18 (configurado en `netlify.toml`)
+- **Plugin**: `@netlify/plugin-nextjs` (instalado automáticamente)
+
+### Notas Importantes
+
+- El plugin `@netlify/plugin-nextjs` maneja automáticamente las API routes como serverless functions
+- Netlify tiene un timeout de 10 segundos en el plan gratuito (26 segundos en Pro) para funciones serverless
+- Las variables de entorno deben configurarse en el dashboard de Netlify antes del deploy
+- Después del primer deploy, actualiza `NEXT_PUBLIC_APP_URL` con tu URL real de Netlify
+
+Para más detalles, ver [`NETLIFY_DEPLOY.md`](./NETLIFY_DEPLOY.md)
 
 ## 📚 Recursos Educativos
 
