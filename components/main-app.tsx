@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { NavigationTabs } from './navigation-tabs'
+import { TributeSection } from './tribute-section'
 import { ProcessingSection } from './processing-section'
 import { DecimalsSection } from './decimals-section'
 import { AnalysisSection } from './analysis-section'
@@ -24,6 +25,7 @@ export function MainApp() {
 
   return (
     <>
+      <TributeSection />
       <NavigationTabs activeTab={activeTab} onTabChange={handleTabChange} />
 
       <main className="min-h-screen bg-[#F5E6D3]" id="main-content">
