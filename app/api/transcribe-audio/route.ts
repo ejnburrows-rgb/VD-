@@ -255,22 +255,48 @@ export async function POST(request: NextRequest) {
 
       if (errorMessage.includes('403') || errorMessage.includes('cipher')) {
         return NextResponse.json(
-          { error: 'YouTube bloqueó la descarga temporalmente. Intenta más tarde.' },
+          { 
+            error: 'YouTube ha bloqueado la descarga temporalmente. Esto es común cuando YouTube actualiza sus protecciones. Por favor, usa la opción "Texto Directo" para copiar y pegar la transcripción manualmente, o intenta con el video más tarde.' 
+          },
           { status: 503 }
         )
       }
 
       if (errorMessage.includes('private')) {
         return NextResponse.json(
-          { error: 'El video es privado' },
+          { 
+            error: 'El video es privado y no puede ser accedido. Por favor, usa un video público o la opción "Texto Directo" para ingresar la transcripción manualmente.' 
+          },
           { status: 403 }
         )
       }
 
       if (errorMessage.includes('unavailable') || errorMessage.includes('not found')) {
         return NextResponse.json(
-          { error: 'Video no disponible' },
+          { 
+            error: 'El video no está disponible o ha sido eliminado. Por favor, verifica el enlace o usa la opción "Texto Directo" para ingresar la transcripción manualmente.' 
+          },
           { status: 404 }
+        )
+      }
+
+      if (errorMessage.includes('This video is unavailable') || 
+          errorMessage.includes('Video unavailable') ||
+          errorMessage.includes('Playback on other websites has been disabled')) {
+        return NextResponse.json(
+          { 
+            error: 'El video tiene restricciones de reproducción. YouTube no permite descargar este audio. Por favor, usa la opción "Texto Directo" para copiar y pegar la transcripción, o intenta con un video sin restricciones.' 
+          },
+          { status: 403 }
+        )
+      }
+
+      if (errorMessage.includes('Sign in to confirm you\'re not a bot')) {
+        return NextResponse.json(
+          { 
+            error: 'YouTube requiere verificación humana. La descarga ha sido bloqueada. Por favor, usa la opción "Texto Directo" para ingresar la transcripción manualmente.' 
+          },
+          { status: 403 }
         )
       }
 

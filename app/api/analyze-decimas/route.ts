@@ -48,6 +48,43 @@ function splitTranscript(transcript: string, maxLength: number): string[] {
   return chunks
 }
 
+// Retry function with exponential backoff
+async function retryWithBackoff<T>(
+  fn: () => Promise<T>,
+  maxRetries: number = 3,
+  baseDelay: number = 2000
+): Promise<T> {
+  for (let attempt = 0; attempt <= maxRetries; attempt++) {
+    try {
+      return await fn()
+    } catch (error: any) {
+      const errorMessage = error.message || String(error)
+      
+      // Don't retry on non-rate limit errors
+      if (!errorMessage.includes('rate limit') && 
+          !errorMessage.includes('429') && 
+          !errorMessage.includes('quota exceeded') &&
+          !errorMessage.includes('Resource has been exhausted')) {
+        throw error
+      }
+      
+      // If this was the last attempt, throw the error
+      if (attempt === maxRetries) {
+        throw error
+      }
+      
+      // Calculate exponential backoff delay
+      const delay = baseDelay * Math.pow(2, attempt)
+      console.log(`Rate limit hit. Retrying in ${delay/1000}s... (Attempt ${attempt + 1}/${maxRetries + 1})`)
+      
+      // Wait before retrying
+      await new Promise(resolve => setTimeout(resolve, delay))
+    }
+  }
+  
+  throw new Error('Max retries exceeded')
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body: AnalyzeRequest = await request.json()
@@ -147,12 +184,14 @@ Poeta: [Nombre]
 
 [... continuar ...]`
 
-          const chunkResult = await model.generateContent({
-            contents: [{ role: 'user', parts: [{ text: chunkPrompt }] }],
-            generationConfig: {
-              maxOutputTokens: MAX_TOKENS,
-              temperature: 0.7,
-            },
+          const chunkResult = await retryWithBackoff(async () => {
+            return await model.generateContent({
+              contents: [{ role: 'user', parts: [{ text: chunkPrompt }] }],
+              generationConfig: {
+                maxOutputTokens: MAX_TOKENS,
+                temperature: 0.7,
+              },
+            })
           })
 
           const chunkText = chunkResult.response.text()
@@ -176,23 +215,27 @@ ${fullResponse}
 
 Proporciona análisis para las top 4 décimas explicando calidad de rima, significado e importancia cultural.`
 
-        const analysisResult = await model.generateContent({
-          contents: [{ role: 'user', parts: [{ text: analysisPrompt }] }],
-          generationConfig: {
-            maxOutputTokens: 2048,
-            temperature: 0.7,
-          },
+        const analysisResult = await retryWithBackoff(async () => {
+          return await model.generateContent({
+            contents: [{ role: 'user', parts: [{ text: analysisPrompt }] }],
+            generationConfig: {
+              maxOutputTokens: 2048,
+              temperature: 0.7,
+            },
+          })
         })
 
         fullResponse += '\n\n' + analysisResult.response.text()
       } else {
         // Process single transcript
-        const result = await model.generateContent({
-          contents: [{ role: 'user', parts: [{ text: prompt }] }],
-          generationConfig: {
-            maxOutputTokens: MAX_TOKENS,
-            temperature: 0.7,
-          },
+        const result = await retryWithBackoff(async () => {
+          return await model.generateContent({
+            contents: [{ role: 'user', parts: [{ text: prompt }] }],
+            generationConfig: {
+              maxOutputTokens: MAX_TOKENS,
+              temperature: 0.7,
+            },
+          })
         })
 
         fullResponse = result.response.text()
