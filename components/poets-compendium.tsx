@@ -204,10 +204,11 @@ const poets: Poet[] = [
     name: "Pablo León Alonso",
     subtitle: "Arquitecto de Paradojas Memorables",
     birth: "1 de septiembre de 1927 en Consolación del Sur, Pinar del Río",
+    death: "31 de enero de 2012 en Miami, Estados Unidos (84 años)",
     biography: [
       "Fue una de las figuras más influyentes en la tradición del repentismo cubano. Su estilo se distinguió por la precisión métrica, la riqueza metafórica y una serenidad que le otorgó un sello único dentro del arte de la improvisación poética.",
       "Desde sus primeros años mostró una inclinación natural hacia la décima, consolidándose como un poeta de gran profundidad y creatividad. Su capacidad para construir versos espontáneos con una estructura impecable lo convirtió en un referente dentro de la tradición oral cubana.",
-      "A lo largo de su trayectoria, Pablo León llevó su arte más allá de las fronteras de Cuba, estableciendo vínculos con la comunidad cubana en el exilio. Residió en Miami, donde continuó cultivando la décima.",
+      "A lo largo de su trayectoria, Pablo León llevó su arte más allá de las fronteras de Cuba, estableciendo vínculos con la comunidad cubana en el exilio. Pasó la etapa final de su vida en Estados Unidos, donde continuó su labor decimística en ciudades como Miami, Nueva York y Nueva Jersey, participando en conciertos y programas radiales dedicados a la música campesina y la improvisación poética.",
       "Entre sus versos memorables destaca la décima que condensa profundidad filosófica: \"La muerte se hizo más fuerte / con la muerte de Martí, / porque sin muertos así / se moriría la muerte\". La paradoja productiva revela verdades que desafían lógica simple mientras mantienen estructura impecable."
     ]
   },
