@@ -1,16 +1,19 @@
-const path = require('path');
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  distDir: process.env.NEXT_DIST_DIR || '.next',
-  output: process.env.NEXT_OUTPUT_MODE,
-  eslint: {
-    ignoreDuringBuilds: true,
+  reactStrictMode: true,
+  experimental: {
+    serverActions: {
+      bodySizeLimit: '50mb',
+    },
+    serverComponentsExternalPackages: ['@distube/ytdl-core'],
   },
-  typescript: {
-    ignoreBuildErrors: false,
+  env: {
+    GROQ_API_KEY: process.env.GROQ_API_KEY,
+    GEMINI_API_KEY: process.env.GEMINI_API_KEY,
+    DATABASE_URL: process.env.DATABASE_URL,
+    NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
   },
-  images: { unoptimized: true },
-};
+}
 
-module.exports = nextConfig;
+module.exports = nextConfig
+

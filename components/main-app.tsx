@@ -1,63 +1,49 @@
+"use client"
 
-"use client";
+import { useState } from 'react'
+import { NavigationTabs } from './navigation-tabs'
+import { GroqDecimaProcessor } from './groq-decima-processor'
+import { DecimalsSection } from './decimals-section'
+import { AnalysisSection } from './analysis-section'
+import { ExportSection } from './export-section'
+import { EducationSection } from './education-section'
+import { AboutModal } from './about-modal'
 
-import { useState } from "react";
-import TributeSection from "@/components/tribute-section";
-import NavigationTabs from "@/components/navigation-tabs";
-import ProcessingSection from "@/components/processing-section";
-import DecimalsSection from "@/components/decimals-section";
-import AnalysisSection from "@/components/analysis-section";
-import ExportSection from "@/components/export-section";
-import DemoSection from "@/components/demo-section";
-import EducationSection from "@/components/education-section";
-import AboutModal from "@/components/about-modal";
+export function MainApp() {
+  const [activeTab, setActiveTab] = useState('process')
+  const [aboutModalOpen, setAboutModalOpen] = useState(false)
 
-type TabType = 'procesar' | 'decimals' | 'analysis' | 'export' | 'demo' | 'education';
-
-export default function MainApp() {
-  const [activeTab, setActiveTab] = useState<TabType>('procesar');
-  const [showAboutModal, setShowAboutModal] = useState(false);
-  const [currentVideoId, setCurrentVideoId] = useState<string | null>(null);
-
-  const renderActiveSection = () => {
-    switch (activeTab) {
-      case 'procesar':
-        return <ProcessingSection onVideoProcessed={setCurrentVideoId} />;
-      case 'decimals':
-        return <DecimalsSection videoId={currentVideoId} />;
-      case 'analysis':
-        return <AnalysisSection videoId={currentVideoId} />;
-      case 'export':
-        return <ExportSection videoId={currentVideoId} />;
-      case 'demo':
-        return <DemoSection />;
-      case 'education':
-        return <EducationSection />;
-      default:
-        return <ProcessingSection onVideoProcessed={setCurrentVideoId} />;
+  const handleTabChange = (tab: string) => {
+    if (tab === 'about') {
+      setAboutModalOpen(true)
+    } else {
+      setActiveTab(tab)
     }
-  };
+  }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#F5E6D3] to-[#E6D7C1]">
-      <TributeSection />
-      
-      <div className="max-w-6xl mx-auto px-4 py-8">
-        <NavigationTabs 
-          activeTab={activeTab} 
-          onTabChange={setActiveTab}
-          onAboutClick={() => setShowAboutModal(true)}
-        />
-        
-        <div className="mt-8">
-          {renderActiveSection()}
-        </div>
-      </div>
+    <>
+      <NavigationTabs activeTab={activeTab} onTabChange={handleTabChange} />
 
-      <AboutModal 
-        isOpen={showAboutModal} 
-        onClose={() => setShowAboutModal(false)} 
-      />
-    </div>
-  );
+      <main className="min-h-screen bg-[#F5E6D3]">
+        {activeTab === 'process' && <GroqDecimaProcessor />}
+        {activeTab === 'decimas' && <DecimalsSection />}
+        {activeTab === 'analysis' && <AnalysisSection />}
+        {activeTab === 'export' && <ExportSection />}
+        {activeTab === 'demo' && (
+          <div className="container mx-auto max-w-4xl px-4 py-8">
+            <div className="text-center py-12">
+              <p className="text-[#5C4033] text-lg">
+                Sección de demostración - Próximamente
+              </p>
+            </div>
+          </div>
+        )}
+        {activeTab === 'education' && <EducationSection />}
+      </main>
+
+      <AboutModal open={aboutModalOpen} onOpenChange={setAboutModalOpen} />
+    </>
+  )
 }
+

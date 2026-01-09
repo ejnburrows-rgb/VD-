@@ -1,0 +1,16 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "18"
+  NPM_FLAGS = "--legacy-peer-deps"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+# Environment variables (set in Netlify dashboard)
+# GROQ_API_KEY
+# GEMINI_API_KEY
+# DATABASE_URL
+# NEXT_PUBLIC_APP_URL

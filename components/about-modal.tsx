@@ -1,208 +1,213 @@
+"use client"
 
-"use client";
-
-import React from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Badge } from "@/components/ui/badge";
-import { Heart, Globe, Code } from "lucide-react";
+import { useState } from 'react'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from './ui/dialog'
+import { Button } from './ui/button'
+import Link from 'next/link'
 
 interface AboutModalProps {
-  isOpen: boolean;
-  onClose: () => void;
+  open: boolean
+  onOpenChange: (open: boolean) => void
 }
 
-export default function AboutModal({ isOpen, onClose }: AboutModalProps) {
-  const [showLeonorInfo, setShowLeonorInfo] = React.useState(false);
+export function AboutModal({ open, onOpenChange }: AboutModalProps) {
+  const [showLeonorInfo, setShowLeonorInfo] = useState(false)
 
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-2xl cuban-card border-2 border-[#C8A05C] bg-white max-h-[90vh] overflow-y-auto">
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto bg-[#F5E6D3] text-[#5C4033]">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-[#C8A05C] font-serif flex items-center gap-3">
+          <DialogTitle className="text-3xl font-serif font-bold text-[#C8A05C] mb-6 text-center">
             🌴 Acerca de El Guajiro de Hialeah
           </DialogTitle>
         </DialogHeader>
 
-        <div className="space-y-6 text-[#5C4033]">
-          {/* Calixto: Tejedor Entre Dos Orillas */}
-          <div className="bg-[#F5E6D3] p-5 rounded-lg border-2 border-[#C8A05C]">
-            <div className="flex items-center gap-3 mb-4">
-              <Heart className="w-6 h-6 text-[#D2691E]" />
-              <h3 className="text-xl font-bold text-[#C8A05C] font-serif">
-                Calixto: Tejedor Entre Dos Orillas
-              </h3>
-            </div>
-            <div className="space-y-4 text-sm leading-relaxed">
-              <p>
-                Calixto nació donde el cielo toca el agua—<strong>La Coloma</strong>, pueblo de pescadores. 
-                Entre barcas y sal, aprendió lo que el mar enseña: esperar es arte. Los pescadores 
-                lo saben—tejer redes lleva días, tejer palabras pide lo mismo.
-              </p>
-              
-              <p>
-                La décima le palpitaba desde niño. Esa forma de diez versos que cruzó el océano 
-                y echó raíces en Cuba. Calixto se hizo trovador—no de rimas fáciles, sino de las 
-                que improvisan con el corazón. Creación colectiva, siempre.
-              </p>
-              
-              <p>
-                El exilio lo llevó a <strong>Hialeah</strong>. Allá le llamaron <strong>el Guajiro</strong>—campesino 
-                de verdad, fuerza tranquila, autenticidad que no se aprende. Exilio que fortalece.
-              </p>
-              
-              <p>
-                Su casa se volvió refugio. Abría la puerta, conseguía espacios en las radios, 
-                conectaba trovadores dispersos. Su voz baja pero firme les recordaba: la décima 
-                cura, guarda lo que no queremos perder.
-              </p>
-              
-              <p className="font-medium text-[#D2691E]">
-                <strong>Viajera Digital</strong> nace de ese legado. Preservamos cada décima usando 
-                tecnología que siente la pasión del poeta. Honramos la memoria de Calixto González 
-                y todos los poetas que mantienen viva esta tradición milenaria.
-              </p>
-              
-              <p>
-                Como las redes de La Coloma—pacientes, fuertes—Calixto tejió comunidad que no se 
-                deshace. Su casa vive en la memoria como ese lugar donde la décima encontró techo, 
-                donde trovadores se reconocieron hermanos.
-              </p>
-              
-              <p>
-                En esas redes quedó atrapada, felizmente, una viajera de España que llegó buscando 
-                versos y encontró raíces. Cuba no suelta a quien prueba el sabor de sus décimas. 
-                Ella quedó tejida en esta red—hebra europea en tapiz caribeño.
-              </p>
-              
-              <p className="font-medium italic text-[#C8A05C]">
-                <strong>Viajera Digital</strong> continúa ese tejido. Cada décima preservada es hebra. 
-                Cada poeta que aquí encuentra su voz es nudo. Cada generación que accede a este 
-                archivo teje hacia adelante. La tecnología sirve a la tradición.
-              </p>
-              
-              <p className="text-center font-bold text-[#D2691E] mt-4 text-base">
-                Para que la décima nunca sea arrancada del verde imán de nuestro suelo.
-              </p>
-            </div>
-          </div>
-
-          {/* Closing Tribute */}
-          <div className="text-center bg-[#FDF8F0] border-2 border-[#D2691E] p-4 rounded-lg">
-            <p className="font-medium italic text-[#5C4033] leading-relaxed">
-              🌴 "A todos los poetas que han dedicado sus vidas a mantener viva la décima: 
-              su voz sigue cantando en cada verso que procesamos aquí."
+        <div className="space-y-6 mt-4">
+          {/* Introducción */}
+          <section className="mb-8">
+            <p className="text-lg leading-relaxed mb-4 text-[#5C4033]">
+              <strong>El Guajiro de Hialeah</strong> es una aplicación dedicada a la preservación 
+              y análisis de la <strong>décima espinela cubana</strong> — uno de los tesoros más 
+              valiosos del patrimonio cultural inmaterial de Cuba.
             </p>
-          </div>
+          </section>
 
-          {/* Credits Section */}
-          <div className="border-t-2 border-[#C8A05C] pt-4">
-            <div className="grid md:grid-cols-2 gap-4 text-sm">
-              <div>
-                <div className="flex items-center gap-2 mb-2">
-                  <Code className="w-4 h-4 text-[#D2691E]" />
-                  <strong className="text-[#D2691E]">Desarrollo</strong>
-                </div>
-                <p>Creada por: <strong>Emilio José Novo</strong></p>
-                <p className="text-[#5C4033]">Versión: 2.0 Pro</p>
-              </div>
-              
-              <div>
-                <div className="flex items-center gap-2 mb-2">
-                  <Globe className="w-4 h-4 text-[#C8A05C]" />
-                  <strong className="text-[#C8A05C]">Recursos Web</strong>
-                </div>
-                <p className="mb-1">
-                  Web: <a 
-                    href="https://juanantoniodiaz.com/acerca-de/" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="font-bold text-[#D2691E] hover:text-[#C8A05C] underline transition-colors duration-200"
-                  >
-                    Juanantoniodiaz.com
-                  </a>
-                </p>
-                <p className="mb-2">
-                  Canal: <a 
-                    href="https://youtube.com/@juanantoniodiaz9034" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="font-bold text-[#D2691E] hover:text-[#C8A05C] underline transition-colors duration-200"
-                  >
-                    @juanantoniodiaz9034
-                  </a>
-                </p>
-                <p className="text-[#5C4033] text-sm">
-                  Licencia: Creative Commons (Uso libre con atribución)
-                </p>
-              </div>
-            </div>
-          </div>
+          {/* Misión */}
+          <section className="mb-8">
+            <h3 className="text-2xl font-serif font-bold text-[#C8A05C] mb-4">Misión de Preservación</h3>
+            <p className="mb-4 text-[#5C4033]">
+              En un mundo donde las improvisaciones poéticas pueden perderse 
+              en el olvido después de ser cantadas, nuestra misión es:
+            </p>
+            <ul className="space-y-2 ml-6 text-[#5C4033]">
+              <li>🎤 <strong>Rescatar del olvido</strong> cada improvisación</li>
+              <li>📜 <strong>Preservar intacta</strong> la lírica del corazón guajiro</li>
+              <li>🌟 <strong>Eternizar</strong> el arte vivo de la décima completa</li>
+              <li>🎓 <strong>Educar</strong> sobre la rica historia de este arte</li>
+              <li>🤝 <strong>Conectar</strong> generaciones a través de la poesía</li>
+            </ul>
+          </section>
 
-          {/* Acknowledgments Section */}
-          <div className="border-t-2 border-[#C8A05C] pt-4">
-            <div className="text-sm">
-              <p className="font-medium text-[#D2691E] mb-2">
-                Agradecimientos por la creación a:
-              </p>
-              <p>
-                <strong>Leonor Lopetegui</strong>
-                <button
-                  onClick={() => setShowLeonorInfo(!showLeonorInfo)}
-                  className="ml-1 text-[#D2691E] hover:text-[#C8A05C] transition-colors duration-200 font-bold text-lg"
-                  aria-label="Ver más información sobre Leonor Lopetegui"
+          {/* Homenaje a Calixto González */}
+          <section className="mb-8 p-6 bg-[#F5E6D3] rounded-lg border-2 border-[#C8A05C]">
+            <h3 className="text-2xl font-serif font-bold text-[#C8A05C] mb-4">
+              Dedicado a Calixto González
+            </h3>
+            <p className="mb-4 text-[#5C4033]">
+              Esta aplicación honra la memoria de <strong>Calixto González</strong> (1936–),
+              el verdadero <strong>Guajiro de Hialeah</strong>, cuya vida y arte 
+              inspiraron generaciones de decimistas.
+            </p>
+            
+            <blockquote className="decima-text text-center my-6 p-4 border-l-4 border-[#C8A05C] italic text-[#5C4033]">
+              Hoy que te vas con la muerte<br/>
+              hacia una casa de cielo,<br/>
+              la sequía del pañuelo<br/>
+              en ríos se nos convierte.<br/>
+              Y aunque no podamos verte<br/>
+              jamás, en la cantura,<br/>
+              no existirá un solo día<br/>
+              que se hable de ejemplo<br/>
+              de Hombre que no se escuche<br/>
+              tu nombre, Guajiro de Hialeah.
+              <footer className="mt-4 text-right text-sm not-italic">
+                — <cite>Juan Antonio Díaz</cite>
+              </footer>
+            </blockquote>
+          </section>
+
+          {/* SECCIÓN LEONOR LOPETEGUI - CRÍTICO */}
+          <section className="mb-8 p-6 bg-[#F5E6D3] rounded-lg border-2 border-[#C8A05C]">
+            <h3 className="text-2xl font-serif font-bold text-[#C8A05C] mb-4">
+              Agradecimientos por la Creación
+            </h3>
+            
+            <h4 className="text-xl font-semibold text-[#5C4033] mb-3">
+              Leonor Lopetegui
+              <button
+                onClick={() => setShowLeonorInfo(!showLeonorInfo)}
+                className="ml-2 text-[#D2691E] hover:text-[#C8A05C] transition-colors font-bold text-lg"
+                aria-label="Ver más información sobre Leonor Lopetegui"
+              >
+                *
+              </button>
+            </h4>
+            
+            {showLeonorInfo && (
+              <div className="mt-4 space-y-4 text-base leading-relaxed animate-in fade-in duration-300">
+                <p>
+                  <strong>Leonor Lopetegui</strong> ha sido mi maestra de español, consejera 
+                  y una abuela más que la vida me regaló desde mis cinco años de edad, 
+                  cuando ella junto a su esposo, mi tío Armando González, me trajo de Cuba 
+                  junto a mis padres. Al igual que a tantos otros de nuestra familia, 
+                  nos ayudaron a comenzar una nueva vida en Miami, una experiencia que 
+                  marcó profundamente mi formación y mi corazón.
+                </p>
+
+                <p>
+                  Con <strong>casi cincuenta años dedicados a la enseñanza del español</strong>, 
+                  la Sra. Lopetegui no solo dominó el arte de enseñar con pasión y devoción 
+                  en las <strong>Escuelas Públicas del Condado de Miami-Dade</strong>, sino que 
+                  tocó innumerables vidas con su generosidad y amor incondicional.
+                </p>
+
+                <div className="pl-4 border-l-4 border-[#C8A05C] bg-[#F5E6D3] p-4 rounded">
+                  <p className="font-semibold mb-2 text-[#5C4033]">Reconocimientos Extraordinarios:</p>
+                  <ul className="space-y-2 ml-4 text-sm">
+                    <li>
+                      🏆 <strong>Premio Cervantes</strong> de la Universidad Nova Southeastern 
+                      por hacer una diferencia en la educación hispana
+                    </li>
+                    <li>
+                      ⭐ <strong>Maestra del Año</strong> en la Escuela Primaria James H. Bright 
+                      (año escolar 2001-2002)
+                    </li>
+                    <li>
+                      🎓 <strong>Educadora Bilingüe del Año</strong> por la Asociación 
+                      Bilingüe de la Florida
+                    </li>
+                    <li>
+                      👑 <strong>Líder de la División de Educación Bilingüe e Idiomas del Mundo</strong> 
+                      para las Escuelas Públicas del Condado de Miami-Dade (más de 10 años)
+                    </li>
+                    <li>
+                      📚 <strong>Autora</strong> de libros educativos para niños
+                    </li>
+                    <li>
+                      🌎 <strong>Conferencista</strong> en eventos educativos nacionales e 
+                      internacionales (Asociación Nacional de Educación Bilingüe)
+                    </li>
+                  </ul>
+                </div>
+
+                <p className="italic p-4 bg-[#C8A05C]/10 rounded text-[#5C4033]">
+                  En reconocimiento a esta labor monumental, la <strong>Ciudad de Sweetwater</strong> 
+                  proclamó el <strong>6 de junio de 2014</strong> como el 
+                  <strong>"Día de la Sra. Leonor Lopetegui"</strong>.
+                </p>
+
+                <p className="font-semibold text-lg text-center text-[#5C4033]">
+                  Para mí y para tantos otros, ella representa mucho más que todos estos honores: 
+                  es un <strong>ejemplo vivo de generosidad, sabiduría y amor</strong> que 
+                  trasciende las aulas y perdura para siempre en nuestros corazones.
+                </p>
+
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setShowLeonorInfo(false)}
+                  className="mt-4"
                 >
-                  *
-                </button>
+                  Cerrar
+                </Button>
+              </div>
+            )}
+          </section>
+
+          {/* Tributo Final */}
+          <section className="mb-8 text-center">
+            <div className="border-t-2 border-[#C8A05C] pt-6 mt-6">
+              <p className="text-xl italic font-semibold text-[#5C4033] mb-4">
+                A todos los poetas que han dedicado sus vidas a mantener viva la décima:
               </p>
-              
-              {showLeonorInfo && (
-                <div className="mt-4 p-4 bg-[#F5E6D3] border-2 border-[#C8A05C] rounded-lg space-y-3 text-sm leading-relaxed animate-in fade-in duration-300">
-                  <p>
-                    Leonor Lopetegui ha sido mi maestra de español, consejera y una abuela más que la vida me regaló desde mis cinco años de edad, cuando ella junto a su esposo, mi tío Armando González, me trajo de Cuba junto a mis padres. Al igual que a tantos otros de nuestra familia, nos ayudaron a comenzar una nueva vida en Miami, una experiencia que marcó profundamente mi formación y mi corazón.
-                  </p>
-                  
-                  <p>
-                    Con casi cincuenta años dedicados a la enseñanza del español, la Sra. Lopetegui no solo dominó el arte de enseñar con pasión y devoción en las Escuelas Públicas del Condado de Miami-Dade, sino que tocó innumerables vidas con su generosidad y amor incondicional. Su legado está marcado por reconocimientos extraordinarios como el Premio Cervantes de la Universidad Nova Southeastern por hacer una diferencia en la educación hispana, y por ser nombrada Maestra del Año en la Escuela Primaria James H. Bright durante el año escolar 2001-2002.
-                  </p>
-                  
-                  <p>
-                    También fue seleccionada Educadora Bilingüe del Año por la Asociación Bilingüe de la Florida, un testimonio de su liderazgo excepcional en la educación bilingüe. Durante más de diez años, lideró la División de Educación Bilingüe e Idiomas del Mundo para las Escuelas Públicas del Condado de Miami-Dade, dejando una huella imborrable en el perfeccionamiento del español entre niños y adultos. Ha escrito libros educativos para niños y ha compartido su sabiduría en importantes eventos educativos nacionales e internacionales, incluyendo la Asociación Nacional de Educación Bilingüe y la Asociación Bilingüe de la Florida.
-                  </p>
-                  
-                  <p>
-                    En reconocimiento a esta labor monumental, la Ciudad de Sweetwater proclamó el 6 de junio de 2014 como el "Día de la Sra. Leonor Lopetegui". Para mí y para tantos otros, ella representa mucho más que todos estos honores: es un ejemplo vivo de generosidad, sabiduría y amor que trasciende las aulas y perdura para siempre en nuestros corazones.
-                  </p>
-                </div>
-              )}
+              <p className="text-lg text-[#5C4033]">
+                Su voz sigue cantando en cada verso que procesamos aquí.
+              </p>
             </div>
-          </div>
+          </section>
 
-          {/* Technical Info */}
-          <div className="flex flex-wrap gap-2 justify-center">
-            <Badge variant="outline" className="text-[#5C4033] border-[#C8A05C]">
-              IA Claude Sonnet
-            </Badge>
-            <Badge variant="outline" className="text-[#5C4033] border-[#C8A05C]">
-              NextJS 14
-            </Badge>
-            <Badge variant="outline" className="text-[#5C4033] border-[#C8A05C]">
-              Transcripción de Audio
-            </Badge>
-            <Badge variant="outline" className="text-[#5C4033] border-[#C8A05C]">
-              Análisis Académico
-            </Badge>
-            <Badge variant="outline" className="text-[#5C4033] border-[#C8A05C]">
-              Patrimonio UNESCO
-            </Badge>
-          </div>
-
-          {/* Footer Note */}
-          <div className="text-xs text-[#5C4033] text-center italic">
-            "Un algoritmo que siente la pasión del poeta, rescata del olvido cada improvisación, 
-            preserva intacta la lírica del corazón, y eterniza el arte vivo de la décima completa."
-          </div>
+          {/* Footer */}
+          <footer className="text-center text-sm border-t-2 border-[#C8A05C] pt-6 mt-6">
+            <p className="font-semibold mb-2 text-[#5C4033]">
+              Creada por <strong>Emilio José Novo</strong>
+            </p>
+            <p className="mb-2 text-[#5C4033]">
+              Web:{' '}
+              <Link 
+                href="https://juanantoniodiaz.com/acerca-de/" 
+                className="text-[#D2691E] hover:underline"
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
+                juanantoniodiaz.com
+              </Link>
+            </p>
+            <p className="mb-2 text-[#5C4033]">
+              <strong>Versión 2.0 Pro</strong>
+            </p>
+            <p className="text-xs text-[#5C4033]/70 mt-4">
+              Licencia: <strong>Creative Commons</strong> — Uso libre con atribución
+            </p>
+          </footer>
         </div>
       </DialogContent>
     </Dialog>
-  );
+  )
 }
+

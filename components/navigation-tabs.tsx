@@ -1,43 +1,46 @@
+"use client"
 
-"use client";
+import { useState } from 'react'
+import { Button } from './ui/button'
 
 interface NavigationTabsProps {
-  activeTab: string;
-  onTabChange: (tab: 'procesar' | 'decimals' | 'analysis' | 'export' | 'demo' | 'education') => void;
-  onAboutClick: () => void;
+  activeTab: string
+  onTabChange: (tab: string) => void
 }
 
-export default function NavigationTabs({ activeTab, onTabChange, onAboutClick }: NavigationTabsProps) {
+export function NavigationTabs({ activeTab, onTabChange }: NavigationTabsProps) {
   const tabs = [
-    { id: 'procesar', label: 'Procesar Transcripción', icon: '📝' },
-    { id: 'decimals', label: 'Décimas Formateadas', icon: '📖' },
-    { id: 'analysis', label: 'Análisis Completo', icon: '📊' },
-    { id: 'export', label: 'Exportar Resultados', icon: '⬇️' },
-    { id: 'demo', label: 'Demostración', icon: '▶️' },
-    { id: 'education', label: 'Educación Histórica', icon: '📚' }
-  ];
+    { id: 'process', label: '📝 Procesar Transcripción', icon: '📝' },
+    { id: 'decimas', label: '📖 Décimas Formateadas', icon: '📖' },
+    { id: 'analysis', label: '📊 Análisis Completo', icon: '📊' },
+    { id: 'export', label: '⬇️ Exportar Resultados', icon: '⬇️' },
+    { id: 'demo', label: '▶️ Demostración', icon: '▶️' },
+    { id: 'education', label: '📚 Educación Histórica', icon: '📚' },
+    { id: 'about', label: '🌴 Acerca de', icon: '🌴' },
+  ]
 
   return (
-    <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-2 shadow-lg border-2 border-[#C8A05C]/20">
-      <div className="flex flex-wrap justify-center gap-2">
-        {tabs.map((tab) => (
-          <button
-            key={tab.id}
-            onClick={() => onTabChange(tab.id as any)}
-            className={`nav-tab ${activeTab === tab.id ? 'active' : ''} flex items-center gap-2 whitespace-nowrap`}
-          >
-            <span>{tab.icon}</span>
-            <span className="hidden sm:inline">{tab.label}</span>
-          </button>
-        ))}
-        <button
-          onClick={onAboutClick}
-          className="nav-tab flex items-center gap-2 ml-2 border-l-2 border-[#C8A05C]/30 pl-4"
-        >
-          <span>🌴</span>
-          <span className="hidden sm:inline">Acerca de</span>
-        </button>
+    <div className="bg-[#F5E6D3] border-b-2 border-[#C8A05C] px-4 py-2">
+      <div className="container mx-auto max-w-7xl">
+        <div className="flex flex-wrap gap-2 justify-center">
+          {tabs.map((tab) => (
+            <Button
+              key={tab.id}
+              variant={activeTab === tab.id ? 'default' : 'outline'}
+              size="sm"
+              onClick={() => onTabChange(tab.id)}
+              className={
+                activeTab === tab.id
+                  ? 'bg-[#D2691E] text-white'
+                  : 'bg-transparent text-[#5C4033] hover:bg-[#C8A05C]'
+              }
+            >
+              {tab.label}
+            </Button>
+          ))}
+        </div>
       </div>
     </div>
-  );
+  )
 }
+

@@ -1,89 +1,12 @@
+// prisma/schema.prisma
+
 generator client {
-    provider = "prisma-client-js"
-    binaryTargets = ["native", "linux-musl-arm64-openssl-3.0.x"]
-  output = "../node_modules/.prisma/client"
+  provider = "prisma-client-js"
 }
 
 datasource db {
-    provider = "postgresql"
-    url      = env("DATABASE_URL")
-}
-
-model Video {
-  id               String   @id @default(cuid())
-  youtubeUrl       String   @unique
-  youtubeId        String   @unique
-  title            String
-  duration         String
-  thumbnailUrl     String?
-  audioPath        String?
-  transcript       String?
-  processedAt      DateTime @default(now())
-  processingTime   Int? // in seconds
-  status           ProcessingStatus @default(PENDING)
-  
-  decimas          Decima[]
-  poets            Poet[]
-  analysis         Analysis?
-  
-  @@map("videos")
-}
-
-model Poet {
-  id          String   @id @default(cuid())
-  name        String
-  videoId     String
-  turnNumber  Int?
-  
-  video       Video    @relation(fields: [videoId], references: [id], onDelete: Cascade)
-  decimas     Decima[]
-  
-  @@unique([videoId, name])
-  @@map("poets")
-}
-
-model Decima {
-  id              String   @id @default(cuid())
-  number          Int
-  lines           String[] // Array of 10 lines
-  rhymeScheme     String   @default("ABBAACCDDC")
-  meter           String   @default("Octosílabos")
-  isComplete      Boolean  @default(true)
-  isRegular       Boolean  @default(true)
-  timestamp       String? // mm:ss - mm:ss
-  
-  videoId         String
-  poetId          String
-  
-  video           Video    @relation(fields: [videoId], references: [id], onDelete: Cascade)
-  poet            Poet     @relation(fields: [poetId], references: [id], onDelete: Cascade)
-  
-  // Analysis fields
-  technicalMastery     String?
-  poeticDevices        String?
-  culturalElements     String?
-  emotionalResonance   String?
-  improvisation        String?
-  topThreeReason       String?
-  isTopThree          Boolean  @default(false)
-  topThreeRank        Int?
-  
-  @@map("decimas")
-}
-
-model Analysis {
-  id                    String   @id @default(cuid())
-  videoId               String   @unique
-  
-  // Summary from Perplexity (RESUMEN FINAL section)
-  summary               String?  @db.Text
-  
-  // Deep analysis (content after summary and before Top 3)
-  deepAnalysis          String?  @db.Text
-  
-  video                 Video    @relation(fields: [videoId], references: [id], onDelete: Cascade)
-  
-  @@map("analyses")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 enum ProcessingStatus {
@@ -92,5 +15,78 @@ enum ProcessingStatus {
   TRANSCRIBING
   ANALYZING
   COMPLETED
-  ERROR
+  FAILED
 }
+
+model Video {
+  id              String           @id @default(cuid())
+  youtubeId       String           @unique
+  youtubeUrl      String
+  title           String?
+  duration        Int?             // segundos
+  status          ProcessingStatus @default(PENDING)
+  transcript      String?          @db.Text
+  processedAt     DateTime?
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  
+  decimas         Decima[]
+  analysis        Analysis?
+  
+  @@index([youtubeId])
+  @@index([status])
+}
+
+model Poet {
+  id              String    @id @default(cuid())
+  name            String    @unique
+  birthYear       Int?
+  deathYear       Int?
+  birthplace      String?
+  biography       String?   @db.Text
+  style           String?
+  influences      String[]
+  notableWorks    String[]
+  imageUrl        String?
+  
+  decimas         Decima[]
+  
+  @@index([name])
+}
+
+model Decima {
+  id              String    @id @default(cuid())
+  videoId         String
+  poetId          String?
+  
+  number          Int
+  verses          String[]  // 10 versos exactos
+  rhymeScheme     String    @default("ABBAACCDDC")
+  syllableCount   Int[]     // conteo por verso
+  theme           String?
+  quality         Float?    // 0-10 score
+  
+  createdAt       DateTime  @default(now())
+  
+  video           Video     @relation(fields: [videoId], references: [id], onDelete: Cascade)
+  poet            Poet?     @relation(fields: [poetId], references: [id])
+  
+  @@index([videoId])
+  @@index([poetId])
+}
+
+model Analysis {
+  id              String    @id @default(cuid())
+  videoId         String    @unique
+  
+  totalDecimas    Int
+  topFour         Json      // Top 4 décimas con justificación
+  themes          String[]
+  rhymeQuality    Float     // promedio
+  culturalContext String?   @db.Text
+  
+  createdAt       DateTime  @default(now())
+  
+  video           Video     @relation(fields: [videoId], references: [id], onDelete: Cascade)
+}
+

@@ -1,4 +1,14 @@
 {
-  "buildCommand": "yarn build",
-  "installCommand": "yarn install"
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "regions": ["iad1"],
+  "env": {
+    "GROQ_API_KEY": "@groq_api_key",
+    "GEMINI_API_KEY": "@gemini_api_key",
+    "DATABASE_URL": "@database_url",
+    "NEXT_PUBLIC_APP_URL": "@next_public_app_url"
+  }
 }
+

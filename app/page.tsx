@@ -1,18 +1,18 @@
-
-import Header from "@/components/header";
-import HeroSection from "@/components/hero-section";
-import MainApp from "@/components/main-app";
-import Footer from "@/components/footer";
+import { Header } from '@/components/header'
+import { HeroSection } from '@/components/hero-section'
+import { TributeSection } from '@/components/tribute-section'
+import { MainApp } from '@/components/main-app'
+import { Footer } from '@/components/footer'
 
 export default function Home() {
   return (
-    <>
+    <div className="min-h-screen bg-[#F5E6D3] flex flex-col">
       <Header />
-      <main id="main-content" className="min-h-screen vintage-background">
-        <HeroSection />
-        <MainApp />
-      </main>
+      <HeroSection />
+      <TributeSection />
+      <MainApp />
       <Footer />
-    </>
-  );
+    </div>
+  )
 }
+
