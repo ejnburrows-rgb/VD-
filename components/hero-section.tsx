@@ -9,7 +9,7 @@ export function HeroSection() {
 
   return (
     <>
-      <section className="relative min-h-screen w-full overflow-hidden -mt-16">
+      <section className="relative min-h-screen w-full overflow-hidden">
         {/* Background image - FULL VIEWPORT */}
         <div className="absolute inset-0 w-full h-full z-0">
           <Image
