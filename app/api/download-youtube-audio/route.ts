@@ -1,9 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
 import ytdl from '@distube/ytdl-core'
-import { Readable } from 'stream'
 
 export const runtime = 'nodejs'
-export const maxDuration = 60 // 30 seconds timeout for downloads
+export const maxDuration = 60 // Vercel hobby plan limit
+
+// Maximum video duration in seconds (20 minutes to stay within Vercel limits)
+const MAX_VIDEO_DURATION_SECONDS = 1200
 
 interface DownloadRequest {
   youtubeUrl: string
@@ -12,6 +14,7 @@ interface DownloadRequest {
 interface DownloadResponse {
   audioBase64: string
   durationSeconds: number
+  title?: string
 }
 
 // Validate YouTube URL format
@@ -39,25 +42,43 @@ function extractVideoId(url: string): string | null {
   return null
 }
 
-// Convert stream to buffer
-function streamToBuffer(stream: Readable): Promise<Buffer> {
+// Stream to buffer with timeout
+async function streamToBuffer(
+  stream: NodeJS.ReadableStream,
+  timeoutMs: number = 45000
+): Promise<Buffer> {
   return new Promise((resolve, reject) => {
     const chunks: Buffer[] = []
-    stream.on('data', (chunk) => chunks.push(chunk))
-    stream.on('end', () => resolve(Buffer.concat(chunks)))
-    stream.on('error', reject)
+    const timeout = setTimeout(() => {
+      stream.removeAllListeners()
+      reject(new Error('Download timeout - video may be too long'))
+    }, timeoutMs)
+
+    stream.on('data', (chunk: Buffer) => chunks.push(chunk))
+    stream.on('end', () => {
+      clearTimeout(timeout)
+      resolve(Buffer.concat(chunks))
+    })
+    stream.on('error', (err) => {
+      clearTimeout(timeout)
+      reject(err)
+    })
   })
 }
 
 export async function POST(request: NextRequest) {
+  console.log('[Download API] Request received')
+  
   try {
     const body: DownloadRequest = await request.json()
     const { youtubeUrl } = body
 
+    console.log('[Download API] URL:', youtubeUrl)
+
     // Validate request
     if (!youtubeUrl || typeof youtubeUrl !== 'string') {
       return NextResponse.json(
-        { error: 'YouTube URL is required' },
+        { error: 'URL de YouTube requerida' },
         { status: 400 }
       )
     }
@@ -65,7 +86,7 @@ export async function POST(request: NextRequest) {
     // Validate URL format
     if (!isValidYouTubeUrl(youtubeUrl)) {
       return NextResponse.json(
-        { error: 'Invalid YouTube URL format. Must be youtube.com/watch?v= or youtu.be/' },
+        { error: 'Formato de URL inválido. Debe ser youtube.com/watch?v= o youtu.be/' },
         { status: 400 }
       )
     }
@@ -73,49 +94,77 @@ export async function POST(request: NextRequest) {
     const videoId = extractVideoId(youtubeUrl)
     if (!videoId) {
       return NextResponse.json(
-        { error: 'Could not extract video ID from URL' },
+        { error: 'No se pudo extraer el ID del video' },
         { status: 400 }
       )
     }
 
+    console.log('[Download API] Video ID:', videoId)
+
     try {
-      // Get video info with timeout
-      const infoPromise = ytdl.getInfo(youtubeUrl)
-      const infoTimeoutPromise = new Promise((_, reject) => {
-        setTimeout(() => reject(new Error('Info fetch timeout')), 10000)
+      // Get video info first
+      console.log('[Download API] Getting video info...')
+      const info = await ytdl.getInfo(youtubeUrl, {
+        requestOptions: {
+          headers: {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+          },
+        },
       })
-
-      const info = await Promise.race([infoPromise, infoTimeoutPromise]) as ytdl.videoInfo
       
-      // Get duration
-      const durationSeconds = Math.floor(parseInt(info.videoDetails.lengthSeconds) || 0)
+      const durationSeconds = parseInt(info.videoDetails.lengthSeconds) || 0
+      const title = info.videoDetails.title
+      
+      console.log('[Download API] Duration:', durationSeconds, 'seconds, Title:', title)
 
-      // Choose best audio format
-      const audioFormat = ytdl.chooseFormat(info.formats, {
-        quality: 'highestaudio',
-        filter: 'audioonly'
-      })
-
-      if (!audioFormat) {
+      // Check duration limit
+      if (durationSeconds > MAX_VIDEO_DURATION_SECONDS) {
+        const maxMinutes = Math.floor(MAX_VIDEO_DURATION_SECONDS / 60)
+        const videoMinutes = Math.floor(durationSeconds / 60)
         return NextResponse.json(
-          { error: 'No audio format available for this video' },
+          { 
+            error: `Video demasiado largo (${videoMinutes} minutos). Máximo permitido: ${maxMinutes} minutos. Por favor, usa un video más corto.` 
+          },
           { status: 400 }
         )
       }
 
-      // Download audio stream with timeout
-      const audioStream = ytdl(youtubeUrl, {
-        quality: 'highestaudio',
-        filter: 'audioonly'
-      })
+      // Find audio format
+      const audioFormats = ytdl.filterFormats(info.formats, 'audioonly')
+      if (audioFormats.length === 0) {
+        return NextResponse.json(
+          { error: 'No hay formato de audio disponible para este video' },
+          { status: 400 }
+        )
+      }
 
-      const downloadTimeoutPromise = new Promise((_, reject) => {
-        setTimeout(() => reject(new Error('Download timeout after 30 seconds')), 30000)
+      // Choose best audio format (prefer mp4/webm for compatibility)
+      const audioFormat = audioFormats.find(f => f.container === 'mp4' || f.container === 'webm') 
+        || audioFormats[0]
+      
+      console.log('[Download API] Audio format:', audioFormat.container, audioFormat.audioQuality)
+
+      // Download audio
+      console.log('[Download API] Downloading audio...')
+      const audioStream = ytdl(youtubeUrl, {
+        format: audioFormat,
+        requestOptions: {
+          headers: {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+          },
+        },
       })
 
       // Convert stream to buffer
-      const bufferPromise = streamToBuffer(audioStream)
-      const audioBuffer = await Promise.race([bufferPromise, downloadTimeoutPromise]) as Buffer
+      const audioBuffer = await streamToBuffer(audioStream)
+      console.log('[Download API] Downloaded:', audioBuffer.length, 'bytes')
+
+      if (audioBuffer.length === 0) {
+        return NextResponse.json(
+          { error: 'No se pudo descargar el audio del video' },
+          { status: 500 }
+        )
+      }
 
       // Convert to base64
       const audioBase64 = audioBuffer.toString('base64')
@@ -123,65 +172,62 @@ export async function POST(request: NextRequest) {
       const response: DownloadResponse = {
         audioBase64,
         durationSeconds,
+        title,
       }
 
-      return NextResponse.json(response, {
-        status: 200,
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'POST, OPTIONS',
-          'Access-Control-Allow-Headers': 'Content-Type',
-        },
-      })
-    } catch (error: any) {
-      // Handle specific errors
-      const errorMessage = error.message || String(error)
+      console.log('[Download API] Success!')
+      return NextResponse.json(response)
       
-      if (errorMessage.includes('Private video') || errorMessage.includes('is private') || errorMessage.includes('private')) {
+    } catch (error: any) {
+      const errorMessage = error.message || String(error)
+      console.error('[Download API] Error:', errorMessage)
+      
+      // Handle specific YouTube errors
+      if (errorMessage.includes('Private video') || errorMessage.includes('private')) {
         return NextResponse.json(
-          { error: 'This video is private and cannot be accessed' },
+          { error: 'Este video es privado y no se puede acceder' },
           { status: 403 }
         )
       }
 
-      if (errorMessage.includes('region') || errorMessage.includes('blocked') || errorMessage.includes('not available')) {
+      if (errorMessage.includes('Sign in') || errorMessage.includes('age')) {
         return NextResponse.json(
-          { error: 'This video is not available in your region' },
+          { error: 'Este video requiere iniciar sesión o es restringido por edad' },
           { status: 403 }
         )
       }
 
-      if (errorMessage.includes('age') || errorMessage.includes('restricted') || errorMessage.includes('sign in')) {
+      if (errorMessage.includes('not available') || errorMessage.includes('unavailable')) {
         return NextResponse.json(
-          { error: 'This video is age-restricted and cannot be accessed' },
-          { status: 403 }
+          { error: 'Este video no está disponible' },
+          { status: 404 }
         )
       }
 
       if (errorMessage.includes('timeout')) {
         return NextResponse.json(
-          { error: 'Download timed out. The video may be too large or the connection is slow' },
+          { error: 'Tiempo de espera agotado. El video puede ser muy largo.' },
           { status: 408 }
         )
       }
 
-      if (errorMessage.includes('Video unavailable') || errorMessage.includes('not found') || errorMessage.includes('does not exist')) {
+      // Generic error with details
+      if (errorMessage.includes('Status code: 403') || errorMessage.includes('cipher')) {
         return NextResponse.json(
-          { error: 'Video not found or unavailable' },
-          { status: 404 }
+          { error: 'YouTube bloqueó la descarga. Intenta con otro video o más tarde.' },
+          { status: 503 }
         )
       }
 
-      console.error('Download error:', errorMessage)
       return NextResponse.json(
-        { error: `Failed to download audio: ${errorMessage}` },
+        { error: `Error al descargar: ${errorMessage}` },
         { status: 500 }
       )
     }
   } catch (error: any) {
-    console.error('Request processing error:', error)
+    console.error('[Download API] Request error:', error)
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { error: 'Error interno del servidor' },
       { status: 500 }
     )
   }

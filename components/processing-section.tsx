@@ -193,7 +193,7 @@ export function ProcessingSection() {
                 </div>
                 <Input
                   type="text"
-                  placeholder="Ej: Eduardo Duque, Anamarys Gil, etc."
+                  placeholder="Nombre del cantante principal"
                   value={singerName}
                   onChange={(e) => setSingerName(e.target.value)}
                   className="w-full"

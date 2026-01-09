@@ -239,7 +239,7 @@ ${transcriptionResult?.text || 'No disponible'}
               </label>
               <Input
                 type="text"
-                placeholder="Ej: Eduardo Duque, Anamarys Gil, Calixto González..."
+                placeholder="Nombre del cantante principal"
                 value={singerName}
                 onChange={(e) => setSingerName(e.target.value)}
                 className="w-full"
