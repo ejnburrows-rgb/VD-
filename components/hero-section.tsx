@@ -20,7 +20,6 @@ export function HeroSection() {
             priority
             quality={90}
             sizes="100vw"
-            placeholder="blur"
           />
         </div>
         
