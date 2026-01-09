@@ -9,25 +9,27 @@ export function HeroSection() {
 
   return (
     <>
-      <section className="relative min-h-screen w-full">
+      <section className="relative min-h-screen w-full overflow-hidden -mt-16">
         {/* Background image - FULL VIEWPORT */}
-        <div className="absolute inset-0 w-full h-full">
+        <div className="absolute inset-0 w-full h-full z-0">
           <Image
             src="/calixto-gonzalez-hero.jpg"
             alt="Calixto González en el puerto de Hialeah"
             fill
-            className="object-cover"
+            className="object-cover object-center"
             priority
             quality={90}
+            sizes="100vw"
+            placeholder="blur"
           />
         </div>
         
         {/* Gradient SOLO en bottom - NO full screen */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 via-transparent to-transparent z-1" />
         
         {/* Centered card - positioned at bottom */}
-        <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 w-[90%] max-w-2xl z-10">
-          <div className="vintage-card text-center p-8 bg-[#F5E6D3]/95 backdrop-blur-sm border-3 border-[#C8A05C] rounded-2xl shadow-2xl">
+        <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 w-[90%] max-w-2xl z-20">
+          <div className="vintage-card text-center p-8 bg-[#F5E6D3]/95 backdrop-blur-sm border-[3px] border-[#C8A05C] rounded-2xl shadow-2xl">
             <h1 className="text-5xl md:text-6xl font-serif font-bold text-[#C8A05C] mb-2">
               Calixto González
             </h1>
