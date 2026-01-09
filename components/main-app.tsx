@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { NavigationTabs } from './navigation-tabs'
-import { GroqDecimaProcessor } from './groq-decima-processor'
+import { ProcessingSection } from './processing-section'
 import { DecimalsSection } from './decimals-section'
 import { AnalysisSection } from './analysis-section'
 import { ExportSection } from './export-section'
@@ -25,8 +25,8 @@ export function MainApp() {
     <>
       <NavigationTabs activeTab={activeTab} onTabChange={handleTabChange} />
 
-      <main className="min-h-screen bg-[#F5E6D3]">
-        {activeTab === 'process' && <GroqDecimaProcessor />}
+      <main className="min-h-screen bg-[#F5E6D3]" id="main-content">
+        {activeTab === 'process' && <ProcessingSection />}
         {activeTab === 'decimas' && <DecimalsSection />}
         {activeTab === 'analysis' && <AnalysisSection />}
         {activeTab === 'export' && <ExportSection />}
@@ -46,4 +46,3 @@ export function MainApp() {
     </>
   )
 }
-
