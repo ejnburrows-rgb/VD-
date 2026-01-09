@@ -303,7 +303,7 @@ export function ProcessingSection() {
             />
             <Input
               type="text"
-              placeholder="Ej: Juan Antonio, Julio Pablo"
+              placeholder="Ej: Eduardo Duque, Anamarys Gil, etc."
               value={singerName}
               onChange={(e) => setSingerName(e.target.value)}
               className="w-full mt-3 bg-white border-[#C8A05C]/30"
