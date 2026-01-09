@@ -6,6 +6,7 @@ import { ProcessingSection } from './processing-section'
 import { DecimalsSection } from './decimals-section'
 import { AnalysisSection } from './analysis-section'
 import { ExportSection } from './export-section'
+import DemoSection from './demo-section'
 import { EducationSection } from './education-section'
 import { AboutModal } from './about-modal'
 
@@ -30,15 +31,7 @@ export function MainApp() {
         {activeTab === 'decimas' && <DecimalsSection />}
         {activeTab === 'analysis' && <AnalysisSection />}
         {activeTab === 'export' && <ExportSection />}
-        {activeTab === 'demo' && (
-          <div className="container mx-auto max-w-4xl px-4 py-8">
-            <div className="text-center py-12">
-              <p className="text-[#5C4033] text-lg">
-                Sección de demostración - Próximamente
-              </p>
-            </div>
-          </div>
-        )}
+        {activeTab === 'demo' && <DemoSection />}
         {activeTab === 'education' && <EducationSection />}
       </main>
 

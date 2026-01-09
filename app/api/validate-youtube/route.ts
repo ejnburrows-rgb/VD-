@@ -1,38 +1,45 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { isValidYouTubeUrl, extractYouTubeId } from '@/lib/utils'
+import { NextRequest, NextResponse } from 'next/server';
+import ytdl from '@distube/ytdl-core';
+
+export const runtime = 'nodejs';
+export const maxDuration = 30;
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json()
-    const { youtubeUrl } = body
+    const { youtubeUrl } = await request.json();
 
-    if (!youtubeUrl || typeof youtubeUrl !== 'string') {
+    if (!youtubeUrl) {
       return NextResponse.json(
-        { valid: false, error: 'YouTube URL is required' },
+        { error: 'YouTube URL is required' },
         { status: 400 }
-      )
+      );
     }
 
-    const valid = isValidYouTubeUrl(youtubeUrl)
-    const videoId = valid ? extractYouTubeId(youtubeUrl) : null
-
-    if (!valid || !videoId) {
+    // Validar URL
+    if (!ytdl.validateURL(youtubeUrl)) {
       return NextResponse.json(
-        { valid: false, error: 'Invalid YouTube URL format' },
+        { valid: false, error: 'Invalid YouTube URL' },
         { status: 400 }
-      )
+      );
     }
+
+    // Obtener info del video
+    const info = await ytdl.getInfo(youtubeUrl);
 
     return NextResponse.json({
       valid: true,
-      videoId,
-    })
+      videoId: info.videoDetails.videoId,
+      title: info.videoDetails.title,
+      duration: info.videoDetails.lengthSeconds,
+      thumbnail: info.videoDetails.thumbnails?.[0]?.url || info.videoDetails.thumbnail?.thumbnails?.[0]?.url || `https://i.ytimg.com/vi/${info.videoDetails.videoId}/hqdefault.jpg`
+    });
+
   } catch (error: any) {
-    console.error('Validation error:', error)
+    console.error('Error validating YouTube URL:', error);
     return NextResponse.json(
-      { valid: false, error: 'Internal server error' },
+      { valid: false, error: error.message || 'Failed to validate YouTube URL' },
       { status: 500 }
-    )
+    );
   }
 }
 
