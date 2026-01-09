@@ -1,9 +1,11 @@
-﻿ "use client";
+﻿"use client";
+
+import { PoetsCompendium } from "./poets-compendium";
 
 export function EducationSection() {
   return (
     <div className="space-y-8 pb-12" style={{ backgroundColor: "#F5E6D3" }}>
-      <div className="container max-w-4xl py-8">
+      <div className="container max-w-4xl py-8 px-4">
         <h2
           className="text-3xl font-serif font-bold mb-8 flex items-center gap-2"
           style={{ color: "#C8A05C" }}
@@ -140,6 +142,9 @@ export function EducationSection() {
             <li>🌊 El puente cultural entre España y América Latina</li>
           </ul>
         </div>
+
+        {/* Compendio de Poetas */}
+        <PoetsCompendium />
       </div>
     </div>
   );
