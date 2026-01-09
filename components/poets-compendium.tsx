@@ -131,6 +131,16 @@ const poets: Poet[] = [
     ]
   },
   {
+    name: "Julio Pablo \"El Príncipe Pinareño\"",
+    subtitle: "Voz Pinareña de la Tradición",
+    birth: "Pinar del Río, Cuba",
+    biography: [
+      "Destacado poeta repentista cubano conocido como \"El Príncipe Pinareño\", representa la rica tradición decimística de la provincia de Pinar del Río, tierra fértil para el cultivo de la décima y el repentismo.",
+      "Su estilo se caracteriza por la elegancia en la construcción del verso y la profundidad de sus improvisaciones. Ha participado en numerosas controversias y encuentros de repentismo, ganándose el respeto de sus contemporáneos y el cariño del público.",
+      "Como representante de la escuela pinareña del repentismo, Julio Pablo ha contribuido a mantener viva la tradición de la décima en su provincia natal, formando parte del legado de grandes poetas que han surgido de esa región occidental de Cuba."
+    ]
+  },
+  {
     name: "Justo Vega",
     subtitle: "El Caballero de la Décima Improvisada",
     birth: "9 de agosto de 1909 en Matanzas",
