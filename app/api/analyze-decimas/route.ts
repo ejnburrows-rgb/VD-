@@ -11,11 +11,13 @@ const MAX_TOKENS = 8192
 interface AnalyzeRequest {
   transcript: string
   singerName?: string
+  youtubeUrl?: string
 }
 
 interface AnalyzeResponse {
   decimas: string
   analysis: string
+  youtubeUrl?: string
 }
 
 // Split long transcripts into manageable chunks
@@ -88,7 +90,7 @@ async function retryWithBackoff<T>(
 export async function POST(request: NextRequest) {
   try {
     const body: AnalyzeRequest = await request.json()
-    const { transcript, singerName } = body
+    const { transcript, singerName, youtubeUrl } = body
 
     // Validate request
     if (!transcript || typeof transcript !== 'string') {
@@ -112,42 +114,91 @@ export async function POST(request: NextRequest) {
     })
 
     try {
-      // Prepare the prompt - EXACT prompt as specified
-      const prompt = `Analiza esta transcripción de décimas espinela cubana. Identifica todas las décimas ABBAACCDDC (8 sílabas/verso). Para cada una: número, poeta, texto, análisis. TOP 4 mejores con explicación.
+      // Prepare the enhanced prompt for décima transcription
+      const prompt = `Transcribe TODA esta grabación de décimas improvisadas (controversias, polémicas, eventos de repentismo) al formato de décima espinela escrita, respetando rigurosamente la estructura métrica y esquema de rima.
 
-Requisitos específicos:
-- Esquema de rima ABBAACCDDC estricto
-- Exactamente 8 sílabas por verso
-- Agrupar en estrofas de 10 versos cada una
-- Identificar el nombre del poeta antes de cada décima
-- Numerar cada décima secuencialmente
-- Seleccionar las TOP 4 mejores décimas y proporcionar análisis breve explicando por qué son las mejores (calidad de rima, significado, importancia cultural)
-- Preservar el significado y flujo original
-${singerName ? `\nNota: El cantante que comienza la canturía es: ${singerName}. Úsalo como referencia para identificar poetas.` : ''}
+**ESTRUCTURA OBLIGATORIA**:
+- **Esquema de rima**: A B B A A C C D D C (rima consonante)
+- **Métrica**: Versos octosílabos (8 sílabas por verso)
+- **Formato**: Cada décima debe tener exactamente 10 versos
 
-Transcripción:
+**INSTRUCCIONES ESPECÍFICAS**:
+
+1. **Identificación de poetas**:
+   - ${singerName ? `El poeta que comienza la canturía es: ${singerName}. Organiza las décimas identificando turnos.` : 'Identifica los poetas por cambios de voz/estilo.'}
+   - Incluye encabezados claros: **[Nombre del Poeta]**
+   - Numera consecutivamente todas las décimas del evento
+
+2. **Proceso de transcripción**:
+   - Identifica dónde comienza y termina cada décima
+   - Convierte el discurso oral en versos escritos de 8 sílabas
+   - Asegura que el esquema de rima sea A B B A A C C D D C con rima consonante
+   - Corrige errores menores de pronunciación pero mantén la esencia del poeta
+
+3. **Verificación de calidad**:
+   - Verifica el esquema de rima consonante
+   - Asegura coherencia temática dentro de cada décima
+   - Mantén el vocabulario y estilo del poeta original
+
+4. **IDIOMA**: Trabaja exclusivamente en español, respetando regionalismos cubanos y vocabulario del campo.
+
+5. **PRIORIDAD**: Precisión métrica > Rima exacta > Sentido literal
+
+Transcripción a analizar:
 ${transcript}
 
-Formato de respuesta:
+**FORMATO DE RESPUESTA**:
 
 === DÉCIMAS IDENTIFICADAS ===
 
-Décima 1
-Poeta: [Nombre del poeta]
-[10 versos con esquema ABBAACCDDC, 8 sílabas cada uno]
+**[1. Poeta: Nombre]**
 
-Décima 2
-Poeta: [Nombre del poeta]
-[10 versos con esquema ABBAACCDDC, 8 sílabas cada uno]
+Verso 1 (A)
+Verso 2 (B)
+Verso 3 (B)
+Verso 4 (A)
+Verso 5 (A)
+Verso 6 (C)
+Verso 7 (C)
+Verso 8 (D)
+Verso 9 (D)
+Verso 10 (C)
+
+---
+
+**[2. Poeta: Nombre]**
 
 [... continuar para todas las décimas ...]
 
-=== ANÁLISIS TOP 4 MEJORES DÉCIMAS ===
+---
 
-1. Décima [Número] - [Explicación detallada: calidad de rima, significado, importancia cultural]
-2. Décima [Número] - [Explicación detallada: calidad de rima, significado, importancia cultural]
-3. Décima [Número] - [Explicación detallada: calidad de rima, significado, importancia cultural]
-4. Décima [Número] - [Explicación detallada: calidad de rima, significado, importancia cultural]`
+=== 📊 RESUMEN FINAL ===
+
+- **Total décimas**: [N]
+- **Tema principal**: [tema]
+- **Ganador técnico**: [análisis breve]
+
+=== 🏆 TOP 2 MEJORES DE CADA POETA ===
+
+**POETA 1: [Nombre]**
+
+**Décima #[N]** - [Tema]
+[Décima completa en formato espinela - 10 versos]
+
+**Análisis poético**: [Análisis de calidad de rima, significado, importancia cultural. NO contar sílabas ni análisis de métricas.]
+
+---
+
+**Décima #[N]** - [Tema]
+[Décima completa en formato espinela - 10 versos]
+
+**Análisis poético**: [Análisis de calidad de rima, significado, importancia cultural. NO contar sílabas ni análisis de métricas.]
+
+---
+
+**POETA 2: [Nombre]**
+
+[Repetir formato para TOP 2 de cada poeta adicional...]`
 
       // Handle long transcripts by splitting if needed
       let fullResponse = ''
@@ -160,29 +211,22 @@ Poeta: [Nombre del poeta]
         const chunkResponses: string[] = []
 
         for (let i = 0; i < chunks.length; i++) {
-          const chunkPrompt = `Analiza esta porción de transcripción de décimas espinela cubana. Identifica todas las décimas ABBAACCDDC (8 sílabas/verso). Para cada una: número, poeta, texto.
+          const chunkPrompt = `Transcribe esta porción de décimas improvisadas al formato espinela escrita.
 
-Requisitos:
-- Esquema de rima ABBAACCDDC estricto
-- Exactamente 8 sílabas por verso
-- Agrupar en estrofas de 10 versos cada una
-- Identificar el nombre del poeta antes de cada décima
-- Numerar cada décima secuencialmente empezando desde ${i * 10 + 1}
-- Preservar el significado y flujo original
-${singerName ? `\nNota: El cantante que comienza la canturía es: ${singerName}. Úsalo como referencia para identificar poetas.` : ''}
+**ESTRUCTURA**: Esquema A B B A A C C D D C, 8 sílabas/verso, 10 versos por décima.
+${singerName ? `El poeta que comienza es: ${singerName}.` : ''}
+Numera desde ${i * 10 + 1}. Identifica poetas por turnos.
 
 Porción de transcripción:
 ${chunks[i]}
 
-Formato de respuesta:
-
+Formato:
 === DÉCIMAS (Parte ${i + 1}) ===
 
-Décima ${i * 10 + 1}
-Poeta: [Nombre]
-[10 versos con esquema ABBAACCDDC, 8 sílabas cada uno]
+**[${i * 10 + 1}. Poeta: Nombre]**
+[10 versos formato espinela]
 
-[... continuar ...]`
+---`
 
           const chunkResult = await retryWithBackoff(async () => {
             return await model.generateContent({
@@ -206,20 +250,26 @@ Poeta: [Nombre]
         // Combine all chunk responses
         fullResponse = chunkResponses.join('\n\n---\n\n')
 
-        // Generate final analysis of top 4 décimas
-        const analysisPrompt = `Basado en estas décimas, selecciona las TOP 4 mejores y proporciona análisis detallado:
+        // Generate final analysis with TOP 2 per poet
+        const analysisPrompt = `Basado en estas décimas, genera el resumen final:
 
 ${fullResponse}
 
-=== ANÁLISIS TOP 4 MEJORES DÉCIMAS ===
+=== 📊 RESUMEN FINAL ===
+- **Total décimas**: [cuenta]
+- **Tema principal**: [tema]
+- **Ganador técnico**: [análisis breve]
 
-Proporciona análisis para las top 4 décimas explicando calidad de rima, significado e importancia cultural.`
+=== 🏆 TOP 2 MEJORES DE CADA POETA ===
+Para cada poeta identificado, selecciona sus 2 mejores décimas.
+Incluye la décima completa y análisis poético (calidad de rima, significado, importancia cultural).
+NO contar sílabas ni análisis de métricas.`
 
         const analysisResult = await retryWithBackoff(async () => {
           return await model.generateContent({
             contents: [{ role: 'user', parts: [{ text: analysisPrompt }] }],
             generationConfig: {
-              maxOutputTokens: 2048,
+              maxOutputTokens: 4096,
               temperature: 0.7,
             },
           })
@@ -241,17 +291,19 @@ Proporciona análisis para las top 4 décimas explicando calidad de rima, signif
         fullResponse = result.response.text()
       }
 
-      // Split response into décimas and analysis
-      const analysisMatch = fullResponse.match(/=== ANÁLISIS TOP 4 MEJORES DÉCIMAS ===\s*(.+)/s) || 
-                           fullResponse.match(/=== TOP 4 DÉCIMAS ANALYSIS ===\s*(.+)/s)
-      const analysis = analysisMatch ? analysisMatch[1].trim() : 'Análisis no encontrado en la respuesta'
+      // Split response into décimas and analysis (supports both old and new format)
+      const analysisMatch = fullResponse.match(/=== 📊 RESUMEN FINAL ===\s*(.+)/s) || 
+                           fullResponse.match(/=== ANÁLISIS TOP 4 MEJORES DÉCIMAS ===\s*(.+)/s) ||
+                           fullResponse.match(/=== 🏆 TOP 2 MEJORES DE CADA POETA ===\s*(.+)/s)
+      const analysis = analysisMatch ? analysisMatch[0].trim() : 'Análisis no encontrado en la respuesta'
       
-      const decimasMatch = fullResponse.match(/(.+?)(?:=== ANÁLISIS TOP 4 MEJORES DÉCIMAS ===|=== TOP 4 DÉCIMAS ANALYSIS ===|$)/s)
+      const decimasMatch = fullResponse.match(/(.+?)(?:=== 📊 RESUMEN FINAL ===|=== ANÁLISIS TOP 4 MEJORES DÉCIMAS ===|=== 🏆 TOP 2 MEJORES|$)/s)
       const decimas = decimasMatch ? decimasMatch[1].trim() : fullResponse
 
       const response: AnalyzeResponse = {
         decimas,
         analysis,
+        youtubeUrl,
       }
 
       return NextResponse.json(response, {
