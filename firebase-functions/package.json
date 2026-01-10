@@ -1,0 +1,15 @@
+{
+  "name": "youtube-audio-extractor",
+  "version": "1.0.0",
+  "description": "Firebase Cloud Function to extract YouTube audio URLs",
+  "main": "index.js",
+  "engines": {
+    "node": "18"
+  },
+  "dependencies": {
+    "firebase-functions": "^5.0.0",
+    "firebase-admin": "^12.0.0",
+    "youtube-dl-exec": "^2.4.23",
+    "cors": "^2.8.5"
+  }
+}
