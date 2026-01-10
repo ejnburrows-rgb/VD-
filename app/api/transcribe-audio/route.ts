@@ -32,16 +32,24 @@ function isValidYouTubeUrl(url: string): boolean {
 // Stream to buffer with timeout
 async function streamToBuffer(
   stream: NodeJS.ReadableStream,
-  timeoutMs: number = 45000
+  timeoutMs: number = 120000 // 2 minutes for long videos
 ): Promise<Buffer> {
   return new Promise((resolve, reject) => {
     const chunks: Buffer[] = []
+    let totalBytes = 0
     const timeout = setTimeout(() => {
       stream.removeAllListeners()
       reject(new Error('Download timeout'))
     }, timeoutMs)
 
-    stream.on('data', (chunk: Buffer) => chunks.push(chunk))
+    stream.on('data', (chunk: Buffer) => {
+      chunks.push(chunk)
+      totalBytes += chunk.length
+      // Log progress every 5MB
+      if (totalBytes % (5 * 1024 * 1024) < chunk.length) {
+        console.log(`[Download] Progress: ${(totalBytes / 1024 / 1024).toFixed(1)} MB`)
+      }
+    })
     stream.on('end', () => {
       clearTimeout(timeout)
       resolve(Buffer.concat(chunks))
@@ -51,6 +59,25 @@ async function streamToBuffer(
       reject(err)
     })
   })
+}
+
+// Retry function with exponential backoff
+async function retryWithBackoff<T>(
+  fn: () => Promise<T>,
+  maxRetries: number = 3,
+  baseDelay: number = 1000
+): Promise<T> {
+  for (let attempt = 0; attempt <= maxRetries; attempt++) {
+    try {
+      return await fn()
+    } catch (error: any) {
+      if (attempt === maxRetries) throw error
+      const delay = baseDelay * Math.pow(2, attempt)
+      console.log(`[Retry] Attempt ${attempt + 1} failed, retrying in ${delay}ms...`)
+      await new Promise(r => setTimeout(r, delay))
+    }
+  }
+  throw new Error('Max retries exceeded')
 }
 
 // Transcribe audio buffer with Groq
@@ -120,14 +147,21 @@ export async function POST(request: NextRequest) {
     }
 
     try {
-      // Step 1: Get video info
+      // Step 1: Get video info with retry
       console.log('[Transcribe API] Getting video info...')
-      const info = await ytdl.getInfo(youtubeUrl, {
-        requestOptions: {
-          headers: {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+      const info = await retryWithBackoff(async () => {
+        return await ytdl.getInfo(youtubeUrl, {
+          requestOptions: {
+            headers: {
+              'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+              'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+              'Accept-Language': 'en-US,en;q=0.5',
+              'Accept-Encoding': 'gzip, deflate',
+              'Connection': 'keep-alive',
+              'Upgrade-Insecure-Requests': '1',
+            },
           },
-        },
+        })
       })
 
       const durationSeconds = parseInt(info.videoDetails.lengthSeconds) || 0
@@ -159,18 +193,24 @@ export async function POST(request: NextRequest) {
       const audioFormat = audioFormats.find(f => f.container === 'mp4' || f.container === 'webm') || audioFormats[0]
       console.log('[Transcribe API] Audio format:', audioFormat.container)
 
-      // Step 3: Download audio
+      // Step 3: Download audio with retry
       console.log('[Transcribe API] Downloading audio...')
-      const audioStream = ytdl(youtubeUrl, {
-        format: audioFormat,
-        requestOptions: {
-          headers: {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+      const audioBuffer = await retryWithBackoff(async () => {
+        const audioStream = ytdl(youtubeUrl, {
+          format: audioFormat,
+          requestOptions: {
+            headers: {
+              'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+              'Accept': '*/*',
+              'Accept-Language': 'en-US,en;q=0.5',
+              'Accept-Encoding': 'identity',
+              'Connection': 'keep-alive',
+              'Range': 'bytes=0-',
+            },
           },
-        },
-      })
-
-      const audioBuffer = await streamToBuffer(audioStream, 50000)
+        })
+        return await streamToBuffer(audioStream, 180000) // 3 min timeout for long videos
+      }, 2) // 2 retries
       console.log('[Transcribe API] Downloaded:', audioBuffer.length, 'bytes')
 
       if (audioBuffer.length === 0) {
