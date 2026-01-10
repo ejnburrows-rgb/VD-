@@ -158,6 +158,12 @@ export async function POST(request: NextRequest) {
       if (errorMessage.includes('parsing') || errorMessage.includes('watch.html')) {
         return NextResponse.json({ error: 'YouTube ha actualizado su estructura. Usa Texto Directo mientras se actualiza el sistema.' }, { status: 503 })
       }
+      if (errorMessage.includes('403') || errorMessage.includes('Status code: 403')) {
+        return NextResponse.json({ error: 'YouTube ha bloqueado la descarga de este video. Por favor, usa la opcion Texto Directo: copia la transcripcion del video manualmente y pegala en el campo de texto.' }, { status: 503 })
+      }
+      if (errorMessage.includes('decipher') || errorMessage.includes('cipher')) {
+        return NextResponse.json({ error: 'No se puede descifrar el audio de YouTube. Usa Texto Directo para copiar y pegar la transcripcion manualmente.' }, { status: 503 })
+      }
       return NextResponse.json({ error: 'Error de transcripcion: ' + errorMessage }, { status: 500 })
     }
   } catch (error: any) {
