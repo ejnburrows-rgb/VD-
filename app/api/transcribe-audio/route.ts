@@ -1,9 +1,6 @@
 ﻿import { NextRequest, NextResponse } from 'next/server'
 import Groq from 'groq-sdk'
-import youtubedl from 'youtube-dl-exec'
-import { readFileSync, unlinkSync, existsSync } from 'fs'
-import { tmpdir } from 'os'
-import { join } from 'path'
+import ytdl from '@distube/ytdl-core'
 
 export const runtime = 'nodejs'
 export const maxDuration = 600
@@ -31,14 +28,22 @@ function isValidYouTubeUrl(url: string): boolean {
   return patterns.some(pattern => pattern.test(url))
 }
 
-function extractVideoId(url: string): string | null {
-  const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]+)/)
-  return match ? match[1] : null
+async function streamToBuffer(stream: NodeJS.ReadableStream, timeoutMs: number = 180000): Promise<Buffer> {
+  return new Promise((resolve, reject) => {
+    const chunks: Buffer[] = []
+    const timeout = setTimeout(() => {
+      stream.removeAllListeners()
+      reject(new Error('Download timeout'))
+    }, timeoutMs)
+    stream.on('data', (chunk: Buffer) => chunks.push(chunk))
+    stream.on('end', () => { clearTimeout(timeout); resolve(Buffer.concat(chunks)) })
+    stream.on('error', (err) => { clearTimeout(timeout); reject(err) })
+  })
 }
 
 async function transcribeWithGroq(groq: Groq, audioBuffer: Buffer, filename: string): Promise<string> {
   const arrayBuffer = audioBuffer.buffer.slice(audioBuffer.byteOffset, audioBuffer.byteOffset + audioBuffer.byteLength) as ArrayBuffer
-  const audioFile = new File([arrayBuffer], filename, { type: 'audio/mp3' })
+  const audioFile = new File([arrayBuffer], filename, { type: 'audio/mp4' })
   console.log('[Transcribe] Sending to Groq, size:', audioBuffer.length, 'bytes')
   const transcription = await groq.audio.transcriptions.create({
     file: audioFile as any,
@@ -51,9 +56,12 @@ async function transcribeWithGroq(groq: Groq, audioBuffer: Buffer, filename: str
   return String(transcription)
 }
 
+const defaultAgent = ytdl.createAgent(undefined, {
+  localAddress: undefined,
+})
+
 export async function POST(request: NextRequest) {
   console.log('[Transcribe API] Request received')
-  let tempFilePath: string | null = null
   try {
     if (!GROQ_API_KEY) {
       return NextResponse.json({ error: 'Servicio de transcripcion no configurado.' }, { status: 503 })
@@ -67,29 +75,57 @@ export async function POST(request: NextRequest) {
     if (!isValidYouTubeUrl(youtubeUrl)) {
       return NextResponse.json({ error: 'URL de YouTube invalida' }, { status: 400 })
     }
-    const videoId = extractVideoId(youtubeUrl)
-    if (!videoId) {
-      return NextResponse.json({ error: 'No se pudo extraer el ID del video' }, { status: 400 })
-    }
     try {
       console.log('[Transcribe API] Getting video info...')
-      const videoInfo = await youtubedl(youtubeUrl, { dumpSingleJson: true, noCheckCertificates: true, noWarnings: true, preferFreeFormats: true }) as any
-      const durationSeconds = videoInfo.duration || 0
-      const title = videoInfo.title || 'Unknown'
+      const info = await ytdl.getInfo(youtubeUrl, {
+        agent: defaultAgent,
+        requestOptions: {
+          headers: {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
+            'Accept-Language': 'en-US,en;q=0.9',
+            'Accept-Encoding': 'gzip, deflate, br',
+            'Cache-Control': 'no-cache',
+            'Pragma': 'no-cache',
+            'Sec-Ch-Ua': '"Chromium";v="122", "Not(A:Brand";v="24", "Google Chrome";v="122"',
+            'Sec-Ch-Ua-Mobile': '?0',
+            'Sec-Ch-Ua-Platform': '"Windows"',
+            'Sec-Fetch-Dest': 'document',
+            'Sec-Fetch-Mode': 'navigate',
+            'Sec-Fetch-Site': 'none',
+            'Sec-Fetch-User': '?1',
+            'Upgrade-Insecure-Requests': '1',
+          },
+        },
+      })
+      const durationSeconds = parseInt(info.videoDetails.lengthSeconds) || 0
+      const title = info.videoDetails.title
       console.log('[Transcribe API] Video:', title, '- Duration:', durationSeconds, 's')
       if (durationSeconds > MAX_VIDEO_DURATION_SECONDS) {
         return NextResponse.json({ error: 'Video demasiado largo. Maximo: 105 min.' }, { status: 400 })
       }
-      console.log('[Transcribe API] Downloading audio...')
-      tempFilePath = join(tmpdir(), 'audio-' + videoId + '-' + Date.now() + '.mp3')
-      await youtubedl(youtubeUrl, { extractAudio: true, audioFormat: 'mp3', audioQuality: 0, output: tempFilePath, noCheckCertificates: true, noWarnings: true })
-      await new Promise(r => setTimeout(r, 500))
-      if (!existsSync(tempFilePath)) {
-        const altPath = tempFilePath + '.mp3'
-        if (existsSync(altPath)) tempFilePath = altPath
-        else throw new Error('Audio file not created')
+      const audioFormats = ytdl.filterFormats(info.formats, 'audioonly')
+      if (audioFormats.length === 0) {
+        return NextResponse.json({ error: 'No hay formato de audio disponible' }, { status: 400 })
       }
-      const audioBuffer = readFileSync(tempFilePath)
+      const audioFormat = audioFormats.find((f: any) => f.container === 'mp4' || f.container === 'webm') || audioFormats[0]
+      console.log('[Transcribe API] Audio format:', audioFormat.container, 'bitrate:', audioFormat.audioBitrate)
+      console.log('[Transcribe API] Downloading audio...')
+      const audioStream = ytdl(youtubeUrl, {
+        format: audioFormat,
+        agent: defaultAgent,
+        requestOptions: {
+          headers: {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+            'Accept': '*/*',
+            'Accept-Language': 'en-US,en;q=0.9',
+            'Accept-Encoding': 'identity',
+            'Connection': 'keep-alive',
+            'Range': 'bytes=0-',
+          },
+        },
+      })
+      const audioBuffer = await streamToBuffer(audioStream, 180000)
       console.log('[Transcribe API] Downloaded:', audioBuffer.length, 'bytes')
       if (audioBuffer.length === 0) {
         return NextResponse.json({ error: 'No se pudo descargar el audio' }, { status: 500 })
@@ -101,36 +137,48 @@ export async function POST(request: NextRequest) {
       let segmentCount = 1
       if (audioBuffer.length > maxBytes) {
         const numChunks = Math.ceil(audioBuffer.length / maxBytes)
+        console.log('[Transcribe API] Splitting into', numChunks, 'chunks')
         const transcriptions: string[] = []
         for (let i = 0; i < numChunks; i++) {
           const start = i * maxBytes
           const end = Math.min(start + maxBytes, audioBuffer.length)
           const chunk = audioBuffer.slice(start, end)
-          const chunkText = await transcribeWithGroq(groq, chunk, 'audio-' + i + '.mp3')
+          console.log('[Transcribe API] Processing chunk', i + 1, '/', numChunks)
+          const chunkText = await transcribeWithGroq(groq, chunk, 'audio-' + i + '.m4a')
           transcriptions.push(chunkText.trim())
           if (i < numChunks - 1) await new Promise(r => setTimeout(r, 1000))
         }
         fullText = transcriptions.join('\n\n')
         segmentCount = numChunks
       } else {
-        fullText = await transcribeWithGroq(groq, audioBuffer, 'audio.mp3')
+        fullText = await transcribeWithGroq(groq, audioBuffer, 'audio.m4a')
       }
       if (!fullText || fullText.trim().length === 0) {
         return NextResponse.json({ error: 'No se genero texto de transcripcion' }, { status: 500 })
       }
+      console.log('[Transcribe API] Transcription complete, length:', fullText.length)
       const response: TranscribeResponse = { text: fullText.trim(), segmentCount, duration: durationSeconds, title }
       return NextResponse.json(response)
     } catch (error: any) {
-      console.error('[Transcribe API] Error:', error.message)
-      return NextResponse.json({ error: 'Error de transcripcion: ' + error.message }, { status: 500 })
+      const errorMessage = error.message || String(error)
+      console.error('[Transcribe API] Error:', errorMessage)
+      if (errorMessage.includes('rate limit') || errorMessage.includes('429')) {
+        return NextResponse.json({ error: 'Limite de API excedido. Espera unos minutos.' }, { status: 429 })
+      }
+      if (errorMessage.includes('private') || errorMessage.includes('Private')) {
+        return NextResponse.json({ error: 'El video es privado. Usa Texto Directo.' }, { status: 403 })
+      }
+      if (errorMessage.includes('Sign in') || errorMessage.includes('bot')) {
+        return NextResponse.json({ error: 'YouTube requiere verificacion. Usa Texto Directo para copiar y pegar la transcripcion manualmente.' }, { status: 403 })
+      }
+      if (errorMessage.includes('parsing') || errorMessage.includes('watch.html')) {
+        return NextResponse.json({ error: 'YouTube ha actualizado su estructura. Usa Texto Directo mientras se actualiza el sistema.' }, { status: 503 })
+      }
+      return NextResponse.json({ error: 'Error de transcripcion: ' + errorMessage }, { status: 500 })
     }
   } catch (error: any) {
     console.error('[Transcribe API] Request error:', error)
     return NextResponse.json({ error: 'Error interno del servidor' }, { status: 500 })
-  } finally {
-    if (tempFilePath && existsSync(tempFilePath)) {
-      try { unlinkSync(tempFilePath) } catch (e) {}
-    }
   }
 }
 
