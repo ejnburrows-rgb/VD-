@@ -115,7 +115,7 @@ export async function POST(request: NextRequest) {
 
     try {
       // Prepare the enhanced prompt for décima transcription
-      const prompt = `Transcribe TODA esta grabación de décimas improvisadas (controversias, polémicas, eventos de repentismo) al formato de décima espinela escrita, respetando rigurosamente la estructura métrica y esquema de rima.
+      const prompt = `Transcribir TODA esta grabación de décimas improvisadas (controversias, polémicas, eventos de repentismo) al formato de décima espinela escrita, respetando rigurosamente la estructura métrica y esquema de rima.
 
 **ESTRUCTURA OBLIGATORIA**:
 - **Esquema de rima**: A B B A A C C D D C (rima consonante)
@@ -125,24 +125,54 @@ export async function POST(request: NextRequest) {
 **INSTRUCCIONES ESPECÍFICAS**:
 
 1. **Identificación de poetas**:
-   - ${singerName ? `El poeta que comienza la canturía es: ${singerName}. Organiza las décimas identificando turnos.` : 'Identifica los poetas por cambios de voz/estilo.'}
+   - ${singerName ? `Cuando el usuario especifica "${singerName} primero", organiza las décimas en ese orden exacto.` : 'Identifica los poetas por cambios de voz/estilo.'}
    - Incluye encabezados claros: **[Nombre del Poeta]**
    - Numera consecutivamente todas las décimas del evento
 
 2. **Proceso de transcripción**:
+   - Escucha/lee la transcripción del audio/video proporcionado
    - Identifica dónde comienza y termina cada décima
    - Convierte el discurso oral en versos escritos de 8 sílabas
    - Asegura que el esquema de rima sea A B B A A C C D D C con rima consonante
    - Corrige errores menores de pronunciación pero mantén la esencia del poeta
 
 3. **Verificación de calidad**:
+   - Cuenta las sílabas de cada verso (debe ser 8)
    - Verifica el esquema de rima consonante
    - Asegura coherencia temática dentro de cada décima
    - Mantén el vocabulario y estilo del poeta original
 
-4. **IDIOMA**: Trabaja exclusivamente en español, respetando regionalismos cubanos y vocabulario del campo.
+4. **Formato de presentación**:
+   **[1. Poeta X]**
+   
+   Verso 1 (A) [8 sílabas]
+   Verso 2 (B) [8 sílabas]
+   Verso 3 (B) [8 sílabas]
+   Verso 4 (A) [8 sílabas]
+   Verso 5 (A) [8 sílabas]
+   Verso 6 (C) [8 sílabas]
+   Verso 7 (C) [8 sílabas]
+   Verso 8 (D) [8 sílabas]
+   Verso 9 (D) [8 sílabas]
+   Verso 10 (C) [8 sílabas]
+   
+   ---
 
-5. **PRIORIDAD**: Precisión métrica > Rima exacta > Sentido literal
+5. **Manejo de contenido extenso**:
+   - Si el material es largo (1+ hora), organiza por secciones temáticas
+   - Mantén numeración continua
+   - Incluye separadores visuales entre poetas
+
+6. **Casos especiales**:
+   - Si un verso no alcanza 8 sílabas naturalmente, ajusta con sinéresis/diéresis poética
+   - Si la rima oral no es perfecta, busca la palabra consonante más cercana que mantenga el sentido
+   - Documenta cualquier ajuste significativo en nota al pie
+
+**IDIOMA**: Trabaja exclusivamente en español, respetando regionalismos cubanos y vocabulario del campo.
+
+**PRIORIDAD**: Precisión métrica > Rima exacta > Sentido literal
+
+**OUTPUT ESPERADO**: Transcripción completa, ordenada por poeta según instrucción del usuario, con todas las décimas en formato Espinela verificado, lista para publicación o archivo.
 
 Transcripción a analizar:
 ${transcript}
@@ -168,7 +198,7 @@ Verso 10 (C)
 
 **[2. Poeta: Nombre]**
 
-[... continuar para todas las décimas ...]
+[... continuar para TODAS las décimas del evento ...]
 
 ---
 
@@ -176,7 +206,6 @@ Verso 10 (C)
 
 - **Total décimas**: [N]
 - **Tema principal**: [tema]
-- **Ganador técnico**: [análisis breve]
 
 === 🏆 TOP 2 MEJORES DE CADA POETA ===
 
@@ -198,7 +227,7 @@ Verso 10 (C)
 
 **POETA 2: [Nombre]**
 
-[Repetir formato para TOP 2 de cada poeta adicional...]`
+[Repetir formato TOP 2 para cada poeta adicional identificado...]`
 
       // Handle long transcripts by splitting if needed
       let fullResponse = ''
@@ -251,19 +280,33 @@ Formato:
         fullResponse = chunkResponses.join('\n\n---\n\n')
 
         // Generate final analysis with TOP 2 per poet
-        const analysisPrompt = `Basado en estas décimas, genera el resumen final:
+        const analysisPrompt = `Basado en estas décimas transcritas, genera el resumen final:
 
 ${fullResponse}
 
 === 📊 RESUMEN FINAL ===
-- **Total décimas**: [cuenta]
-- **Tema principal**: [tema]
-- **Ganador técnico**: [análisis breve]
+- **Total décimas**: [cuenta todas las décimas]
+- **Tema principal**: [tema central de la canturía]
 
 === 🏆 TOP 2 MEJORES DE CADA POETA ===
-Para cada poeta identificado, selecciona sus 2 mejores décimas.
-Incluye la décima completa y análisis poético (calidad de rima, significado, importancia cultural).
-NO contar sílabas ni análisis de métricas.`
+
+Para cada poeta identificado en la transcripción:
+1. Selecciona sus 2 mejores décimas
+2. Incluye la décima completa (10 versos en formato espinela)
+3. Añade análisis poético: calidad de rima, significado, importancia cultural
+4. NO contar sílabas ni análisis de métricas
+
+Formato:
+**POETA: [Nombre]**
+
+**Décima #[N]** - [Tema]
+[10 versos completos]
+
+**Análisis poético**: [análisis sin contar sílabas]
+
+---
+
+[Repetir para cada poeta]`
 
         const analysisResult = await retryWithBackoff(async () => {
           return await model.generateContent({
