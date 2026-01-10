@@ -6,6 +6,7 @@ export const maxDuration = 300
 
 const GROQ_API_KEY = process.env.GROQ_API_KEY || ''
 const FIREBASE_FUNCTION_URL = process.env.FIREBASE_FUNCTION_URL || ''
+const ZYLA_API_KEY = process.env.ZYLA_API_KEY || ''
 const MAX_VIDEO_DURATION_SECONDS = 6300
 
 interface TranscribeRequest {
@@ -53,8 +54,29 @@ export async function POST(request: NextRequest) {
       let duration: number
       let title: string
 
-      // Check if Firebase Function is configured
-      if (FIREBASE_FUNCTION_URL) {
+      // Try Zyla API first (most reliable)
+      if (ZYLA_API_KEY) {
+        console.log('[Transcribe API] Calling Zyla API...')
+        const zylaResponse = await fetch(
+          `https://zylalabs.com/api/2661/youtube+to+audio+api/3858/convert?url=${encodeURIComponent(youtubeUrl)}`,
+          {
+            headers: { 
+              'Authorization': `Bearer ${ZYLA_API_KEY}` 
+            }
+          }
+        )
+
+        if (!zylaResponse.ok) {
+          throw new Error('Zyla API failed: ' + zylaResponse.status)
+        }
+
+        const zylaData = await zylaResponse.json()
+        audioUrl = zylaData.download_url
+        title = zylaData.title || 'Unknown'
+        duration = zylaData.duration || 0
+
+        console.log('[Transcribe API] Zyla returned audio URL for:', title)
+      } else if (FIREBASE_FUNCTION_URL) {
         // Use Firebase Cloud Function to extract audio URL
         console.log('[Transcribe API] Calling Firebase function...')
         const firebaseResponse = await fetch(FIREBASE_FUNCTION_URL, {
