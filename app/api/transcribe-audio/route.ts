@@ -3,10 +3,10 @@ import Groq from 'groq-sdk'
 import ytdl from '@distube/ytdl-core'
 
 export const runtime = 'nodejs'
-export const maxDuration = 300 // 5 minutes max for Pro plan, 60s for hobby
+export const maxDuration = 600 // 10 minutes max for Pro plan
 
 const GROQ_API_KEY = process.env.GROQ_API_KEY || ''
-const MAX_VIDEO_DURATION_SECONDS = 1200 // 20 minutes
+const MAX_VIDEO_DURATION_SECONDS = 6300 // 105 minutes (1h 45min)
 const CHUNK_SIZE_MB = 20 // Groq limit is 25MB, use 20 for safety
 
 interface TranscribeRequest {
