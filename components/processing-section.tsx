@@ -1,12 +1,16 @@
 "use client"
 
 import { useState } from 'react'
-import { Sparkles, FileText } from 'lucide-react'
+import { Sparkles, FileText, Youtube } from 'lucide-react'
 import { Textarea } from './ui/textarea'
 import { Input } from './ui/input'
 
+type InputMode = 'text' | 'youtube'
+
 export function ProcessingSection() {
+  const [inputMode, setInputMode] = useState<InputMode>('text')
   const [directText, setDirectText] = useState('')
+  const [youtubeUrl, setYoutubeUrl] = useState('')
   const [singerName, setSingerName] = useState('')
   const [language, setLanguage] = useState('español')
   const [isProcessing, setIsProcessing] = useState(false)
@@ -14,8 +18,13 @@ export function ProcessingSection() {
   const [result, setResult] = useState<any>(null)
 
   const handleProcess = async () => {
-    if (!directText.trim()) {
+    if (inputMode === 'text' && !directText.trim()) {
       setError('Por favor ingresa texto para analizar')
+      return
+    }
+
+    if (inputMode === 'youtube' && !youtubeUrl.trim()) {
+      setError('Por favor ingresa una URL de YouTube')
       return
     }
 
@@ -24,25 +33,47 @@ export function ProcessingSection() {
     setResult(null)
     
     try {
-      const analyzeResponse = await fetch('/api/analyze-decimas', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          transcript: directText,
-          singerName: singerName || undefined,
-        }),
-      })
+      if (inputMode === 'text') {
+        // Text-only mode (existing)
+        const analyzeResponse = await fetch('/api/analyze-decimas', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            transcript: directText,
+            singerName: singerName || undefined,
+          }),
+        })
 
-      if (!analyzeResponse.ok) {
-        const errorData = await analyzeResponse.json()
-        throw new Error(errorData.error || 'Error al analizar el texto')
+        if (!analyzeResponse.ok) {
+          const errorData = await analyzeResponse.json()
+          throw new Error(errorData.error || 'Error al analizar el texto')
+        }
+
+        const analysisData = await analyzeResponse.json()
+        setResult({ analysis: analysisData })
+      } else {
+        // YouTube mode (new)
+        const processResponse = await fetch('/api/process-youtube-decimas', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            youtubeUrl,
+            poet1Name: singerName || undefined,
+            poet1First: true,
+          }),
+        })
+
+        if (!processResponse.ok) {
+          const errorData = await processResponse.json()
+          throw new Error(errorData.error || 'Error al procesar el video')
+        }
+
+        const processData = await processResponse.json()
+        setResult({ analysis: processData })
       }
-
-      const analysisData = await analyzeResponse.json()
-      setResult({ analysis: analysisData })
     } catch (err: any) {
       console.error('Process error:', err)
-      setError(err.message || 'Error al procesar el texto')
+      setError(err.message || 'Error al procesar')
     } finally {
       setIsProcessing(false)
     }
@@ -74,6 +105,37 @@ export function ProcessingSection() {
         </div>
       </div>
 
+      {/* Mode Selector */}
+      <div className="mt-6">
+        <h3 className="text-lg font-bold text-[#5C4033] mb-4">
+          Selecciona el modo de entrada
+        </h3>
+        <div className="flex gap-4">
+          <button
+            onClick={() => setInputMode('text')}
+            className={`flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-lg border-2 transition-all ${
+              inputMode === 'text'
+                ? 'bg-[#D2691E] text-white border-[#D2691E]'
+                : 'bg-white text-[#5C4033] border-[#C8A05C]/30 hover:border-[#C8A05C]'
+            }`}
+          >
+            <FileText className="w-5 h-5" />
+            Texto Directo
+          </button>
+          <button
+            onClick={() => setInputMode('youtube')}
+            className={`flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-lg border-2 transition-all ${
+              inputMode === 'youtube'
+                ? 'bg-[#D2691E] text-white border-[#D2691E]'
+                : 'bg-white text-[#5C4033] border-[#C8A05C]/30 hover:border-[#C8A05C]'
+            }`}
+          >
+            <Youtube className="w-5 h-5" />
+            Video de YouTube
+          </button>
+        </div>
+      </div>
+
       {/* Error Display */}
       {error && (
         <div className="mt-4 bg-red-50 border-2 border-red-500 rounded-lg p-4">
@@ -82,6 +144,7 @@ export function ProcessingSection() {
       )}
 
       {/* Text Input Section */}
+      {inputMode === 'text' && (
       <div className="mt-6 space-y-4">
         <div className="bg-white/90 rounded-lg p-6 border-2 border-[#C8A05C]/20 shadow-md">
           <div className="flex items-center gap-3 mb-4">
@@ -180,6 +243,85 @@ export function ProcessingSection() {
           </button>
         </div>
       </div>
+      )}
+
+      {/* YouTube Input Section */}
+      {inputMode === 'youtube' && (
+      <div className="mt-6 space-y-4">
+        <div className="bg-white/90 rounded-lg p-6 border-2 border-[#C8A05C]/20 shadow-md">
+          <div className="flex items-center gap-3 mb-4">
+            <Youtube className="w-6 h-6 text-[#D2691E]" />
+            <h3 className="text-xl font-bold text-[#5C4033]">
+              Procesar Video de YouTube
+            </h3>
+          </div>
+
+          {/* YouTube URL Input */}
+          <div className="mb-4">
+            <label className="block text-sm font-semibold text-[#5C4033] mb-2">
+              URL del video de YouTube:
+            </label>
+            <Input
+              type="url"
+              placeholder="https://www.youtube.com/watch?v=..."
+              value={youtubeUrl}
+              onChange={(e) => {
+                setYoutubeUrl(e.target.value)
+                setError(null)
+              }}
+              className="w-full bg-white border-[#C8A05C]/30 focus:border-[#D2691E]"
+            />
+            <p className="text-xs text-[#5C4033]/60 mt-1">
+              ⚠️ Videos de hasta 2 horas. El procesamiento puede tardar 3-5 minutos.
+            </p>
+          </div>
+
+          {/* Singer Name Input */}
+          <div className="mb-4">
+            <label className="block text-sm font-semibold text-[#5C4033] mb-2">
+              ¿Quién comienza la canturía? (opcional):
+            </label>
+            <Input
+              type="text"
+              placeholder="Ej: Alexis Díaz-Pimienta"
+              value={singerName}
+              onChange={(e) => setSingerName(e.target.value)}
+              className="w-full bg-white border-[#C8A05C]/30 focus:border-[#D2691E]"
+            />
+          </div>
+
+          {/* Process Button */}
+          <button
+            onClick={handleProcess}
+            disabled={!youtubeUrl.trim() || isProcessing}
+            className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-lg bg-[#DC2626] text-white font-semibold hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-md"
+          >
+            {isProcessing ? (
+              <>
+                <span className="animate-spin">⏳</span>
+                Procesando video (esto puede tardar varios minutos)...
+              </>
+            ) : (
+              <>
+                <Youtube className="w-5 h-5" />
+                Transcribir y Analizar Video
+              </>
+            )}
+          </button>
+
+          {isProcessing && (
+            <div className="mt-4 bg-blue-50 border-2 border-blue-300 rounded-lg p-4">
+              <p className="text-blue-800 text-sm font-semibold mb-2">📊 Progreso:</p>
+              <ul className="text-xs text-blue-700 space-y-1">
+                <li>⏳ Extrayendo audio del video...</li>
+                <li>⏳ Transcribiendo con Groq Whisper...</li>
+                <li>⏳ Formateando décimas con Gemini AI...</li>
+              </ul>
+            </div>
+          )}
+        </div>
+      </div>
+      )}
 
       {/* Results Section */}
       {result && (
