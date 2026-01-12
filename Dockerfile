@@ -13,7 +13,7 @@ WORKDIR /app
 
 # YouTube deps (crítico para yt-dlp)
 RUN apk add --no-cache python3 py3-pip ffmpeg && \
-    pip3 install --no-cache-dir yt-dlp
+    pip3 install --no-cache-dir yt-dlp --break-system-packages
 
 ENV NODE_ENV=production
 ENV PORT=3000
