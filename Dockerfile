@@ -1,11 +1,11 @@
 # Stage 1: Builder
 FROM node:18-alpine AS builder
 WORKDIR /app
-COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile
+COPY package.json package-lock.json ./
+RUN npm ci
 COPY . .
-RUN yarn prisma generate
-RUN yarn build
+RUN npx prisma generate
+RUN npm run build
 
 # Stage 2: Runner
 FROM node:18-alpine AS runner
@@ -25,4 +25,4 @@ COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/prisma ./prisma
 
 EXPOSE 3000
-CMD ["sh", "-c", "yarn prisma db push && yarn start"]
+CMD ["sh", "-c", "npx prisma db push && npm start"]
