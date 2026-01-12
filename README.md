@@ -45,6 +45,33 @@ Después del deploy, verifica:
 - ✅ Homepage carga correctamente
 - ✅ API routes responden (ej: `/api/validate-youtube` con POST)
 
+## 🚀 Deploy en Render.com (GRATIS)
+
+1. Crear cuenta en https://render.com
+2. New Web Service → Conectar GitHub
+3. Configuración:
+   - Name: viajera-transcription
+   - Runtime: Node
+   - Build: npm install
+   - Start: npm start
+   - Plan: FREE
+4. Variables de entorno:
+   - GROQ_API_KEY: [tu key de Groq]
+5. Deploy (toma 3-5 minutos)
+
+**URL resultante:** https://viajera-transcription.onrender.com
+
+**Endpoint:** POST /api/transcribe
+**Body:** { "youtube_url": "URL_DE_YOUTUBE" }
+
+**Características:**
+- ✅ Videos hasta 2 horas
+- ✅ Sin límite de timeout
+- ✅ Chunking automático
+- ✅ Formateo de décimas
+- ✅ 100% gratis
+- ⚠️ Cold start: Primera request toma 50s (servidor duerme)
+
 ## 🛠️ Desarrollo Local
 
 ```bash

@@ -414,3 +414,11 @@ export async function OPTIONS() {
   })
 }
 
+export async function GET() {
+  return NextResponse.json({ 
+    status: 'ok', 
+    message: 'Analyze Decimas API - Text-only MVP',
+    version: '1.0.0'
+  })
+}
+
