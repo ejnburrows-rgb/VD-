@@ -1,5 +1,8 @@
 // Spanish syllable counter for décima validation
 
+const diphthongs = ['ai', 'ei', 'oi', 'au', 'eu', 'ou', 'ia', 'ie', 'io', 'ua', 'ue', 'uo']
+const diphthongRegexes = diphthongs.map(d => new RegExp(d, 'gi'))
+
 export function countSyllables(word: string): number {
   if (!word) return 0
   
@@ -21,9 +24,7 @@ export function countSyllables(word: string): number {
   }
   
   // Handle diphthongs and triphthongs
-  const diphthongs = ['ai', 'ei', 'oi', 'au', 'eu', 'ou', 'ia', 'ie', 'io', 'ua', 'ue', 'uo']
-  for (const diphthong of diphthongs) {
-    const regex = new RegExp(diphthong, 'gi')
+  for (const regex of diphthongRegexes) {
     const matches = word.match(regex)
     if (matches) {
       count -= matches.length
