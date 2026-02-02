@@ -26,13 +26,14 @@ export function NavigationTabs({ activeTab, onTabChange }: NavigationTabsProps) 
                 key={tab.id}
                 onClick={() => onTabChange(tab.id)}
                 title={tab.title}
-                className={`w-10 h-10 flex items-center justify-center rounded-lg text-xl transition-all ${
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all ${
                   activeTab === tab.id
-                    ? 'bg-[#D97706] shadow-md'
-                    : 'hover:bg-[#C8A05C]/30'
+                    ? 'bg-[#D97706] shadow-md text-white'
+                    : 'hover:bg-[#C8A05C]/30 text-[#5C4033]'
                 }`}
               >
-                {tab.icon}
+                <span className="text-xl">{tab.icon}</span>
+                <span className="hidden md:inline">{tab.title}</span>
               </button>
             ))}
           </div>
