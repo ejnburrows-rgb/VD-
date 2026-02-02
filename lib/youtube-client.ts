@@ -34,12 +34,12 @@ export interface YouTubeVideoInfo {
  * Extrae el ID del video de una URL de YouTube
  * Soporta formatos: youtube.com/watch?v=ID, youtu.be/ID, youtube.com/embed/ID
  */
-export function extractVideoId(url: string): string | null {
-  const patterns = [
-    /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([a-zA-Z0-9_-]{11})/,
-    /youtube\.com\/watch\?.*v=([a-zA-Z0-9_-]{11})/,
-  ];
+const patterns = [
+  /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([a-zA-Z0-9_-]{11})/,
+  /youtube\.com\/watch\?.*v=([a-zA-Z0-9_-]{11})/,
+];
 
+export function extractVideoId(url: string): string | null {
   for (const pattern of patterns) {
     const match = url.match(pattern);
     if (match && match[1]) {
