@@ -94,8 +94,8 @@ export default function PoetMemoryPanel() {
 
       <Card className="cuban-card p-6 text-center bg-gradient-to-r from-[#F5E6D3] to-[#E6D7C1]">
         <p className="decima-text text-lg italic text-[#5C4033] leading-relaxed">
-          "La décima no muere mientras haya quien la cante,<br />
-          quien la escriba con el alma y la guarde en el semblante."
+          &quot;La décima no muere mientras haya quien la cante,<br />
+          quien la escriba con el alma y la guarde en el semblante.&quot;
         </p>
         <p className="text-sm text-[#5C4033]/70 mt-2">— Tradición oral cubana</p>
       </Card>

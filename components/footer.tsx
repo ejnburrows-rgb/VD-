@@ -68,12 +68,12 @@ export function Footer() {
         <div className="text-center space-y-2">
           <p className="text-xs text-gray-400">
             Desarrollado con <span className="text-[#D2691E]">❤</span> en Miami, Florida • En honor a{' '}
-            <strong className="text-[#C8A05C]">Calixto González</strong> "El Guajiro de Hialeah"
+            <strong className="text-[#C8A05C]">Calixto González</strong> &quot;El Guajiro de Hialeah&quot;
           </p>
           <p className="text-xs text-gray-500 italic mt-3">
-            "Un algoritmo que siente la pasión del poeta, rescata del olvido cada improvisación,
+            &quot;Un algoritmo que siente la pasión del poeta, rescata del olvido cada improvisación,
             <br />
-            preserva intacta la lírica del corazón, y eterniza el arte vivo de la décima completa."
+            preserva intacta la lírica del corazón, y eterniza el arte vivo de la décima completa.&quot;
           </p>
           <p className="text-sm text-gray-300 mt-4">
             © <strong className="text-[#C8A05C]">Emilio José Novo</strong>

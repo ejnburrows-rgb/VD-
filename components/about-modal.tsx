@@ -59,7 +59,7 @@ export function AboutModal({ open, onOpenChange }: AboutModalProps) {
 
           <section className="text-center p-4 bg-white rounded-lg border border-[#C8A05C]/40">
             <p className="italic text-[#5C4033]">
-              🌴 "A todos los poetas que han dedicado sus vidas a mantener viva la décima: su voz sigue cantando en cada verso que procesamos aquí."
+              🌴 &quot;A todos los poetas que han dedicado sus vidas a mantener viva la décima: su voz sigue cantando en cada verso que procesamos aquí.&quot;
             </p>
           </section>
 
@@ -109,8 +109,8 @@ export function AboutModal({ open, onOpenChange }: AboutModalProps) {
           </div>
 
           <p className="text-center italic text-sm mt-6" style={{ color: '#6B7280' }}>
-            "Un algoritmo que siente la pasión del poeta, rescata del olvido cada improvisación, preserva intacta la lírica del corazón, y eterniza el arte vivo de la
-            décima completa."
+            &quot;Un algoritmo que siente la pasión del poeta, rescata del olvido cada improvisación, preserva intacta la lírica del corazón, y eterniza el arte vivo de la
+            décima completa.&quot;
           </p>
         </div>
       </DialogContent>

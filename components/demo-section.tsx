@@ -149,7 +149,7 @@ export default function DemoSection({ videoId }: DemoSectionProps) {
           ¿Listo para empezar?
         </h3>
         <p className="text-[#5C4033]/80 mb-4 max-w-2xl mx-auto">
-          Ve a la sección <strong>"Procesar Transcripción"</strong> para comenzar a analizar 
+          Ve a la sección <strong>&quot;Procesar Transcripción&quot;</strong> para comenzar a analizar
           tus videos favoritos de décimas cubanas.
         </p>
         <div className="inline-block px-6 py-2 bg-[#C8A05C] text-white rounded-lg font-medium hover:bg-[#D2691E] transition-colors cursor-pointer">

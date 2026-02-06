@@ -52,7 +52,7 @@ export function EducationSection() {
             forma poética y la hicieron suya.
           </p>
           <p style={{ color: "#5C4033" }}>
-            <strong>Jesús Rodríguez "El Cucalamb"</strong> (1829-1902) es
+            <strong>Jesús Rodríguez &quot;El Cucalamb&quot;</strong> (1829-1902) es
             considerado el padre de la décima cubana moderna.
           </p>
         </div>
@@ -96,7 +96,7 @@ export function EducationSection() {
             className="border-l-4 pl-4 italic my-4"
             style={{ borderColor: "#D97706", color: "#5C4033" }}
           >
-            "Pongan ahí un cuarto jurado: yo mismo, que voto por Nabor."
+            &quot;Pongan ahí un cuarto jurado: yo mismo, que voto por Nabor.&quot;
           </blockquote>
         </div>
 
