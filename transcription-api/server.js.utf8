@@ -1,8 +1,7 @@
 import express from 'express';
 import { exec } from 'child_process';
 import { promisify } from 'util';
-import { readFileSync, existsSync } from 'fs';
-import { unlink } from 'fs/promises';
+import { readFileSync, unlinkSync, existsSync } from 'fs';
 import { tmpdir } from 'os';
 import { join } from 'path';
 import ytDlp from 'youtube-dl-exec';
@@ -26,14 +25,14 @@ app.post('/api/transcribe', async (req, res) => {
 
   try {
     const { youtube_url } = req.body;
-    
+
     if (!youtube_url?.includes('youtube') && !youtube_url?.includes('youtu.be')) {
       return res.status(400).json({ success: false, error: 'URL inválida' });
     }
 
     console.log(' Descargando:', youtube_url);
-    
-    const audioPath = join(tmpdir(), 'audio_.mp3');
+
+    const audioPath = join(tmpdir(), udio_.mp3);
     tempFiles.push(audioPath);
 
     await ytDlp(youtube_url, {
@@ -46,17 +45,17 @@ app.post('/api/transcribe', async (req, res) => {
     console.log(' Audio descargado');
 
     const { stdout } = await execAsync(
-      `ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "${audioPath}"`
+      fprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 ""
     );
     const duration = parseFloat(stdout);
-    console.log(` Duración: ${duration} minutos`);
+    console.log( Duración:  minutos);
 
     let chunks = [audioPath];
     if (duration > 1200) {
       console.log(' Dividiendo audio...');
-      const pattern = join(tmpdir(), 'chunk_%03d.mp3');
+      const pattern = join(tmpdir(), chunk__%03d.mp3);
       await execAsync(
-        `ffmpeg -i "${audioPath}" -f segment -segment_time 1200 -c copy "${pattern}"`
+        fmpeg -i "" -f segment -segment_time 1200 -c copy ""
       );
       chunks = [];
       for (let i = 0; i < Math.ceil(duration / 1200); i++) {
@@ -66,7 +65,7 @@ app.post('/api/transcribe', async (req, res) => {
           tempFiles.push(chunk);
         }
       }
-      console.log(` ${chunks.length} chunks creados`);
+      console.log(  chunks creados);
     }
 
     console.log(' Transcribiendo...');
@@ -79,18 +78,18 @@ app.post('/api/transcribe', async (req, res) => {
         model: 'whisper-large-v3',
         language: 'es',
       });
-      transcripts.push(result.text);
-      console.log(` Chunk ${i+1}/${chunks.length}`);
+      transcripts.push(result);
+      console.log( Chunk /);
     }
     const fullText = transcripts.join(' ');
-    console.log(` Transcripción: ${fullText.length} caracteres`);
+    console.log( Transcripción:  caracteres);
 
     console.log(' Formateando décimas...');
     const formatted = await groq.chat.completions.create({
       model: 'llama-3.1-70b-versatile',
       messages: [{
         role: 'user',
-        content: `Identifica décimas espinelas. JSON: {"decimas":[]}.\n\nTexto: ${fullText}`
+        content: Identifica décimas espinelas. JSON: {"decimas":[]}.\n\nTexto:
       }],
       temperature: 0.2,
     });
@@ -103,7 +102,7 @@ app.post('/api/transcribe', async (req, res) => {
       console.log(' No se formatearon décimas');
     }
 
-    await Promise.all(tempFiles.map(f => unlink(f).catch(() => {})));
+    tempFiles.forEach(f => { try { unlinkSync(f); } catch (e) {} });
 
     const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
     res.json({
@@ -118,14 +117,14 @@ app.post('/api/transcribe', async (req, res) => {
     });
 
   } catch (error) {
-    await Promise.all(tempFiles.map(f => unlink(f).catch(() => {})));
+    tempFiles.forEach(f => { try { unlinkSync(f); } catch (e) {} });
     res.status(500).json({ success: false, error: error.message });
   }
 });
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(` Server en http://localhost:${PORT}`);
-  console.log(` GET  http://localhost:${PORT}/health`);
-  console.log(` POST http://localhost:${PORT}/api/transcribe`);
+  console.log( Server en http://localhost:);
+  console.log( GET  http://localhost:/health);
+  console.log( POST http://localhost:/api/transcribe);
 });
