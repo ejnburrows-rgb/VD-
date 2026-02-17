@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { analyzeDecimas } from '@/lib/decimas-analysis'
 
 export const runtime = 'nodejs'
 export const maxDuration = 300
@@ -51,25 +52,15 @@ export async function POST(request: NextRequest) {
 
     console.log('[Process YouTube] Step 2: Analyzing décimas with Gemini...')
 
-    // Step 2: Analyze with Gemini (using existing analyze-decimas endpoint)
+    // Step 2: Analyze with Gemini (using library function directly)
     const singerName = poet1First ? poet1Name : poet2Name
     
-    const analyzeResponse = await fetch(`${request.nextUrl.origin}/api/analyze-decimas`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        transcript: transcriptionData.text,
-        singerName: singerName || undefined,
-        youtubeUrl,
-      }),
-    })
+    const analysisData = await analyzeDecimas(
+      transcriptionData.text,
+      singerName || undefined,
+      youtubeUrl
+    )
 
-    if (!analyzeResponse.ok) {
-      const errorData = await analyzeResponse.json()
-      throw new Error(errorData.error || 'Analysis failed')
-    }
-
-    const analysisData = await analyzeResponse.json()
     console.log('[Process YouTube] Analysis complete')
 
     const response: ProcessResponse = {
