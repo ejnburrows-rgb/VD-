@@ -1,7 +1,8 @@
 import express from 'express';
 import { exec } from 'child_process';
 import { promisify } from 'util';
-import { readFileSync, unlinkSync, existsSync } from 'fs';
+import { existsSync } from 'fs';
+import { readFile, unlink } from 'fs/promises';
 import { tmpdir } from 'os';
 import { join } from 'path';
 import Groq from 'groq-sdk';
@@ -91,7 +92,7 @@ app.post('/api/transcribe', async (req, res) => {
     for (let i = 0; i < chunkPaths.length; i++) {
       console.log(`   📝 Chunk ${i + 1}/${chunkPaths.length}...`);
       
-      const audioBuffer = readFileSync(chunkPaths[i]);
+      const audioBuffer = await readFile(chunkPaths[i]);
       const audioFile = new File([audioBuffer], 'audio.mp3', { type: 'audio/mpeg' });
 
       try {
@@ -172,14 +173,14 @@ ${fullTranscript}`
     // 6. LIMPIAR ARCHIVOS TEMPORALES
     console.log('🧹 [LIMPIEZA] Eliminando archivos temporales...');
     let deletedCount = 0;
-    for (const file of tempFiles) {
-      try { 
-        unlinkSync(file); 
+    await Promise.all(tempFiles.map(async (file) => {
+      try {
+        await unlink(file);
         deletedCount++;
       } catch (e) {
         console.log(`   ⚠️ No se pudo eliminar: ${file}`);
       }
-    }
+    }));
     console.log(`✅ [LIMPIEZA] ${deletedCount}/${tempFiles.length} archivos eliminados`);
 
     const processingTime = ((Date.now() - startTime) / 1000).toFixed(1);
@@ -205,9 +206,7 @@ ${fullTranscript}`
     console.error('❌ [ERROR]:', error);
     
     // Limpiar archivos en caso de error
-    for (const file of tempFiles) {
-      try { unlinkSync(file); } catch (e) {}
-    }
+    await Promise.all(tempFiles.map(file => unlink(file).catch(() => {})));
     
     res.status(500).json({ 
       success: false, 
