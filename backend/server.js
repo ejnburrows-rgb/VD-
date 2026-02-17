@@ -1,7 +1,8 @@
 import express from 'express';
 import { exec } from 'child_process';
 import { promisify } from 'util';
-import { readFileSync, unlinkSync, existsSync } from 'fs';
+import { readFileSync, existsSync } from 'fs';
+import { unlink } from 'fs/promises';
 import { tmpdir } from 'os';
 import { join } from 'path';
 import Groq from 'groq-sdk';
@@ -172,14 +173,15 @@ ${fullTranscript}`
     // 6. LIMPIAR ARCHIVOS TEMPORALES
     console.log('🧹 [LIMPIEZA] Eliminando archivos temporales...');
     let deletedCount = 0;
-    for (const file of tempFiles) {
-      try { 
-        unlinkSync(file); 
+    const results = await Promise.allSettled(tempFiles.map(file => unlink(file)));
+
+    results.forEach((result, index) => {
+      if (result.status === 'fulfilled') {
         deletedCount++;
-      } catch (e) {
-        console.log(`   ⚠️ No se pudo eliminar: ${file}`);
+      } else {
+        console.log(`   ⚠️ No se pudo eliminar: ${tempFiles[index]}`);
       }
-    }
+    });
     console.log(`✅ [LIMPIEZA] ${deletedCount}/${tempFiles.length} archivos eliminados`);
 
     const processingTime = ((Date.now() - startTime) / 1000).toFixed(1);
@@ -205,9 +207,7 @@ ${fullTranscript}`
     console.error('❌ [ERROR]:', error);
     
     // Limpiar archivos en caso de error
-    for (const file of tempFiles) {
-      try { unlinkSync(file); } catch (e) {}
-    }
+    await Promise.allSettled(tempFiles.map(file => unlink(file)));
     
     res.status(500).json({ 
       success: false, 
