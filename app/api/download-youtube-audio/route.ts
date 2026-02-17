@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import ytdlp from 'yt-dlp-exec'
-import { writeFile, unlink } from 'fs/promises'
+import { access } from 'fs/promises'
 import { join } from 'path'
 import { tmpdir } from 'os'
 
@@ -49,33 +49,17 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    console.log('[Download API] Fetching video info...')
+    console.log('[Download API] Fetching info and downloading...')
 
-    // Get video info first
-    const info = await ytdlp(youtubeUrl, {
-      dumpSingleJson: true,
-      noCheckCertificate: true,
-      noWarnings: true,
-      preferFreeFormats: true,
-    })
-
-    const duration = info.duration || 0
-    const title = info.title || 'Unknown'
-
-    if (duration > MAX_VIDEO_DURATION) {
-      return NextResponse.json(
-        { error: `Video too long (${Math.floor(duration / 60)} min). Max: ${MAX_VIDEO_DURATION / 60} min` },
-        { status: 400 }
-      )
-    }
-
-    console.log('[Download API] Downloading audio:', title, `(${duration}s)`)
-
-    // Download audio to temp directory
     const tempDir = tmpdir()
     const audioPath = join(tempDir, `audio-${Date.now()}.mp3`)
 
-    await ytdlp(youtubeUrl, {
+    // Combined call: Get info AND download in one step
+    // Optimization: avoid double fetch and process spawning
+    // Using dumpSingleJson ensures we get metadata even if download is skipped via matchFilter
+    const info = await ytdlp(youtubeUrl, {
+      dumpSingleJson: true,
+      noSimulate: true,
       extractAudio: true,
       audioFormat: 'mp3',
       audioQuality: 0,
@@ -83,7 +67,27 @@ export async function POST(request: NextRequest) {
       noCheckCertificate: true,
       noWarnings: true,
       preferFreeFormats: true,
-    })
+      matchFilter: `duration <= ${MAX_VIDEO_DURATION}`
+    } as any)
+
+    const duration = info.duration || 0
+    const title = info.title || 'Unknown'
+
+    // Check if download succeeded (file exists)
+    // If matchFilter prevents download (video too long), file won't be created but we still get info
+    try {
+      await access(audioPath)
+    } catch {
+      if (duration > MAX_VIDEO_DURATION) {
+        return NextResponse.json(
+          { error: `Video too long (${Math.floor(duration / 60)} min). Max: ${MAX_VIDEO_DURATION / 60} min` },
+          { status: 400 }
+        )
+      }
+
+      // If duration is fine but file missing, download failed (e.g. network error)
+      throw new Error('Download failed: File not created')
+    }
 
     console.log('[Download API] Audio downloaded to:', audioPath)
 
