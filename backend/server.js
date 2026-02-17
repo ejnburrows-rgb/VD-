@@ -1,7 +1,7 @@
 import express from 'express';
 import { exec } from 'child_process';
 import { promisify } from 'util';
-import { readFileSync, unlinkSync, existsSync } from 'fs';
+import { createReadStream, unlinkSync, existsSync } from 'fs';
 import { tmpdir } from 'os';
 import { join } from 'path';
 import Groq from 'groq-sdk';
@@ -91,12 +91,9 @@ app.post('/api/transcribe', async (req, res) => {
     for (let i = 0; i < chunkPaths.length; i++) {
       console.log(`   📝 Chunk ${i + 1}/${chunkPaths.length}...`);
       
-      const audioBuffer = readFileSync(chunkPaths[i]);
-      const audioFile = new File([audioBuffer], 'audio.mp3', { type: 'audio/mpeg' });
-
       try {
         const result = await groq.audio.transcriptions.create({
-          file: audioFile,
+          file: createReadStream(chunkPaths[i]),
           model: 'whisper-large-v3',
           language: 'es',
         });
