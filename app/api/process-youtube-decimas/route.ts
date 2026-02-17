@@ -1,4 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { downloadYouTubeAudio } from '@/lib/audio-downloader'
+import { transcribeAudio } from '@/lib/transcription-service'
+import { analyzeDecimas } from '@/lib/analysis-service'
+import { unlink } from 'fs/promises'
 
 export const runtime = 'nodejs'
 export const maxDuration = 300
@@ -32,50 +36,41 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    console.log('[Process YouTube] Step 1: Transcribing audio...')
+    console.log('[Process YouTube] Step 1: Downloading audio...')
 
-    // Step 1: Transcribe audio with Groq Whisper
-    const transcribeResponse = await fetch(`${request.nextUrl.origin}/api/transcribe-audio`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ youtubeUrl }),
-    })
+    // Step 1: Download audio
+    const { audioPath, duration, title } = await downloadYouTubeAudio(youtubeUrl)
 
-    if (!transcribeResponse.ok) {
-      const errorData = await transcribeResponse.json()
-      throw new Error(errorData.error || 'Transcription failed')
+    let transcript = ''
+    try {
+      console.log('[Process YouTube] Step 2: Transcribing audio...')
+      // Step 2: Transcribe audio
+      transcript = await transcribeAudio(audioPath)
+      console.log('[Process YouTube] Transcription complete:', transcript.length, 'chars')
+    } finally {
+      // Clean up temp file
+      try {
+        await unlink(audioPath)
+        console.log('[Process YouTube] Cleaned up temp file')
+      } catch (e) {
+        console.warn('[Process YouTube] Failed to clean up temp file:', e)
+      }
     }
 
-    const transcriptionData = await transcribeResponse.json()
-    console.log('[Process YouTube] Transcription complete:', transcriptionData.text.length, 'chars')
+    console.log('[Process YouTube] Step 3: Analyzing décimas with Gemini...')
 
-    console.log('[Process YouTube] Step 2: Analyzing décimas with Gemini...')
-
-    // Step 2: Analyze with Gemini (using existing analyze-decimas endpoint)
+    // Step 3: Analyze with Gemini
     const singerName = poet1First ? poet1Name : poet2Name
     
-    const analyzeResponse = await fetch(`${request.nextUrl.origin}/api/analyze-decimas`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        transcript: transcriptionData.text,
-        singerName: singerName || undefined,
-        youtubeUrl,
-      }),
-    })
+    const { decimas, analysis } = await analyzeDecimas(transcript, singerName || undefined)
 
-    if (!analyzeResponse.ok) {
-      const errorData = await analyzeResponse.json()
-      throw new Error(errorData.error || 'Analysis failed')
-    }
-
-    const analysisData = await analyzeResponse.json()
     console.log('[Process YouTube] Analysis complete')
 
     const response: ProcessResponse = {
-      decimas: analysisData.decimas,
-      analysis: analysisData.analysis,
-      title: eventTitle,
+      decimas,
+      analysis,
+      title: eventTitle || title,
+      duration,
     }
 
     return NextResponse.json(response)
@@ -84,9 +79,17 @@ export async function POST(request: NextRequest) {
     const errorMessage = error.message || String(error)
     console.error('[Process YouTube] Error:', errorMessage)
 
+    // Handle specific errors if possible
+    let status = 500
+    if (errorMessage.includes('YouTube URL') || errorMessage.includes('Video too long') || errorMessage.includes('Audio file too large')) {
+      status = 400
+    } else if (errorMessage.includes('rate limit') || errorMessage.includes('429')) {
+      status = 429
+    }
+
     return NextResponse.json(
       { error: `Processing failed: ${errorMessage}` },
-      { status: 500 }
+      { status: status }
     )
   }
 }
@@ -95,6 +98,6 @@ export async function GET() {
   return NextResponse.json({ 
     status: 'ok', 
     message: 'YouTube décima processing pipeline',
-    workflow: 'YouTube → yt-dlp → Groq Whisper → Gemini Analysis'
+    workflow: 'YouTube → yt-dlp → Groq Whisper → Gemini Analysis (Optimized)'
   })
 }

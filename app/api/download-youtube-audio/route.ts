@@ -1,31 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
-import ytdlp from 'yt-dlp-exec'
-import { writeFile, unlink } from 'fs/promises'
-import { join } from 'path'
-import { tmpdir } from 'os'
+import { downloadYouTubeAudio, MAX_VIDEO_DURATION } from '@/lib/audio-downloader'
 
 export const runtime = 'nodejs'
 export const maxDuration = 300
 
-const MAX_VIDEO_DURATION = 7200 // 2 hours in seconds
-
 interface DownloadRequest {
   youtubeUrl: string
-}
-
-interface DownloadResponse {
-  audioPath: string
-  duration: number
-  title: string
-}
-
-function isValidYouTubeUrl(url: string): boolean {
-  const patterns = [
-    /^https?:\/\/(www\.)?youtube\.com\/watch\?v=[\w-]+/,
-    /^https?:\/\/youtu\.be\/[\w-]+/,
-    /^https?:\/\/(www\.)?youtube\.com\/embed\/[\w-]+/,
-  ]
-  return patterns.some(pattern => pattern.test(url))
 }
 
 export async function POST(request: NextRequest) {
@@ -42,58 +22,13 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    if (!isValidYouTubeUrl(youtubeUrl)) {
-      return NextResponse.json(
-        { error: 'Invalid YouTube URL format' },
-        { status: 400 }
-      )
-    }
+    const { audioPath, duration, title } = await downloadYouTubeAudio(youtubeUrl)
 
-    console.log('[Download API] Fetching video info...')
-
-    // Get video info first
-    const info = await ytdlp(youtubeUrl, {
-      dumpSingleJson: true,
-      noCheckCertificate: true,
-      noWarnings: true,
-      preferFreeFormats: true,
-    })
-
-    const duration = info.duration || 0
-    const title = info.title || 'Unknown'
-
-    if (duration > MAX_VIDEO_DURATION) {
-      return NextResponse.json(
-        { error: `Video too long (${Math.floor(duration / 60)} min). Max: ${MAX_VIDEO_DURATION / 60} min` },
-        { status: 400 }
-      )
-    }
-
-    console.log('[Download API] Downloading audio:', title, `(${duration}s)`)
-
-    // Download audio to temp directory
-    const tempDir = tmpdir()
-    const audioPath = join(tempDir, `audio-${Date.now()}.mp3`)
-
-    await ytdlp(youtubeUrl, {
-      extractAudio: true,
-      audioFormat: 'mp3',
-      audioQuality: 0,
-      output: audioPath,
-      noCheckCertificate: true,
-      noWarnings: true,
-      preferFreeFormats: true,
-    })
-
-    console.log('[Download API] Audio downloaded to:', audioPath)
-
-    const response: DownloadResponse = {
+    return NextResponse.json({
       audioPath,
       duration,
       title,
-    }
-
-    return NextResponse.json(response)
+    })
 
   } catch (error: any) {
     const errorMessage = error.message || String(error)
@@ -117,6 +52,13 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         { error: 'Video not available' },
         { status: 404 }
+      )
+    }
+
+    if (errorMessage.includes('Video too long') || errorMessage.includes('Invalid YouTube URL')) {
+      return NextResponse.json(
+        { error: errorMessage },
+        { status: 400 }
       )
     }
 
