@@ -9,6 +9,33 @@ import cors from 'cors';
 import ytDlp from 'youtube-dl-exec';
 
 const execAsync = promisify(exec);
+
+// Helper for concurrency control
+const pLimit = (concurrency) => {
+  const queue = [];
+  let activeCount = 0;
+
+  const next = () => {
+    if (queue.length === 0) return;
+    if (activeCount < concurrency) {
+      activeCount++;
+      const { fn, resolve, reject } = queue.shift();
+      Promise.resolve(fn())
+        .then(resolve)
+        .catch(reject)
+        .finally(() => {
+          activeCount--;
+          next();
+        });
+    }
+  };
+
+  return (fn) => new Promise((resolve, reject) => {
+    queue.push({ fn, resolve, reject });
+    next();
+  });
+};
+
 const app = express();
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
@@ -86,29 +113,40 @@ app.post('/api/transcribe', async (req, res) => {
 
     // 4. TRANSCRIBIR CADA CHUNK
     console.log('🎤 [TRANSCRIPCIÓN] Iniciando...');
-    const transcripts = [];
 
-    for (let i = 0; i < chunkPaths.length; i++) {
-      console.log(`   📝 Chunk ${i + 1}/${chunkPaths.length}...`);
-      
-      const audioBuffer = readFileSync(chunkPaths[i]);
-      const audioFile = new File([audioBuffer], 'audio.mp3', { type: 'audio/mpeg' });
+    // Use concurrency limit of 3 to respect rate limits while improving speed
+    const limit = pLimit(3);
 
-      try {
-        const result = await groq.audio.transcriptions.create({
-          file: audioFile,
-          model: 'whisper-large-v3',
-          language: 'es',
-        });
-        transcripts.push(result);
-        console.log(`   ✅ Chunk ${i + 1} completado (${result.length} caracteres)`);
-      } catch (error) {
-        console.log(`   ⚠️ Chunk ${i + 1} falló: ${error.message}`);
-        // Continuar con siguientes chunks
-      }
-    }
+    const chunkPromises = chunkPaths.map((chunkPath, i) => {
+      return limit(async () => {
+        console.log(`   📝 Chunk ${i + 1}/${chunkPaths.length}...`);
 
-    const fullTranscript = transcripts.join(' ').trim();
+        const audioBuffer = readFileSync(chunkPath);
+        const audioFile = new File([audioBuffer], 'audio.mp3', { type: 'audio/mpeg' });
+
+        try {
+          const result = await groq.audio.transcriptions.create({
+            file: audioFile,
+            model: 'whisper-large-v3',
+            language: 'es',
+          });
+
+          // Groq returns an object with text property
+          const text = result.text || result;
+          const textLength = typeof text === 'string' ? text.length : JSON.stringify(text).length;
+
+          console.log(`   ✅ Chunk ${i + 1} completado (${textLength} caracteres)`);
+          return text;
+        } catch (error) {
+          console.log(`   ⚠️ Chunk ${i + 1} falló: ${error.message}`);
+          return ''; // Return empty string to keep order but ignore failure
+        }
+      });
+    });
+
+    const results = await Promise.all(chunkPromises);
+    const fullTranscript = results.join(' ').trim();
+
     console.log(`✅ [TRANSCRIPCIÓN] Completa: ${fullTranscript.length} caracteres`);
 
     // 5. FORMATEAR DÉCIMAS ESPINELAS
