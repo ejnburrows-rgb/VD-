@@ -2,6 +2,7 @@
 import Groq from 'groq-sdk'
 import { readFile, unlink } from 'fs/promises'
 import { createReadStream, statSync } from 'fs'
+import { downloadYoutubeAudio } from '@/lib/youtube-downloader'
 
 export const runtime = 'nodejs'
 export const maxDuration = 300
@@ -37,19 +38,8 @@ export async function POST(request: NextRequest) {
     // If YouTube URL provided, download audio first
     if (youtubeUrl && !audioPath) {
       console.log('[Transcribe API] Downloading audio from YouTube...')
-      const downloadResponse = await fetch(`${request.nextUrl.origin}/api/download-youtube-audio`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ youtubeUrl }),
-      })
-
-      if (!downloadResponse.ok) {
-        const errorData = await downloadResponse.json()
-        throw new Error(errorData.error || 'Failed to download audio')
-      }
-
-      const downloadData = await downloadResponse.json()
-      audioPath = downloadData.audioPath
+      const downloadResult = await downloadYoutubeAudio(youtubeUrl)
+      audioPath = downloadResult.audioPath
     }
 
     if (!audioPath) {
