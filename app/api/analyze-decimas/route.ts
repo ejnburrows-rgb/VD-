@@ -7,6 +7,7 @@ export const maxDuration = 120
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY || ''
 const MAX_INPUT_LENGTH = 100000 // Characters
 const MAX_TOKENS = 8192
+const SENTENCE_SPLIT_REGEX = /([.!?]\s+)/
 
 interface AnalyzeRequest {
   transcript: string
@@ -30,7 +31,7 @@ function splitTranscript(transcript: string, maxLength: number): string[] {
   let currentChunk = ''
 
   // Split by sentences (periods, exclamation, question marks)
-  const sentences = transcript.split(/([.!?]\s+)/)
+  const sentences = transcript.split(SENTENCE_SPLIT_REGEX)
 
   for (let i = 0; i < sentences.length; i++) {
     const sentence = sentences[i]
