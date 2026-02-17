@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import ytdlp from 'yt-dlp-exec'
-import { writeFile, unlink } from 'fs/promises'
+import { access } from 'fs/promises'
 import { join } from 'path'
 import { tmpdir } from 'os'
 
@@ -49,33 +49,16 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    console.log('[Download API] Fetching video info...')
+    console.log('[Download API] Fetching info and downloading...')
 
-    // Get video info first
-    const info = await ytdlp(youtubeUrl, {
-      dumpSingleJson: true,
-      noCheckCertificate: true,
-      noWarnings: true,
-      preferFreeFormats: true,
-    })
-
-    const duration = info.duration || 0
-    const title = info.title || 'Unknown'
-
-    if (duration > MAX_VIDEO_DURATION) {
-      return NextResponse.json(
-        { error: `Video too long (${Math.floor(duration / 60)} min). Max: ${MAX_VIDEO_DURATION / 60} min` },
-        { status: 400 }
-      )
-    }
-
-    console.log('[Download API] Downloading audio:', title, `(${duration}s)`)
-
-    // Download audio to temp directory
     const tempDir = tmpdir()
     const audioPath = join(tempDir, `audio-${Date.now()}.mp3`)
 
-    await ytdlp(youtubeUrl, {
+    // Combined call: Get info AND download if duration matches filter
+    const info: any = await ytdlp(youtubeUrl, {
+      dumpSingleJson: true,
+      // @ts-ignore: noSimulate is required to force download with dumpJson
+      noSimulate: true,
       extractAudio: true,
       audioFormat: 'mp3',
       audioQuality: 0,
@@ -83,7 +66,36 @@ export async function POST(request: NextRequest) {
       noCheckCertificate: true,
       noWarnings: true,
       preferFreeFormats: true,
+      matchFilter: `duration <= ${MAX_VIDEO_DURATION}`
     })
+
+    if (!info || typeof info !== 'object') {
+      throw new Error('Failed to retrieve video metadata')
+    }
+
+    const duration = info.duration || 0
+    const title = info.title || 'Unknown'
+
+    // Verify duration constraint
+    if (duration > MAX_VIDEO_DURATION) {
+       return NextResponse.json(
+        { error: `Video too long (${Math.floor(duration / 60)} min). Max: ${MAX_VIDEO_DURATION / 60} min` },
+        { status: 400 }
+      )
+    }
+
+    console.log('[Download API] Downloading audio:', title, `(${duration}s)`)
+
+    // Verify file creation
+    try {
+        await access(audioPath)
+    } catch {
+        console.error('[Download API] Audio file not found after download attempt:', audioPath)
+        return NextResponse.json(
+            { error: 'Download failed: Audio file not created' },
+            { status: 500 }
+        )
+    }
 
     console.log('[Download API] Audio downloaded to:', audioPath)
 
