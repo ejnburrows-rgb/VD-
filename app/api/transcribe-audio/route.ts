@@ -1,7 +1,6 @@
 ﻿import { NextRequest, NextResponse } from 'next/server'
 import Groq from 'groq-sdk'
-import { readFile, unlink } from 'fs/promises'
-import { createReadStream, statSync } from 'fs'
+import { readFile, unlink, stat } from 'fs/promises'
 
 export const runtime = 'nodejs'
 export const maxDuration = 300
@@ -62,7 +61,7 @@ export async function POST(request: NextRequest) {
     console.log('[Transcribe API] Checking audio file:', audioPath)
 
     // Check file size
-    const stats = statSync(audioPath)
+    const stats = await stat(audioPath)
     if (stats.size > MAX_FILE_SIZE) {
       return NextResponse.json(
         { error: `Audio file too large (${Math.floor(stats.size / 1024 / 1024)}MB). Max: 25MB. Try a shorter video.` },
