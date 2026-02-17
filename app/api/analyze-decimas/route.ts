@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { GoogleGenerativeAI } from '@google/generative-ai'
+import { splitTranscript, retryWithBackoff } from '@/lib/analyze-utils'
 
 export const runtime = 'nodejs'
 export const maxDuration = 120
@@ -20,72 +21,6 @@ interface AnalyzeResponse {
   youtubeUrl?: string
 }
 
-// Split long transcripts into manageable chunks
-function splitTranscript(transcript: string, maxLength: number): string[] {
-  if (transcript.length <= maxLength) {
-    return [transcript]
-  }
-
-  const chunks: string[] = []
-  let currentChunk = ''
-
-  // Split by sentences (periods, exclamation, question marks)
-  const sentences = transcript.split(/([.!?]\s+)/)
-
-  for (let i = 0; i < sentences.length; i++) {
-    const sentence = sentences[i]
-    
-    if (currentChunk.length + sentence.length > maxLength && currentChunk.length > 0) {
-      chunks.push(currentChunk.trim())
-      currentChunk = sentence
-    } else {
-      currentChunk += sentence
-    }
-  }
-
-  if (currentChunk.trim().length > 0) {
-    chunks.push(currentChunk.trim())
-  }
-
-  return chunks
-}
-
-// Retry function with exponential backoff
-async function retryWithBackoff<T>(
-  fn: () => Promise<T>,
-  maxRetries: number = 3,
-  baseDelay: number = 2000
-): Promise<T> {
-  for (let attempt = 0; attempt <= maxRetries; attempt++) {
-    try {
-      return await fn()
-    } catch (error: any) {
-      const errorMessage = error.message || String(error)
-      
-      // Don't retry on non-rate limit errors
-      if (!errorMessage.includes('rate limit') && 
-          !errorMessage.includes('429') && 
-          !errorMessage.includes('quota exceeded') &&
-          !errorMessage.includes('Resource has been exhausted')) {
-        throw error
-      }
-      
-      // If this was the last attempt, throw the error
-      if (attempt === maxRetries) {
-        throw error
-      }
-      
-      // Calculate exponential backoff delay
-      const delay = baseDelay * Math.pow(2, attempt)
-      console.log(`Rate limit hit. Retrying in ${delay/1000}s... (Attempt ${attempt + 1}/${maxRetries + 1})`)
-      
-      // Wait before retrying
-      await new Promise(resolve => setTimeout(resolve, delay))
-    }
-  }
-  
-  throw new Error('Max retries exceeded')
-}
 
 export async function POST(request: NextRequest) {
   try {
@@ -237,22 +172,21 @@ Verso 10 (C)
         const chunks = splitTranscript(transcript, MAX_INPUT_LENGTH)
         console.log(`Processing transcript in ${chunks.length} chunks`)
 
-        const chunkResponses: string[] = []
-
-        for (let i = 0; i < chunks.length; i++) {
+        // Helper to process a single chunk
+        const processChunk = async (chunk: string, index: number) => {
           const chunkPrompt = `Transcribe esta porción de décimas improvisadas al formato espinela escrita.
 
 **ESTRUCTURA**: Esquema A B B A A C C D D C, 8 sílabas/verso, 10 versos por décima.
 ${singerName ? `El poeta que comienza es: ${singerName}.` : ''}
-Numera desde ${i * 10 + 1}. Identifica poetas por turnos.
+Numera desde ${index * 10 + 1}. Identifica poetas por turnos.
 
 Porción de transcripción:
-${chunks[i]}
+${chunk}
 
 Formato:
-=== DÉCIMAS (Parte ${i + 1}) ===
+=== DÉCIMAS (Parte ${index + 1}) ===
 
-**[${i * 10 + 1}. Poeta: Nombre]**
+**[${index * 10 + 1}. Poeta: Nombre]**
 [10 versos formato espinela]
 
 ---`
@@ -267,14 +201,31 @@ Formato:
             })
           })
 
-          const chunkText = chunkResult.response.text()
-          chunkResponses.push(chunkText)
+          return chunkResult.response.text()
+        }
 
-          // Small delay between chunks
-          if (i < chunks.length - 1) {
-            await new Promise(resolve => setTimeout(resolve, 1000))
+        // Process chunks in parallel with concurrency limit
+        const CONCURRENCY_LIMIT = 3
+        const chunkResponses = new Array(chunks.length)
+        let currentIndex = 0
+
+        const worker = async () => {
+          while (currentIndex < chunks.length) {
+            const i = currentIndex++
+            if (i >= chunks.length) break
+
+            try {
+              chunkResponses[i] = await processChunk(chunks[i], i)
+            } catch (error) {
+              console.error(`Error processing chunk ${i}:`, error)
+              throw error
+            }
           }
         }
+
+        // Start workers
+        const workerCount = Math.min(chunks.length, CONCURRENCY_LIMIT)
+        await Promise.all(Array.from({ length: workerCount }, () => worker()))
 
         // Combine all chunk responses
         fullResponse = chunkResponses.join('\n\n---\n\n')
