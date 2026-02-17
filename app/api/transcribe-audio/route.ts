@@ -1,6 +1,6 @@
 ﻿import { NextRequest, NextResponse } from 'next/server'
 import Groq from 'groq-sdk'
-import { readFile, unlink } from 'fs/promises'
+import { unlink } from 'fs/promises'
 import { createReadStream, statSync } from 'fs'
 
 export const runtime = 'nodejs'
@@ -74,13 +74,12 @@ export async function POST(request: NextRequest) {
 
     const groq = new Groq({ apiKey: GROQ_API_KEY })
 
-    // Read audio file
-    const audioBuffer = await readFile(audioPath)
-    const audioFile = new File([audioBuffer], 'audio.mp3', { type: 'audio/mpeg' })
+    // Create read stream for audio file
+    const audioStream = createReadStream(audioPath)
 
     // Transcribe with Groq Whisper
     const transcription = await groq.audio.transcriptions.create({
-      file: audioFile,
+      file: audioStream,
       model: 'whisper-large-v3',
       language: 'es',
       response_format: 'text',
