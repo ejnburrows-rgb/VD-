@@ -1,11 +1,3 @@
-import { PrismaClient } from '@prisma/client'
+// Prisma disabled in text-only MVP
+export const prisma = null as any
 
-declare global {
-  var prisma: PrismaClient | undefined
-}
-
-export const prisma = global.prisma || new PrismaClient()
-
-if (process.env.NODE_ENV !== 'production') {
-  global.prisma = prisma
-}
