@@ -72,7 +72,7 @@ export async function GET(
       }
 
       doc.setFontSize(10)
-      decima.verses.forEach((verse, index) => {
+      decima.lines.forEach((verse, index) => {
         if (yPos > 270) {
           doc.addPage()
           yPos = 20
