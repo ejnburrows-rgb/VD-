@@ -96,24 +96,17 @@ export async function GET(
 
       doc.setFontSize(11)
       doc.setTextColor(92, 64, 51)
-      doc.text(
-        `Total de décimas: ${video.analysis.totalDecimas}`,
-        20,
-        yPos
-      )
-      yPos += 7
-      doc.text(
-        `Calidad de rima promedio: ${video.analysis.rhymeQuality.toFixed(2)}`,
-        20,
-        yPos
-      )
+      doc.text(`Total de décimas: ${video.decimas.length}`, 20, yPos)
       yPos += 10
 
-      if (video.analysis.culturalContext) {
-        const lines = doc.splitTextToSize(
-          video.analysis.culturalContext,
-          170
-        )
+      if (video.analysis.summary) {
+        const lines = doc.splitTextToSize(video.analysis.summary, 170)
+        doc.text(lines, 20, yPos)
+        yPos += lines.length * 6 + 5
+      }
+
+      if (video.analysis.deepAnalysis) {
+        const lines = doc.splitTextToSize(video.analysis.deepAnalysis, 170)
         doc.text(lines, 20, yPos)
       }
     }
