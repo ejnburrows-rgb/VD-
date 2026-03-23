@@ -50,10 +50,12 @@ export async function GET(
     if (video.analysis) {
       text += `\nANÁLISIS\n`
       text += `${'='.repeat(50)}\n\n`
-      text += `Total de décimas: ${video.analysis.totalDecimas}\n`
-      text += `Calidad de rima promedio: ${video.analysis.rhymeQuality.toFixed(2)}\n`
-      if (video.analysis.culturalContext) {
-        text += `\nContexto Cultural:\n${video.analysis.culturalContext}\n`
+      text += `Total de décimas: ${video.decimas.length}\n`
+      if (video.analysis.summary) {
+        text += `\nResumen:\n${video.analysis.summary}\n`
+      }
+      if (video.analysis.deepAnalysis) {
+        text += `\nAnálisis:\n${video.analysis.deepAnalysis}\n`
       }
     }
 
