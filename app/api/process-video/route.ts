@@ -67,6 +67,8 @@ export async function POST(request: NextRequest) {
         data: {
           youtubeId: videoId,
           youtubeUrl,
+          title: '',
+          duration: '0',
           status: 'PENDING',
         },
       })
