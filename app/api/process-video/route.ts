@@ -12,7 +12,6 @@ export const maxDuration = 300
 const GROQ_API_KEY = process.env.GROQ_API_KEY || ''
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY || ''
 
-// Convert stream to buffer
 function streamToBuffer(stream: Readable): Promise<Buffer> {
   return new Promise((resolve, reject) => {
     const chunks: Buffer[] = []
@@ -28,40 +27,24 @@ export async function POST(request: NextRequest) {
     const { youtubeUrl, singerName } = body
 
     if (!youtubeUrl || typeof youtubeUrl !== 'string') {
-      return NextResponse.json(
-        { error: 'YouTube URL is required' },
-        { status: 400 }
-      )
+      return NextResponse.json({ error: 'YouTube URL is required' }, { status: 400 })
     }
 
     if (!isValidYouTubeUrl(youtubeUrl)) {
-      return NextResponse.json(
-        { error: 'Invalid YouTube URL' },
-        { status: 400 }
-      )
+      return NextResponse.json({ error: 'Invalid YouTube URL' }, { status: 400 })
     }
 
     const videoId = extractYouTubeId(youtubeUrl)
     if (!videoId) {
-      return NextResponse.json(
-        { error: 'Could not extract video ID' },
-        { status: 400 }
-      )
+      return NextResponse.json({ error: 'Could not extract video ID' }, { status: 400 })
     }
 
-    // Check if video already exists
-    let video = await prisma.video.findUnique({
-      where: { youtubeId: videoId },
-    })
+    let video = await prisma.video.findUnique({ where: { youtubeId: videoId } })
 
     if (video && video.status === 'COMPLETED') {
-      return NextResponse.json({
-        videoId: video.id,
-        status: video.status,
-      })
+      return NextResponse.json({ videoId: video.id, status: video.status })
     }
 
-    // Create or update video record
     if (!video) {
       video = await prisma.video.create({
         data: {
@@ -79,27 +62,15 @@ export async function POST(request: NextRequest) {
       })
     }
 
-    // Start processing asynchronously
-    processVideoAsync(video.id, youtubeUrl, videoId, singerName).catch(
-      (error) => {
-        console.error('Async processing error:', error)
-        prisma.video.update({
-          where: { id: video.id },
-          data: { status: 'FAILED' },
-        })
-      }
-    )
-
-    return NextResponse.json({
-      videoId: video.id,
-      status: 'PENDING',
+    processVideoAsync(video.id, youtubeUrl, videoId, singerName).catch((error) => {
+      console.error('Async processing error:', error)
+      prisma.video.update({ where: { id: video!.id }, data: { status: 'ERROR' } })
     })
+
+    return NextResponse.json({ videoId: video.id, status: 'PENDING' })
   } catch (error: any) {
     console.error('Process video error:', error)
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    )
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
 }
 
@@ -110,49 +81,25 @@ async function processVideoAsync(
   singerName?: string
 ) {
   try {
-    // Step 1: Download
-    await prisma.video.update({
-      where: { id: videoId },
-      data: { status: 'DOWNLOADING' },
-    })
+    await prisma.video.update({ where: { id: videoId }, data: { status: 'DOWNLOADING' } })
 
-    // Get video info
     const info = await ytdl.getInfo(youtubeUrl)
-    const duration = Math.floor(parseInt(info.videoDetails.lengthSeconds) || 0)
+    const duration = String(Math.floor(parseInt(info.videoDetails.lengthSeconds) || 0))
     const title = info.videoDetails.title
 
-    await prisma.video.update({
-      where: { id: videoId },
-      data: {
-        title,
-        duration,
-      },
-    })
+    await prisma.video.update({ where: { id: videoId }, data: { title, duration } })
 
-    // Download audio stream
-    const audioStream = ytdl(youtubeUrl, {
-      quality: 'highestaudio',
-      filter: 'audioonly'
-    })
-
-    // Convert stream to buffer
+    const audioStream = ytdl(youtubeUrl, { quality: 'highestaudio', filter: 'audioonly' })
     const audioBuffer = await streamToBuffer(audioStream)
 
-    // Step 2: Transcribe
-    await prisma.video.update({
-      where: { id: videoId },
-      data: { status: 'TRANSCRIBING' },
-    })
+    await prisma.video.update({ where: { id: videoId }, data: { status: 'TRANSCRIBING' } })
 
     const groq = new Groq({ apiKey: GROQ_API_KEY })
-    // Convert Buffer to ArrayBuffer for File constructor compatibility
     const arrayBuffer = audioBuffer.buffer.slice(
       audioBuffer.byteOffset,
       audioBuffer.byteOffset + audioBuffer.byteLength
     ) as ArrayBuffer
-    const audioFile = new File([arrayBuffer], `${youtubeVideoId}.m4a`, {
-      type: 'audio/m4a',
-    })
+    const audioFile = new File([arrayBuffer], `${youtubeVideoId}.m4a`, { type: 'audio/m4a' })
 
     const transcription = await groq.audio.transcriptions.create({
       file: audioFile as any,
@@ -166,21 +113,14 @@ async function processVideoAsync(
         ? transcription
         : (transcription as any).text || String(transcription)
 
-    await prisma.video.update({
-      where: { id: videoId },
-      data: { transcript },
-    })
+    await prisma.video.update({ where: { id: videoId }, data: { transcript } })
 
-    // Step 3: Analyze
-    await prisma.video.update({
-      where: { id: videoId },
-      data: { status: 'ANALYZING' },
-    })
+    await prisma.video.update({ where: { id: videoId }, data: { status: 'ANALYZING' } })
 
     const genAI = new GoogleGenerativeAI(GEMINI_API_KEY)
     const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash-exp' })
 
-    const prompt = `Format this Spanish transcript into traditional décimas. 
+    const prompt = `Format this Spanish transcript into traditional décimas.
 
 Requirements:
 - ABBAACCDDC rhyme scheme
@@ -198,29 +138,16 @@ ${transcript}`
 
     const result = await model.generateContent({
       contents: [{ role: 'user', parts: [{ text: prompt }] }],
-      generationConfig: {
-        maxOutputTokens: 8192,
-        temperature: 0.7,
-      },
+      generationConfig: { maxOutputTokens: 8192, temperature: 0.7 },
     })
 
-    const analysisText = result.response.text()
-
-    // Parse and save décimas and analysis
-    // This would use the perplexity parser, but for now we'll save the raw text
     await prisma.video.update({
       where: { id: videoId },
-      data: {
-        status: 'COMPLETED',
-        processedAt: new Date(),
-      },
+      data: { status: 'COMPLETED', processedAt: new Date() },
     })
   } catch (error: any) {
     console.error('Processing error:', error)
-    await prisma.video.update({
-      where: { id: videoId },
-      data: { status: 'FAILED' },
-    })
+    await prisma.video.update({ where: { id: videoId }, data: { status: 'ERROR' } })
     throw error
   }
 }
