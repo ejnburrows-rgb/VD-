@@ -41,7 +41,7 @@ export async function GET(
         text += `Poeta: ${decima.poet.name}\n`
       }
       text += `\n`
-      decima.verses.forEach((verse, index) => {
+      decima.lines.forEach((verse, index) => {
         text += `${index + 1}. ${verse}\n`
       })
       text += `\n${'-'.repeat(50)}\n\n`
