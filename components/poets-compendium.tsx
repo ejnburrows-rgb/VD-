@@ -127,17 +127,18 @@ const poets: Poet[] = [
     biography: [
       "Poeta repentista cubano considerado en el mundo como uno de los decimistas improvisadores más influyentes de su generación. El Indio Naborí afirmó sobre él: \"En la vanguardia de nuestros repentistas actuales, constituido por unos treinta jóvenes, figura y se destaca el ágil improvisador Juan Antonio Díaz de cuyos planos reales de sus recuerdos agropecuarios salen no pocas veces planos imaginativos sorprendentes\".",
       "Ha compartido escenario con maestros como Pablo León, Omar Mirabal, Luis Quintana, Leandro Camargo y Yoslay García. Su obra incluye tributos a figuras históricas del repentismo cubano, manteniendo viva la memoria de los grandes maestros.",
-      "Su estilo combina la herencia campesina pinareña con técnica depurada y capacidad de crear imágenes poéticas que conectan lo rural con lo universal. Ha publicado el libro \"Mi dolor tuyo\", donde sus décimas aupan todo el sufrimiento y la esperanza del cubano."
+      "Su estilo combina la herencia campesina pinareña con técnica depurada y capacidad de crear imágenes poéticas que conectan lo rural con lo universal. Ha publicado el libro \"Mi dolor tuyo\", donde sus décimas aupan todo el sufrimiento y la esperanza del cubano.",
+      "Desde aquel primer encuentro en La Coloma en los años 90—cuando el Guajiro de Hialeah y él forjaron una amistad que el tiempo no ha podido desgastar—Juan Antonio ha sido, por sobre todas las cosas, un gran amigo de la familia. Siempre ahí, presente en cada puerto que tocamos, ofreciendo su mano y su palabra, devolviendo con creces el amor que siempre supo entregar. Porque más que un amigo, ha sido un pilar: el hombre que, con su guitarra al hombro y la décima en los labios, nos recuerda que la verdadera patria es la que se construye con el afecto."
     ]
   },
   {
-    name: "Julio Pablo \"El Príncipe Pinareño\"",
+    name: "Julio Pablo \"El Principito\"",
     subtitle: "Voz Pinareña de la Tradición",
     birth: "Pinar del Río, Cuba",
     biography: [
-      "Destacado poeta repentista cubano conocido como \"El Príncipe Pinareño\", representa la rica tradición decimística de la provincia de Pinar del Río, tierra fértil para el cultivo de la décima y el repentismo.",
-      "Su estilo se caracteriza por la elegancia en la construcción del verso y la profundidad de sus improvisaciones. Ha participado en numerosas controversias y encuentros de repentismo, ganándose el respeto de sus contemporáneos y el cariño del público.",
-      "Como representante de la escuela pinareña del repentismo, Julio Pablo ha contribuido a mantener viva la tradición de la décima en su provincia natal, formando parte del legado de grandes poetas que han surgido de esa región occidental de Cuba."
+      "Destacado poeta repentista cubano conocido como \"El Principito\", representa la rica tradición decimística de la provincia de Pinar del Río, tierra fértil para el cultivo de la décima y el repentismo.",
+      "Su estilo se caracteriza por la elegancia en la construcción del verso y la profundidad de sus improvisaciones, participando en numerosas controversias donde su ingenio siempre brilla. Ha contribuido a mantener viva la tradición de la décima en su provincia natal, formando parte del legado de grandes poetas que han surgido de esa región occidental de Cuba.",
+      "Pero lo que lo hace verdaderamente especial es ese hilo invisible de amor que lo unió al Guajiro, un sentimiento tan hondo que terminó abrazando a toda nuestra familia. Y hoy, después de tantos caminos andados y tantos versos compartidos, tengo el honor inmenso de llamarlo mi mejor amigo."
     ]
   },
   {
@@ -306,7 +307,7 @@ export function PoetsCompendium() {
       >
         📜 Los Maestros de la Décima: Compendio Completo
       </h3>
-      
+
       <p className="mb-6" style={{ color: "#5C4033" }}>
         Biografías completas de los grandes maestros del repentismo cubano, ordenadas alfabéticamente.
       </p>

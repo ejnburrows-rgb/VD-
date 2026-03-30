@@ -1,13 +1,11 @@
 "use client"
 
 import { useState } from 'react'
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from './ui/dialog'
 import Link from 'next/link'
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from './ui/dialog'
+import { Badge } from './ui/badge'
+import { Button } from './ui/button'
+import { Globe, BookOpen } from "lucide-react"
 
 interface AboutModalProps {
   open: boolean
@@ -16,6 +14,7 @@ interface AboutModalProps {
 
 export function AboutModal({ open, onOpenChange }: AboutModalProps) {
   const [showLeonorInfo, setShowLeonorInfo] = useState(false)
+  const [showArmandoInfo, setShowArmandoInfo] = useState(false)
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -27,187 +26,241 @@ export function AboutModal({ open, onOpenChange }: AboutModalProps) {
         </DialogHeader>
 
         <div className="space-y-6 mt-4">
-          {/* Calixto: Tejedor Entre Dos Orillas */}
-          <section className="mb-8">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#C8A05C] to-[#D2691E] flex items-center justify-center">
-                <span className="text-2xl">🌴</span>
-              </div>
-              <h3 className="text-2xl font-serif font-bold text-[#C8A05C]">
-                Calixto: Tejedor Entre Dos Orillas
-              </h3>
-            </div>
-
-            <div className="space-y-4 text-[#5C4033] leading-relaxed">
-              <p>
-                Calixto nació donde el cielo toca el agua—<strong>La Coloma</strong>, pueblo de pescadores.
-                Entre barcas y sal, aprendió lo que el mar enseña: esperar es arte. Los pescadores lo saben—tejer redes lleva días,
-                tejer palabras pide lo mismo.
-              </p>
-
-              <p>
-                La décima le palpitaba desde niño. Esa forma de diez versos que cruzó el océano y echó raíces en Cuba.
-                Calixto se hizo trovador—no de rimas fáciles, sino de las que improvisan con el corazón. Creación colectiva, siempre.
-              </p>
-
-              <p>
-                El exilio lo llevó a <strong>Hialeah</strong>. Allá le llamaron <strong>el Guajiro</strong>—campesino de verdad,
-                fuerza tranquila, autenticidad que no se aprende. Exilio que fortalece.
-              </p>
-
-              <p>
-                Su casa se volvió refugio. Abría la puerta, conseguía espacios en las radios, conectaba trovadores dispersos.
-                Su voz baja pero firme les recordaba: la décima cura, guarda lo que no queremos perder.
-              </p>
-
-              <p>
-                <strong>Viajera Digital</strong> nace de ese legado. Preservamos cada décima usando tecnología que siente la pasión del poeta.
-                Honramos la memoria de Calixto González y todos los poetas que mantienen viva esta tradición milenaria.
-              </p>
-
-              <p>
-                Como las redes de La Coloma—pacientes, fuertes—Calixto tejió comunidad que no se deshace.
-                Su casa vive en la memoria como ese lugar donde la décima encontró techo, donde trovadores se reconocieron hermanos.
-              </p>
-
-              <p>
-                En esas redes quedó atrapada, felizmente, una viajera de España que llegó buscando versos y encontró raíces.
-                Cuba no suelta a quien prueba el sabor de sus décimas. Ella quedó tejida en esta red—hebra europea en tapiz caribeño.
-              </p>
-
-              <p>
-                <strong>Viajera Digital</strong> continúa ese tejido. Cada décima preservada es hebra. Cada poeta que aquí encuentra su voz es nudo.
-                Cada generación que accede a este archivo teje hacia adelante. La tecnología sirve a la tradición.
-              </p>
-
-              <p className="font-semibold text-lg text-[#5C4033]">
-                Para que la décima nunca sea arrancada del verde imán de nuestro suelo.
-              </p>
-            </div>
-          </section>
-
-          {/* Mensaje Final */}
-          <section className="mb-8 text-center p-4 bg-[#F5E6D3]/50 rounded-lg border border-[#C8A05C]/30">
-            <p className="text-lg italic text-[#5C4033]">
-              🌴 &quot;A todos los poetas que han dedicado sus vidas a mantener viva la décima: su voz sigue cantando en cada verso que procesamos aquí.&quot;
+          {/* Armando González: El Pilar de la Familia */}
+          <section className="space-y-4">
+            <h3 className="text-2xl font-serif font-bold flex items-center gap-2" style={{ color: '#C8A05C' }}>
+              🚲 Armando González: El Pilar de la Familia
+            </h3>
+            <p>
+              Mi tío <strong>Armando González</strong> fue más que familiar—fue mi primer padrino en esta tierra,
+              el hombre que junto a su esposa <strong>Leonor Lopetegui</strong> me regaló mi primera bicicleta cuando
+              apenas tenía <strong>tres años</strong>. Aquella bicicleta no fue solo un juguete; fue la primera
+              libertad, la primera promesa de que en este nuevo país podría pedalear hacia cualquier sueño.
             </p>
-          </section>
-
-          {/* Desarrollo y Recursos */}
-          <section className="mb-8 grid md:grid-cols-2 gap-6">
-            <div className="p-4 bg-white/60 rounded-lg border border-[#C8A05C]/30">
-              <div className="flex items-center gap-2 mb-3">
-                <div className="w-8 h-8 rounded-full bg-[#C8A05C] flex items-center justify-center">
-                  <span className="text-white text-sm">💻</span>
-                </div>
-                <h4 className="text-lg font-bold text-[#5C4033]">Desarrollo</h4>
-              </div>
-              <p className="text-sm text-[#5C4033] mb-2">
-                Creada por: <strong>Emilio José Novo</strong>
-              </p>
-              <p className="text-sm text-[#5C4033]">
-                Versión: <strong>2.0 Pro</strong>
-              </p>
-            </div>
-
-            <div className="p-4 bg-white/60 rounded-lg border border-[#C8A05C]/30">
-              <div className="flex items-center gap-2 mb-3">
-                <div className="w-8 h-8 rounded-full bg-[#D2691E] flex items-center justify-center">
-                  <span className="text-white text-sm">🌐</span>
-                </div>
-                <h4 className="text-lg font-bold text-[#5C4033]">Recursos Web</h4>
-              </div>
-              <p className="text-sm text-[#5C4033] mb-2">
-                Web:{' '}
-                <Link
-                  href="https://juanantoniodiaz.com/acerca-de/"
-                  className="text-[#D2691E] hover:underline font-semibold"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Juanantoniodiaz.com
-                </Link>
-              </p>
-              <p className="text-sm text-[#5C4033] mb-2">
-                Canal:{' '}
-                <Link
-                  href="https://youtube.com/@juanantoniodiaz9034"
-                  className="text-[#D2691E] hover:underline font-semibold"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  @juanantoniodiaz9034
-                </Link>
-              </p>
-              <p className="text-xs text-[#5C4033]/70">
-                Licencia: Creative Commons (Uso libre con atribución)
-              </p>
-            </div>
-          </section>
-
-          {/* Agradecimientos - Leonor Lopetegui */}
-          <section className="mb-8 border-t-2 border-[#C8A05C] pt-4">
-            <p className="text-sm font-medium text-[#5C4033] mb-2">
-              Agradecimientos por la creación a:
+            <p>
+              Su puerta siempre estaba abierta. No importaba la hora, no importaba el motivo. La casa de Armando
+              en Miami era el puerto seguro donde toda la familia desembarcaba después del exilio. Él nos trajo
+              desde Cuba—mi padre, mi madre, y un niño asustado que no entendía por qué había dejado su casa.
+              Armando entendió. Y sin decir mucho, hizo que esa transición doliera menos.
             </p>
-            <p className="text-base text-[#5C4033]">
-              <strong>Leonor Lopetegui</strong>
-              <button
-                onClick={() => setShowLeonorInfo(!showLeonorInfo)}
-                className="ml-2 text-[#D2691E] hover:text-[#C8A05C] transition-colors font-bold text-lg"
-                aria-label="Ver más información sobre Leonor Lopetegui"
-              >
-                *
-              </button>
+            <p>
+              <strong>Armando es mi mejor amigo</strong>—no solo por sangre, sino por elección. Armando me enseñaba
+              las reglas de la vida: trabajar duro, cuidar a la familia, y nunca olvidar de dónde venimos.
+              La Coloma vivía en su memoria como vive en la mía ahora.
+            </p>
+            <p>
+              La primera décima la escuché de él. Puso la radio de Radio Martí mientras arreglaba bicicletas
+              en el garaje, me llevó a los encuentros de trovadores en Hialeah, y me enseñó que la poesía
+              no era solo para libros, sino para vivirla.
             </p>
 
-            {showLeonorInfo && (
-              <div className="mt-4 p-4 bg-[#F5E6D3] border-2 border-[#C8A05C] rounded-lg space-y-3 text-sm animate-in fade-in duration-300">
+            <button
+              onClick={() => setShowArmandoInfo(!showArmandoInfo)}
+              className="text-sm underline hover:no-underline" style={{ color: '#D2691E' }}
+            >
+              {showArmandoInfo ? '- Menos información' : '+ Más sobre Armando y La Coloma'}
+            </button>
+
+            {showArmandoInfo && (
+              <div className="p-4 bg-white/70 rounded-lg border border-[#C8A05C]/30 text-sm space-y-3">
                 <p>
-                  Leonor Lopetegui ha sido mi maestra de español, consejera y una abuela más que la vida me regaló desde mis cinco años de edad,
-                  cuando ella junto a su esposo, mi tío Armando González, me trajo de Cuba junto a mis padres. Al igual que a tantos otros de nuestra familia,
-                  nos ayudaron a comenzar una nueva vida en Miami, una experiencia que marcó profundamente mi formación y mi corazón.
+                  Armando González nació en <strong>La Coloma</strong>, ese pueblo de pescadores en Pinar del Río
+                  donde el cielo se confunde con el mar. Creció entre redes y anzuelos, aprendiendo que la paciencia
+                  no es virtud, sino necesidad. Cuando vino a Miami, trajo consigo el espíritu de La Coloma:
+                  comunidad, generosidad, y una puerta siempre abierta.
                 </p>
                 <p>
-                  Con casi cincuenta años dedicados a la enseñanza del español, la Sra. Lopetegui no solo dominó el arte de enseñar con pasión y devoción
-                  en las Escuelas Públicas del Condado de Miami-Dade, sino que tocó innumerables vidas con su generosidad y amor incondicional.
-                  Su legado está marcado por reconocimientos extraordinarios como el Premio Cervantes de la Universidad Nova Southeastern por hacer una diferencia
-                  en la educación hispana, y por ser nombrada Maestra del Año en la Escuela Primaria James H. Bright durante el año escolar 2001-2002.
-                </p>
-                <p>
-                  También fue seleccionada Educadora Bilingüe del Año por la Asociación Bilingüe de la Florida, un testimonio de su liderazgo excepcional
-                  en la educación bilingüe. Durante más de diez años, lideró la División de Educación Bilingüe e Idiomas del Mundo para las Escuelas Públicas
-                  del Condado de Miami-Dade, dejando una huella imborrable en el perfeccionamiento del español entre niños y adultos. Ha escrito libros educativos
-                  para niños y ha compartido su sabiduría en importantes eventos educativos nacionales e internacionales, incluyendo la Asociación Nacional de
-                  Educación Bilingüe y la Asociación Bilingüe de la Florida.
-                </p>
-                <p>
-                  En reconocimiento a esta labor monumental, la Ciudad de Sweetwater proclamó el 6 de junio de 2014 como el &quot;Día de la Sra. Leonor Lopetegui&quot;.
-                  Para mí y para tantos otros, ella representa mucho más que todos estos honores: es un ejemplo vivo de generosidad, sabiduría y amor que
-                  trasciende las aulas y perdura para siempre en nuestros corazones.
+                  En Hialeah, Armando no solo construyó una casa—construyó un refugio. Familiares recién llegados
+                  de Cuba, amigos del barrio, trovadores sin techo: todos encontraron en su casa una cena caliente
+                  y una oreja dispuesta. Su garaje era famoso: allí arreglaba bicicletas para los niños del vecindario,
+                  siempre gratis, siempre con una sonrisa.
                 </p>
               </div>
             )}
           </section>
 
-          {/* Tecnologías */}
-          <section className="mb-8">
-            <div className="flex flex-wrap gap-2 justify-center">
-              {['IA Claude Sonnet', 'NextJS 14', 'Transcripción de Audio', 'Análisis Académico', 'Patrimonio UNESCO'].map((label) => (
-                <span key={label} className="px-3 py-1 bg-[#C8A05C]/20 text-[#5C4033] rounded-full text-xs font-medium border border-[#C8A05C]/30">
-                  {label}
-                </span>
-              ))}
+          {/* Décima para José */}
+          <section className="text-center p-6 bg-white rounded-lg border-2 border-[#C8A05C]">
+            <h3 className="text-xl font-serif font-bold mb-4" style={{ color: '#C8A05C' }}>
+              🎵 Décima para José
+            </h3>
+            <div className="space-y-1 italic text-[#5C4033] text-lg">
+              <p>Aquí me tienes José</p>
+              <p>cantando en distinto idioma</p>
+              <p>sin olvidar La Coloma</p>
+              <p>que llorando la dejé.</p>
+              <p>Jamás me olvidaré</p>
+              <p>de mi Madre, Padre y Tío,</p>
+              <p>y aquí estoy medio vacío,</p>
+              <p>nada que me pueda llenar</p>
+              <p>nada que me pueda llenar</p>
+              <p>hasta poder regresar</p>
+              <p>para bañarme en mi río.</p>
             </div>
           </section>
 
-          {/* Cita Final */}
-          <section className="mb-8 text-center p-4 bg-[#F5E6D3]/50 rounded-lg border border-[#C8A05C]/30">
-            <p className="text-sm italic text-[#5C4033]">
-              &quot;Un algoritmo que siente la pasión del poeta, rescata del olvido cada improvisación,
-              preserva intacta la lírica del corazón, y eterniza el arte vivo de la décima completa.&quot;
+          {/* Calixto: El Verdadero Guajiro de Hialeah */}
+          <section className="space-y-6">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#C8A05C] to-[#D2691E] flex items-center justify-center">
+                <span className="text-2xl">🌴</span>
+              </div>
+              <h3 className="text-2xl font-serif font-bold text-[#C8A05C]">
+                Calixto: El Verdadero Guajiro de Hialeah
+              </h3>
+            </div>
+
+            <div className="space-y-4 text-[#5C4033] leading-relaxed">
+              <p>
+                Calixto González nació en <strong>La Coloma, Pinar del Río</strong>—uno entre dieciséis hermanos, en una tierra donde el mar enseña paciencia y los pescadores saben que lo importante no es lo que el agua trae, sino lo que las redes no dejan escapar.
+              </p>
+
+              <p>
+                De joven emigró a La Habana y abrió una ferretería. Su negocio era punto de encuentro antes que comercio, lugar de conversación antes que transacción. Con <strong>Benny Moré</strong> se sentaban juntos a la mesa, Benny con su botella de ron, y entre conversación e improvisación se les iba el tiempo. Calixto no contaba estas historias para impresionar; las contaba porque formaban parte del tejido de una vida vivida entre gente, música y palabra.
+              </p>
+
+              <p>
+                Esa décima arriba mencionada fue la primera que escuché improvisar en vivo. No era solo poesía: era su vida entera comprimida en diez versos—la nostalgia, el amor, el río de La Coloma que nunca dejó de correr por dentro de él. El exilio lo trajo a <strong>Hialeah</strong>. Manejó camiones—trabajo duro que nunca le quitó la delicadeza. Con sus hermanos—Armandito entre ellos—viajó de vuelta a la isla y me regaló esa bicicleta cuando yo era niño.
+              </p>
+
+              <p>
+                En Miami, su casa se convirtió en refugio para trovadores y repentistas que llegaban de Cuba sin saber cómo empezar de nuevo. Conectaba poetas dispersos por un exilio que todo lo fragmentaba. <strong>Viajera Digital</strong> existe porque Calixto González dedicó su vida a mantener viva la décima a través de conexiones humanas.
+              </p>
+
+              <p className="font-bold text-center text-[#D2691E] mt-6">
+                Para que la décima nunca sea arrancada del verde imán de nuestro suelo.
+              </p>
+            </div>
+          </section>
+
+          <section className="text-center p-4 bg-white rounded-lg border border-[#C8A05C]/40">
+            <p className="italic text-[#5C4033]">
+              🌴 "A todos los poetas que han dedicado sus vidas a mantener viva la décima: su voz sigue cantando en cada verso que procesamos aquí."
             </p>
           </section>
+
+          <section className="grid md:grid-cols-2 gap-6">
+            <div className="p-4 bg-white/70 rounded-lg border border-[#C8A05C]/30">
+              <h4 className="text-lg font-bold flex items-center gap-2" style={{ color: '#D97706' }}>
+                ⚙️ Desarrollo
+              </h4>
+              <p>Creada por: <strong>Emilio José Novo</strong></p>
+              <p>Versión: 2.0 Pro</p>
+            </div>
+            <div className="p-4 bg-white/70 rounded-lg border border-[#C8A05C]/30">
+              <h4 className="text-lg font-bold flex items-center gap-2" style={{ color: '#D2691E' }}>
+                🌐 Recursos Web
+              </h4>
+              <p className="text-sm" style={{ color: "#5C4033" }}>
+                Web:{" "}
+                <strong>
+                  <a
+                    href="https://juanantoniodiaz.com/acerca-de/"
+                    className="underline transition-colors"
+                    style={{ color: "inherit" }}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Juanantoniodiaz.com
+                  </a>
+                </strong>
+              </p>
+              <p className="text-sm" style={{ color: "#5C4033" }}>
+                Canal:{" "}
+                <strong>
+                  <a
+                    href="https://youtube.com/@juanantoniodiaz9034"
+                    className="underline transition-colors"
+                    style={{ color: "inherit" }}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    @juanantoniodiaz9034
+                  </a>
+                </strong>
+              </p>
+              <p className="text-sm text-[#6B7280]">Licencia: Creative Commons (Uso libre con atribución)</p>
+            </div>
+          </section>
+
+          {/* Leonor Tribute Section - MERGED FROM SOURCE B */}
+          <section className="border-t border-[#C8A05C]/40 pt-4">
+            {!showLeonorInfo && (
+              <div className="text-sm text-[#5C4033]">
+                <p>
+                  Agradecimiento *{' '}
+                  <button
+                    onClick={() => setShowLeonorInfo(true)}
+                    className="text-[#D2691E] hover:text-[#C8A05C] underline cursor-pointer font-semibold transition-colors"
+                  >
+                    Leonor Lopetegui
+                  </button>
+                </p>
+              </div>
+            )}
+
+            {showLeonorInfo && (
+              <div className="border-t-2 pt-6 animate-in fade-in duration-300" style={{ borderColor: "#C8A05C" }}>
+                <div className="space-y-4">
+                  <div className="text-center">
+                    <h3 className="text-xl md:text-2xl font-serif font-bold text-[#C8A05C] mb-1">
+                      Agradecimiento especial
+                    </h3>
+                    <h4 className="text-lg md:text-xl font-serif italic text-[#D2691E]">
+                      A Leonor Lopetegui
+                    </h4>
+                  </div>
+
+                  <div className="p-6 border-2 rounded-lg space-y-4 text-sm md:text-base leading-relaxed" style={{ backgroundColor: "#F5E6D3", borderColor: "#C8A05C", color: "#5C4033" }}>
+                    <p>
+                      Hay personas que cambian una vida entera sin proponérselo. Para mí, una de ellas es Leonor Lopetegui. Fue mi maestra de español, es mi consejera y una abuela más que la vida me regaló, porque fue ella, junto a su esposo, mi tío <strong>Armando González</strong>, quien me trajo de Cuba junto a mis padres. Al igual que a tantos otros de nuestra familia, nos ayudaron a comenzar una nueva vida en Miami, una experiencia que marcó profundamente mi formación y mi corazón.
+                    </p>
+
+                    <p>
+                      Durante casi cincuenta años en las Escuelas Públicas del Condado de Miami-Dade, la Sra. Lopetegui enseñó español con una mezcla única de rigor y cariño. Su labor fue reconocida con premios como el Cervantes de la Universidad Nova Southeastern por su impacto en la educación hispana, el nombramiento como Maestra del Año en la escuela primaria James H. Bright (2001–2002) y el reconocimiento como Educadora Bilingüe del Año por la Asociación Bilingüe de la Florida. Durante más de diez años lideró la División de Educación Bilingüe e Idiomas del Mundo, escribió materiales educativos para niños y compartió su experiencia en congresos nacionales e internacionales. La Ciudad de Sweetwater incluso proclamó el 6 de junio de 2014 como el &quot;Día de la Sra. Leonor Lopetegui&quot;.
+                    </p>
+
+                    <p>
+                      Pero cuando pienso en ella, no pienso primero en los premios ni en los cargos. La recuerdo en el suelo conmigo, tras un largo día de trabajo enseñando español a otros niños. Yo tenía cinco años. Ella convertía una pizarra en un juego y el juego en clase. Ahí, en esas tardes simples, me enseñó mis primeras letras en español, a juntar sílabas, a leer despacio las palabras y a escribir mi nombre, una y otra vez, hasta que me saliera bien. La veo dibujando letras grandes y claras, escribiendo palabras lentamente para que yo pudiera seguirlas con la mirada, borrándolas con la mano para volver a escribirlas, sonriendo cada vez que yo repetía algo bien. En esa pizarra sencilla cabían un idioma entero y todo el cariño con que me lo regalaba.
+                    </p>
+
+                    <p>
+                      Me enseñó a amar el español, a cuidar las palabras, a entender que el idioma es algo vivo y que la palabra tiene poder. Tanto poder, que lo que Dios nos dejó para conocerlo fue su Palabra en la Biblia. Me hizo ver que, bien usadas, las palabras pueden acercar, consolar, levantar y que por eso hay que tratarlas siempre con respeto y gratitud. Mucho de lo que soy, de lo que escribo y de lo que esta aplicación intenta hacer nace de aquellas tardes en el suelo, frente a la pizarra, de esas primeras lecciones tuyas, pacientes y constantes, desde mi niñez. En cada intento de explicar mejor una idea, en cada esfuerzo por que una frase suene clara y sincera, hay algo de lo que tú me enseñaste sin prisa, con una fe tranquila en que algún día lo entendería.
+                    </p>
+
+                    <p>
+                      Por todo eso, esta aplicación ha sido posible, en gran parte, gracias a lo que tú sembraste en mí desde pequeño.
+                    </p>
+
+                    <p className="font-semibold">
+                      Para muchos será siempre la profesora Leonor Lopetegui.<br />
+                      Para mí, hoy y siempre, es y será mi <em>Tía Leonor</em>.
+                    </p>
+
+                    <button
+                      onClick={() => setShowLeonorInfo(false)}
+                      className="text-sm underline hover:no-underline mt-4" style={{ color: '#D2691E' }}
+                    >
+                      - Cerrar información de Leonor
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+          </section>
+
+          <div className="flex flex-wrap gap-2 justify-center mt-4">
+            {['IA Claude Sonnet', 'NextJS 14', 'Transcripción de Audio', 'Análisis Académico', 'Patrimonio UNESCO'].map((label) => (
+              <Badge key={label} className="text-xs" style={{ backgroundColor: '#D2691E', color: 'white' }}>
+                {label}
+              </Badge>
+            ))}
+          </div>
+
+          <p className="text-center italic text-sm mt-6" style={{ color: '#6B7280' }}>
+            "Un algoritmo que siente la pasión del poeta, rescata del olvido cada improvisación, preserva intacta la lírica del corazón, y eterniza el arte vivo de la
+            décima completa."
+          </p>
         </div>
       </DialogContent>
     </Dialog>
