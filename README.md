@@ -1,134 +1,101 @@
-# El Guajiro de Hialeah - Viajera Digital
+# Viajera Digital
 
-Transcriptor y Analizador de Décima Espinela Cubana
+**Décima Transcription & Heritage Poetry Platform**
 
-## 🚀 Deployment a Vercel
+> Full-stack application for transcribing, analyzing, and preserving the Cuban décima espinela tradition. Spotify-style audio UI with AI-powered transcription via GROQ Whisper and NotebookLM-style analysis functionality.
 
-### Pre-requisitos
+🔗 **Live:** [Deployed — URL TBD]
 
-1. **Cuenta de Vercel**: [vercel.com](https://vercel.com)
-2. **GitHub Repository**: Repositorio público o privado
-3. **API Keys**:
-   - GROQ_API_KEY (para transcripción con Whisper)
-   - GEMINI_API_KEY (para análisis con Gemini)
+---
 
-### Pasos de Deployment
+## What It Does
 
-#### 1. Preparar Environment Variables
+Viajera Digital captures, transcribes, and analyzes décimas espinelas — the 10-line octosyllabic poetic form that is the DNA of oral poetry across Latin America and the Caribbean. The platform combines audio playback with AI transcription to digitize and preserve a living literary tradition.
 
-En el dashboard de Vercel:
-- Settings → Environment Variables
-- Agregar:
-  - `GROQ_API_KEY`: (tu clave de Groq, configúrala en Vercel como secreto)
-  - `GEMINI_API_KEY`: (tu clave de Gemini, configúrala en Vercel como secreto)
-  - `DATABASE_URL`: (opcional, para Prisma)
-  - `NEXT_PUBLIC_APP_URL`: `https://[tu-proyecto].vercel.app`
+Core workflow:
+1. Upload or record audio of décima performances (repentistas, recitals, controversias)
+2. AI transcription via GROQ Whisper — optimized for Spanish poetic speech
+3. Structural analysis: syllable count verification, rhyme scheme (abbaaccddc), pause detection at verse 4
+4. Browse, search, and study transcribed décimas in a Spotify-style interface
 
-#### 2. Conectar con GitHub
+---
 
-1. Ve a [vercel.com/new](https://vercel.com/new)
-2. Importa tu repositorio de GitHub
-3. Configura:
-   - Framework Preset: **Next.js**
-   - Root Directory: `.`
-   - Build Command: `npm run build` (default)
-   - Output Directory: `.next` (default)
+## Tech Stack
 
-#### 3. Deploy
+| Layer | Technology |
+|---|---|
+| Frontend | TypeScript · HTML · CSS · JavaScript |
+| UI Pattern | Spotify-style audio player + NotebookLM-style analysis |
+| Player | Custom player scripts (playback, controls, streaming) |
+| Backend | Python 3.13+ (separate repo: `viajera-digital-backend`) |
+| Data Models | `models.py` — schema definitions and data structures |
+| Processing | `pipeline.py` — transcription processing and transformation |
+| Exports | `exports.py` — output generation and file exports |
+| AI / Transcription | GROQ Whisper API |
+| Database | Prisma ORM |
+| Config | Environment-based configuration files |
+| Containerization | Docker |
+| Deployment | Frontend: Vercel · Backend: Render (`render.yaml`) |
 
-Vercel detectará automáticamente el proyecto Next.js y desplegará.
+---
 
-#### 4. Verificar Deployment
+## Repositories
 
-Después del deploy, verifica:
-- ✅ Build exitoso en Vercel Dashboard
-- ✅ Homepage carga correctamente
-- ✅ API routes responden (ej: `/api/validate-youtube` con POST)
+This project is split across two repos:
 
-## 🛠️ Desarrollo Local
+| Repo | What | Language |
+|---|---|---|
+| **`VD-`** (this repo) | Frontend — UI, player, pages, config | TypeScript |
+| **`viajera-digital-backend`** | Backend — API, models, pipeline, exports | Python |
 
-```bash
-# Instalar dependencias
-npm install
+---
 
-# Configurar .env.local
-cp .env.example .env.local
-# Editar .env.local con tus API keys
+## Run Locally
 
-# Generar Prisma Client
-npx prisma generate
-
-# Desarrollo
-npm run dev
-
-# Build de producción
-npm run build
-
-# Iniciar servidor de producción
-npm start
+### Frontend
+```
+git clone https://github.com/ejnburrows-rgb/VD-.git
+cd VD-
+cp .env.example .env
+npx serve .
 ```
 
-## 📁 Estructura del Proyecto
-
+### Backend
 ```
-├── app/
-│   ├── api/              # API Routes
-│   ├── layout.tsx        # Root layout
-│   ├── page.tsx          # Home page
-│   └── globals.css       # Estilos globales
-├── components/           # Componentes React
-│   ├── ui/               # Componentes UI base
-│   └── ...
-├── lib/                  # Utilidades y helpers
-├── prisma/               # Schema de Prisma
-└── public/               # Archivos estáticos
+git clone https://github.com/ejnburrows-rgb/viajera-digital-backend.git
+cd viajera-digital-backend
+python -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+python main.py
 ```
 
-## 🔧 API Routes
-
-### `/api/validate-youtube` (POST)
-Valida URLs de YouTube usando `@distube/ytdl-core`
-
-### `/api/process-video` (POST)
-Procesa video completo:
-1. Descarga audio de YouTube
-2. Transcribe con Groq Whisper
-3. Analiza con Google Gemini
-
-### `/api/transcribe-audio` (POST)
-Transcribe audio usando Groq Whisper API
-
-### `/api/analyze-decimas` (POST)
-Analiza transcripción y formatea en décimas espinelas
-
-## 🌐 Variables de Entorno
-
-```env
-GROQ_API_KEY=your_groq_key
-GEMINI_API_KEY=your_gemini_key
-DATABASE_URL=postgresql://... (opcional)
-NEXT_PUBLIC_APP_URL=https://your-app.vercel.app
-YOUTUBE_API_KEY=your_youtube_key (opcional, para YouTube Data API v3)
+### Docker (Backend)
+```
+docker build -t viajera-digital-backend .
+docker run -p 8000:8000 viajera-digital-backend
 ```
 
-## 📝 Scripts Disponibles
+---
 
-- `npm run dev` - Servidor de desarrollo
-- `npm run build` - Build de producción
-- `npm start` - Servidor de producción
-- `npm run lint` - Linter de código
+## Deploy
 
-## 🎨 Tecnologías
+**Frontend (Vercel):** Connect the `VD-` repo to Vercel for auto-deploy on push.
 
-- **Framework**: Next.js 14 (App Router)
-- **Lenguaje**: TypeScript
-- **Estilos**: Tailwind CSS
-- **Base de Datos**: PostgreSQL + Prisma (opcional)
-- **APIs**:
-  - Groq Whisper (transcripción)
-  - Google Gemini (análisis)
-  - @distube/ytdl-core (descarga YouTube)
+**Backend (Render):** The `render.yaml` blueprint handles deployment configuration.
 
-## 📄 Licencia
+---
 
-Este proyecto es propiedad de Emilio José Novo.
+## Cultural Context
+
+The décima espinela was codified by Vicente Espinel (1591) and became the dominant oral poetry form across Cuba, Puerto Rico, Mexico, Venezuela, Colombia, and the Canary Islands. Repentistas — improvisational poets — perform décimas live before audiences of thousands. Viajera Digital exists to ensure these performances are captured, transcribed, and preserved with structural fidelity.
+
+---
+
+## License
+
+MIT
+
+---
+
+**Built by NBO — Novo Business Order**
+© Emilio José Novo 2026
