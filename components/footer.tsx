@@ -1,58 +1,63 @@
 "use client"
 
-import { Shield, Heart, Scale } from 'lucide-react'
+import { Shield, Heart, Scale, Youtube, Globe } from 'lucide-react'
+import Link from 'next/link'
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="bg-[#4A3728] text-white py-8">
-      <div className="container mx-auto px-4">
-        {/* Grid de 3 columnas */}
-        <div className="grid md:grid-cols-3 gap-8 mb-6">
-          {/* El Guajiro de Hialeah */}
-          <div className="space-y-3">
-            <div className="flex items-center gap-2 mb-2">
-              <Shield className="w-5 h-5 text-[#C8A05C]" />
-              <h3 className="text-lg font-bold text-[#C8A05C]">El Guajiro de Hialeah</h3>
+    <footer className="bg-[#4A3728] text-white py-12 border-t-4 border-[#C8A05C]">
+      <div className="container mx-auto px-6 max-w-6xl">
+        <div className="grid md:grid-cols-3 gap-12 mb-10">
+          {/* Columna 1: Identidad */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-3">
+              <Shield className="w-6 h-6 text-[#C8A05C]" />
+              <h3 className="text-xl font-serif font-bold text-[#C8A05C]">Viajera Digital</h3>
             </div>
             <p className="text-sm text-gray-300 leading-relaxed">
-              Plataforma de transcripción y análisis de décima espinela cubana.
+              Tecnología de vanguardia para la preservación del patrimonio oral cubano. IA Claude Sonnet • Transcripción de Audio • Análisis Académico • Patrimonio UNESCO.
             </p>
-            <p className="text-xs text-gray-400">
-              © {currentYear} El Guajiro de Hialeah. Todos los derechos reservados.
-            </p>
+            <div className="pt-2 text-xs text-gray-400 space-y-1">
+              <p>Desarrollado con ❤️ en Miami, Florida</p>
+              <p>En honor a Calixto González "El Guajiro de Hialeah"</p>
+            </div>
           </div>
 
-          {/* Creador */}
-          <div className="space-y-3">
-            <div className="flex items-center gap-2 mb-2">
-              <Heart className="w-5 h-5 text-[#D2691E]" />
-              <h3 className="text-lg font-bold text-[#D2691E]">Creador</h3>
+          {/* Columna 2: Contacto y Enlaces */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-3">
+              <Globe className="w-6 h-6 text-[#D2691E]" />
+              <h3 className="text-xl font-serif font-bold text-[#D2691E]">Recursos</h3>
             </div>
-            <p className="text-sm">
-              <strong className="text-[#C8A05C]">Emilio José Novo</strong>
-            </p>
-            <p className="text-xs text-gray-300 leading-relaxed">
-              Desarrollador y arquitecto de la plataforma. Preservando el patrimonio cultural cubano a través de la tecnología.
-            </p>
-            <p className="text-xs text-gray-400 mt-2">
-              Propiedad intelectual protegida bajo las leyes de derechos de autor de Estados Unidos.
-            </p>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link href="https://juanantoniodiaz.com" target="_blank" className="flex items-center gap-2 hover:text-[#C8A05C] transition-colors">
+                  <Globe className="w-4 h-4" /> juanantoniodiaz.com
+                </Link>
+              </li>
+              <li>
+                <Link href="https://youtube.com/@juanantoniodiaz9034" target="_blank" className="flex items-center gap-2 hover:text-[#C8A05C] transition-colors">
+                  <Youtube className="w-4 h-4" /> @juanantoniodiaz9034
+                </Link>
+              </li>
+              <li className="pt-2">
+                <p><strong>Creada por:</strong> Emilio José Novo</p>
+                <p className="text-xs text-gray-400">Versión 2.0 Pro</p>
+              </li>
+            </ul>
           </div>
 
-          {/* Legal & Patentes */}
-          <div className="space-y-3">
-            <div className="flex items-center gap-2 mb-2">
-              <Scale className="w-5 h-5 text-[#C8A05C]" />
-              <h3 className="text-lg font-bold text-[#C8A05C]">Legal &amp; Patentes</h3>
+          {/* Columna 3: Legal */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-3">
+              <Scale className="w-6 h-6 text-[#C8A05C]" />
+              <h3 className="text-xl font-serif font-bold text-[#C8A05C]">Legal</h3>
             </div>
-            <div className="text-xs text-gray-300 space-y-2 leading-relaxed">
+            <div className="text-xs text-gray-300 space-y-3 leading-relaxed">
               <p>
                 <strong className="text-white">Patente Pendiente:</strong> Tecnología de transcripción y análisis automatizado de décima espinela.
-              </p>
-              <p>
-                <strong className="text-white">Copyright:</strong> Todo el contenido, diseño, código fuente y algoritmos están protegidos por derechos de autor.
               </p>
               <p>
                 <strong className="text-white">Licencia:</strong> Creative Commons BY-NC-SA 4.0 (Uso no comercial con atribución)
@@ -61,30 +66,15 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Línea divisoria */}
-        <div className="border-t border-[#C8A05C]/30 my-6" />
-
-        {/* Sección central */}
-        <div className="text-center space-y-2">
-          <p className="text-xs text-gray-400">
-            Desarrollado con <span className="text-[#D2691E]">❤</span> en Miami, Florida • En honor a{' '}
-            <strong className="text-[#C8A05C]">Calixto González</strong> "El Guajiro de Hialeah"
+        <div className="border-t border-[#C8A05C]/20 pt-8 text-center space-y-6">
+          <p className="text-xs text-gray-400 italic max-w-2xl mx-auto leading-relaxed">
+            "Un algoritmo que siente la pasión del poeta, rescata del olvido cada improvisación, preserva intacta la lírica del corazón, y eterniza el arte vivo de la décima completa."
           </p>
-          <p className="text-xs text-gray-500 italic mt-3">
-            "Un algoritmo que siente la pasión del poeta, rescata del olvido cada improvisación,
-            <br />
-            preserva intacta la lírica del corazón, y eterniza el arte vivo de la décima completa."
-          </p>
-          <p className="text-sm text-gray-300 mt-4">
-            © <strong className="text-[#C8A05C]">Emilio José Novo</strong>
-          </p>
-        </div>
-
-        {/* Aviso Legal */}
-        <div className="mt-6 p-4 bg-[#3E2B24]/50 rounded-lg border border-[#C8A05C]/20">
-          <p className="text-xs text-gray-400 text-center leading-relaxed">
-            <strong className="text-[#C8A05C]">Aviso Legal:</strong> Este software y su contenido están protegidos por las leyes de propiedad intelectual de los Estados Unidos y tratados internacionales. El uso no autorizado, reproducción, distribución o modificación puede resultar en sanciones civiles y penales. Todos los análisis y transcripciones generados por esta plataforma son para fines educativos y de preservación cultural.
-          </p>
+          
+          <div className="space-y-1">
+            <p className="text-sm font-bold text-[#C8A05C]">© {currentYear} Emilio José Novo</p>
+            <p className="text-[10px] text-gray-500 uppercase tracking-widest">Todos los derechos reservados</p>
+          </div>
         </div>
       </div>
     </footer>
