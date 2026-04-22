@@ -34,7 +34,7 @@ export default function NavigationTabs({ activeTab, onTabChange, onAboutClick }:
           onClick={onAboutClick}
           className="nav-tab flex items-center gap-2 ml-2 border-l-2 border-[#C8A05C]/30 pl-4"
         >
-          <span>🌴</span>
+          <span>ℹ️</span>
           <span className="hidden sm:inline">Acerca de</span>
         </button>
       </div>

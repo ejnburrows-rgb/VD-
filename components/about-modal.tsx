@@ -19,7 +19,7 @@ export default function AboutModal({ isOpen, onClose }: AboutModalProps) {
       <DialogContent className="max-w-2xl cuban-card border-2 border-[#C8A05C] bg-white max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold text-[#C8A05C] font-serif flex items-center gap-3">
-            🌴 Acerca de El Guajiro de Hialeah
+            ℹ️ Acerca de El Guajiro de Hialeah
           </DialogTitle>
         </DialogHeader>
 
@@ -103,7 +103,7 @@ export default function AboutModal({ isOpen, onClose }: AboutModalProps) {
           {/* Closing Tribute */}
           <div className="text-center bg-[#FDF8F0] border-2 border-[#D2691E] p-4 rounded-lg">
             <p className="font-medium italic text-[#5C4033] leading-relaxed">
-              🌴 "A todos los poetas que han dedicado sus vidas a mantener viva la décima: 
+              🕊️ "A todos los poetas que han dedicado sus vidas a mantener viva la décima: 
               su voz sigue cantando en cada verso que procesamos aquí."
             </p>
           </div>
