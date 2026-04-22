@@ -154,7 +154,7 @@ export function AboutModal({ open, onOpenChange }: AboutModalProps) {
                 Por todo eso, esta aplicación ha sido posible, en gran parte, gracias a lo que tú sembraste en mí desde pequeño.
               </p>
               <p className="font-bold">Para muchos será siempre la profesora Leonor Lopetegui.</p>
-              <p className="font-bold text-[#D2691E] text-2xl">Para mí, hoy y siempre, es y será mi Tía Leonor.</p>
+              <p className="font-bold"><em>Para mí, hoy y siempre, es y será mi Tía Leonor.</em></p>
             </div>
           </section>
 

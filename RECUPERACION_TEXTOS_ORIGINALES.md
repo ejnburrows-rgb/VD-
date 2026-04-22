@@ -6,28 +6,22 @@ Este documento contiene la extracción íntegra de los textos, historias persona
 
 ## 🎵 La Décima Sagrada (Décima para José)
 **Ubicación original:** `components/about-modal.tsx`
-**Contexto:** Dedicada a Armando González, el hombre que abrió las puertas de este nuevo país para la familia.
+**Contexto:** Dedicada a José por Calixto González, el Guajiro de Hialeah — la primera décima que le dedicó.
 
-> Aquí me tienes, José, cantando en distinto idioma,
-> sin olvidar La Coloma que llorando la dejé.
-> Jamás me olvidaré de mi Madre, Padre y Tío,
-> y aquí estoy medio vacío, nada que me pueda llenar,
-> hasta poder regresar para bañarme en mi Río.
-
----
-
-## 🚲 Armando González: El Pilar de la Familia
-**Ubicación:** `components/about-modal.tsx`
-
-"Mi tío **Armando González** fue más que familiar—fue mi primer padrino en esta tierra, el hombre que junto a su esposa **Leonor Lopetegui** me regaló mi primera bicicleta cuando apenas tenía tres años. Aquella bicicleta no fue solo un juguete; fue la primera libertad, la primera promesa de que en este nuevo país podría pedalear hacia cualquier sueño.
-
-Su puerta siempre estaba abierta. No importaba la hora, no importaba el motivo. La casa de Armando en Miami era el puerto seguro donde toda la familia desembarcaba después del exilio. Él nos trajo desde Cuba—mi padre, mi madre, y un niño asustado que no entendía por qué había dejado su casa. Armando entendió. Y sin decir mucho, hizo que esa transición doliera menos.
-
-**Armando es mi mejor amigo**—no solo por sangre, sino por elección. Armando me enseñaba las reglas de la vida: trabajar duro, cuidar a la familia, y nunca olvidar de dónde venimos. La Coloma vivía en su memoria como vive en la mía ahora.
-
-La primera décima la escuché de él. Puso la radio de Radio Martí mientras arreglaba bicicletas en el garaje, me llevó a los encuentros de trovadores en Hialeah, y me enseñó que la poesía no era solo para libros, sino para vivirla."
+Aquí me tienes José
+cantando en distinto idioma
+sin olvidar La Coloma
+que llorando la dejé.
+Jamás me olvidaré
+de mi Madre, Padre y Tío,
+y aquí estoy medio vacío,
+nada que me pueda llenar
+hasta poder regresar
+para bañarme en mi río.
 
 ---
+
+
 
 ## 🌴 Calixto: El Verdadero Guajiro de Hialeah
 **Ubicación:** `components/about-modal.tsx`
