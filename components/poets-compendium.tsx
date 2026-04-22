@@ -130,11 +130,11 @@ const poets: Poet[] = [
       "Su estilo combina la herencia campesina pinareña con técnica depurada y capacidad de crear imágenes poéticas que conectan lo rural con lo universal. Ha publicado el libro \"Mi dolor tuyo\", donde sus décimas aupan todo el sufrimiento y la esperanza del cubano."    ]
   },
   {
-    name: "Julio Pablo \"El Príncipe Pinareño\"",
+    name: "Julio Pablo \"El Principito\"",
     subtitle: "Voz Pinareña de la Tradición",
     birth: "Pinar del Río, Cuba",
     biography: [
-      "Destacado poeta repentista cubano conocido como \"El Príncipe Pinareño\", representa la rica tradición decimística de la provincia de Pinar del Río, tierra fértil para el cultivo de la décima y el repentismo.",
+      "Destacado poeta repentista cubano conocido como \"El Principito\", representa la rica tradición decimística de la provincia de Pinar del Río, tierra fértil para el cultivo de la décima y el repentismo.",
       "Su estilo se caracteriza por la elegancia en la construcción del verso y la profundidad de sus improvisaciones, participando en numerosas controversias donde su ingenio siempre brilla. Ha contribuido a mantener viva la tradición de la décima en su provincia natal, formando parte del legado de grandes poetas que han surgido de esa región occidental de Cuba."    ]
   },
   {
