@@ -1,195 +1,206 @@
-"use client"
 
-import { useState } from 'react'
-import Link from 'next/link'
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from './ui/dialog'
-import { Badge } from './ui/badge'
+"use client";
+
+import React from "react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Badge } from "@/components/ui/badge";
+import { Heart, Globe, Code } from "lucide-react";
 
 interface AboutModalProps {
-  open: boolean
-  onOpenChange: (open: boolean) => void
+  isOpen: boolean;
+  onClose: () => void;
 }
 
-export function AboutModal({ open, onOpenChange }: AboutModalProps) {
-  const [showLeonorInfo, setShowLeonorInfo] = useState(false)
+export default function AboutModal({ isOpen, onClose }: AboutModalProps) {
+  const [showLeonorInfo, setShowLeonorInfo] = React.useState(false);
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto bg-[#F5E6D3] text-[#5C4033] border-2 border-[#C8A05C]">
+    <Dialog open={isOpen} onOpenChange={onClose}>
+      <DialogContent className="max-w-2xl cuban-card border-2 border-[#C8A05C] bg-white max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="text-4xl font-serif font-bold text-[#C8894D] mb-6 text-center">
-            🌴 Viajera Digital: El Legado Vivo de la Décima
+          <DialogTitle className="text-2xl font-bold text-[#C8A05C] font-serif flex items-center gap-3">
+            🌴 Acerca de El Guajiro de Hialeah
           </DialogTitle>
         </DialogHeader>
 
-        <div className="space-y-8 mt-4 text-justify px-4">
-          {/* CALIXTO GONZÁLEZ — MAIN NARRATIVE */}
-          <section className="space-y-4">
-            <h3 className="text-2xl font-serif font-bold flex items-center gap-2 border-b-2 border-[#C8A05C]/30 pb-2" style={{ color: '#C8A05C' }}>
-              ❤️ Calixto González: El Guajiro de Hialeah
-            </h3>
-            <div className="leading-relaxed space-y-4 text-lg">
-              <p>
-                La Coloma es un pueblo de pescadores al borde de Pinar del Río donde el Golfo se traga la luz entera cada atardecer y los hombres que trabajan el agua no hablan mucho de belleza. Simplemente viven dentro de ella. Calixto González nació ahí; uno entre dieciséis hermanos, criado entre aire salado y el ritmo de redes arrastradas sobre arena mojada antes del amanecer. Ese es el mundo que lo formó. No un aula. No un escenario. Una costa donde el mar te enseña a esperar, y la espera te enseña a escuchar, y escuchar; si eres Calixto; te enseña a cantar.
-              </p>
-              <p>
-                La décima lo encontró temprano. Diez versos, ocho sílabas cada uno, un esquema de rima más viejo que la república. En La Coloma no era literatura. Era la manera en que la gente hablaba cuando lo que tenía que decir importaba demasiado para el habla común. Calixto aprendió a improvisar como los otros muchachos aprendían a remendar redes; mirando, después haciendo, después haciéndolo tantas veces que el oficio desapareció dentro del instinto. Se hizo trovador. No del tipo que actúa. Del tipo que lo siente de verdad.
-              </p>
-              <p>
-                Joven todavía, Calixto dejó La Coloma y se fue para La Habana. Abrió su propia ferretería; un negocio que era punto de encuentro antes que comercio, lugar de conversación antes que transacción. Y fue ahí, entre mostrador y clientela, donde la vida le puso delante a gente que no se olvida.
-              </p>
-              <p>
-                Conoció a Benny Moré. Me lo contó él mismo, con esa tranquilidad con que contaba las cosas que le importaban de verdad. Le proveyó los materiales para construir su casa. Y después, cuando la casa estuvo en pie, se sentaban juntos a la mesa; Benny con su botella de ron y Calixto con sus versos. Improvisaban ahí, entre trago y décima, dos hombres que entendían que la música y la poesía no se ensayan. Se viven.
-              </p>
-              <p>
-                También me contó que cuando Camilo Cienfuegos llegó a La Habana en el 59, Calixto fue y se presentó. Con la misma naturalidad con la que abría la puerta de su casa, abría conversación con quien fuera.
-              </p>
-              <p>
-                El exilio rompió la geografía pero no al hombre.
-              </p>
-              <p>
-                Hialeah lo recibió como Hialeah recibe a todos; sin ceremonia, sin suavidad, con trabajo que hacer mañana. Manejó camiones. Trabajo duro, honesto, de esos que te parten la espalda pero no el espíritu. Y aun con todo lo que pesaba el exilio encima, Calixto nunca dejó de preocuparse por su familia en Cuba. Cada día cargaba camiones y cada noche cargaba la distancia.
-              </p>
-              <p>
-                Cuando yo tenía tres años, viajó de regreso a Cuba junto con su hermano y mi tío Armando González. Y allí, en aquel viaje, me regaló la primera bicicleta que llegué a tener. Un sueño de niño cumplido por las manos del mismo hombre que un día dejó La Coloma llorando. Ese gesto lo dice todo sobre quién era Calixto; no importaba cuán lejos estuviera ni cuánto pesara la ausencia, él siempre encontraba la manera de llegar.
-              </p>
-              <p>
-                La gente empezó a llamarlo el Guajiro de Hialeah, y el nombre se quedó porque era cierto. Guajiro. Campesino en el sentido más hondo; no una etiqueta, no folklore, sino un hombre cuyas raíces llegaban tan profundo en la tierra cubana que ni el concreto pudo matarlas.
-              </p>
-              <p>
-                Lo que hizo después es lo que yo cargo.
-              </p>
-              <p>
-                Abrió su casa. Eso fue todo. Abrió la puerta de su hogar en Hialeah y le dijo entra a cada trovador que el exilio había dispersado por el sur de la Florida. Poetas que habían perdido sus públicos, sus plazas, sus espacios en la radio, su país. Calixto los encontró. Les consiguió tiempo al aire en las emisoras locales. Organizó canturías en garajes y salas y patios donde la única condición de entrada era la voluntad de escuchar. Su casa se convirtió en el lugar donde los decimistas recordaban que no estaban solos; donde la tradición que el exilio intentó ahogar seguía respirando, seguía cantando, seguía pasando de una voz a la siguiente.
-              </p>
-              <p>
-                Yo sé esto porque estuve ahí. Pequeño. Sentado en las piernas de alguien o en el piso, probablemente, mientras los adultos intercambaban versos y el cuarto se llenaba de esa energía particular que genera una canturía; mitad competencia, mitad reunión de familia, todo corazón. Calixto fue la primera persona que vi improvisar en vivo. Para mí la décima era algo de la televisión o la radio. Sabía que era improvisada, entendía eso, pero nunca lo había experimentado en persona. Nunca había sentido lo que se siente cuando alguien se para frente a ti y construye un verso del aire mismo.
-              </p>
-              <p>
-                Y ahí se paró Calixto. La primera décima me la dedicó a mí. Me miró fijamente a los ojos y pronunció cada sílaba como si cada una fuera un regalo que llevaba años guardando:
-              </p>
+        <div className="space-y-6 text-[#5C4033]">
+          {/* Calixto: Tejedor Entre Dos Orillas */}
+          <div className="bg-[#F5E6D3] p-5 rounded-lg border-2 border-[#C8A05C]">
+            <div className="flex items-center gap-3 mb-4">
+              <Heart className="w-6 h-6 text-[#D2691E]" />
+              <h3 className="text-xl font-bold text-[#C8A05C] font-serif">
+                Calixto: Tejedor Entre Dos Orillas
+              </h3>
             </div>
+            <div className="space-y-4 text-sm leading-relaxed">
+              <p>
+                Calixto nació donde el cielo toca el agua—<strong>La Coloma</strong>, pueblo de pescadores. 
+                Entre barcas y sal, aprendió lo que el mar enseña: esperar es arte. Los pescadores 
+                lo saben—tejer redes lleva días, tejer palabras pide lo mismo.
+              </p>
+              
+              <p>
+                La décima le palpitaba desde niño. Esa forma de diez versos que cruzó el océano 
+                y echó raíces en Cuba. Calixto se hizo trovador—no de rimas fáciles, sino de las 
+                que improvisan con el corazón. Creación colectiva, siempre.
+              </p>
+              
+              <p>
+                El exilio lo llevó a <strong>Hialeah</strong>. Allá le llamaron <strong>el Guajiro</strong>—campesino 
+                de verdad, fuerza tranquila, autenticidad que no se aprende. Exilio que fortalece.
+              </p>
+              
+              <p>
+                Su casa se volvió refugio. Abría la puerta, conseguía espacios en las radios, 
+                conectaba trovadores dispersos. Su voz baja pero firme les recordaba: la décima 
+                cura, guarda lo que no queremos perder.
+              </p>
+              
+              <p className="font-medium text-[#D2691E]">
+                <strong>Viajera Digital</strong> nace de ese legado. Preservamos cada décima usando 
+                tecnología que siente la pasión del poeta. Honramos la memoria de Calixto González 
+                y todos los poetas que mantienen viva esta tradición milenaria.
+              </p>
+              
+              <p>
+                Como las redes de La Coloma—pacientes, fuertes—Calixto tejió comunidad que no se 
+                deshace. Su casa vive en la memoria como ese lugar donde la décima encontró techo, 
+                donde trovadores se reconocieron hermanos.
+              </p>
+              
+              <p>
+                En esas redes quedó atrapada, felizmente, una viajera de España que llegó buscando 
+                versos y encontró raíces. Cuba no suelta a quien prueba el sabor de sus décimas. 
+                Ella quedó tejida en esta red—hebra europea en tapiz caribeño.
+              </p>
+              
+              <p className="font-medium italic text-[#C8A05C]">
+                <strong>Viajera Digital</strong> continúa ese tejido. Cada décima preservada es hebra. 
+                Cada poeta que aquí encuentra su voz es nudo. Cada generación que accede a este 
+                archivo teje hacia adelante. La tecnología sirve a la tradición.
+              </p>
+              
+              <p className="text-center font-bold text-[#D2691E] mt-4 text-base">
+                Para que la décima nunca sea arrancada del verde imán de nuestro suelo.
+              </p>
 
-            {/* DÉCIMA PARA JOSÉ (VERIFIED) */}
-            <div className="p-8 bg-white/60 rounded-xl border-2 border-[#D2691E]/30 my-8 italic text-center text-xl leading-relaxed shadow-lg font-serif" style={{ color: '#5C4033' }}>
-              <p className="font-bold text-[#D2691E] mb-6 not-italic">📜 "Aquí me tienes, José" — Calixto González</p>
-              "Aquí me tienes José<br/>
-              cantando en distinto idioma<br/>
-              sin olvidar La Coloma<br/>
-              que llorando la dejé.<br/>
-              Jamás me olvidaré<br/>
-              de mi Madre, Padre y Tío,<br/>
-              y aquí estoy medio vacío,<br/>
-              nada que me pueda llenar<br/>
-              hasta poder regresar<br/>
-              para bañarme en mi río."
-            </div>
-
-            <div className="leading-relaxed space-y-4 text-lg">
-              <p>
-                La Coloma corriendo por cada sílaba. Se fue de aquel lugar llorando y nunca dejó de cargarlo por dentro. Esa décima no fue un poema. Fue una confesión. Y me la entregó mirándome a los ojos, como diciéndome: guárdala tú, que yo ya la cargué bastante.
-              </p>
-              <p>
-                Mi tío Armando González, esposo de Leonor Lopetegui, solía viajar de vuelta a La Coloma con Calixto. Dos hombres regresando al agua que los crió, aun cuando el país alrededor de esa agua había cambiado hasta volverse irreconocible. Pienso en eso a veces; la terquedad de volver. La negativa a dejar que un lugar se convierta solo en recuerdo.
-              </p>
-              <p>
-                Calixto se acordaba de todos. Eso era lo que lo hacía Calixto. No las décimas, no las canturías, no la voz. La memoria. La insistencia en no dejar que nadie desapareciera.
-              </p>
-              <p>
-                Cantó "jamás me olvidaré" y cada cosa que hizo después lo confirmó.
-              </p>
-              <p>
-                Viajera Digital existe para que esa promesa se cumpla en las dos direcciones.
-              </p>
-              <p>
-                Para el repentismo cubano en el exilio fue Calixto González; el Guajiro de Hialeah.
-              </p>
-              <p className="font-bold text-center mt-6">Jamás te olvidaremos.</p>
-            </div>
-          </section>
-
-          {/* TRIBUTO — JUAN ANTONIO DÍAZ */}
-          <section className="bg-[#FEF3C7] p-8 rounded-xl border-2 border-[#C8A05C]/40 space-y-4 text-center italic shadow-sm">
-             <div className="max-w-md mx-auto">
-               <p>"Hoy que te vas con la muerte<br/>
-               hacia una casa de cielo,<br/>
-               la sequía del pañuelo<br/>
-               en ríos se nos convierte.<br/>
-               Y aunque no podamos verte<br/>
-               jamás, en la canturía,<br/>
-               no existirá un solo día<br/>
-               que se hable de ejemplo de Hombre<br/>
-               que no se escuche tu nombre,<br/>
-               Guajiro de Hialeah."</p>
-               <p className="mt-4 not-italic font-bold text-[#C8894D]">—— Juan Antonio Díaz</p>
-             </div>
-          </section>
-
-          {/* LEONOR LOPETEGUI DEDICATION */}
-          <section className="border-t-2 border-[#C8A05C]/30 pt-8 mt-8">
-            <h3 className="text-2xl font-serif font-bold flex items-center justify-between gap-2" style={{ color: '#C8A05C' }}>
-              📚 Dedicatoria Especial: Mi Tía Leonor
-              <button
-                onClick={() => setShowLeonorInfo(!showLeonorInfo)}
-                className="text-[#D2691E] hover:text-[#C8A05C] transition-colors font-bold text-lg px-4 border border-[#D2691E] rounded-md"
-              >
-                {showLeonorInfo ? "Ver Menos" : "Conocer su Historia"}
-              </button>
-            </h3>
-            
-            <div className={`mt-6 space-y-4 text-lg leading-relaxed ${showLeonorInfo ? "" : "hidden"}`}>
-              <p>
-                Hay personas que cambian una vida entera sin proponérselo. Para mí, una de ellas es Leonor Lopetegui. Fue mi maestra de español, es mi consejera y una abuela más que la vida me regaló, porque fue ella, junto a su esposo, mi tío Armando González, quien me trajo de Cuba junto a mis padres. Al igual que a tantos otros de nuestra familia, nos ayudaron a comenzar una nueva vida en Miami, una experiencia que marcó profundamente mi formación y mi corazón.
-              </p>
-              <p>
-                Durante casi cincuenta años en las Escuelas Públicas del Condado de Miami-Dade, la Sra. Lopetegui enseñó español con una mezcla única de rigor y cariño. Su labor fue reconocida con premios como el Cervantes de la Universidad Nova Southeastern por su impacto en la educación hispana, el nombramiento como Maestra del Año en la escuela primaria James H. Bright (2001–2002) y el reconocimiento como Educadora Bilingüe del Año por la Asociación Bilingüe de la Florida. Durante más de diez años lideró la División de Educación Bilingüe e Idiomas del Mundo, escribió materiales educativos para niños y compartió su experiencia en congresos nacionales e internacionales. La Ciudad de Sweetwater incluso proclamó el 6 de junio de 2014 como el "Día de la Sra. Leonor Lopetegui".
-              </p>
-              <p>
-                Pero cuando pienso en ella, no pienso primero en los premios ni en los cargos. La recuerdo en el suelo conmigo, tras un largo día de trabajo enseñando español a otros niños. Yo tenía cinco años. Ella convertía una pizarra en un juego y el juego en clase. Ahí, en esas tardes simples, me enseñó mis primeras letras en español, a juntar sílabas, a leer despacio las palabras y a escribir mi nombre, una y otra vez, hasta que me saliera bien. La veo dibujando letras grandes y claras, escribiendo palabras lentamente para que yo pudiera seguirlas con la mirada, borrándolas con la mano para volver a escribirlas, sonriendo cada vez que yo repetía algo bien. En esa pizarra sencilla cabían un idioma entero y todo el cariño con que me lo regalaba.
-              </p>
-              <p>
-                Me enseñó a amar el español, a cuidar las palabras, a entender que el idioma es algo vivo y que la palabra tiene poder. Tanto poder, que lo que Dios nos dejó para conocerlo fue su Palabra en la Biblia. Me hizo ver que, bien usadas, las palabras pueden acercar, consolar, levantar y que por eso hay que tratarlas siempre con respeto y gratitud. Mucho de lo que soy, de lo que escribo y de lo que esta aplicación intenta hacer nace de aquellas tardes en el suelo, frente a la pizarra, de esas primeras lecciones tuyas, pacientes y constantes, desde mi niñez. En cada intento de explicar mejor una idea, en cada esfuerzo por que una frase suene clara y sincera, hay algo de lo que tú me enseñaste sin prisa, con una fe tranquila en que algún día lo entendería.
-              </p>
-              <p>
-                Por todo eso, esta aplicación ha sido posible, en gran parte, gracias a lo que tú sembraste en mí desde pequeño.
-              </p>
-              <p className="font-bold">Para muchos será siempre la profesora Leonor Lopetegui.</p>
-              <p className="font-bold text-[#D2691E] text-2xl">Para mí, hoy y siempre, es y será mi Tía Leonor.</p>
-            </div>
-          </section>
-
-          {/* FOOTER / CREDITS */}
-          <section className="bg-white/40 p-6 rounded-lg border border-[#C8A05C]/20 text-sm space-y-4">
-            <div className="grid md:grid-cols-2 gap-4">
-              <div>
-                <p><strong>Creada por:</strong> Emilio José Novo</p>
-                <p><strong>Versión:</strong> 2.0 Pro</p>
-                <p><strong>Web:</strong> <Link href="https://juanantoniodiaz.com" className="underline text-[#D2691E]">Juanantoniodiaz.com</Link></p>
-                <p><strong>Canal:</strong> <Link href="https://youtube.com/@juanantoniodiaz9034" className="underline text-[#D2691E]">@juanantoniodiaz9034</Link></p>
-              </div>
-              <div className="text-right">
-                <p><strong>Licencia:</strong> CC BY-NC-SA 4.0</p>
-                <p><strong>Patente Pendiente:</strong> Tecnología de análisis de décima</p>
-                <p>En honor a Calixto González</p>
-                <p>Miami, Florida 🇺🇸</p>
+              <div className="mt-4 p-4 bg-white/40 rounded-lg border border-[#D2691E]/30 italic text-center text-sm leading-relaxed font-serif shadow-inner">
+                <p className="not-italic font-bold text-[#D2691E] mb-2">La primera décima me la dedicó a mí:</p>
+                "Aquí me tienes, José<br/>
+                cantando en distinto idioma<br/>
+                sin olvidar La Coloma<br/>
+                que llorando la dejé.<br/>
+                Jamás me olvidaré<br/>
+                de mi Madre, Padre y Tío,<br/>
+                y aquí estoy medio vacío,<br/>
+                nada que me pueda llenar<br/>
+                hasta poder regresar<br/>
+                para bañarme en mi río."
               </div>
             </div>
-            
-            <p className="italic text-center text-[#5C4033]/80 border-t border-dashed border-[#C8A05C]/30 pt-4">
-              "Un algoritmo que siente la pasión del poeta, rescata del olvido cada improvisación, preserva intacta la lírica del corazón, y eterniza el arte vivo de la décima completa."
+          </div>
+
+          {/* Closing Tribute */}
+          <div className="text-center bg-[#FDF8F0] border-2 border-[#D2691E] p-4 rounded-lg">
+            <p className="font-medium italic text-[#5C4033] leading-relaxed">
+              🌴 "A todos los poetas que han dedicado sus vidas a mantener viva la décima: 
+              su voz sigue cantando en cada verso que procesamos aquí."
             </p>
-            
-            <div className="flex flex-wrap gap-2 justify-center pt-2">
-              {['IA Claude Sonnet', 'NextJS 14', 'Transcripción de Audio', 'Análisis Académico', 'Patrimonio UNESCO'].map((label) => (
-                <Badge key={label} className="text-[10px] bg-[#D97706] text-white border-none">
-                  {label}
-                </Badge>
-              ))}
+          </div>
+
+          {/* Credits Section */}
+          <div className="border-t-2 border-[#C8A05C] pt-4">
+            <div className="grid md:grid-cols-2 gap-4 text-sm">
+              <div>
+                <div className="flex items-center gap-2 mb-2">
+                  <Code className="w-4 h-4 text-[#D2691E]" />
+                  <strong className="text-[#D2691E]">Desarrollo</strong>
+                </div>
+                <p>Creada por: <strong>Emilio José Novo</strong></p>
+                <p className="text-[#5C4033]">Versión: 2.0 Pro</p>
+              </div>
+              
+              <div>
+                <div className="flex items-center gap-2 mb-2">
+                  <Globe className="w-4 h-4 text-[#C8A05C]" />
+                  <strong className="text-[#C8A05C]">Recursos</strong>
+                </div>
+                <p>Web: <strong>juanantoniodiaz.com</strong></p>
+                <p className="text-[#5C4033]">
+                  Licencia: Creative Commons (Uso libre con atribución)
+                </p>
+              </div>
             </div>
-            <p className="text-center text-[11px] font-bold text-[#D2691E]">© Emilio José Novo</p>
-          </section>
+          </div>
+
+          {/* Acknowledgments Section */}
+          <div className="border-t-2 border-[#C8A05C] pt-4">
+            <div className="text-sm">
+              <p className="font-medium text-[#D2691E] mb-2">
+                Agradecimientos por la creación a:
+              </p>
+              <p>
+                <strong>Leonor Lopetegui</strong>
+                <button
+                  onClick={() => setShowLeonorInfo(!showLeonorInfo)}
+                  className="ml-1 text-[#D2691E] hover:text-[#C8A05C] transition-colors duration-200 font-bold text-lg"
+                  aria-label="Ver más información sobre Leonor Lopetegui"
+                >
+                  *
+                </button>
+              </p>
+              
+              {showLeonorInfo && (
+                <div className="mt-4 p-4 bg-[#F5E6D3] border-2 border-[#C8A05C] rounded-lg space-y-3 text-sm leading-relaxed animate-in fade-in duration-300">
+                  <p>
+                    Leonor Lopetegui ha sido mi maestra de español, consejera y una abuela más que la vida me regaló desde mis cinco años de edad, cuando ella junto a su esposo, mi tío Armando González, me trajo de Cuba junto a mis padres. Al igual que a tantos otros de nuestra familia, nos ayudaron a comenzar una nueva vida en Miami, una experiencia que marcó profundamente mi formación y mi corazón.
+                  </p>
+                  
+                  <p>
+                    Con casi cincuenta años dedicados a la enseñanza del español, la Sra. Lopetegui no solo dominó el arte de enseñar con pasión y devoción en las Escuelas Públicas del Condado de Miami-Dade, sino que tocó innumerables vidas con su generosidad y amor incondicional. Su legado está marcado por reconocimientos extraordinarios como el Premio Cervantes de la Universidad Nova Southeastern por hacer una diferencia en la educación hispana, y por ser nombrada Maestra del Año en la Escuela Primaria James H. Bright durante el año escolar 2001-2002.
+                  </p>
+                  
+                  <p>
+                    También fue seleccionada Educadora Bilingüe del Año por la Asociación Bilingüe de la Florida, un testimonio de su liderazgo excepcional en la educación bilingüe. Durante más de diez años, lideró la División de Educación Bilingüe e Idiomas del Mundo para las Escuelas Públicas del Condado de Miami-Dade, dejando una huella imborrable en el perfeccionamiento del español entre niños y adultos. Ha escrito libros educativos para niños y ha compartido su sabiduría en importantes eventos educativos nacionales e internacionales, incluyendo la Asociación Nacional de Educación Bilingüe y la Asociación Bilingüe de la Florida.
+                  </p>
+                  
+                  <p>
+                    En reconocimiento a esta labor monumental, la Ciudad de Sweetwater proclamó el 6 de junio de 2014 como el "Día de la Sra. Leonor Lopetegui". Para mí y para tantos otros, ella representa mucho más que todos estos honores: es un ejemplo vivo de generosidad, sabiduría y amor que trasciende las aulas y perdura para siempre en nuestros corazones.
+                  </p>
+
+                  <p className="font-bold border-t border-[#C8A05C]/20 pt-2">Para muchos será siempre la profesora Leonor Lopetegui.</p>
+                  <p className="font-bold text-[#D2691E]">Para mí, hoy y siempre, es y será mi Tía Leonor.</p>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Technical Info */}
+          <div className="flex flex-wrap gap-2 justify-center">
+            <Badge variant="outline" className="text-[#5C4033] border-[#C8A05C]">
+              IA Claude Sonnet
+            </Badge>
+            <Badge variant="outline" className="text-[#5C4033] border-[#C8A05C]">
+              NextJS 14
+            </Badge>
+            <Badge variant="outline" className="text-[#5C4033] border-[#C8A05C]">
+              Transcripción de Audio
+            </Badge>
+            <Badge variant="outline" className="text-[#5C4033] border-[#C8A05C]">
+              Análisis Académico
+            </Badge>
+            <Badge variant="outline" className="text-[#5C4033] border-[#C8A05C]">
+              Patrimonio UNESCO
+            </Badge>
+          </div>
+
+          {/* Footer Note */}
+          <div className="text-xs text-[#5C4033] text-center italic">
+            "Un algoritmo que siente la pasión del poeta, rescata del olvido cada improvisación, 
+            preserva intacta la lírica del corazón, y eterniza el arte vivo de la décima completa."
+          </div>
         </div>
       </DialogContent>
     </Dialog>
-  )
+  );
 }
