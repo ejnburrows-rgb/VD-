@@ -1,83 +1,90 @@
 # 🌴 Viajera Digital: Recuperación de Textos Originales (Peak State)
 
-Este documento contiene la extracción íntegra de los textos, historias personales y datos culturales del proyecto "Viajera Digital - El Guajiro de Hialeah", restaurados tras la auditoría forense de marzo de 2026.
+Este documento contiene la extracción íntegra de los textos, historias personales y datos culturales del proyecto "Viajera Digital - El Guajiro de Hialeah", restaurados tras la auditoría forense de marzo de 2026. Este es el único "Source of Truth" autorizado para el contenido narrativo de la aplicación.
 
 ---
 
 ## 🎵 La Décima Sagrada (Décima para José)
-**Ubicación original:** `components/about-modal.tsx`
-**Contexto:** Dedicada a Armando González, el hombre que abrió las puertas de este nuevo país para la familia.
+**Ubicación:** `components/about-modal.tsx`
+**Contexto:** La primera décima que Emilio José Novo escuchó improvisar en vivo, dedicada a él por Calixto González.
 
-> Aquí me tienes, José, cantando en distinto idioma,
-> sin olvidar La Coloma que llorando la dejé.
-> Jamás me olvidaré de mi Madre, Padre y Tío,
-> y aquí estoy medio vacío, nada que me pueda llenar,
-> hasta poder regresar para bañarme en mi Río.
+> "Aquí me tienes José
+> cantando en distinto idioma
+> sin olvidar La Coloma
+> que llorando la dejé.
+> Jamás me olvidaré
+> de mi Madre, Padre y Tío,
+> y aquí estoy medio vacío,
+> nada que me pueda llenar
+> hasta poder regresar
+> para bañarme en mi río."
 
 ---
 
-## 🚲 Armando González: El Pilar de la Familia
+## ❤️ Calixto González: El Guajiro de Hialeah
 **Ubicación:** `components/about-modal.tsx`
 
-"Mi tío **Armando González** fue más que familiar—fue mi primer padrino en esta tierra, el hombre que junto a su esposa **Leonor Lopetegui** me regaló mi primera bicicleta cuando apenas tenía tres años. Aquella bicicleta no fue solo un juguete; fue la primera libertad, la primera promesa de que en este nuevo país podría pedalear hacia cualquier sueño.
+Calixto González nació en **La Coloma, Pinar del Río**, uno entre dieciséis hermanos. Su vida estuvo marcada por el mar y la décima, que en su pueblo natal no era literatura sino la forma natural de expresión.
 
-Su puerta siempre estaba abierta. No importaba la hora, no importaba el motivo. La casa de Armando en Miami era el puerto seguro donde toda la familia desembarcaba después del exilio. Él nos trajo desde Cuba—mi padre, mi madre, y un niño asustado que no entendía por qué había dejado su casa. Armando entendió. Y sin decir mucho, hizo que esa transición doliera menos.
-
-**Armando es mi mejor amigo**—no solo por sangre, sino por elección. Armando me enseñaba las reglas de la vida: trabajar duro, cuidar a la familia, y nunca olvidar de dónde venimos. La Coloma vivía en su memoria como vive en la mía ahora.
-
-La primera décima la escuché de él. Puso la radio de Radio Martí mientras arreglaba bicicletas en el garaje, me llevó a los encuentros de trovadores en Hialeah, y me enseñó que la poesía no era solo para libros, sino para vivirla."
+**Hitos Narrativos:**
+* **La Ferretería:** En La Habana, su ferretería fue centro de reunión de poetas y figuras como **Benny Moré**, con quien improvisaba décimas entre botellas de ron.
+* **Camilo Cienfuegos:** Conoció personalmente al "Señor de la Vanguardia" en 1959.
+* **El Exilio y la Bicicleta:** Desde Hialeah, trabajó duro manejando camiones pero nunca olvidó a su familia. En un viaje de regreso a Cuba con su hermano y Armando González, le regaló a su sobrino su primera bicicleta.
+* **El Faro del Repentismo:** Su casa en Hialeah se convirtió en el refugio de los poetas exiliados, organizando canturías y consiguiéndoles espacios en la radio local para que la tradición no muriera.
 
 ---
 
-## 🌴 Calixto: El Verdadero Guajiro de Hialeah
+## 📚 Dedicatoria Especial: Mi Tía Leonor
 **Ubicación:** `components/about-modal.tsx`
 
-"Calixto González nació en **La Coloma, Pinar del Río**—uno entre dieciséis hermanos, en una tierra donde el mar enseña paciencia y los pescadores saben que lo importante no es lo que el agua trae, sino lo que las redes no dejan escapar.
+"Leonor Lopetegui ha sido mi maestra de español, consejera y una abuela más que la vida me regaló desde mis cinco años de edad, cuando ella junto a su esposo, mi tío Armando González, me trajo de Cuba junto a mis padres..."
 
-De joven emigró a La Habana y abrió una **ferretería**. Su negocio era punto de encuentro antes que comercio, lugar de conversación antes que transacción. Con **Benny Moré** se sentaban juntos a la mesa, Benny con su **botella de ron**, y entre conversación e improvisación se les iba el tiempo. Calixto no contaba estas historias para impresionar; las contaba porque formaban parte del tejido de una vida vivida entre gente, música y palabra.
-
-Esa décima arriba mencionada fue la primera que escuché improvisar en vivo. No era solo poesía: era su vida entera comprimida en diez versos—la nostalgia, el amor, el río de La Coloma que nunca dejó de correr por dentro de él. El exilio lo trajo a **Hialeah**. Manejó camiones—trabajo duro que nunca le quitó la delicadeza. Con sus hermanos—Armandito entre ellos—viajó de vuelta a la isla y me regaló esa bicicleta cuando yo era niño."
-
----
-
-## 🎓 Leonor Lopetegui: La Maestra
-**Ubicación:** `components/about-modal.tsx`
-
-"Leonor Lopetegui ha sido mi maestra de español, consejera y una abuela más que la vida me regaló desde mis cinco años de edad, cuando ella junto a su esposo, mi tío Armando González, me trajo de Cuba junto a mis padres...
-
-**Reconocimientos:**
-* **Premio Cervantes** (Universidad Nova Southeastern).
-* **Maestra del Año** (James H. Bright Elementary, 2001-2002).
+**Trayectoria Académica:**
+* 50 años en las Escuelas Públicas de Miami-Dade.
+* **Premio Cervantes** (Nova Southeastern University).
 * **Educadora Bilingüe del Año** (Asociación Bilingüe de la Florida).
-* **El Día de la Sra. Leonor Lopetegui:** Proclamado el 6 de junio de 2014 en Sweetwater.
-
-*Para Mi Siempre Sera Mi Tia Leonor.*"
+* Proclamación del 6 de junio como el **"Día de la Sra. Leonor Lopetegui"** en Sweetwater.
 
 ---
 
-## 🏆 Juan Antonio Díaz: El Legado de Camilo Cienfuegos
+## 🎭 La Tradición Viva: Arquitectura de Voces
 **Ubicación:** `components/poets-compendium.tsx`
 
-"Amigo de la Familia y poeta repentista cubano considerado en el mundo como uno de los decimistas improvisadores más influyentes de su generación... En la vanguardia de nuestros repentistas actuales.
+Compendio de las figuras fundamentales que sostienen el ecosistema de la décima cubana, desde sus orígenes en el Siglo de Oro hasta la diáspora contemporánea.
 
-**Vínculos Históricos:**
-Juan Antonio Díaz comparte una historia profunda con la figura de **Camilo Cienfuegos**. Su familia mantuvo viva la memoria de este 'Señor de la Vanguardia' y su legado de justicia. En el compendio, se destaca su capacidad de crear planos imaginativos sorprendentes, tal como lo describió el propio Indio Naborí."
+### Figuras Históricas
+* **Vicente Espinel:** El arquitecto original que fijó la estructura de la espinela en 1591.
+* **El Cucalambé (Juan Cristóbal Nápoles Fajardo):** El poeta que cubanizó la décima en el siglo XIX.
+* **Plácido (Gabriel de la Concepción Valdés):** La transparencia lírica frente a la tragedia colonial.
+
+### La Edad de Oro
+* **Jesús Orta Ruiz (El Indio Naborí):** La modernización y elevación literaria del repentismo.
+* **Ángel Valiente:** El teatro en movimiento y protagonista de la "Controversia del Siglo".
+* **Francisco Riverón Hernández:** El poeta pictórico y precursor de la décima moderna.
+
+### Dúos y Maestros
+* **Justo Vega y Adolfo Alfonso:** El dúo legendario que llevó el repentismo a la televisión masiva.
+* **Chanito Isidrón:** El Rey del Punto Cubano y creador de la novela en décimas.
+* **Pablo León:** Maestro de la síntesis conceptual y arquitecto de paradojas.
+
+### Voces del Exilio y la Continuidad
+* **Tomasita Quiala:** La Reina del Repentismo, ejemplo de victoria sobre la oscuridad.
+* **Juan Antonio Díaz:** Ágil improvisador de planos imaginativos sorprendentes.
+* **Luis Quintana:** El "Mulato Viajero" que integra lo barroco y lo contemporáneo.
+* **Julio Pablo Travieso (El Príncipe Pinareño):** La elegancia de la escuela pinareña en el siglo XXI.
+* **Manuel Soriano:** El cronista diario de las noticias rimadas en Miami.
 
 ---
 
-## 📖 Chanito Isidrón y la Novela de Camilo
-**Ubicación:** `components/poets-compendium.tsx`
+## 🏗️ Educación Histórica: La Mágica Estrofa Nacional
+**Ubicación:** `components/education-section.tsx`
 
-"La novela cuenta la historia de **Camilo y Estrella**. Comienza así:
-'Camilo, galán guajiro 
-que de amor canta con brío 
-sus décimas a una esquina 
-lanza con voz cristalina 
-y alma puesta en el gentío'."
+La décima espinela despliega diez versos octosílabos (ABBAACCDDC). En Cuba, esta arquitectura se fusionó con el **Punto Guajiro**, declarado Patrimonio Cultural Inmaterial de la Humanidad por la UNESCO en 2017.
 
 ---
 
-## 🛠️ Detalles Técnicos y Rescate
-* **Proyecto:** Viajera Digital 2.0 Pro
-* **Misión:** Rescatar del olvido cada improvisación, preservar intacta la lírica del corazón guajiro y eternizar el arte vivo de la décima completa.
+## 🛠️ Metadatos del Proyecto
+* **Versión:** 2.0 Pro
+* **Tecnología:** Next.js 14 / TypeScript / Tailwind CSS
+* **Misión:** Preservar intacta la lírica del corazón y eternizar el arte vivo de la décima completa.
 * **Autor:** Emilio José Novo
