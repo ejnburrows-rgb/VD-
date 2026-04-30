@@ -4,7 +4,7 @@
   "description": "Firebase Cloud Function to extract YouTube audio URLs",
   "main": "index.js",
   "engines": {
-    "node": "18"
+    "node": "22"
   },
   "dependencies": {
     "cors": "^2.8.5",
