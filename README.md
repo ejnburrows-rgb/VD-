@@ -4,8 +4,6 @@
 
 Viajera Digital is a Next.js application for capturing, transcribing, analyzing, and preserving the Cuban décima espinela tradition. It combines a polished audio experience with AI-assisted Spanish transcription and structural analysis for oral poetry.
 
-> Status: active polish pass — Vercel + GitHub cleanup in progress.
-
 ---
 
 ## Product Focus
@@ -27,7 +25,6 @@ Core workflow:
 |---|---|
 | App | Next.js · React · TypeScript |
 | Styling | Tailwind CSS |
-| Data | Prisma ORM |
 | AI | Groq SDK · Google Generative AI |
 | Audio helpers | `@distube/ytdl-core` |
 | Deployment | Vercel |
@@ -70,8 +67,6 @@ This repo is configured for Vercel:
 - Build: `npm run build`
 - Runtime target: Node.js 22+
 - Region: `iad1`
-
-See [`docs/VERCEL_CLEANUP.md`](docs/VERCEL_CLEANUP.md) for the deployment cleanup checklist.
 
 ---
 
