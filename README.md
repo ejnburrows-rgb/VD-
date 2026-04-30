@@ -88,5 +88,6 @@ MIT
 
 ---
 
-**Built by NBO — Novo Business Order**  
+**Built by NBO — Novo Business Order**\
 © Emilio José Novo 2026
+<!-- build: 2026-04-30 -->
