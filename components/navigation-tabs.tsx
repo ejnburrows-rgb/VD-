@@ -1,4 +1,3 @@
-
 "use client";
 
 interface NavigationTabsProps {
@@ -8,14 +7,14 @@ interface NavigationTabsProps {
 
 export default function NavigationTabs({ activeTab, onTabChange }: NavigationTabsProps) {
   const tabs = [
-    { id: 'procesar', label: 'Procesar', icon: '📝' },
-    { id: 'decimals', label: 'Décimas', icon: '📖' },
-    { id: 'analysis', label: 'Análisis', icon: '📊' },
-    { id: 'export', label: 'Exportar', icon: '⬇️' },
-    { id: 'demo', label: 'Demo', icon: '▶️' },
-    { id: 'education', label: 'Educación', icon: '🎓' },
-    { id: 'tributo', label: 'Tributo', icon: '🌴' },
-    { id: 'about', label: 'Acerca de', icon: '⭐' }
+    { id: 'procesar', label: 'Procesar' },
+    { id: 'decimals', label: 'Décimas' },
+    { id: 'analysis', label: 'Análisis' },
+    { id: 'export', label: 'Exportar' },
+    { id: 'demo', label: 'Demo' },
+    { id: 'education', label: 'Educación' },
+    { id: 'tributo', label: 'Tributo' },
+    { id: 'about', label: 'Acerca de' }
   ];
 
   return (
@@ -25,10 +24,9 @@ export default function NavigationTabs({ activeTab, onTabChange }: NavigationTab
           <button
             key={tab.id}
             onClick={() => onTabChange(tab.id as any)}
-            className={`nav-tab ${activeTab === tab.id ? 'active' : ''} flex items-center gap-2 whitespace-nowrap`}
+            className={`nav-tab ${activeTab === tab.id ? 'active' : ''} flex items-center whitespace-nowrap`}
           >
-            <span>{tab.icon}</span>
-            <span className="hidden sm:inline">{tab.label}</span>
+            <span>{tab.label}</span>
           </button>
         ))}
       </div>

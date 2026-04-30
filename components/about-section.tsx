@@ -1,4 +1,3 @@
-
 "use client";
 
 import React from "react";
@@ -11,7 +10,7 @@ export default function AboutSection() {
   return (
     <section className="cuban-card border-2 border-[#C8A05C] bg-white p-6 md:p-8 max-w-4xl mx-auto rounded-2xl shadow-lg">
       <h2 className="text-2xl md:text-3xl font-bold text-[#C8A05C] font-serif flex items-center gap-3 mb-6">
-        ℹ️ Acerca de El Guajiro de Hialeah
+        Acerca de El Guajiro de Hialeah
       </h2>
 
       <div className="space-y-6 text-[#5C4033]">
@@ -94,7 +93,7 @@ export default function AboutSection() {
         {/* Closing Tribute */}
         <div className="text-center bg-[#FDF8F0] border-2 border-[#D2691E] p-4 rounded-lg">
           <p className="font-medium italic text-[#5C4033] leading-relaxed">
-            🕊️ "A todos los poetas que han dedicado sus vidas a mantener viva la décima: 
+            "A todos los poetas que han dedicado sus vidas a mantener viva la décima: 
             su voz sigue cantando en cada verso que procesamos aquí."
           </p>
         </div>

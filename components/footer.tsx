@@ -1,6 +1,6 @@
 "use client"
 
-import { Shield, Heart, Scale, Youtube, Globe } from 'lucide-react'
+import { Shield, Scale, Youtube, Globe } from 'lucide-react'
 import Link from 'next/link'
 
 export function Footer() {
@@ -20,7 +20,7 @@ export function Footer() {
               Tecnología de vanguardia para la preservación del patrimonio oral cubano. IA Claude Sonnet • Transcripción de Audio • Análisis Académico • Patrimonio UNESCO.
             </p>
             <div className="pt-2 text-xs text-gray-400 space-y-1">
-              <p>Desarrollado con ❤️ en Miami, Florida</p>
+              <p>Desarrollado en Miami, Florida</p>
               <p>En honor a Calixto González "El Guajiro de Hialeah"</p>
             </div>
           </div>
