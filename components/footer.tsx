@@ -34,7 +34,7 @@ export function Footer() {
             <ul className="space-y-2 text-sm">
               <li>
                 <Link href="https://juanantoniodiaz.com" target="_blank" className="flex items-center gap-2 hover:text-[#C8A05C] transition-colors">
-                  <Globe className="w-4 h-4" /> juanantoniodiaz.com
+                  <Globe className="w-4 h-4" /> JuanAntonioDiaz.com
                 </Link>
               </li>
               <li>
