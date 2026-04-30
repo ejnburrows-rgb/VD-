@@ -12,6 +12,8 @@ export default function DemoSection({ videoId }: DemoSectionProps) {
   const defaultVideoId = videoId || "";
   const [currentVideoId] = React.useState(defaultVideoId);
 
+  const aspectStyle: React.CSSProperties = { paddingBottom: "56.25%", height: 0 };
+
   return (
     <div className="space-y-8 max-w-5xl mx-auto">
       <div className="text-center space-y-4">
@@ -29,7 +31,7 @@ export default function DemoSection({ videoId }: DemoSectionProps) {
 
       <Card className="cuban-card overflow-hidden">
         {currentVideoId ? (
-          <div className="relative w-full" style= paddingBottom: "56.25%", height: 0 >
+          <div className="relative w-full" style={aspectStyle}>
             <iframe
               className="absolute top-0 left-0 w-full h-full"
               src={`https://www.youtube.com/embed/${currentVideoId}?rel=0&modestbranding=1`}
@@ -39,7 +41,7 @@ export default function DemoSection({ videoId }: DemoSectionProps) {
             />
           </div>
         ) : (
-          <div className="relative w-full bg-gradient-to-br from-[#F5E6D3] to-[#E6D7C1] flex items-center justify-center" style= paddingBottom: "56.25%", height: 0 >
+          <div className="relative w-full bg-gradient-to-br from-[#F5E6D3] to-[#E6D7C1] flex items-center justify-center" style={aspectStyle}>
             <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
               <Youtube className="w-20 h-20 text-[#C8A05C] mb-4 opacity-50" />
               <p className="text-[#5C4033] text-lg font-medium mb-2">
@@ -114,7 +116,6 @@ export default function DemoSection({ videoId }: DemoSectionProps) {
 
       <div className="grid md:grid-cols-3 gap-4">
         <Card className="p-5 cuban-card text-center">
-          <div className="text-3xl mb-3">🎯</div>
           <h4 className="font-bold text-[#C8A05C] mb-2">Simple y Rápido</h4>
           <p className="text-sm text-[#5C4033]/80">
             Procesa videos en minutos sin necesidad de descargas
@@ -122,7 +123,6 @@ export default function DemoSection({ videoId }: DemoSectionProps) {
         </Card>
 
         <Card className="p-5 cuban-card text-center">
-          <div className="text-3xl mb-3">📜</div>
           <h4 className="font-bold text-[#C8A05C] mb-2">Décimas Formateadas</h4>
           <p className="text-sm text-[#5C4033]/80">
             Cada décima perfectamente estructurada con métrica y rima
@@ -130,7 +130,6 @@ export default function DemoSection({ videoId }: DemoSectionProps) {
         </Card>
 
         <Card className="p-5 cuban-card text-center">
-          <div className="text-3xl mb-3">📚</div>
           <h4 className="font-bold text-[#C8A05C] mb-2">Análisis Profundo</h4>
           <p className="text-sm text-[#5C4033]/80">
             Contexto histórico y técnica de cada poeta
@@ -147,7 +146,7 @@ export default function DemoSection({ videoId }: DemoSectionProps) {
           tus videos favoritos de décimas cubanas.
         </p>
         <div className="inline-block px-6 py-2 bg-[#C8A05C] text-white rounded-lg font-medium hover:bg-[#D2691E] transition-colors cursor-pointer">
-          🎵 Comenzar Ahora
+          Comenzar Ahora
         </div>
       </div>
     </div>
