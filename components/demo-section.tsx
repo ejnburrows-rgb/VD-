@@ -14,7 +14,6 @@ export default function DemoSection({ videoId }: DemoSectionProps) {
 
   return (
     <div className="space-y-8 max-w-5xl mx-auto">
-      {/* Header */}
       <div className="text-center space-y-4">
         <div className="flex items-center justify-center gap-3">
           <PlayCircle className="w-8 h-8 text-[#D2691E]" />
@@ -28,7 +27,6 @@ export default function DemoSection({ videoId }: DemoSectionProps) {
         </p>
       </div>
 
-      {/* Video Player Card */}
       <Card className="cuban-card overflow-hidden">
         {currentVideoId ? (
           <div className="relative w-full" style= paddingBottom: "56.25%", height: 0 >
@@ -55,7 +53,6 @@ export default function DemoSection({ videoId }: DemoSectionProps) {
         )}
       </Card>
 
-      {/* Quick Guide */}
       <Card className="p-6 cuban-card bg-gradient-to-r from-[#F5E6D3] to-[#E6D7C1]">
         <div className="flex items-center gap-3 mb-4">
           <Info className="w-6 h-6 text-[#D2691E]" />
@@ -115,7 +112,6 @@ export default function DemoSection({ videoId }: DemoSectionProps) {
         </div>
       </Card>
 
-      {/* Features Highlight */}
       <div className="grid md:grid-cols-3 gap-4">
         <Card className="p-5 cuban-card text-center">
           <div className="text-3xl mb-3">🎯</div>
@@ -142,7 +138,6 @@ export default function DemoSection({ videoId }: DemoSectionProps) {
         </Card>
       </div>
 
-      {/* Call to Action */}
       <div className="text-center p-8 bg-gradient-to-r from-[#C8A05C]/10 to-[#D2691E]/10 rounded-lg border-2 border-[#C8A05C]">
         <h3 className="text-2xl font-bold text-[#C8A05C] mb-3 font-serif">
           ¿Listo para empezar?
