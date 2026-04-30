@@ -21,7 +21,6 @@ dist/
 .env
 .env.local
 .env.*.local
-!.env.example
 !.env.local.example
 
 # local AI / editor state
@@ -49,9 +48,6 @@ firebase-debug.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
-# prisma
-prisma/migrations/
 
 # local scripts / generated exports
 *.tmp
