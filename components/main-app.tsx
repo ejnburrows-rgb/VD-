@@ -14,7 +14,7 @@ import AboutSection from "@/components/about-section";
 
 type TabType = 'procesar' | 'decimals' | 'analysis' | 'export' | 'demo' | 'education' | 'tributo' | 'about';
 
-export default function MainApp() {
+export function MainApp() {
   const [activeTab, setActiveTab] = useState<TabType>('procesar');
   const [currentVideoId] = useState<string | null>(null);
 
@@ -44,8 +44,8 @@ export default function MainApp() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#F5E6D3] to-[#E6D7C1]">
       <div className="max-w-6xl mx-auto px-4 py-8">
-        <NavigationTabs 
-          activeTab={activeTab} 
+        <NavigationTabs
+          activeTab={activeTab}
           onTabChange={setActiveTab}
         />
 
