@@ -4,11 +4,11 @@
 import { useState } from "react";
 import NavigationTabs from "@/components/navigation-tabs";
 import { ProcessingSection } from "@/components/processing-section";
-import DecimalsSection from "@/components/decimals-section";
-import AnalysisSection from "@/components/analysis-section";
-import ExportSection from "@/components/export-section";
+import { DecimalsSection } from "@/components/decimals-section";
+import { AnalysisSection } from "@/components/analysis-section";
+import { ExportSection } from "@/components/export-section";
 import DemoSection from "@/components/demo-section";
-import EducationSection from "@/components/education-section";
+import { EducationSection } from "@/components/education-section";
 import TributeSection from "@/components/tribute-section";
 import AboutSection from "@/components/about-section";
 
@@ -16,18 +16,17 @@ type TabType = 'procesar' | 'decimals' | 'analysis' | 'export' | 'demo' | 'educa
 
 export function MainApp() {
   const [activeTab, setActiveTab] = useState<TabType>('procesar');
-  const [currentVideoId] = useState<string | null>(null);
 
   const renderActiveSection = () => {
     switch (activeTab) {
       case 'procesar':
         return <ProcessingSection />;
       case 'decimals':
-        return <DecimalsSection videoId={currentVideoId} />;
+        return <DecimalsSection />;
       case 'analysis':
-        return <AnalysisSection videoId={currentVideoId} />;
+        return <AnalysisSection />;
       case 'export':
-        return <ExportSection videoId={currentVideoId} />;
+        return <ExportSection />;
       case 'demo':
         return <DemoSection />;
       case 'education':
