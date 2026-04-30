@@ -2,7 +2,6 @@
 "use client";
 
 import { useState } from "react";
-import TributeSection from "@/components/tribute-section";
 import NavigationTabs from "@/components/navigation-tabs";
 import ProcessingSection from "@/components/processing-section";
 import ProcessingSectionRefactored from "@/components/processing-section-refactored";
@@ -11,15 +10,15 @@ import AnalysisSection from "@/components/analysis-section";
 import ExportSection from "@/components/export-section";
 import DemoSection from "@/components/demo-section";
 import EducationSection from "@/components/education-section";
-import AboutModal from "@/components/about-modal";
+import TributeSection from "@/components/tribute-section";
+import AboutSection from "@/components/about-section";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
-type TabType = 'procesar' | 'decimals' | 'analysis' | 'export' | 'demo' | 'education';
+type TabType = 'procesar' | 'decimals' | 'analysis' | 'export' | 'demo' | 'education' | 'tributo' | 'about';
 
 export default function MainApp() {
   const [activeTab, setActiveTab] = useState<TabType>('procesar');
-  const [showAboutModal, setShowAboutModal] = useState(false);
   const [currentVideoId, setCurrentVideoId] = useState<string | null>(null);
   const [useNewPipeline, setUseNewPipeline] = useState(true); // Default to new pipeline
 
@@ -39,6 +38,10 @@ export default function MainApp() {
         return <DemoSection />;
       case 'education':
         return <EducationSection />;
+      case 'tributo':
+        return <TributeSection />;
+      case 'about':
+        return <AboutSection />;
       default:
         return useNewPipeline ? 
           <ProcessingSectionRefactored onVideoProcessed={setCurrentVideoId} /> : 
@@ -48,13 +51,10 @@ export default function MainApp() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#F5E6D3] to-[#E6D7C1]">
-      <TributeSection />
-      
       <div className="max-w-6xl mx-auto px-4 py-8">
         <NavigationTabs 
           activeTab={activeTab} 
           onTabChange={setActiveTab}
-          onAboutClick={() => setShowAboutModal(true)}
         />
         
         {/* Pipeline Mode Toggle (only show on processing tab) */}
@@ -86,11 +86,6 @@ export default function MainApp() {
           {renderActiveSection()}
         </div>
       </div>
-
-      <AboutModal 
-        isOpen={showAboutModal} 
-        onClose={() => setShowAboutModal(false)} 
-      />
     </div>
   );
 }

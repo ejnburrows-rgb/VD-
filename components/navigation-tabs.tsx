@@ -3,18 +3,19 @@
 
 interface NavigationTabsProps {
   activeTab: string;
-  onTabChange: (tab: 'procesar' | 'decimals' | 'analysis' | 'export' | 'demo' | 'education') => void;
-  onAboutClick: () => void;
+  onTabChange: (tab: 'procesar' | 'decimals' | 'analysis' | 'export' | 'demo' | 'education' | 'tributo' | 'about') => void;
 }
 
-export default function NavigationTabs({ activeTab, onTabChange, onAboutClick }: NavigationTabsProps) {
+export default function NavigationTabs({ activeTab, onTabChange }: NavigationTabsProps) {
   const tabs = [
-    { id: 'procesar', label: 'Procesar Transcripción', icon: '📝' },
-    { id: 'decimals', label: 'Décimas Formateadas', icon: '📖' },
-    { id: 'analysis', label: 'Análisis Completo', icon: '📊' },
-    { id: 'export', label: 'Exportar Resultados', icon: '⬇️' },
-    { id: 'demo', label: 'Demostración', icon: '▶️' },
-    { id: 'education', label: 'Educación Histórica', icon: '📚' }
+    { id: 'procesar', label: 'Procesar', icon: '📝' },
+    { id: 'decimals', label: 'Décimas', icon: '📖' },
+    { id: 'analysis', label: 'Análisis', icon: '📊' },
+    { id: 'export', label: 'Exportar', icon: '⬇️' },
+    { id: 'demo', label: 'Demo', icon: '▶️' },
+    { id: 'education', label: 'Educación', icon: '🎓' },
+    { id: 'tributo', label: 'Tributo', icon: '🌴' },
+    { id: 'about', label: 'Acerca de', icon: '⭐' }
   ];
 
   return (
@@ -30,13 +31,6 @@ export default function NavigationTabs({ activeTab, onTabChange, onAboutClick }:
             <span className="hidden sm:inline">{tab.label}</span>
           </button>
         ))}
-        <button
-          onClick={onAboutClick}
-          className="nav-tab flex items-center gap-2 ml-2 border-l-2 border-[#C8A05C]/30 pl-4"
-        >
-          <span>⭐</span>
-          <span className="hidden sm:inline">Acerca de</span>
-        </button>
       </div>
     </div>
   );
