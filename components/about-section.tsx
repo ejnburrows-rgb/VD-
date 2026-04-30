@@ -116,7 +116,7 @@ export default function AboutSection() {
                 <Globe className="w-4 h-4 text-[#C8A05C]" />
                 <strong className="text-[#C8A05C]">Recursos</strong>
               </div>
-              <p>Web: <strong>juanantoniodiaz.com</strong></p>
+              <p>Web: <strong>JuanAntonioDiaz.com</strong></p>
               <p className="text-[#5C4033]">
                 Licencia: Creative Commons (Uso libre con atribución)
               </p>
