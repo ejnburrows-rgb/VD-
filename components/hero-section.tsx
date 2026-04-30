@@ -52,7 +52,7 @@ export default function HeroSection() {
           
           {/* Attribution */}
           <p className="text-sm text-[#5C4033]">
-            © Emilio José Novo | juanantoniodiaz.com | 
+            © Emilio José Novo | JuanAntonioDiaz.com | 
             <button 
               onClick={() => setShowAboutModal(true)}
               className="ml-1 underline hover:text-[#D2691E] transition-colors duration-200 font-medium"
