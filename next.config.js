@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  poweredByHeader: false,
+  compress: true,
   images: {
     remotePatterns: [
       {
@@ -10,7 +12,7 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'img.youtube.com',
-      }
+      },
     ],
   },
   experimental: {
@@ -22,4 +24,3 @@ const nextConfig = {
 }
 
 module.exports = nextConfig
-

@@ -2,21 +2,22 @@
 
 **Décima Transcription & Heritage Poetry Platform**
 
-> Full-stack application for transcribing, analyzing, and preserving the Cuban décima espinela tradition. Spotify-style audio UI with AI-powered transcription via GROQ Whisper and NotebookLM-style analysis functionality.
+Viajera Digital is a Next.js application for capturing, transcribing, analyzing, and preserving the Cuban décima espinela tradition. It combines a polished audio experience with AI-assisted Spanish transcription and structural analysis for oral poetry.
 
-🔗 **Live:** [Deployed — URL TBD]
+> Status: active polish pass — Vercel + GitHub cleanup in progress.
 
 ---
 
-## What It Does
+## Product Focus
 
-Viajera Digital captures, transcribes, and analyzes décimas espinelas — the 10-line octosyllabic poetic form that is the DNA of oral poetry across Latin America and the Caribbean. The platform combines audio playback with AI transcription to digitize and preserve a living literary tradition.
+Viajera Digital helps preserve live décima performances by turning audio into searchable, analyzable cultural records.
 
 Core workflow:
-1. Upload or record audio of décima performances (repentistas, recitals, controversias)
-2. AI transcription via GROQ Whisper — optimized for Spanish poetic speech
-3. Structural analysis: syllable count verification, rhyme scheme (abbaaccddc), pause detection at verse 4
-4. Browse, search, and study transcribed décimas in a Spotify-style interface
+
+1. Upload or process audio of décima performances.
+2. Transcribe Spanish poetic speech with AI-assisted transcription.
+3. Analyze décima structure, including rhyme, verse shape, and performance cues.
+4. Browse and study preserved performances through a clean web interface.
 
 ---
 
@@ -24,70 +25,65 @@ Core workflow:
 
 | Layer | Technology |
 |---|---|
-| Frontend | TypeScript · HTML · CSS · JavaScript |
-| UI Pattern | Spotify-style audio player + NotebookLM-style analysis |
-| Player | Custom player scripts (playback, controls, streaming) |
-| Backend | Python 3.13+ (separate repo: `viajera-digital-backend`) |
-| Data Models | `models.py` — schema definitions and data structures |
-| Processing | `pipeline.py` — transcription processing and transformation |
-| Exports | `exports.py` — output generation and file exports |
-| AI / Transcription | GROQ Whisper API |
-| Database | Prisma ORM |
-| Config | Environment-based configuration files |
-| Containerization | Docker |
-| Deployment | Frontend: Vercel · Backend: Render (`render.yaml`) |
+| App | Next.js · React · TypeScript |
+| Styling | Tailwind CSS |
+| Data | Prisma ORM |
+| AI | Groq SDK · Google Generative AI |
+| Audio helpers | `@distube/ytdl-core` |
+| Deployment | Vercel |
+| Runtime target | Node.js 22+ |
 
 ---
 
-## Repositories
+## Local Development
 
-This project is split across two repos:
-
-| Repo | What | Language |
-|---|---|---|
-| **`VD-`** (this repo) | Frontend — UI, player, pages, config | TypeScript |
-| **`viajera-digital-backend`** | Backend — API, models, pipeline, exports | Python |
-
----
-
-## Run Locally
-
-### Frontend
-```
+```bash
 git clone https://github.com/ejnburrows-rgb/VD-.git
 cd VD-
-cp .env.example .env
-npx serve .
+npm ci
+npm run dev
 ```
 
-### Backend
-```
-git clone https://github.com/ejnburrows-rgb/viajera-digital-backend.git
-cd viajera-digital-backend
-python -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
-python main.py
-```
+Open `http://localhost:3000`.
 
-### Docker (Backend)
-```
-docker build -t viajera-digital-backend .
-docker run -p 8000:8000 viajera-digital-backend
-```
+Required local secrets should live in `.env.local`. Do not commit `.env*`, `.claude/`, Vercel state, logs, build outputs, or local editor settings.
 
 ---
 
-## Deploy
+## Quality Checks
 
-**Frontend (Vercel):** Connect the `VD-` repo to Vercel for auto-deploy on push.
+```bash
+npm run lint
+npm run build
+```
 
-**Backend (Render):** The `render.yaml` blueprint handles deployment configuration.
+Before merging deployment changes, confirm the Vercel preview build passes.
 
 ---
 
-## Cultural Context
+## Deployment
 
-The décima espinela was codified by Vicente Espinel (1591) and became the dominant oral poetry form across Cuba, Puerto Rico, Mexico, Venezuela, Colombia, and the Canary Islands. Repentistas — improvisational poets — perform décimas live before audiences of thousands. Viajera Digital exists to ensure these performances are captured, transcribed, and preserved with structural fidelity.
+This repo is configured for Vercel:
+
+- Framework: Next.js
+- Install: `npm ci`
+- Build: `npm run build`
+- Runtime target: Node.js 22+
+- Region: `iad1`
+
+See [`docs/VERCEL_CLEANUP.md`](docs/VERCEL_CLEANUP.md) for the deployment cleanup checklist.
+
+---
+
+## GitHub Hygiene
+
+Keep the repository focused on app source, configuration, docs, and production assets. Avoid committing:
+
+- local IDE folders
+- `.claude/` or AI tool caches
+- debug logs
+- generated build folders
+- experimental one-off scripts unless they are productized
 
 ---
 
@@ -97,5 +93,5 @@ MIT
 
 ---
 
-**Built by NBO — Novo Business Order**
+**Built by NBO — Novo Business Order**  
 © Emilio José Novo 2026
