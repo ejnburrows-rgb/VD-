@@ -1,6 +1,6 @@
 "use client";
 
-import PoetsCompendium from "./poets-compendium";
+import { PoetsCompendium } from "./poets-compendium";
 
 export function EducationSection() {
   return (

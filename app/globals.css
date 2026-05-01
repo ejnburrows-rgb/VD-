@@ -106,7 +106,7 @@
   z-index: 1;
 }
 .tobacco-paper > * { position: relative; z-index: 2; }
-
+ 
   .aged-card { background: rgba(230, 212, 182, 0.2); border-radius: 18px; box-shadow: var(--vd-shadow-paper); }
 
   .cigar-band {
@@ -481,7 +481,7 @@ blockquote.decima footer { font-style: normal; font-size: 0.95rem; color: var(--
 
 /* ─────────────────────────────────────────────
    CONTACT CANTURIA — Step 14.4
-───────────────────────────────────────────── */
+   ───────────────────────────────────────────── */
 .canturia-service {
   max-width: 880px;
   margin: 0 auto;
@@ -595,4 +595,473 @@ blockquote.decima footer { font-style: normal; font-size: 0.95rem; color: var(--
   .canturia-lede { font-size: 1.08rem; }
   .demo-frame { padding: 8px; }
   .cta-primary { padding: 0.95rem 1.8rem; font-size: 0.95rem; letter-spacing: 0.12em; }
+}
+
+
+/* === Poets compendium — tobacco accordion (Step 16) === */
+
+.poets-compendium {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem 6rem;
+  font-family: var(--font-prose);
+  color: var(--vd-tobacco-ink);
+  position: relative;
+}
+
+.poets-compendium::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse at top, rgba(80, 50, 24, 0.18), transparent 60%),
+    linear-gradient(180deg, var(--vd-paper-warm), var(--vd-paper-deep));
+}
+
+.poets-header { text-align: center; margin-bottom: 2.5rem; }
+
+.poets-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 700;
+  color: var(--vd-tobacco-deep);
+  letter-spacing: -0.012em;
+  margin: 0 0 1rem;
+}
+
+.poets-lede {
+  font-style: italic;
+  font-family: var(--font-display);
+  color: var(--vd-tobacco-mid);
+  font-size: 1.12rem;
+  max-width: 60ch;
+  margin: 0 auto 2rem;
+  line-height: 1.55;
+}
+
+.poets-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.95rem;
+}
+
+.poet-card {
+  background:
+    linear-gradient(135deg, rgba(245, 232, 206, 0.96), rgba(228, 210, 178, 0.96));
+  border: 1px solid rgba(120, 80, 30, 0.22);
+  border-radius: 4px;
+  box-shadow:
+    0 1px 3px rgba(60, 40, 18, 0.10),
+    inset 0 0 30px rgba(120, 80, 30, 0.05);
+  overflow: hidden;
+  position: relative;
+  transition: all 0.32s cubic-bezier(.2, .8, .2, 1);
+}
+
+.poet-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(0deg, transparent 0 4px, rgba(60, 40, 18, 0.018) 4px 5px),
+    repeating-linear-gradient(90deg, transparent 0 4px, rgba(60, 40, 18, 0.012) 4px 5px);
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
+.poet-card:hover {
+  border-color: var(--vd-gold-deep);
+  box-shadow:
+    0 6px 22px rgba(60, 40, 18, 0.20),
+    inset 0 0 32px rgba(120, 80, 30, 0.07);
+  transform: translateY(-1px);
+}
+
+.poet-card.expanded {
+  background:
+    linear-gradient(135deg, rgba(248, 234, 208, 0.98), rgba(232, 215, 184, 0.98));
+  border-color: var(--vd-gold-deep);
+  box-shadow:
+    0 8px 28px rgba(60, 40, 18, 0.26),
+    inset 0 0 36px rgba(120, 80, 30, 0.08);
+}
+
+.poet-header {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 92px 1fr auto;
+  align-items: center;
+  gap: 1.4rem;
+  padding: 1.25rem 1.5rem;
+  background: transparent;
+  border: 0;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  position: relative;
+  z-index: 1;
+}
+
+.poet-portrait {
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--vd-gold-deep);
+  box-shadow:
+    0 3px 10px rgba(60, 40, 18, 0.34),
+    inset 0 0 0 2px rgba(255, 240, 200, 0.4);
+  flex-shrink: 0;
+  background: var(--vd-tobacco-deep);
+  position: relative;
+}
+
+.poet-portrait img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  filter: sepia(0.55) contrast(1.06) brightness(0.96) saturate(0.82);
+  display: block;
+}
+
+.poet-placeholder {
+  width: 100%; height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(ellipse at center, rgba(120, 80, 30, 0.45), rgba(40, 22, 8, 0.85));
+  color: var(--vd-gold-light);
+}
+
+.placeholder-initials {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1.5rem;
+  letter-spacing: 0.05em;
+}
+
+.poet-meta { min-width: 0; }
+
+.poet-name {
+  font-family: var(--font-display);
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: var(--vd-tobacco-deep);
+  margin: 0 0 0.18rem;
+  letter-spacing: -0.005em;
+  line-height: 1.15;
+}
+
+.poet-subtitle-line {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.02rem;
+  color: var(--vd-tobacco-mid);
+  margin: 0 0 0.32rem;
+}
+
+.poet-era {
+  font-family: var(--font-ui);
+  font-size: 0.74rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--vd-gold-deep);
+  margin: 0;
+  font-weight: 500;
+}
+
+.poet-toggle {
+  font-family: var(--font-display);
+  font-size: 1.55rem;
+  color: var(--vd-gold-deep);
+  width: 2.2rem; height: 2.2rem;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--vd-gold-deep);
+  border-radius: 50%;
+  flex-shrink: 0;
+  transition: all 0.24s ease;
+  line-height: 1;
+}
+
+.poet-card.expanded .poet-toggle {
+  background: var(--vd-gold-deep);
+  color: var(--vd-paper-warm);
+  transform: rotate(180deg);
+}
+
+.poet-body {
+  padding: 0 1.6rem 1.8rem;
+  border-top: 1px dashed rgba(120, 80, 30, 0.28);
+  margin-top: 0;
+  position: relative;
+  z-index: 1;
+  animation: poet-expand 0.42s ease forwards;
+}
+
+@keyframes poet-expand {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.poet-facts {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.4rem 1.2rem;
+  font-size: 0.92rem;
+  color: var(--vd-tobacco-mid);
+  margin: 1.4rem 0;
+  padding: 0.9rem 1.2rem;
+  background: rgba(60, 40, 18, 0.07);
+  border-left: 3px solid var(--vd-gold-deep);
+  border-radius: 0 3px 3px 0;
+}
+
+.poet-facts dt {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--vd-gold-deep);
+  font-weight: 600;
+}
+
+.poet-facts dd { margin: 0; font-style: italic; }
+
+.poet-paragraph {
+  font-size: 1.06rem;
+  line-height: 1.78;
+  margin: 0 0 1.05rem;
+  color: var(--vd-tobacco-ink);
+  text-align: justify;
+  hyphens: auto;
+}
+
+.poet-paragraph:first-of-type::first-letter {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 2.6em;
+  float: left;
+  line-height: 0.86;
+  margin: 0.05em 0.12em 0 0;
+  color: var(--vd-tobacco-deep);
+}
+
+@media (max-width: 720px) {
+  .poets-compendium { padding: 2.5rem 1rem 4rem; }
+  .poet-header {
+    grid-template-columns: 64px 1fr auto;
+    gap: 1rem;
+    padding: 1rem 1.1rem;
+  }
+  .poet-portrait { width: 64px; height: 64px; }
+  .poet-name { font-size: 1.22rem; }
+  .poet-subtitle-line { font-size: 0.92rem; }
+  .poet-era { font-size: 0.68rem; letter-spacing: 0.14em; }
+  .poet-toggle { width: 1.9rem; height: 1.9rem; font-size: 1.3rem; }
+  .poet-body { padding: 0 1.1rem 1.4rem; }
+  .poet-paragraph { font-size: 0.98rem; line-height: 1.72; }
+  .poet-paragraph:first-of-type::first-letter { font-size: 2.2em; }
+}
+
+.educacion-scroll {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 4rem 1.6rem 6rem;
+  position: relative;
+  font-family: var(--font-prose);
+  color: var(--vd-tobacco-ink);
+}
+
+.educacion-scroll::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse at top, rgba(80, 50, 24, 0.18), transparent 60%),
+    linear-gradient(180deg, var(--vd-paper-warm), var(--vd-paper-deep));
+}
+
+.educacion-prose h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  font-weight: 700;
+  color: var(--vd-tobacco-deep);
+  margin: 0 0 1rem;
+  text-align: center;
+}
+
+.educacion-prose h2 {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  color: var(--vd-tobacco-deep);
+  margin: 2.6rem 0 0.8rem;
+  border-bottom: 1px solid rgba(120, 80, 30, 0.28);
+  padding-bottom: 0.4rem;
+}
+
+.educacion-prose p {
+  font-size: 1.08rem;
+  line-height: 1.78;
+  margin: 0 0 1.05rem;
+  text-align: justify;
+  hyphens: auto;
+}
+
+.educacion-prose blockquote {
+  border-left: 3px solid var(--vd-gold-deep);
+  padding: 0.8rem 1.4rem;
+  margin: 1.6rem 0;
+  font-style: italic;
+  color: var(--vd-tobacco-mid);
+  background: rgba(60, 40, 18, 0.06);
+}
+
+.educacion-prose hr {
+  border: 0;
+  border-top: 1px dashed rgba(120, 80, 30, 0.32);
+  margin: 2.2rem auto;
+  width: 50%;
+}
+
+/* === Full-bleed Memorial Design (Step 15) === */
+
+.memorial-page {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.memorial-portrait-bg {
+  position: fixed;
+  inset: 0;
+  background-image: url('/calixto-gonzalez-hero.jpg');
+  background-size: cover;
+  background-position: center 20%;
+  z-index: 0;
+  filter: sepia(0.2) contrast(1.1) brightness(0.9);
+}
+
+.memorial-scrim {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(
+    90deg, 
+    var(--vd-tobacco-deep) 0%, 
+    rgba(62, 40, 20, 0.85) 35%, 
+    rgba(62, 40, 20, 0.4) 60%, 
+    transparent 100%
+  );
+  z-index: 1;
+}
+
+.memorial-hero {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: flex-start;
+  min-height: 100vh;
+  padding-left: 5%;
+}
+
+.memorial-prose {
+  background-color: var(--vd-paper-base);
+  width: 100%;
+  max-width: 720px;
+  min-height: 100vh;
+  padding: 6rem 4rem 8rem;
+  box-shadow: 25px 0 60px rgba(0,0,0,0.4);
+  position: relative;
+  font-family: var(--font-prose);
+  color: var(--vd-tobacco-ink);
+  font-size: 1.18rem;
+  line-height: 1.85;
+}
+
+.memorial-prose p {
+  margin-bottom: 1.8rem;
+  text-align: justify;
+}
+
+/* Contact Canturia Section (Step 15.1) */
+.contact-canturia {
+  text-align: center;
+  padding: 5rem 2rem;
+  background: var(--vd-paper-deep);
+  border-top: 2px solid var(--vd-gold-glow);
+  margin-top: 4rem;
+}
+
+.contact-title {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  color: var(--vd-tobacco-deep);
+  margin: 1.5rem 0 1rem;
+}
+
+.contact-lede {
+  font-size: 1.2rem;
+  font-style: italic;
+  max-width: 600px;
+  margin: 0 auto 2rem;
+  color: var(--vd-tobacco-mid);
+}
+
+.contact-detail {
+  max-width: 650px;
+  margin: 0 auto 3rem;
+  color: var(--vd-tobacco-ink);
+}
+
+.contact-cta {
+  display: inline-block;
+  background: var(--vd-gold-glow);
+  color: var(--vd-tobacco-deep);
+  padding: 1rem 2.5rem;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  box-shadow: var(--vd-shadow-paper);
+}
+
+.contact-cta:hover {
+  background: var(--vd-gold-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(62,40,20,0.3);
+}
+
+.contact-attribution {
+  margin-top: 2.5rem;
+  font-family: var(--font-display);
+  color: var(--vd-gold-deep);
+}
+
+@media (max-width: 1024px) {
+  .memorial-hero { padding-left: 0; }
+  .memorial-prose { max-width: 650px; padding: 4rem 3rem; }
+  .memorial-scrim {
+    background: linear-gradient(
+      180deg,
+      rgba(62, 40, 20, 0.4) 0%,
+      rgba(62, 40, 20, 0.9) 100%
+    );
+  }
+}
+
+@media (max-width: 768px) {
+  .memorial-portrait-bg { position: relative; height: 50vh; }
+  .memorial-scrim { position: absolute; }
+  .memorial-hero { flex-direction: column; }
+  .memorial-prose { max-width: 100%; padding: 3rem 1.5rem; box-shadow: none; min-height: auto; }
 }
