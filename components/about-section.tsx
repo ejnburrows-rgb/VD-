@@ -8,14 +8,14 @@ export default function AboutSection() {
   const [showLeonorInfo, setShowLeonorInfo] = React.useState(false);
 
   return (
-    <section className="cuban-card border-2 border-[#C8A05C] bg-white p-6 md:p-8 max-w-4xl mx-auto rounded-2xl shadow-lg">
+    <section className="aged-card p-6 md:p-8 max-w-4xl mx-auto mb-10">
       <h2 className="text-2xl md:text-3xl font-bold text-[#C8A05C] font-serif flex items-center gap-3 mb-6">
         Acerca de El Guajiro de Hialeah
       </h2>
 
       <div className="space-y-6 text-[#5C4033]">
         {/* Calixto: Tejedor Entre Dos Orillas */}
-        <div className="bg-[#F5E6D3] p-5 rounded-lg border-2 border-[#C8A05C]">
+        <div className="tobacco-paper p-5 rounded-lg border-2 border-[var(--vd-accent-gold)]">
           <div className="flex items-center gap-3 mb-4">
             <Heart className="w-6 h-6 text-[#D2691E]" />
             <h3 className="text-xl font-bold text-[#C8A05C] font-serif">
@@ -74,7 +74,7 @@ export default function AboutSection() {
               Para que la décima nunca sea arrancada del verde imán de nuestro suelo.
             </p>
 
-            <div className="mt-4 p-4 bg-white/40 rounded-lg border border-[#D2691E]/30 italic text-center text-sm leading-relaxed font-serif shadow-inner">
+            <div className="mt-4 p-4 decima-card italic text-center text-sm leading-relaxed font-serif">
               <p className="not-italic font-bold text-[#D2691E] mb-2">La primera décima me la dedicó a mí:</p>
               "Aquí me tienes, José<br/>
               cantando en distinto idioma<br/>
@@ -91,7 +91,7 @@ export default function AboutSection() {
         </div>
 
         {/* Closing Tribute */}
-        <div className="text-center bg-[#FDF8F0] border-2 border-[#D2691E] p-4 rounded-lg">
+        <div className="text-center tobacco-paper border-2 border-[var(--vd-accent-rust)] p-4 rounded-lg">
           <p className="font-medium italic text-[#5C4033] leading-relaxed">
             "A todos los poetas que han dedicado sus vidas a mantener viva la décima: 
             su voz sigue cantando en cada verso que procesamos aquí."
@@ -148,7 +148,7 @@ export default function AboutSection() {
             </p>
             
             {showLeonorInfo && (
-              <div className="mt-4 p-4 bg-[#F5E6D3] border-2 border-[#C8A05C] rounded-lg space-y-3 text-sm leading-relaxed animate-in fade-in duration-300">
+              <div className="mt-4 p-4 tobacco-paper border-2 border-[var(--vd-accent-gold)] rounded-lg space-y-3 text-sm leading-relaxed animate-in fade-in duration-300">
                 <p>
                   Leonor Lopetegui ha sido mi maestra de español, consejera y una abuela más que la vida me regaló desde mis cinco años de edad, cuando ella junto a su esposo, mi tío Armando González, me trajo de Cuba junto a mis padres. Al igual que a tantos otros de nuestra familia, nos ayudaron a comenzar una nueva vida en Miami, una experiencia que marcó profundamente mi formación y mi corazón.
                 </p>

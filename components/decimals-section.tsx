@@ -24,7 +24,7 @@ export function DecimalsSection() {
 
   return (
     <div className="container mx-auto max-w-6xl px-4 py-8">
-      <Card className="bg-[#F5E6D3] border-2 border-[#C8A05C]">
+      <Card className="aged-card">
         <CardHeader>
           <CardTitle className="text-2xl font-serif text-[#D97706]">
             📖 Décimas Formateadas
@@ -50,7 +50,7 @@ export function DecimalsSection() {
               {decimas.map((decima) => (
                 <Card
                   key={decima.id}
-                  className="bg-white/50 border-2 border-[#C8A05C]"
+                  className="decima-card"
                 >
                   <CardHeader>
                     <div className="flex items-center justify-between">

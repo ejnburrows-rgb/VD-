@@ -112,7 +112,7 @@ export function ProcessingSection() {
   return (
     <div className="container mx-auto max-w-4xl px-4 py-8">
       {/* Main Card */}
-      <div className="rounded-lg text-card-foreground shadow-sm p-6 bg-white/90 backdrop-blur-sm border-2 border-[#C8A05C]/20">
+      <div className="aged-card p-6">
         <div className="space-y-4">
           {/* Header with Gemini branding */}
           <div className="flex items-center gap-3">
@@ -146,7 +146,7 @@ export function ProcessingSection() {
             className={`flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-lg border-2 transition-all ${
               inputMode === 'youtube'
                 ? 'bg-[#D2691E] text-white border-[#D2691E]'
-                : 'bg-white text-[#5C4033] border-[#C8A05C]/30 hover:border-[#C8A05C]'
+                : 'tobacco-paper border-[var(--vd-accent-gold)]/30 hover:border-[var(--vd-accent-gold)]'
             }`}
           >
             <Youtube className="w-5 h-5" />
@@ -157,7 +157,7 @@ export function ProcessingSection() {
             className={`flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-lg border-2 transition-all ${
               inputMode === 'text'
                 ? 'bg-[#D2691E] text-white border-[#D2691E]'
-                : 'bg-white text-[#5C4033] border-[#C8A05C]/30 hover:border-[#C8A05C]'
+                : 'tobacco-paper border-[var(--vd-accent-gold)]/30 hover:border-[var(--vd-accent-gold)]'
             }`}
           >
             <FileText className="w-5 h-5" />
@@ -176,7 +176,7 @@ export function ProcessingSection() {
       {inputMode === 'youtube' ? (
         <div className="mt-6 space-y-6">
           {/* Step 1: YouTube URL */}
-          <div className="bg-white/90 rounded-lg p-4 border-2 border-[#C8A05C]/20">
+          <div className="tobacco-paper rounded-lg p-4 border-2 border-[var(--vd-accent-gold)]/20">
             <div className="flex items-center gap-3 mb-3">
               <div className="w-7 h-7 rounded-full bg-[#D2691E] text-white flex items-center justify-center text-sm font-bold">
                 1
@@ -194,7 +194,7 @@ export function ProcessingSection() {
                 setVideoValid(false)
                 setError(null)
               }}
-              className="w-full bg-white border-[#C8A05C]/30"
+              className="w-full tobacco-paper border-[var(--vd-accent-gold)]/30"
             />
             <div className="flex items-center gap-2 mt-2">
               <p className="text-sm text-[#5C4033]">🧪 URLs de prueba rápida:</p>
@@ -233,7 +233,7 @@ export function ProcessingSection() {
           </div>
 
           {/* Step 2: Singer Name */}
-          <div className="bg-white/90 rounded-lg p-4 border-2 border-[#C8A05C]/20">
+          <div className="tobacco-paper rounded-lg p-4 border-2 border-[var(--vd-accent-gold)]/20">
             <div className="flex items-center gap-3 mb-3">
               <div className="w-7 h-7 rounded-full bg-[#D2691E] text-white flex items-center justify-center text-sm font-bold">
                 2
@@ -247,7 +247,7 @@ export function ProcessingSection() {
               placeholder="Ej: Nombre del primer poeta que canta"
               value={singerName}
               onChange={(e) => setSingerName(e.target.value)}
-              className="w-full bg-white border-[#C8A05C]/30"
+              className="w-full tobacco-paper border-[var(--vd-accent-gold)]/30"
             />
             <button
               onClick={handleProcess}
@@ -270,7 +270,7 @@ export function ProcessingSection() {
         </div>
       ) : (
         <div className="mt-6 space-y-4">
-          <div className="bg-white/90 rounded-lg p-4 border-2 border-[#C8A05C]/20">
+          <div className="tobacco-paper rounded-lg p-4 border-2 border-[var(--vd-accent-gold)]/20">
             <h3 className="text-lg font-bold text-[#5C4033] mb-3">
               Pega el texto de la transcripción
             </h3>
@@ -278,14 +278,14 @@ export function ProcessingSection() {
               placeholder="Pega aquí el texto de la canturía..."
               value={directText}
               onChange={(e) => setDirectText(e.target.value)}
-              className="w-full min-h-[200px] bg-white border-[#C8A05C]/30"
+              className="w-full min-h-[200px] tobacco-paper border-[var(--vd-accent-gold)]/30"
             />
             <Input
               type="text"
               placeholder="Ej: Nombre del primer poeta que canta"
               value={singerName}
               onChange={(e) => setSingerName(e.target.value)}
-              className="w-full mt-3 bg-white border-[#C8A05C]/30"
+              className="w-full mt-3 tobacco-paper border-[var(--vd-accent-gold)]/30"
             />
             <button
               onClick={handleProcess}
@@ -301,7 +301,7 @@ export function ProcessingSection() {
       {/* Results */}
       {result && (
         <div className="mt-6 space-y-4">
-          <div className="bg-white/90 rounded-lg p-4 border-2 border-[#C8A05C]/20">
+          <div className="tobacco-paper rounded-lg p-4 border-2 border-[var(--vd-accent-gold)]/20">
             <h3 className="text-xl font-bold text-[#5C4033] mb-3">
               📝 Resultado del Análisis
             </h3>

@@ -42,7 +42,7 @@ export function AnalysisSection() {
           ) : (
             <div className="space-y-6">
               <div className="grid md:grid-cols-2 gap-4">
-                <Card className="bg-white/50 border border-[#C8A05C]">
+                <Card className="aged-card">
                   <CardHeader>
                     <CardTitle className="text-lg text-[#D97706]">
                       Estadísticas
@@ -72,7 +72,7 @@ export function AnalysisSection() {
                 </Card>
 
                 {analysis.culturalContext && (
-                  <Card className="bg-white/50 border border-[#C8A05C]">
+                  <Card className="aged-card">
                     <CardHeader>
                       <CardTitle className="text-lg text-[#D97706]">
                         Contexto Cultural
@@ -88,7 +88,7 @@ export function AnalysisSection() {
               </div>
 
               {analysis.topFour.length > 0 && (
-                <Card className="bg-white/50 border-2 border-[#C8A05C]">
+                <Card className="aged-card">
                   <CardHeader>
                     <CardTitle className="text-xl font-serif text-[#D97706]">
                       Top 4 Décimas

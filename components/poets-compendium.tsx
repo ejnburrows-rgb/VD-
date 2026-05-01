@@ -494,7 +494,7 @@ export default function EducationSection() {
       </div>
 
       {/* Arquitectura Poética, Raíz Compartida */}
-      <Card className="p-6 cuban-card">
+      <Card className="p-6 aged-card">
         <div className="flex items-center gap-3 mb-4">
           <BookOpen className="w-6 h-6 text-[#D2691E]" />
           <h3 className="text-2xl font-bold text-[#C8A05C] font-serif">
@@ -525,7 +525,7 @@ export default function EducationSection() {
       </Card>
 
       {/* Florecimiento Español: Del Creador a los Maestros */}
-      <Card className="p-6 cuban-card">
+      <Card className="p-6 aged-card">
         <div className="flex items-center gap-3 mb-4">
           <Crown className="w-6 h-6 text-[#D2691E]" />
           <h3 className="text-2xl font-bold text-[#C8A05C] font-serif">
@@ -551,7 +551,7 @@ export default function EducationSection() {
       </Card>
 
       {/* Travesía Atlántica: Semilla en Nuevo Suelo */}
-      <Card className="p-6 cuban-card">
+      <Card className="p-6 aged-card">
         <div className="flex items-center gap-3 mb-4">
           <Users className="w-6 h-6 text-[#D2691E]" />
           <h3 className="text-2xl font-bold text-[#C8A05C] font-serif">
@@ -599,7 +599,7 @@ export default function EducationSection() {
       </Card>
 
       {/* Evolución Cultural */}
-      <Card className="p-6 cuban-card">
+      <Card className="p-6 aged-card">
         <div className="flex items-center gap-3 mb-4">
           <Award className="w-6 h-6 text-[#D2691E]" />
           <h3 className="text-2xl font-bold text-[#C8A05C] font-serif">
@@ -627,7 +627,7 @@ export default function EducationSection() {
       </Card>
 
       {/* Modernización Masiva (Siglo XX) */}
-      <Card className="p-6 cuban-card bg-gradient-to-r from-[#F5E6D3] to-[#E6D7C1]">
+      <Card className="p-6 aged-card">
         <div className="flex items-center gap-3 mb-4">
           <div className="text-3xl">📻</div>
           <h3 className="text-2xl font-bold text-[#C8A05C] font-serif">
@@ -663,7 +663,7 @@ export default function EducationSection() {
       </Card>
 
       {/* Presencia Latinoamericana */}
-      <Card className="p-6 cuban-card">
+      <Card className="p-6 aged-card">
         <div className="flex items-center gap-3 mb-4">
           <div className="text-3xl">🌎</div>
           <h3 className="text-2xl font-bold text-[#C8A05C] font-serif">
@@ -686,7 +686,7 @@ export default function EducationSection() {
       </Card>
 
       {/* Legado Vivo */}
-      <Card className="p-6 cuban-card bg-gradient-to-br from-[#C8A05C]/10 to-[#D2691E]/10">
+      <Card className="p-6 aged-card">
         <div className="flex items-center gap-3 mb-4">
           <div className="text-3xl">✨</div>
           <h3 className="text-2xl font-bold text-[#C8A05C] font-serif">
@@ -712,7 +712,7 @@ export default function EducationSection() {
       </Card>
 
       {/* Maestros de la Décima */}
-      <Card className="p-6 cuban-card">
+      <Card className="p-6 aged-card">
         <div className="flex items-center gap-3 mb-6">
           <Award className="w-6 h-6 text-[#D2691E]" />
           <h3 className="text-2xl font-bold text-[#C8A05C] font-serif">
@@ -722,10 +722,10 @@ export default function EducationSection() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
           {historicalFigures.map((poet, index) => (
-            <div key={index} className="border-l-4 border-[#D2691E] pl-4 py-2">
+            <div key={index} className="pl-4 py-2 poet-card">
               <button
                 onClick={() => setExpandedPoet(expandedPoet === poet ? null : poet)}
-                className="font-semibold text-[#5C4033] hover:text-[#C8A05C] transition-colors duration-200 text-left"
+                className="font-semibold text-[#5C4033] hover:text-[#C8A05C] transition-colors duration-200 text-left w-full"
               >
                 🌴 {poet}
                 <span className="ml-1 text-[#D2691E] font-bold text-lg">*</span>
@@ -736,7 +736,7 @@ export default function EducationSection() {
 
         {/* Biografía Expandible */}
         {expandedPoet && (
-          <div className="mt-6 p-6 bg-[#F5E6D3] border-2 border-[#C8A05C] rounded-lg text-sm leading-relaxed animate-in fade-in duration-300">
+          <div className="mt-6 p-6 tobacco-paper border-2 border-[var(--vd-accent-gold)] rounded-lg text-sm leading-relaxed animate-in fade-in duration-300">
             {getPoetBiography(expandedPoet)}
             
             <button
@@ -750,7 +750,7 @@ export default function EducationSection() {
       </Card>
 
       {/* Momentos de Excelencia: La Décima en su Esplendor */}
-      <Card className="p-6 cuban-card bg-gradient-to-r from-[#F5E6D3] to-[#E6D7C1]">
+      <Card className="p-6 aged-card">
         <div className="flex items-center gap-3 mb-4">
           <div className="text-3xl">⭐</div>
           <h3 className="text-2xl font-bold text-[#C8A05C] font-serif">
@@ -781,7 +781,7 @@ export default function EducationSection() {
       </Card>
 
       {/* Cincuenta y Dos Segundos: Arquitectura Contra el Reloj */}
-      <Card className="p-6 cuban-card">
+      <Card className="p-6 aged-card">
         <div className="flex items-center gap-3 mb-4">
           <div className="w-10 h-10 bg-[#D2691E] rounded-full flex items-center justify-center text-white font-bold text-lg">
             52"
@@ -816,7 +816,7 @@ export default function EducationSection() {
       </Card>
 
       {/* UNESCO 2012: El Reconocimiento Universal */}
-      <Card className="p-6 cuban-card bg-gradient-to-br from-[#C8A05C]/10 to-[#D2691E]/10">
+      <Card className="p-6 aged-card">
         <div className="flex items-center gap-3 mb-4">
           <div className="text-3xl">🏛️</div>
           <h3 className="text-2xl font-bold text-[#C8A05C] font-serif">

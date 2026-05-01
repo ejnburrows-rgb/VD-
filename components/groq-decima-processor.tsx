@@ -196,7 +196,7 @@ ${transcriptionResult?.text || 'No disponible'}
 
   return (
     <div className="container mx-auto max-w-5xl px-4 py-8">
-      <Card className="bg-[#F5E6D3] border-2 border-[#C8A05C] shadow-lg">
+      <Card className="aged-card shadow-lg">
         <CardHeader>
           <CardTitle className="text-3xl font-serif font-bold text-[#D97706]">
             🎤 Procesador de Décimas Espinelas
@@ -356,7 +356,7 @@ ${transcriptionResult?.text || 'No disponible'}
           {stage === 'completed' && analysisResult && (
             <div className="space-y-6 animate-in fade-in duration-500">
               {/* Décimas formateadas */}
-              <div className="bg-white border-2 border-[#C8A05C] rounded-lg p-6">
+              <div className="aged-card p-6">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-2xl font-serif font-bold text-[#D97706]">
                     📝 Décimas Identificadas
@@ -373,7 +373,7 @@ ${transcriptionResult?.text || 'No disponible'}
               </div>
 
               {/* Análisis TOP 4 */}
-              <div className="bg-white border-2 border-[#C8A05C] rounded-lg p-6">
+              <div className="aged-card p-6">
                 <h3 className="text-2xl font-serif font-bold text-[#D97706] mb-4">
                   🏆 Análisis TOP 4 Mejores Décimas
                 </h3>

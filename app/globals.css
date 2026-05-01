@@ -34,10 +34,19 @@
     --font-serif: Georgia, serif;
     
     /* Viajera Digital Tobacco Paper Theme */
-    --vd-paper-base: #FDF8F0;
-    --vd-ink-primary: #5C4033;
-    --vd-accent-gold: #C8A05C;
-    --vd-accent-rust: #D2691E;
+    --vd-paper-base: #EFE2C8;
+    --vd-paper-warm: #E6D4B3;
+    --vd-paper-shadow: #D4BE99;
+    --vd-paper-highlight: #F7ECD4;
+    --vd-ink-primary: #3A2A1C;
+    --vd-ink-secondary: #6B4F36;
+    --vd-ink-muted: #8A7558;
+    --vd-tabaco-deep: #5C3A1E;
+    --vd-tabaco-mid: #8B5A2B;
+    --vd-tabaco-glow: #C9954A;
+    --vd-vela: #E8B86B;
+    --vd-shadow-paper: 0 1px 2px rgba(58,42,28,0.08), 0 8px 24px rgba(58,42,28,0.10);
+    --vd-shadow-lifted: 0 2px 4px rgba(58,42,28,0.10), 0 16px 40px rgba(58,42,28,0.14);
   }
   
   * {
@@ -108,15 +117,71 @@
   
   .tobacco-paper {
     background-color: var(--vd-paper-base);
+    background-image:
+      radial-gradient(ellipse at 20% 50%, rgba(139,90,43,0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, rgba(201,149,74,0.08) 0%, transparent 40%),
+      radial-gradient(ellipse at 50% 80%, rgba(92,58,30,0.035) 0%, transparent 60%),
+      linear-gradient(180deg, var(--vd-paper-base) 0%, var(--vd-paper-warm) 100%);
     color: var(--vd-ink-primary);
-    border: 1px solid var(--vd-accent-gold);
   }
 
   .aged-card {
-    background-color: var(--vd-paper-base);
+    background: linear-gradient(135deg, var(--vd-paper-highlight) 0%, var(--vd-paper-warm) 52%, var(--vd-paper-shadow) 100%);
+    border: 1px solid var(--vd-paper-shadow);
+    border-radius: 18px;
+    box-shadow: var(--vd-shadow-paper);
+  }
+
+  .cigar-band {
+    background: linear-gradient(90deg, var(--vd-tabaco-deep) 0%, var(--vd-tabaco-mid) 40%, #A06432 60%, var(--vd-tabaco-mid) 80%, var(--vd-tabaco-deep) 100%);
+    border-top: 1px solid var(--vd-tabaco-glow);
+    border-bottom: 1px solid var(--vd-tabaco-glow);
+  }
+
+  .tobacco-footer {
+    background: linear-gradient(180deg, var(--vd-tabaco-deep) 0%, #3A2415 100%);
+    color: var(--vd-paper-highlight);
+  }
+
+  .hero-parchment {
+    background: radial-gradient(ellipse at center, transparent 58%, rgba(92,58,30,0.075) 100%),
+      linear-gradient(180deg, var(--vd-paper-highlight) 0%, var(--vd-paper-base) 100%);
+  }
+
+  .poet-card {
+    transition: background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
+    border-left: 4px solid var(--vd-tabaco-glow);
+  }
+  .poet-card:hover {
+    background: rgba(201,149,74,0.10);
+    border-left-color: var(--vd-tabaco-mid);
+    transform: translateX(3px);
+  }
+
+  blockquote.decima, .decima-card {
+    border-left: 3px solid var(--vd-tabaco-glow);
+    background: linear-gradient(90deg, rgba(201,149,74,0.09) 0%, rgba(247,236,212,0.35) 100%);
     color: var(--vd-ink-primary);
-    border: 1px solid var(--vd-accent-rust);
-    box-shadow: inset 0 0 20px rgba(200, 160, 92, 0.1);
+    border-radius: 0 10px 10px 0;
+  }
+
+  .tab-bar {
+    background: linear-gradient(180deg, var(--vd-paper-highlight) 0%, var(--vd-paper-warm) 100%);
+    border-bottom: 2px solid var(--vd-paper-shadow);
+  }
+  .tab-active {
+    background: linear-gradient(180deg, var(--vd-tabaco-mid) 0%, #6B3A16 100%);
+    color: var(--vd-paper-highlight);
+    box-shadow: 0 2px 8px rgba(92,58,30,0.24);
+  }
+
+  .font-display {
+    font-family: Georgia, "Palatino Linotype", "Book Antiqua", serif;
+    letter-spacing: 0.01em;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .poet-card, .poet-card:hover { transition: none; transform: none; }
   }
   
   .cuban-button {

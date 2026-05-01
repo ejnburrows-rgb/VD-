@@ -44,7 +44,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className={`${inter.className} antialiased bg-[#F5E6D3] text-[#5C4033]`} suppressHydrationWarning>
+      <body className={`${inter.className} antialiased tobacco-paper`} suppressHydrationWarning>
         <a href="#main-content" className="skip-link">
           Saltar al contenido principal
         </a>

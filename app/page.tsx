@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main id="main-content" className="min-h-screen vintage-background">
+      <main id="main-content" className="min-h-screen tobacco-paper">
         <HeroSection />
         <MainApp />
       </main>

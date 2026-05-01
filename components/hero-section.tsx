@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-end justify-center overflow-hidden pt-20">
+    <section className="relative min-h-screen flex items-end justify-center overflow-hidden pt-20 hero-parchment">
       {/* Background Image - Full Color */}
       <div className="absolute inset-0">
         <Image
@@ -25,7 +25,7 @@ export function HeroSection() {
       <div className="relative z-20 w-full max-w-4xl mx-auto px-4 pb-16">
         <div className="text-center">
           {/* Main Title */}
-          <h1 className="text-5xl md:text-7xl font-bold text-[#C8A05C] mb-2 font-serif drop-shadow-lg">
+          <h1 className="text-5xl md:text-7xl font-bold text-[#C8A05C] mb-2 font-serif font-display drop-shadow-lg">
             Calixto González
           </h1>
 

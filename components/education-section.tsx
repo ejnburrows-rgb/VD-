@@ -12,7 +12,7 @@ export function EducationSection() {
 
         <div className="grid md:grid-cols-2 gap-8 mb-12">
           {/* Arquitectura Poética, Raíz Compartida */}
-          <section className="p-6 bg-white/50 rounded-lg border-l-4 border-[#C8A05C] shadow-sm">
+          <section className="p-6 aged-card">
             <h3 className="text-2xl font-bold font-serif mb-4 text-[#C8A05C]">
               Arquitectura Poética, Raíz Compartida
             </h3>
@@ -25,7 +25,7 @@ export function EducationSection() {
           </section>
 
           {/* Travesía Atlántica: Semilla en Nuevo Suelo */}
-          <section className="p-6 bg-white/50 rounded-lg border-l-4 border-[#C8A05C] shadow-sm">
+          <section className="p-6 aged-card">
             <h3 className="text-2xl font-bold font-serif mb-4 text-[#C8A05C]">
               Travesía Atlántica: Semilla en Nuevo Suelo
             </h3>
@@ -40,7 +40,7 @@ export function EducationSection() {
 
         <div className="grid md:grid-cols-2 gap-8 mb-12">
           {/* El Cucalambé y la Cubanización */}
-          <section className="p-6 bg-white/50 rounded-lg border-l-4 border-[#C8A05C] shadow-sm">
+          <section className="p-6 aged-card">
             <h3 className="text-2xl font-bold font-serif mb-4 text-[#C8A05C]">
               El Cucalambé: Cubanización Definitiva
             </h3>
@@ -53,7 +53,7 @@ export function EducationSection() {
           </section>
 
           {/* Legado Vivo y Repentismo */}
-          <section className="p-6 bg-white/50 rounded-lg border-l-4 border-[#C8A05C] shadow-sm">
+          <section className="p-6 aged-card">
             <h3 className="text-2xl font-bold font-serif mb-4 text-[#C8A05C]">
               El Repentismo: Arte Nacional
             </h3>
@@ -67,7 +67,7 @@ export function EducationSection() {
         </div>
 
         {/* Momentos de Excelencia: Naborí vs Valiente */}
-        <div className="mb-12 p-8 rounded-xl border-2 border-[#D2691E] bg-[#FDF8F0] shadow-lg">
+        <div className="mb-12 p-8 aged-card">
           <h3 className="text-2xl font-bold font-serif mb-6 text-center text-[#D2691E]">
             Momentos de Excelencia: La Controversia del Siglo (1955)
           </h3>
@@ -75,7 +75,7 @@ export function EducationSection() {
             El 28 de agosto de 1955, más de <strong>diez mil personas</strong> presenciaron en el estadio Campo Armada de San Miguel del Padrón el duelo entre <strong>Jesús Orta Ruiz "El Indio Naborí"</strong> y <strong>Angelito Valiente</strong>.
           </p>
           <div className="grid md:grid-cols-2 gap-4">
-            <div className="p-4 bg-white/40 rounded border border-[#C8A05C]/30 text-center italic text-[#5C4033]">
+            <div className="p-4 decima-card text-center italic text-inherit">
               "Pongan ahí un cuarto jurado: yo mismo, que voto por Naborí."
               <p className="mt-2 not-italic font-bold text-sm">— Angelito Valiente</p>
             </div>
@@ -86,7 +86,7 @@ export function EducationSection() {
         </div>
 
         {/* UNESCO 2017 */}
-        <div className="mb-12 p-8 rounded-xl border-2 border-[#C8A05C] bg-[#F5E6D3] text-center shadow-md">
+        <div className="mb-12 p-8 aged-card text-center">
           <h3 className="text-3xl font-bold font-serif mb-4 text-[#C8A05C]">
             UNESCO 2017: Patrimonio del Mundo
           </h3>
