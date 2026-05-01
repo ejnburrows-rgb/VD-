@@ -12,7 +12,7 @@ export function MemorialContent() {
         y eterniza el arte vivo de la décima completa.
       </blockquote>
       <p className="byline">
-        © Emilio José Novo ·{" "}
+        Un guajiro en Hialeah ·{" "}
         <a href="https://juanantoniodiaz.com" target="_blank" rel="noopener noreferrer">
           JuanAntonioDiaz.com
         </a>
