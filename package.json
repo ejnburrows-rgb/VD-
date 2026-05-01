@@ -10,7 +10,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test:links": "node scripts/check-juanantonio-links.mjs"
   },
   "dependencies": {
     "@distube/ytdl-core": "^4.16.12",

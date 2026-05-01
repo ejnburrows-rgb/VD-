@@ -49,7 +49,14 @@ export function HeroSection() {
 
           {/* Attribution */}
           <p className="text-sm text-[#5C4033]">
-            © Emilio José Novo | JuanAntonioDiaz.com
+            © Emilio José Novo | <a
+              href="https://juanantoniodiaz.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Abrir Juan Antonio Díaz en una pestaña nueva"
+            >
+              JuanAntonioDiaz.com
+            </a>
           </p>
         </div>
       </div>

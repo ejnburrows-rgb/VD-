@@ -32,6 +32,12 @@
     --foreground: #5C4033;
     --font-sans: system-ui, -apple-system, sans-serif;
     --font-serif: Georgia, serif;
+    
+    /* Viajera Digital Tobacco Paper Theme */
+    --vd-paper-base: #FDF8F0;
+    --vd-ink-primary: #5C4033;
+    --vd-accent-gold: #C8A05C;
+    --vd-accent-rust: #D2691E;
   }
   
   * {
@@ -94,7 +100,23 @@
   
   /* Cuban vintage styling */
   .cuban-card {
-    @apply bg-white/90 backdrop-blur-sm border-2 border-[#C8A05C]/20 rounded-lg shadow-lg;
+    @apply backdrop-blur-sm rounded-lg shadow-lg;
+    background-color: var(--vd-paper-base);
+    border: 2px solid var(--vd-accent-gold);
+    color: var(--vd-ink-primary);
+  }
+  
+  .tobacco-paper {
+    background-color: var(--vd-paper-base);
+    color: var(--vd-ink-primary);
+    border: 1px solid var(--vd-accent-gold);
+  }
+
+  .aged-card {
+    background-color: var(--vd-paper-base);
+    color: var(--vd-ink-primary);
+    border: 1px solid var(--vd-accent-rust);
+    box-shadow: inset 0 0 20px rgba(200, 160, 92, 0.1);
   }
   
   .cuban-button {

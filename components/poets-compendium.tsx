@@ -275,171 +275,30 @@ export default function EducationSection() {
 
       case "Julio Pablo El Príncipe Pinareño":
         return (
-          <div className="space-y-4">
-            <h4 className="text-xl font-bold text-[#C8A05C] font-serif">
+          <div className="cuban-card p-6 bg-[#FDF8F0] border-2 border-[#D2691E] rounded-xl shadow-md space-y-4 text-[#5C4033] leading-relaxed">
+            <h4 className="text-2xl font-bold text-[#C8A05C] font-serif mb-6 text-center border-b pb-4 border-[#C8A05C]/30">
               Julio Pablo Travieso Martínez: Arquitecto de Versos en Tiempo Presente
             </h4>
             
-            <div>
-              <h5 className="font-semibold text-[#D2691E] mb-2">El Arte Como Respiración</h5>
-              <p>
-                Observa el escenario vacío. Siente el silencio colectivo antes del primer verso. 
-                Julio Pablo Travieso Martínez, nacido en 1996 bajo el cielo pinareño, transforma 
-                ese silencio en arquitectura sonora—décimas que construyen puentes entre siglos, 
-                generaciones, islas.
-              </p>
-              <p className="mt-2">
-                Este joven maestro no preserva tradiciones como quien guarda reliquias en vitrinas. 
-                Las respira. Las reinterpreta. Las expande. El repentismo fluye a través de él como 
-                agua que recuerda su cauce ancestral mientras descubre territorios nuevos. Tradición 
-                y renovación. Memoria y creación. Ambas. Siempre ambas.
-              </p>
-            </div>
-
-            <div>
-              <h5 className="font-semibold text-[#D2691E] mb-2">Raíces Que Sostienen, Alas Que Liberan</h5>
-              <p>
-                La Casa de la Décima "Celestino García"—fundada en 2008 como ecosistema cultural—nutrió 
-                semillas que hoy florecen ante audiencias nacionales e internacionales. Desde esa institución 
-                emblemática, Travieso cultivó el dominio técnico que transforma la improvisación en precisión 
-                controlada: diez versos octosílabos que contienen universos.
-              </p>
-              <p className="mt-2">
-                Oralitura Habana 2019 lo vio compartir escenario con decimistas cuyas voces cruzaban océanos. 
-                Las controversias con Yoniel Perdomo—febrero 2025, versos sobre infancia campesina que duraron 
-                horas—revelaron la resistencia física y mental que exige el arte oral sostenido. La conversación 
-                poética con el puertorriqueño Julio César Sanabria demostró que la décima borra fronteras 
-                geográficas mediante resonancia cultural compartida.
-              </p>
-              <p className="mt-2">
-                Cada presentación confirma una verdad fundamental: la técnica magistral habilita la expresión 
-                auténtica, nunca la oscurece.
-              </p>
-            </div>
-
-            <div>
-              <h5 className="font-semibold text-[#D2691E] mb-2">El Mago del Momento: Cuando la Décima Revela Su Esencia</h5>
-              <p>
-                Travieso merece también el título de "Mago del Momento"—designación que captura la naturaleza 
-                efímera y milagrosa del repentismo. Él enseña una verdad que los grandes maestros comprenden 
-                intuitivamente: la décima es la magia del momento.
-              </p>
-              <p className="mt-2">
-                No existe ensayo para la improvisación. No hay segunda oportunidad para el verso que nace y 
-                muere en el instante de su pronunciación. El poeta sostiene la audiencia en suspenso 
-                compartido—el momento cuando pensamiento se vuelve palabra, cuando palabra se cristaliza en 
-                forma perfecta, cuando forma captura emoción que todos reconocen como auténtica.
-              </p>
-              <p className="mt-2">
-                Esta magia exige presencia total: el poeta no puede distraerse, dudar, retroceder. Debe confiar 
-                que años de práctica emergerán como instinto. Que la forma memorizada se llenará de contenido 
-                espontáneo. Que la estructura sostendrá el peso de la verdad improvisada. Travieso demuestra 
-                este milagro cada vez que transforma silencio en verso—cada controversia donde el momento 
-                genera significado que ninguna composición escrita replicaría exactamente.
-              </p>
-            </div>
-
-            <div>
-              <h5 className="font-semibold text-[#D2691E] mb-2">La Décima Como Instrumento de Precisión</h5>
-              <p>
-                La espinela—estrofa nacional cubana, forma heredada de España que Cuba adoptó como voz 
-                propia—encuentra en Travieso un intérprete que entiende su paradoja esencial: estructura 
-                rígida que genera libertad ilimitada. Diez versos, esquema fijo de rima, ritmo octosílabo 
-                invariable. Dentro de esos límites aparentemente restrictivos, el poeta improvisa sobre 
-                cualquier tema con la fluidez del pensamiento hablado.
-              </p>
-              <p className="mt-2">
-                Vida campesina. Amor. Divorcio. Historia. Filosofía. Cada tema se moldea en décimas que 
-                satisfacen exigencias técnicas mientras transmiten verdades humanas inmediatas. La forma no 
-                decora el contenido—lo encarna. La restricción métrica no limita significado—lo cristaliza 
-                en memorabilidad.
-              </p>
-            </div>
-
-            <div>
-              <h5 className="font-semibold text-[#D2691E] mb-2">Generación Guardiana, Generación Innovadora</h5>
-              <p>
-                Travieso pertenece a la generación que heredó responsabilidad histórica: mantener viva una 
-                tradición oral en era digital. Junto a Anabeybi Rodríguez—"la princesa pinareña"—y otros 
-                jóvenes repentistas, forma una red de artistas que entienden que preservar no significa congelar.
-              </p>
-              <p className="mt-2">
-                Estos poetas contemporáneos aplican formas centenarias a preocupaciones actuales. Usan redes 
-                sociales para amplificar versos que antes solo viajaban hasta donde alcanzaban voces sin 
-                amplificación. Graban presentaciones que antes existían únicamente en memoria colectiva. 
-                Documentan procesos creativos que maestros anteriores—como Basilio Echevarría Acosta, "El 
-                Negro"—transmitieron exclusivamente mediante ejemplo directo.
-              </p>
-              <p className="mt-2">
-                Mueven la décima hacia el futuro honrando su pasado. Velocidad con reverencia.
-              </p>
-            </div>
-
-            <div>
-              <h5 className="font-semibold text-[#D2691E] mb-2">Geografía Cultural: Pinar del Río Como Identidad</h5>
-              <p>
-                Cada verso que Travieso improvisa lleva la marca de su provincia occidental. Pinar del 
-                Río—donde el punto guajiro no es género musical sino lenguaje materno, donde la décima 
-                estructura pensamiento colectivo—habla a través de él. No como ventrílocuo que repite frases 
-                ajenas, sino como voz individual que articula experiencia comunitaria.
-              </p>
-              <p className="mt-2">
-                El título "Príncipe Pinareño" reconoce esa doble función: maestría personal que representa 
-                herencia colectiva. Travieso proyecta identidad regional mientras alcanza relevancia universal. 
-                Lo específicamente cubano ilumina lo fundamentalmente humano.
-              </p>
-            </div>
-
-            <div>
-              <h5 className="font-semibold text-[#D2691E] mb-2">Testimonio Personal: Privilegio Compartido</h5>
-              <p>
-                Conocer a Julio Pablo Travieso. Llamarlo amigo. Reconocerlo como hermano. Estas experiencias 
-                constituyen bendiciones que agradezco con gratitud diaria, porque presenciar maestría poética 
-                en persona—observar cómo la mente transforma experiencia en verso mientras el verso se 
-                pronuncia—revela procesos creativos que ninguna grabación captura completamente.
-              </p>
-              <p className="mt-2">
-                Su presencia confirma que el arte del pueblo no es primitivo ni simple. Es sofisticado en 
-                ejecución, profundo en implicación, accesible sin sacrificar complejidad.
-              </p>
-            </div>
-
-            <div>
-              <h5 className="font-semibold text-[#D2691E] mb-2">Resistencia Cultural Como Acto Creativo</h5>
-              <p>
-                Cada controversia que Travieso sostiene, cada festival donde participa, cada alumno que forma, 
-                constituye acto de resistencia cultural: testimonio viviente de que tradiciones orales permanecen 
-                vibrantes cuando artistas talentosos las encarnan con compromiso contemporáneo. La décima 
-                improvisada no es reliquia museográfica sino herramienta comunicativa actual.
-              </p>
-              <p className="mt-2">
-                En contextos donde homogeneización cultural amenaza especificidades regionales, donde consumo 
-                pasivo reemplaza participación activa, donde velocidad privilegia superficialidad, el repentismo 
-                ofrece alternativa: creación compartida en tiempo real entre poeta y audiencia, forma que exige 
-                presencia total.
-              </p>
-            </div>
-
-            <div>
-              <h5 className="font-semibold text-[#D2691E] mb-2">Trayectoria Que Continúa</h5>
-              <p>
-                Julio Pablo Travieso Martínez escribe su capítulo en la historia de la poesía cubana con versos 
-                que vuelan—literalmente—en el momento de su creación. Su trabajo asegura que generaciones 
-                futuras heredarán tradición viva, no archivo histórico. Que la décima seguirá evolucionando sin 
-                perder identidad esencial. Que Pinar del Río mantendrá su voz distintiva en conversaciones 
-                culturales nacionales e internacionales.
-              </p>
-              <p className="mt-2">
-                Que la palabra colorida y precisa—la que Martí persiguió incansablemente—continúa emergiendo a 
-                través del oficio paciente de artistas comprometidos con excelencia.
-              </p>
-              <p className="mt-2 font-medium italic text-[#C8A05C]">
-                Que sus versos vuelen alto, llevando esencia cubana a corazones que reconozcan en la décima 
-                improvisada lo que siempre ha sido: sofisticación accesible, particularidad que alcanza 
-                universalidad, técnica magistral al servicio de verdad compartida. Magia que ocurre una vez y 
-                nunca exactamente igual—porque así es el momento, y así es el arte que lo honra.
-              </p>
-            </div>
+            <p>
+              Julio Pablo Travieso Martínez, nacido en 1996 bajo el cielo pinareño, transforma el silencio en arquitectura sonora con décimas que construyen puentes entre siglos. Como joven maestro, no preserva tradiciones como reliquias, sino que las respira y expande, fluyendo con el repentismo para honrar su cauce ancestral descubriendo territorios nuevos. Nutriendo su talento desde 2008 en la emblemática Casa de la Décima "Celestino García", cultivó un dominio técnico que cristaliza la improvisación en diez versos octosílabos donde tradición y renovación siempre convergen.
+            </p>
+            
+            <p>
+              Su maestría lo ha llevado a compartir escenario en eventos como Oralitura Habana 2019, dialogando tanto con figuras nacionales como con el puertorriqueño Julio César Sanabria. En febrero de 2025, sostuvo una épica y controvertida batalla poética con Yoniel Perdomo sobre la infancia campesina, prolongada por horas, revelando la resistencia y la agudeza mental que exige el arte oral. Esta capacidad le valió el título de "Mago del Momento", un reconocimiento a esa presencia total y milagrosa que requiere transformar el pensamiento vivo en estrofas memorables, todo sin redención de ensayo ni segundas oportunidades.
+            </p>
+            
+            <p>
+              La espinela encuentra en Julio Pablo un intérprete ideal que comprende su paradoja esencial: la rigidez de una métrica fija que engendra libertad narrativa. Desde la vida campesina y el amor hasta la historia y el divorcio, todo tema se moldea bajo su instinto poético. Junto a jóvenes talentos como Anabeybi Rodríguez, "la princesa pinareña", forma una generación innovadora que aplica formas centenarias a ansiedades contemporáneas, usando redes digitales para documentar y proyectar la riqueza del punto guajiro al futuro.
+            </p>
+            
+            <p>
+              Cada estrofa que improvisa "El Príncipe Pinareño" lleva la marca identitaria de su tierra natal. No actúa como un mero eco, sino como una voz viva que proyecta la experiencia colectiva de Pinar del Río, elevando lo específicamente cubano a una relevancia verdaderamente humana y universal. El repentismo en su voz trasciende la contemplación museográfica para erigirse como una herramienta comunicativa actual, resistiendo la homogeneización cultural con excelencia poética en tiempo real.
+            </p>
+            
+            <p>
+              Conocer a Julio Pablo Travieso y presenciar cómo transforma la experiencia en verso ofrece el inmenso privilegio de atestiguar la magia viva. Su obra incesante sigue escribiendo nuevos capítulos en la poesía cubana contemporánea, asegurando que el verbo colorido de su provincia occidental perdure vibrante. Sus versos vuelan alto, portando la esencia indómita de su arte: sofisticación accesible, técnica magistral y verdad compartida para los corazones que aún reconocen la magia inconfundible de la décima improvisada.
+            </p>
           </div>
         );
 

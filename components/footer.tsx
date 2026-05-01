@@ -33,9 +33,15 @@ export function Footer() {
             </div>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="https://juanantoniodiaz.com" target="_blank" className="flex items-center gap-2 hover:text-[#C8A05C] transition-colors">
+                <a
+                  href="https://juanantoniodiaz.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Abrir Juan Antonio Díaz en una pestaña nueva"
+                  className="flex items-center gap-2 hover:text-[#C8A05C] transition-colors"
+                >
                   <Globe className="w-4 h-4" /> JuanAntonioDiaz.com
-                </Link>
+                </a>
               </li>
               <li>
                 <Link href="https://youtube.com/@juanantoniodiaz9034" target="_blank" className="flex items-center gap-2 hover:text-[#C8A05C] transition-colors">
