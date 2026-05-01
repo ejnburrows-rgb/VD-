@@ -1,10 +1,29 @@
 export const dynamic = "force-dynamic";
 
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Playfair_Display, Cormorant_Garamond, Lora } from "next/font/google";
+import { PaperTexture } from "@/components/paper-texture";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-playfair",
+  weight: ["400","700","900"],
+  style: ["normal","italic"]
+});
+
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  variable: "--font-cormorant",
+  weight: ["400","500","600","700"],
+  style: ["normal","italic"]
+});
+
+const lora = Lora({
+  subsets: ["latin"],
+  variable: "--font-lora",
+  weight: ["400","500","600"]
+});
 
 export const metadata: Metadata = {
   title: "El Guajiro de Hialeah | Transcriptor y Analizador de Décima Espinela Cubana",
@@ -36,18 +55,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" suppressHydrationWarning>
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap"
-          rel="stylesheet"
-        />
-      </head>
-      <body className={`${inter.className} antialiased tobacco-paper`} suppressHydrationWarning>
-        <a href="#main-content" className="skip-link">
-          Saltar al contenido principal
-        </a>
+      <body className={`${playfair.variable} ${cormorant.variable} ${lora.variable} antialiased`} suppressHydrationWarning>
+        <PaperTexture />
         {children}
       </body>
     </html>
