@@ -275,29 +275,24 @@ export default function EducationSection() {
 
       case "Julio Pablo El Príncipe Pinareño":
         return (
-          <div className="cuban-card p-6 bg-[#FDF8F0] border-2 border-[#D2691E] rounded-xl shadow-md space-y-4 text-[#5C4033] leading-relaxed">
-            <h4 className="text-2xl font-bold text-[#C8A05C] font-serif mb-6 text-center border-b pb-4 border-[#C8A05C]/30">
+          <div className="space-y-4">
+            <h4 className="text-xl font-bold text-[#C8A05C] font-serif">
               Julio Pablo Travieso Martínez: Arquitecto de Versos en Tiempo Presente
             </h4>
-            
             <p>
               Julio Pablo Travieso Martínez, nacido en 1996 bajo el cielo pinareño, transforma el silencio en arquitectura sonora con décimas que construyen puentes entre siglos. Como joven maestro, no preserva tradiciones como reliquias, sino que las respira y expande, fluyendo con el repentismo para honrar su cauce ancestral descubriendo territorios nuevos. Nutriendo su talento desde 2008 en la emblemática Casa de la Décima "Celestino García", cultivó un dominio técnico que cristaliza la improvisación en diez versos octosílabos donde tradición y renovación siempre convergen.
             </p>
-            
             <p>
               Su maestría lo ha llevado a compartir escenario en eventos como Oralitura Habana 2019, dialogando tanto con figuras nacionales como con el puertorriqueño Julio César Sanabria. En febrero de 2025, sostuvo una épica y controvertida batalla poética con Yoniel Perdomo sobre la infancia campesina, prolongada por horas, revelando la resistencia y la agudeza mental que exige el arte oral. Esta capacidad le valió el título de "Mago del Momento", un reconocimiento a esa presencia total y milagrosa que requiere transformar el pensamiento vivo en estrofas memorables, todo sin redención de ensayo ni segundas oportunidades.
             </p>
-            
             <p>
               La espinela encuentra en Julio Pablo un intérprete ideal que comprende su paradoja esencial: la rigidez de una métrica fija que engendra libertad narrativa. Desde la vida campesina y el amor hasta la historia y el divorcio, todo tema se moldea bajo su instinto poético. Junto a jóvenes talentos como Anabeybi Rodríguez, "la princesa pinareña", forma una generación innovadora que aplica formas centenarias a ansiedades contemporáneas, usando redes digitales para documentar y proyectar la riqueza del punto guajiro al futuro.
             </p>
-            
             <p>
               Cada estrofa que improvisa "El Príncipe Pinareño" lleva la marca identitaria de su tierra natal. No actúa como un mero eco, sino como una voz viva que proyecta la experiencia colectiva de Pinar del Río, elevando lo específicamente cubano a una relevancia verdaderamente humana y universal. El repentismo en su voz trasciende la contemplación museográfica para erigirse como una herramienta comunicativa actual, resistiendo la homogeneización cultural con excelencia poética en tiempo real.
             </p>
-            
-            <p>
-              Conocer a Julio Pablo Travieso y presenciar cómo transforma la experiencia en verso ofrece el inmenso privilegio de atestiguar la magia viva. Su obra incesante sigue escribiendo nuevos capítulos en la poesía cubana contemporánea, asegurando que el verbo colorido de su provincia occidental perdure vibrante. Sus versos vuelan alto, portando la esencia indómita de su arte: sofisticación accesible, técnica magistral y verdad compartida para los corazones que aún reconocen la magia inconfundible de la décima improvisada.
+            <p className="italic font-medium mt-4">
+              Magia que ocurre una vez, nunca exactamente igual — porque así es el momento, y así es el arte que lo honra.
             </p>
           </div>
         );

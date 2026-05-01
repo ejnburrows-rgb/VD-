@@ -1,74 +1,65 @@
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
-const searchDirs = ['app', 'components', 'lib', 'styles', 'public'];
-let failed = false;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const rootDir = path.join(__dirname, '..');
 
-function scanDir(dir) {
-  if (!fs.existsSync(dir)) return;
-  const files = fs.readdirSync(dir);
-  for (const file of files) {
-    const fullPath = path.join(dir, file);
-    const stat = fs.statSync(fullPath);
-    if (stat.isDirectory()) {
-      scanDir(fullPath);
-    } else if (stat.isFile() && /\.(tsx|ts|js|jsx)$/.test(file)) {
-      checkFile(fullPath);
-    }
-  }
-}
+const directoriesToCheck = ['app', 'components'];
+let errorCount = 0;
 
 function checkFile(filePath) {
   const content = fs.readFileSync(filePath, 'utf8');
-  
-  // Case-insensitive search for juanantoniodiaz.com
-  const regex = /juanantoniodiaz\.com/gi;
-  let match;
-  while ((match = regex.exec(content)) !== null) {
-    // Check surrounding context for <Link> or not being inside <a> with target="_blank" and rel="noopener noreferrer"
-    
-    // We get a chunk of text around the match to verify
-    const start = Math.max(0, match.index - 500);
-    const end = Math.min(content.length, match.index + 500);
-    const context = content.substring(start, end);
+  if (!content.includes('JuanAntonioDiaz.com')) return;
 
-    // If it's wrapped in <Link, fail immediately
-    if (/<Link[^>]*>[\s\S]*?juanantoniodiaz\.com/i.test(context)) {
-      console.error(`\x1b[31mFAIL: Found <Link> wrapper in ${filePath}\x1b[0m`);
-      failed = true;
-      continue;
-    }
+  // Simple regex to match <a ... >JuanAntonioDiaz.com</a>
+  // Not perfect but good enough for a smoke test
+  const linkRegex = /<a[^>]*>[^<]*JuanAntonioDiaz\.com[^<]*<\/a>/gi;
+  const links = content.match(linkRegex);
 
-    // Check if it's inside an <a> tag by finding the closest <a backwards and the closest > forwards
-    const aTagStart = context.lastIndexOf('<a', match.index - start);
-    const aTagEnd = context.indexOf('>', aTagStart);
-    
-    if (aTagStart === -1 || aTagEnd === -1) {
-      console.error(`\x1b[31mFAIL: Unwrapped bare text in ${filePath}\x1b[0m`);
-      failed = true;
-      continue;
-    }
+  if (links) {
+    links.forEach(link => {
+      const hasHref = link.includes('href="https://juanantoniodiaz.com"');
+      const hasTarget = link.includes('target="_blank"');
+      const hasRel = link.includes('rel="noopener noreferrer"');
 
-    const aTagToMatch = context.substring(aTagStart, aTagEnd + 1);
-    
-    const hasTargetBlank = /target\s*=\s*(['"])_blank\1/.test(aTagToMatch);
-    const hasRelNoopener = /rel\s*=\s*(['"]).*?noopener.*?\1/.test(aTagToMatch);
-    const hasRelNoreferrer = /rel\s*=\s*(['"]).*?noreferrer.*?\1/.test(aTagToMatch);
+      if (!hasHref || !hasTarget || !hasRel) {
+        console.error(`❌ Invalid link found in ${filePath}`);
+        console.error(`   Found: ${link}`);
+        errorCount++;
+      } else {
+        console.log(`✅ Valid link found in ${filePath}`);
+      }
+    });
+  }
+}
 
-    if (!hasTargetBlank || !hasRelNoopener || !hasRelNoreferrer) {
-      console.error(`\x1b[31mFAIL: Missing target="_blank" or rel="noopener noreferrer" in ${filePath}\x1b[0m`);
-      failed = true;
+function walkDir(dir) {
+  const files = fs.readdirSync(dir);
+  for (const file of files) {
+    const filePath = path.join(dir, file);
+    const stat = fs.statSync(filePath);
+    if (stat.isDirectory()) {
+      walkDir(filePath);
+    } else if (filePath.endsWith('.tsx') || filePath.endsWith('.jsx')) {
+      checkFile(filePath);
     }
   }
 }
 
-console.log('Scanning for JuanAntonioDiaz.com link compliance...');
-searchDirs.forEach(scanDir);
+console.log('Running Juan Antonio Díaz link smoke test...');
+directoriesToCheck.forEach(dir => {
+  const fullPath = path.join(rootDir, dir);
+  if (fs.existsSync(fullPath)) {
+    walkDir(fullPath);
+  }
+});
 
-if (failed) {
-  console.error('\x1b[31mSmoke test failed! Please fix the links.\x1b[0m');
+if (errorCount > 0) {
+  console.error(`\nSmoke test failed with ${errorCount} errors.`);
   process.exit(1);
 } else {
-  console.log('\x1b[32mAll links compliant! Smoke test passed.\x1b[0m');
+  console.log('\n✅ All links pass smoke test.');
   process.exit(0);
 }

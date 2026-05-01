@@ -2,7 +2,7 @@
 
 interface NavigationTabsProps {
   activeTab: string;
-  onTabChange: (tab: 'procesar' | 'decimals' | 'analysis' | 'export' | 'demo' | 'education' | 'tributo' | 'about') => void;
+  onTabChange: (tab: 'procesar' | 'decimals' | 'analysis' | 'export' | 'demo' | 'education' | 'about') => void;
 }
 
 export default function NavigationTabs({ activeTab, onTabChange }: NavigationTabsProps) {
@@ -13,7 +13,6 @@ export default function NavigationTabs({ activeTab, onTabChange }: NavigationTab
     { id: 'export', label: 'Exportar' },
     { id: 'demo', label: 'Demo' },
     { id: 'education', label: 'Educación' },
-    { id: 'tributo', label: 'Tributo' },
     { id: 'about', label: 'Acerca de' }
   ];
 

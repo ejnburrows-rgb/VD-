@@ -9,10 +9,9 @@ import { AnalysisSection } from "@/components/analysis-section";
 import { ExportSection } from "@/components/export-section";
 import DemoSection from "@/components/demo-section";
 import { EducationSection } from "@/components/education-section";
-import TributeSection from "@/components/tribute-section";
 import AboutSection from "@/components/about-section";
 
-type TabType = 'procesar' | 'decimals' | 'analysis' | 'export' | 'demo' | 'education' | 'tributo' | 'about';
+type TabType = 'procesar' | 'decimals' | 'analysis' | 'export' | 'demo' | 'education' | 'about';
 
 export function MainApp() {
   const [activeTab, setActiveTab] = useState<TabType>('procesar');
@@ -31,8 +30,6 @@ export function MainApp() {
         return <DemoSection />;
       case 'education':
         return <EducationSection />;
-      case 'tributo':
-        return <TributeSection />;
       case 'about':
         return <AboutSection />;
       default:
@@ -41,7 +38,7 @@ export function MainApp() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#F5E6D3] to-[#E6D7C1]">
+    <div className="min-h-screen">
       <div className="max-w-6xl mx-auto px-4 py-8">
         <NavigationTabs
           activeTab={activeTab}

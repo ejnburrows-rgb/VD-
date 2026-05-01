@@ -138,14 +138,21 @@
     border-bottom: 1px solid var(--vd-tabaco-glow);
   }
 
+  .gold-heading { color: var(--vd-tabaco-deep); text-shadow: 0 1px 2px rgba(92,58,30,0.12); }
+
   .tobacco-footer {
     background: linear-gradient(180deg, var(--vd-tabaco-deep) 0%, #3A2415 100%);
     color: var(--vd-paper-highlight);
   }
 
   .hero-parchment {
-    background: radial-gradient(ellipse at center, transparent 58%, rgba(92,58,30,0.075) 100%),
+    background:
+      radial-gradient(ellipse at center, transparent 58%, rgba(92,58,30,0.075) 100%),
       linear-gradient(180deg, var(--vd-paper-highlight) 0%, var(--vd-paper-base) 100%);
+  }
+
+  .tribute-band {
+    background: linear-gradient(135deg, #6B3A16 0%, var(--vd-tabaco-mid) 32%, #A06432 52%, var(--vd-tabaco-mid) 72%, #6B3A16 100%);
   }
 
   .poet-card {
@@ -175,10 +182,7 @@
     box-shadow: 0 2px 8px rgba(92,58,30,0.24);
   }
 
-  .font-display {
-    font-family: Georgia, "Palatino Linotype", "Book Antiqua", serif;
-    letter-spacing: 0.01em;
-  }
+  .font-display { font-family: Georgia, "Palatino Linotype", "Book Antiqua", serif; letter-spacing: 0.01em; }
 
   @media (prefers-reduced-motion: reduce) {
     .poet-card, .poet-card:hover { transition: none; transform: none; }
