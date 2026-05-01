@@ -433,20 +433,6 @@ blockquote.decima footer { font-style: normal; font-size: 0.95rem; color: var(--
 
 .section-lead { font-style: italic; color: var(--vd-tobacco-mid); text-align: center; font-size: 1.15rem; margin: 2rem 0 2.5rem !important; }
 
-.cta-end { text-align: center; margin-top: 4rem; }
-.cta-procesar {
-  font-family: var(--font-ui);
-  font-size: 1rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  background: linear-gradient(180deg, var(--vd-gold-light), var(--vd-gold-glow));
-  color: var(--vd-tobacco-ink);
-  border: 1px solid var(--vd-gold-deep);
-  padding: 1rem 2.5rem;
-  cursor: pointer;
-  box-shadow: var(--vd-shadow-emboss), 0 4px 16px rgba(62,40,20,0.2);
-}
-.cta-blurb { font-style: italic; color: var(--vd-tobacco-mid); margin-top: 1rem; font-size: 0.95rem; }
 
 .fleuron-wrap { display: flex; justify-content: center; margin: 3rem 0; }
 
@@ -491,4 +477,134 @@ blockquote.decima footer { font-style: normal; font-size: 0.95rem; color: var(--
   .opening::first-letter { font-size: 4rem; }
   .top-nav { flex-direction: column; gap: 1rem; padding: 1.5rem; text-align: center; }
   .top-nav .nav-links { flex-wrap: wrap; justify-content: center; gap: 1rem; }
+}
+
+/* ─────────────────────────────────────────────
+   CONTACT CANTURIA — Step 14.4
+───────────────────────────────────────────── */
+.canturia-service {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 5rem 2rem 6rem;
+  text-align: center;
+}
+.canturia-inner { width: 100%; }
+.canturia-title {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--vd-tobacco-deep);
+  margin: 1.5rem 0 0.75rem;
+  letter-spacing: -0.01em;
+}
+.canturia-lede {
+  font-family: var(--font-prose);
+  font-size: 1.2rem;
+  font-style: italic;
+  color: var(--vd-tobacco-mid);
+  line-height: 1.6;
+  max-width: 620px;
+  margin: 0 auto 3rem;
+}
+
+.demo-frame {
+  margin: 0 auto 3rem;
+  max-width: 760px;
+  padding: 14px;
+  background: linear-gradient(180deg, var(--vd-paper-warm) 0%, var(--vd-paper-deep) 100%);
+  border: 1px solid var(--vd-gold-deep);
+  box-shadow:
+    0 0 0 1px var(--vd-gold-glow),
+    0 16px 50px rgba(62,40,20,0.28),
+    inset 0 1px 0 rgba(255,240,210,0.4);
+}
+.demo-video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  background: var(--vd-tobacco-ink);
+  filter: sepia(0.18) contrast(1.04) saturate(0.92);
+}
+.demo-caption {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--vd-gold-deep);
+  margin-top: 0.9rem;
+}
+
+.canturia-offer { max-width: 640px; margin: 0 auto 2.5rem; }
+.offer-line {
+  font-family: var(--font-prose);
+  font-size: 1.25rem;
+  color: var(--vd-tobacco-ink);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+.offer-detail {
+  font-family: var(--font-prose);
+  font-size: 1.08rem;
+  color: var(--vd-tobacco-mid);
+  line-height: 1.7;
+  font-style: italic;
+}
+
+.contact-cluster { margin-top: 2rem; }
+.cta-primary {
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: linear-gradient(180deg, var(--vd-gold-light) 0%, var(--vd-gold-glow) 50%, var(--vd-gold-deep) 100%);
+  color: var(--vd-tobacco-ink);
+  border: 1px solid var(--vd-tobacco-mid);
+  padding: 1.1rem 2.8rem;
+  cursor: pointer;
+  box-shadow:
+    inset 1px 1px 0 rgba(255,240,210,0.45),
+    inset -1px -1px 0 rgba(40,20,8,0.3),
+    0 6px 20px rgba(62,40,20,0.25);
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+.cta-primary:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    inset 1px 1px 0 rgba(255,240,210,0.55),
+    inset -1px -1px 0 rgba(40,20,8,0.35),
+    0 8px 28px rgba(62,40,20,0.32);
+}
+
+.cta-secondary {
+  font-family: var(--font-prose);
+  font-size: 1rem;
+  color: var(--vd-tobacco-mid);
+  margin-top: 1.5rem;
+}
+.email-link {
+  color: var(--vd-tobacco-deep);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: var(--vd-gold-glow);
+}
+.cta-attrib {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--vd-gold-deep);
+  margin-top: 2.2rem;
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 720px) {
+  .canturia-service { padding: 3rem 1.25rem 4rem; }
+  .canturia-title { font-size: 1.9rem; }
+  .canturia-lede { font-size: 1.08rem; }
+  .demo-frame { padding: 8px; }
+  .cta-primary { padding: 0.95rem 1.8rem; font-size: 0.95rem; letter-spacing: 0.12em; }
 }
