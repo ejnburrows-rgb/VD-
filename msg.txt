@@ -1,1 +1,1 @@
-feat: replace self-serve Procesar with contact-driven canturia service (silent demo video + JA contact CTA)
+fix(contact-cta): remove mailto placeholder, contact-form button only

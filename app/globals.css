@@ -580,24 +580,12 @@ blockquote.decima footer { font-style: normal; font-size: 0.95rem; color: var(--
     0 8px 28px rgba(62,40,20,0.32);
 }
 
-.cta-secondary {
-  font-family: var(--font-prose);
-  font-size: 1rem;
-  color: var(--vd-tobacco-mid);
-  margin-top: 1.5rem;
-}
-.email-link {
-  color: var(--vd-tobacco-deep);
-  text-decoration: underline;
-  text-underline-offset: 4px;
-  text-decoration-color: var(--vd-gold-glow);
-}
 .cta-attrib {
   font-family: var(--font-display);
   font-style: italic;
   font-size: 1rem;
   color: var(--vd-gold-deep);
-  margin-top: 2.2rem;
+  margin-top: 1.6rem;
   letter-spacing: 0.04em;
 }
 

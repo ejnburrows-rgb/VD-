@@ -1,7 +1,6 @@
 import { Fleuron } from "./fleuron"
 
 const JUAN_ANTONIO_CONTACT_URL = "https://juanantoniodiaz.com/contacto"
-const JUAN_ANTONIO_EMAIL = "TODO_FILL_JA_EMAIL"
 const DEMO_VIDEO_SRC = "/canturia-demo.mp4"
 const DEMO_VIDEO_POSTER = "/canturia-demo-poster.jpg"
 
@@ -48,12 +47,6 @@ export function ContactCanturia() {
           >
             Solicitar a Juan Antonio Díaz &rarr;
           </a>
-          <p className="cta-secondary">
-            o escríbanos a{" "}
-            <a href={`mailto:${JUAN_ANTONIO_EMAIL}`} className="email-link">
-              {JUAN_ANTONIO_EMAIL}
-            </a>
-          </p>
           <p className="cta-attrib"><em>Un guajiro en Hialeah</em></p>
         </div>
       </div>
