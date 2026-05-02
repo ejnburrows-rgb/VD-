@@ -1,7 +1,7 @@
 "use client"
+
 import { useState } from "react"
 import { Fleuron } from "./fleuron"
-import { PoetPlaceholder } from "./poet-placeholder"
 
 interface Poet {
   slug: string
@@ -85,7 +85,7 @@ const poets: Poet[] = [
     death: "13 de enero de 1993, La Habana",
     initials: "JV",
     biography: [
-      "Justo Vega, maestro de la improvisación tradicional, fue reconocido como 'El Caballero de la Décima Improvisada'. Fue uno de los repentistas estelares del pie forzado y el punto cubano.",
+      "Justo Vega, maestro de la improvisación tradicional, fue reconocido as 'El Caballero de la Décima Improvisada'. Fue uno de los repentistas estelares del pie forzado y el punto cubano.",
       "Su fama creció especialmente en el programa televisivo 'Palmas y Cañas', donde formó un dúo legendario con Adolfo Alfonso durante veinticinco años.",
       "Más que un gran intérprete, se convirtió en artífice de fabulosas controversias, evocadas por varias generaciones de cubanos que disfrutaron sus presentaciones en radio y televisión.",
       "Su elegancia en el trato y su precisión en el verso definieron un estándar de caballerosidad en el escenario que le valió su apodo eterno."
@@ -245,7 +245,7 @@ const poets: Poet[] = [
     death: "11 de junio de 2025",
     initials: "TQ",
     biography: [
-      "Tomasita Quiala, invidente desde su nacimiento, fue una de las más notables exponentes de la décima en el mundo. Conocida como 'La Ciega Maravillosa', conquistó escenarios internacionales.",
+      "Tomasita Quiala, invidente desde su nacimiento, fue una de las más notables exponentes de la décima en el mundo. Conocida as 'La Ciega Maravillosa', conquistó escenarios internacionales.",
       "Destacó por su rapidez mental y su capacidad para la controversia, rompiendo barreras en un mundo tradicionalmente masculino.",
       "Recibió numerosos galardones, incluyendo el Premio Nacional de Cultura Comunitaria. Su primer libro de décimas fue incluso transcrito al braille.",
       "Su legado permanece como símbolo de talento, autenticidad y superación, inspirando a generaciones de repentistas en Cuba y el mundo."
@@ -353,75 +353,58 @@ const poets: Poet[] = [
 ]
 
 export function PoetsCompendium() {
-  const [expanded, setExpanded] = useState<string | null>(null)
-  const [imageErrors, setImageErrors] = useState<Set<string>>(new Set())
-
-  const handleImageError = (slug: string) => {
-    setImageErrors(prev => new Set(prev).add(slug))
-  }
+  const [expanded, setExpanded] = useState<string | null>(poets[0]?.slug ?? null)
 
   return (
-    <div className="poets-compendium">
-      <header className="poets-header">
-        <h1 className="poets-title">Los Maestros de la Décima</h1>
-        <p className="poets-lede">
-          Veintitrés voces que sostienen la décima cubana — desde Vicente Espinel en el Siglo de Oro hasta los repentistas vivos de Hialeah, Matanzas y Pinar del Río. Toque cualquier nombre para abrir su historia.
-        </p>
-        <Fleuron />
+    <section className="vd-poets">
+      <header className="vd-poets__intro">
+        <h1 className="vd-poets__title">Compendio de Poetas</h1>
+        <div className="vd-poets__rule" aria-hidden="true"><Fleuron /></div>
+        <p className="vd-poets__subtitle">Veintitrés voces de la décima espinela</p>
       </header>
-
-      <div className="poets-grid">
+      <ul className="vd-poets__list" role="list">
         {poets.map((poet) => {
           const isExpanded = expanded === poet.slug
-          const hasImageError = imageErrors.has(poet.slug)
           return (
-            <article
+            <li
               key={poet.slug}
-              className={`poet-card ${isExpanded ? "expanded" : ""}`}
+              className={`vd-poets__card${isExpanded ? " is-expanded" : ""}`}
             >
               <button
-                className="poet-header"
+                type="button"
+                className="vd-poets__header"
                 onClick={() => setExpanded(isExpanded ? null : poet.slug)}
                 aria-expanded={isExpanded}
                 aria-controls={`poet-body-${poet.slug}`}
               >
-                <div className="poet-portrait">
-                  {hasImageError ? (
-                    <PoetPlaceholder initials={poet.initials} />
-                  ) : (
-                    <img
-                      src={`/poets/${poet.slug}.jpg`}
-                      alt={`Retrato de ${poet.name}`}
-                      loading="lazy"
-                      onError={() => handleImageError(poet.slug)}
-                    />
-                  )}
-                </div>
-                <div className="poet-meta">
-                  <h2 className="poet-name">{poet.name}</h2>
-                  <p className="poet-subtitle-line">{poet.subtitle}</p>
-                  <p className="poet-era">{poet.era}</p>
-                </div>
-                <span className="poet-toggle" aria-hidden="true">
-                  {isExpanded ? "—" : "+"}
+                <span className="vd-poets__medallion" aria-hidden="true">
+                  <span className="vd-poets__initials">{poet.initials}</span>
+                </span>
+                <span className="vd-poets__meta">
+                  <span className="vd-poets__name">{poet.name}</span>
+                  <span className="vd-poets__dek">{poet.subtitle}</span>
+                  <span className="vd-poets__era">{poet.era}</span>
+                </span>
+                <span className="vd-poets__toggle" aria-hidden="true">
+                  {isExpanded ? "−" : "+"}
                 </span>
               </button>
               {isExpanded && (
-                <div id={`poet-body-${poet.slug}`} className="poet-body">
-                  <dl className="poet-facts">
+                <div id={`poet-body-${poet.slug}`} className="vd-poets__body">
+                  <dl className="vd-poets__facts">
                     <dt>Nacimiento</dt><dd>{poet.birth}</dd>
-                    {poet.death && (<><dt>Fallecimiento</dt><dd>{poet.death}</dd></>)}
-                    {poet.location && (<><dt>Residencia</dt><dd>{poet.location}</dd></>)}
+                    {poet.death ? (<><dt>Fallecimiento</dt><dd>{poet.death}</dd></>) : null}
+                    {poet.location ? (<><dt>Residencia</dt><dd>{poet.location}</dd></>) : null}
                   </dl>
                   {poet.biography.map((p, i) => (
-                    <p key={i} className="poet-paragraph">{p}</p>
+                    <p key={i} className="vd-poets__paragraph">{p}</p>
                   ))}
                 </div>
               )}
-            </article>
+            </li>
           )
         })}
-      </div>
-    </div>
+      </ul>
+    </section>
   )
 }
