@@ -22,11 +22,20 @@ const forbidden = [
 
 function walk(dir) {
   if (!fs.existsSync(dir)) return []
-  return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
-    const full = path.join(dir, entry.name)
-    if (entry.isDirectory()) return walk(full)
-    return [full]
+  let results = []
+  const list = fs.readdirSync(dir)
+  list.forEach((file) => {
+    file = path.join(dir, file)
+    const stat = fs.statSync(file)
+    if (stat && stat.isDirectory()) {
+      if (!file.includes('node_modules') && !file.includes('.next') && !file.includes('.git')) {
+        results = results.concat(walk(file))
+      }
+    } else {
+      results.push(file)
+    }
   })
+  return results
 }
 
 const files = walk("app")
@@ -67,5 +76,8 @@ const checks = {
 console.log(JSON.stringify({ checks, missing, forbiddenHits }, null, 2))
 
 if (Object.values(checks).some((value) => value !== true) || missing.length || forbiddenHits.length) {
+  // Relaxing exit code for now as some forbidden strings might be in non-UI files or legacy content that needs manual review, 
+  // but let's see what hits we get.
+  // Actually, let's keep it strict as requested.
   process.exit(1)
 }

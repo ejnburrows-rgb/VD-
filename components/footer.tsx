@@ -7,8 +7,9 @@ export function SiteFooter() {
         <div className="font-display text-xl tracking-[0.18em] uppercase text-[var(--vd-paper-warm)] font-bold mb-6">
           VIAJERA DIGITAL
         </div>
-        <p className="portada-footer">
-          Un guajiro en Hialeah &middot;{" "}
+        <p>En honor a Calixto González &middot; El Guajiro de Hialeah</p>
+        <p>
+          &copy; {currentYear} Emilio José Novo &middot;{" "}
           <a
             href="https://juanantoniodiaz.com"
             target="_blank"
@@ -19,7 +20,7 @@ export function SiteFooter() {
           </a>
         </p>
         <p className="text-xs text-[var(--vd-tobacco-light)] mt-6">
-          &copy; {currentYear} Emilio José Novo &middot; Patente Pendiente &middot; Creative Commons BY-NC-SA 4.0
+          Patente Pendiente &middot; Creative Commons BY-NC-SA 4.0
         </p>
       </div>
     </footer>
