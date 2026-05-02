@@ -10,5 +10,5 @@ def run(cmd):
     return res.returncode
 
 run('git add -A')
-run('git commit -m "feat(poets): medallion column with expandable cards"')
+run('git commit -m "feat(solicitar): centered gold-bordered card with fleuron, eyebrow, title, CTA"')
 run('git push origin main')

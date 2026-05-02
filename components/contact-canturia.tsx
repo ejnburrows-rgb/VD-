@@ -17,29 +17,33 @@ export function ContactCanturia() {
         </div>
       </section>
 
-      <section className="contact-canturia" id="contacto">
-        <Fleuron />
-        <h2 className="contact-title">Una canturía, conservada para siempre</h2>
-        <div className="contact-offer">
-          <p className="offer-line">
-            Cada canturía se transcribe verso por verso y se entrega como un PDF o EPUB
-            elegante, diseñado para conservarse toda la vida.
-          </p>
-          <p className="offer-detail">
-            Las décimas se transcriben verso por verso. Las cuatro mejores se escogen con
-            su justificación poética. Todo presentado en tipografía sobria sobre un fondo
-            sepia, listo para leer en cualquier dispositivo o imprimir si así lo prefiere.
-          </p>
-        </div>
-
-        <div className="contact-cluster">
-          <a href="https://juanantoniodiaz.com/contacto" target="_blank" rel="noopener noreferrer" className="cta-primary">
+      <section className="vd-solicitar" id="contacto">
+        <article className="vd-solicitar__card">
+          <div className="vd-solicitar__fleuron" aria-hidden="true"><Fleuron /></div>
+          <p className="vd-solicitar__eyebrow">Una canturía, conservada para siempre</p>
+          <h2 className="vd-solicitar__title">Solicitar</h2>
+          <div className="vd-solicitar__body">
+            <p>
+              Cada canturía se transcribe verso por verso y se entrega como un PDF o EPUB
+              elegante, diseñado para conservarse toda la vida.
+            </p>
+            <p>
+              Las décimas se transcriben verso por verso. Las cuatro mejores se escogen con
+              su justificación poética. Todo presentado en tipografía sobria sobre un fondo
+              sepia, listo para leer en cualquier dispositivo o imprimir si así lo prefiere.
+            </p>
+          </div>
+          <a
+            href="https://juanantoniodiaz.com/contacto"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="vd-solicitar__cta"
+            aria-label="Solicitar una canturía"
+          >
             Solicitar →
           </a>
-          <p className="cta-attrib">
-            <em>Guajiro de Hialeah</em>
-          </p>
-        </div>
+          <p className="vd-solicitar__attrib"><em>Guajiro de Hialeah</em></p>
+        </article>
       </section>
     </div>
   )
