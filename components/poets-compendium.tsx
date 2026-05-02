@@ -204,7 +204,7 @@ const POETS: Poet[] = [
     story:
       "Soriano pertenece al capítulo del exilio, donde la canturía no es solo espectáculo: es forma de recordar, reunirse y seguir siendo.",
     legacy: [
-      "Representa la décima fuera de la isla.",
+      "Representante de la décima fuera de la isla.",
       "Vincula nostalgia, comunidad y tradición.",
       "Nombre a preservar dentro del archivo del exilio.",
     ],
@@ -298,7 +298,7 @@ const POETS: Poet[] = [
     portrait: "/poets/juan-antonio-diaz.jpg",
     dek: "Guajiro de Hialeah: décima, memoria, familia y presencia viva.",
     story:
-      "Juan Antonio Díaz está en el centro de esta experiencia porque su canturía no se presenta como pieza antigua, sino como memoria familiar todavía encendida. Su voz sostiene el puente entre Cuba, Hialeah y los que escuchan para no olvidar.",
+      "Juan Antonio Díaz está en el centro de esta experiencia because su canturía no se presenta como pieza antigua, sino como memoria familiar todavía encendida. Su voz sostiene el puente entre Cuba, Hialeah y los que escuchan para no olvidar.",
     legacy: [
       "Figura viva de la canturía familiar.",
       "Conecta décima, exilio y memoria personal.",
