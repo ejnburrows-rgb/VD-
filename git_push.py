@@ -9,6 +9,7 @@ def run(cmd):
         print(f"Output: {res.stdout}")
     return res.returncode
 
+subprocess.run("del append_css.py", shell=True)
 run('git add -A')
-run('git commit -m "Restore original UI, keep copy fixes, add minimal polish layer"')
+run('git commit -m "feat(hero): refined serif title + fleuron + framed portrait + Solicitar CTA"')
 run('git push origin main')

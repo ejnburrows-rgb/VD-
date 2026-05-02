@@ -1,70 +1,59 @@
-
 "use client";
 
-import Image from "next/image";
-import { Badge } from "@/components/ui/badge";
+const CALIXTO_PORTRAIT_SRC: string | null = "/calixto-gonzalez-hero.jpg"; 
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-end justify-center overflow-hidden pt-20 hero-parchment">
-      {/* Background Image - Full Color */}
-      <div className="absolute inset-0">
-        <Image
-          src="/calixto-gonzalez-hero.jpg"
-          alt="Calixto González en el puerto de Hialeah"
-          fill
-          className="object-cover"
-          priority
-        />
-      </div>
+    <section className="vd-hero" aria-label="Viajera Digital — inicio">
+      <div className="vd-hero__grid">
+        <div>
+          <h1 className="vd-hero__title">Viajera Digital</h1>
+          <p className="vd-hero__subtitle">Archivo de la canturía cubana</p>
 
-      {/* Bottom Gradient Overlay - Only at bottom for text */}
-      <div className="absolute bottom-0 left-0 right-0 h-2/3 bg-gradient-to-t from-[#F5E6D3]/95 via-[#F5E6D3]/80 to-transparent z-10"></div>
+          <svg
+            className="vd-hero__fleuron"
+            viewBox="0 0 132 22"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <g fill="currentColor">
+              <path d="M0 11 H46" stroke="currentColor" strokeWidth="0.8" />
+              <path d="M86 11 H132" stroke="currentColor" strokeWidth="0.8" />
+              <path d="M66 4 C70 4 73 7 73 11 C73 15 70 18 66 18 C62 18 59 15 59 11 C59 7 62 4 66 4 Z M66 7 C68 7 70 9 70 11 C70 13 68 15 66 15 C64 15 62 13 62 11 C62 9 64 7 66 7 Z" />
+              <circle cx="50" cy="11" r="1.4" />
+              <circle cx="82" cy="11" r="1.4" />
+            </g>
+          </svg>
 
-      {/* Content - Positioned at bottom */}
-      <div className="relative z-20 w-full max-w-4xl mx-auto px-4 pb-16">
-        <div className="text-center">
-          {/* Main Title */}
-          <h1 className="text-5xl md:text-7xl font-bold text-[#C8A05C] mb-2 font-serif font-display drop-shadow-lg">
-            Calixto González
-          </h1>
-
-          {/* Subtitle */}
-          <h2 className="text-3xl md:text-4xl font-semibold text-[#D2691E] mb-4 font-serif italic drop-shadow-md">
-            El Guajiro de Hialeah
-          </h2>
-
-          {/* Badge */}
-          <Badge className="text-xl bg-[#D2691E] text-white px-6 py-2 mb-8 font-semibold">
-            EST 1936
-          </Badge>
-
-          {/* Tagline */}
-          <div className="text-lg md:text-xl text-[#5C4033] italic leading-relaxed max-w-3xl mx-auto mb-8 decima-text">
-            <p className="mb-2">Un algoritmo que siente la pasión del poeta,</p>
-            <p className="mb-2">rescata del olvido cada improvisación,</p>
-            <p className="mb-2">preserva intacta la lírica del corazón,</p>
-            <p>y eterniza el arte vivo de la décima completa.</p>
-          </div>
-
-          {/* Attribution */}
-          <p className="text-sm text-[#5C4033]">
-            © Emilio José Novo | <a
-              href="https://juanantoniodiaz.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Abrir Juan Antonio Díaz en una pestaña nueva"
-            >
-              JuanAntonioDiaz.com
-            </a>
-          </p>
+          <a
+            className="vd-hero__cta"
+            href="https://juanantoniodiaz.com/contacto"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Solicitar una canturía"
+          >
+            <span>Solicitar</span>
+            <span aria-hidden="true">→</span>
+          </a>
         </div>
-      </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-[#C8A05C] rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-[#C8A05C] rounded-full mt-2"></div>
+        <div>
+          <figure className="vd-hero__frame">
+            {CALIXTO_PORTRAIT_SRC ? (
+              <img
+                className="vd-hero__portrait"
+                src={CALIXTO_PORTRAIT_SRC}
+                alt="Calixto González — el Guajiro de Hialeah"
+                loading="eager"
+                decoding="async"
+              />
+            ) : (
+              <div className="vd-hero__monogram" aria-hidden="true">CG</div>
+            )}
+          </figure>
+          <figcaption className="vd-hero__caption">
+            Calixto González · el Guajiro de Hialeah
+          </figcaption>
         </div>
       </div>
     </section>
