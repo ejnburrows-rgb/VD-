@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { Fleuron } from "./fleuron"
 
 interface Poet {
   slug: string
@@ -85,7 +84,7 @@ const poets: Poet[] = [
     death: "13 de enero de 1993, La Habana",
     initials: "JV",
     biography: [
-      "Justo Vega, maestro de la improvisación tradicional, fue reconocido as 'El Caballero de la Décima Improvisada'. Fue uno de los repentistas estelares del pie forzado y el punto cubano.",
+      "Justo Vega, maestro de la improvisación tradicional, fue reconocido como 'El Caballero de la Décima Improvisada'. Fue uno de los repentistas estelares del pie forzado y el punto cubano.",
       "Su fama creció especialmente en el programa televisivo 'Palmas y Cañas', donde formó un dúo legendario con Adolfo Alfonso durante veinticinco años.",
       "Más que un gran intérprete, se convirtió en artífice de fabulosas controversias, evocadas por varias generaciones de cubanos que disfrutaron sus presentaciones en radio y televisión.",
       "Su elegancia en el trato y su precisión en el verso definieron un estándar de caballerosidad en el escenario que le valió su apodo eterno."
@@ -160,7 +159,7 @@ const poets: Poet[] = [
     initials: "ER",
     biography: [
       "Hijo del emblemático Francisco Riverón Hernández, Efraín heredó el estilo lírico y la pasión por la poesía de su padre, destacando en programas como 'Palmas y Cañas'.",
-      "Es considerado uno de los poetas repentistas más literarios de su generación. Su obra escrita se caracteriza por un lenguaje rico en alegorías y metáforas costumbristas.",
+      "Es considerado uno de los poetes repentistas más literarios de su generación. Su obra escrita se caracteriza por un lenguaje rico en alegorías y metáforas costumbristas.",
       "Ha obtenido numerosos galardones, incluyendo el Premio Iberoamericano Cucalambé en dos ocasiones y el Premio Samuel Feijóo por la obra de la vida.",
       "Desde 1992 reside en Miami, donde continúa publicando libros y manteniendo un vínculo constante con la difusión de la décima cubana."
     ]
@@ -245,7 +244,7 @@ const poets: Poet[] = [
     death: "11 de junio de 2025",
     initials: "TQ",
     biography: [
-      "Tomasita Quiala, invidente desde su nacimiento, fue una de las más notables exponentes de la décima en el mundo. Conocida as 'La Ciega Maravillosa', conquistó escenarios internacionales.",
+      "Tomasita Quiala, invidente desde su nacimiento, fue una de las más notables exponentes de la décima en el mundo. Conocida como 'La Ciega Maravillosa', conquistó escenarios internacionales.",
       "Destacó por su rapidez mental y su capacidad para la controversia, rompiendo barreras en un mundo tradicionalmente masculino.",
       "Recibió numerosos galardones, incluyendo el Premio Nacional de Cultura Comunitaria. Su primer libro de décimas fue incluso transcrito al braille.",
       "Su legado permanece como símbolo de talento, autenticidad y superación, inspirando a generaciones de repentistas en Cuba y el mundo."
@@ -353,58 +352,47 @@ const poets: Poet[] = [
 ]
 
 export function PoetsCompendium() {
-  const [expanded, setExpanded] = useState<string | null>(poets[0]?.slug ?? null)
+  const [openSlug, setOpenSlug] = useState<string>("")
 
   return (
-    <section className="vd-poets">
-      <header className="vd-poets__intro">
-        <h1 className="vd-poets__title">Compendio de Poetas</h1>
-        <div className="vd-poets__rule" aria-hidden="true"><Fleuron /></div>
-        <p className="vd-poets__subtitle">Veintitrés voces de la décima espinela</p>
-      </header>
-      <ul className="vd-poets__list" role="list">
-        {poets.map((poet) => {
-          const isExpanded = expanded === poet.slug
-          return (
-            <li
-              key={poet.slug}
-              className={`vd-poets__card${isExpanded ? " is-expanded" : ""}`}
+    <section className="poets-section">
+      <span className="poets-section-eyebrow">Los maestros</span>
+      <h2 className="poets-section-title">Poetas de la canturía</h2>
+      <p className="poets-section-dek">Una galería viva de las voces que sostienen la décima cubana.</p>
+
+      {poets.map((poet) => {
+        const initials = poet.initials
+          ?? poet.name.split(" ").map(p => p[0]).filter(Boolean).slice(0, 2).join("");
+        const isOpen = openSlug === poet.slug;
+
+        return (
+          <article key={poet.slug} className="poet-row" data-open={isOpen ? "true" : "false"}>
+            <button
+              type="button"
+              className="poet-row-button"
+              onClick={() => setOpenSlug(isOpen ? "" : poet.slug)}
+              aria-expanded={isOpen}
             >
-              <button
-                type="button"
-                className="vd-poets__header"
-                onClick={() => setExpanded(isExpanded ? null : poet.slug)}
-                aria-expanded={isExpanded}
-                aria-controls={`poet-body-${poet.slug}`}
-              >
-                <span className="vd-poets__medallion" aria-hidden="true">
-                  <span className="vd-poets__initials">{poet.initials}</span>
-                </span>
-                <span className="vd-poets__meta">
-                  <span className="vd-poets__name">{poet.name}</span>
-                  <span className="vd-poets__dek">{poet.subtitle}</span>
-                  <span className="vd-poets__era">{poet.era}</span>
-                </span>
-                <span className="vd-poets__toggle" aria-hidden="true">
-                  {isExpanded ? "−" : "+"}
-                </span>
-              </button>
-              {isExpanded && (
-                <div id={`poet-body-${poet.slug}`} className="vd-poets__body">
-                  <dl className="vd-poets__facts">
-                    <dt>Nacimiento</dt><dd>{poet.birth}</dd>
-                    {poet.death ? (<><dt>Fallecimiento</dt><dd>{poet.death}</dd></>) : null}
-                    {poet.location ? (<><dt>Residencia</dt><dd>{poet.location}</dd></>) : null}
-                  </dl>
+              <span className="poet-medallion" aria-hidden="true">{initials}</span>
+              <span className="poet-row-meta">
+                <span className="poet-row-name">{poet.name}</span>
+                <span className="poet-row-era">{poet.era}</span>
+                <span className="poet-row-dek">{poet.subtitle}</span>
+              </span>
+              <span className="poet-row-toggle" aria-hidden="true">{isOpen ? "−" : "+"}</span>
+            </button>
+            <div className="poet-row-body">
+              <div className="poet-row-body-inner">
+                <div className="poet-row-body-content">
                   {poet.biography.map((p, i) => (
-                    <p key={i} className="vd-poets__paragraph">{p}</p>
+                    <p key={i} style={{ marginBottom: "0.85rem" }}>{p}</p>
                   ))}
                 </div>
-              )}
-            </li>
-          )
-        })}
-      </ul>
+              </div>
+            </div>
+          </article>
+        );
+      })}
     </section>
   )
 }
