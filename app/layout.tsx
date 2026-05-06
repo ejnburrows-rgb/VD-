@@ -1,29 +1,10 @@
 export const dynamic = "force-dynamic";
 
 import type { Metadata } from "next";
-import { Playfair_Display, Cormorant_Garamond, Lora } from "next/font/google";
-import { PaperTexture } from "@/components/paper-texture";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-playfair",
-  weight: ["400","700","900"],
-  style: ["normal","italic"]
-});
-
-const cormorant = Cormorant_Garamond({
-  subsets: ["latin"],
-  variable: "--font-cormorant",
-  weight: ["400","500","600","700"],
-  style: ["normal","italic"]
-});
-
-const lora = Lora({
-  subsets: ["latin"],
-  variable: "--font-lora",
-  weight: ["400","500","600"]
-});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "El Guajiro de Hialeah | Transcriptor y Analizador de Décima Espinela Cubana",
@@ -55,8 +36,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" suppressHydrationWarning>
-      <body className={`${playfair.variable} ${cormorant.variable} ${lora.variable} antialiased`} suppressHydrationWarning>
-        <PaperTexture />
+      <head />
+      <body className={`${inter.className} antialiased bg-[#F5E6D3] text-[#5C4033]`} suppressHydrationWarning>
+        <a href="#main-content" className="skip-link">
+          Saltar al contenido principal
+        </a>
         {children}
       </body>
     </html>
