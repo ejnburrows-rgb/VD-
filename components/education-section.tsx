@@ -4,101 +4,147 @@ import { PoetsCompendium } from "./poets-compendium";
 
 export function EducationSection() {
   return (
-    <div className="space-y-12 pb-12">
-      <div className="container max-w-5xl py-12 px-6">
-        <h2 className="text-4xl font-serif font-bold mb-12 flex items-center justify-center gap-3 border-b-2 border-[#C8A05C]/30 pb-4 text-[#C8A05C]">
-          Educación Histórica: El Arraigo de la Palabra
+    <div className="space-y-8 pb-12" style={{ backgroundColor: "#F5E6D3" }}>
+      <div className="container max-w-4xl py-8 px-4">
+        <h2
+          className="text-3xl font-serif font-bold mb-8 flex items-center gap-2"
+          style={{ color: "#C8A05C" }}
+        >
+          Educación Histórica
         </h2>
 
-        <div className="grid md:grid-cols-2 gap-8 mb-12">
-          {/* Arquitectura Poética, Raíz Compartida */}
-          <section className="p-6 aged-card">
-            <h3 className="text-2xl font-bold font-serif mb-4 text-[#C8A05C]">
-              Arquitectura Poética, Raíz Compartida
-            </h3>
-            <p className="leading-relaxed mb-4 text-[#5C4033]">
-              La décima espinela despliega <strong>diez versos octosílabos</strong> organizados según el esquema <strong>ABBAACCDDC</strong>. Esta arquitectura, cristalizada por el poeta andaluz <strong>Vicente Espinel</strong> en 1591 dentro de su obra <em>Diversas rimas</em>, sostiene siglos de expresión lírica.
-            </p>
-            <p className="leading-relaxed text-[#5C4033]">
-              Espinel codificó su forma definitiva: pausa obligatoria tras el cuarto verso y cuatro rimas consonantes perfectamente balanceadas. La pausa central permite tanto la respiración física como el giro conceptual, transformando diez líneas en una conversación interna entre planteamiento y resolución.
-            </p>
-          </section>
+        <p className="text-center mb-8" style={{ color: "#5C4033" }}>
+          Conoce la rica historia de la décima espinela, desde sus orígenes
+          españoles hasta su florecimiento en la tradición oral cubana.
+        </p>
 
-          {/* Travesía Atlántica: Semilla en Nuevo Suelo */}
-          <section className="p-6 aged-card">
-            <h3 className="text-2xl font-bold font-serif mb-4 text-[#C8A05C]">
-              Travesía Atlántica: Semilla en Nuevo Suelo
-            </h3>
-            <p className="leading-relaxed mb-4 text-[#5C4033]">
-              En 1608, <strong>Silvestre de Balboa</strong> compuso en Cuba <em>Espejo de paciencia</em>, el primer poema épico de la isla, marcando la presencia temprana de la décima en suelo americano.
-            </p>
-            <p className="leading-relaxed text-[#5C4033]">
-              Durante el siglo XVIII, la inmigración canaria depositó la décima en el campo cubano, donde se estableció como <strong>punto guajiro</strong>. El campesinado adoptó la espinela como continente natural para su cosmovisión: lamentos, celebraciones y filosofía rural encontraron expresión en diez versos.
-            </p>
-          </section>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-8 mb-12">
-          {/* El Cucalambé y la Cubanización */}
-          <section className="p-6 aged-card">
-            <h3 className="text-2xl font-bold font-serif mb-4 text-[#C8A05C]">
-              El Cucalambé: Cubanización Definitiva
-            </h3>
-            <p className="leading-relaxed mb-4 text-[#5C4033]">
-              <strong>Juan Cristóbal Nápoles Fajardo</strong> cubanizó definitivamente la décima al adaptarla como continente estético al contenido de lo identitario cubano. Su obra es la voz del campesino que nos constituyó medularmente como pueblo.
-            </p>
-            <p className="leading-relaxed text-[#5C4033]">
-              La décima fluyó simultáneamente en la poesía culta y popular. La espinela no pertenecía a una clase social específica, sino a quienes dominaban su técnica, desde los palacios madrileños hasta los bohíos cubanos.
-            </p>
-          </section>
-
-          {/* Legado Vivo y Repentismo */}
-          <section className="p-6 aged-card">
-            <h3 className="text-2xl font-bold font-serif mb-4 text-[#C8A05C]">
-              El Repentismo: Arte Nacional
-            </h3>
-            <p className="leading-relaxed mb-4 text-[#5C4033]">
-              El repentismo—improvisación de décimas en competencia—se consolidó como arte nacional cubano. La controversia se estructura como un diálogo dialéctico donde cada poeta debe responder al contrario incorporando pies forzados con maestría técnica.
-            </p>
-            <p className="leading-relaxed text-[#5C4033]">
-              La radio transformó la décima en fenómeno masivo, democratizando la complejidad técnica. Los oyentes aprendían a reconocer la excelencia en tiempo real, apreciando cómo un repentista incorpora un verso ajeno sin que se note el giro.
-            </p>
-          </section>
-        </div>
-
-        {/* Momentos de Excelencia: Naborí vs Valiente */}
-        <div className="mb-12 p-8 aged-card">
-          <h3 className="text-2xl font-bold font-serif mb-6 text-center text-[#D2691E]">
-            Momentos de Excelencia: La Controversia del Siglo (1955)
+        <div className="mb-8 border-l-4 pl-6" style={{ borderColor: "#C8A05C" }}>
+          <h3
+            className="text-2xl font-bold font-serif mb-4 flex items-center gap-2"
+            style={{ color: "#C8A05C" }}
+          >
+            Arquitectura Poética, Raíz Compartida
           </h3>
-          <p className="leading-relaxed mb-6 text-lg text-[#5C4033]">
-            El 28 de agosto de 1955, más de <strong>diez mil personas</strong> presenciaron en el estadio Campo Armada de San Miguel del Padrón el duelo entre <strong>Jesús Orta Ruiz "El Indio Naborí"</strong> y <strong>Angelito Valiente</strong>.
+          <p className="mb-4" style={{ color: "#5C4033" }}>
+            La décima espinela despliega diez versos octosílabos organizados
+            según el esquema <strong>ABBAACCDDC</strong>. Esta arquitectura,
+            cristalizada por el poeta andaluz <strong>Vicente Espinel</strong> en
+            1591 dentro de su obra <em>Diversas rimas</em>, sostiene siglos de
+            expresión lírica.
           </p>
-          <div className="grid md:grid-cols-2 gap-4">
-            <div className="p-4 decima-card text-center italic text-inherit">
-              "Pongan ahí un cuarto jurado: yo mismo, que voto por Naborí."
-              <p className="mt-2 not-italic font-bold text-sm">— Angelito Valiente</p>
-            </div>
-            <div className="flex items-center text-sm leading-relaxed text-[#5C4033]">
-              Naborí y Valiente no solo demostraban virtuosismo: glosaban la actualidad, llamaban a la conciencia colectiva y elevaban la atención cotidiana a niveles de visión poética.
-            </div>
-          </div>
+          <p style={{ color: "#5C4033" }}>
+            La décima llegó a América con la colonización española y echó raíces
+            en Cuba, donde se convirtió en la forma poética preferida para la
+            improvisación.
+          </p>
         </div>
 
-        {/* UNESCO 2017 */}
-        <div className="mb-12 p-8 aged-card text-center">
-          <h3 className="text-3xl font-bold font-serif mb-4 text-[#C8A05C]">
-            UNESCO 2017: Patrimonio del Mundo
+        <div className="mb-8 border-l-4 pl-6" style={{ borderColor: "#C8A05C" }}>
+          <h3
+            className="text-2xl font-bold font-serif mb-4 flex items-center gap-2"
+            style={{ color: "#C8A05C" }}
+          >
+            Raíces Cubanas: De España al Campo Cubano
           </h3>
-          <p className="text-lg leading-relaxed max-w-2xl mx-auto text-[#5C4033]">
-            En diciembre de 2017, la UNESCO declaró el <strong>Punto cubano</strong> como Patrimonio Cultural Inmaterial de la Humanidad, reconociendo oficialmente lo que el pueblo cubano ha sabido por siglos: que esta música es el alma de una nación.
+          <p className="mb-4" style={{ color: "#5C4033" }}>
+            La décima espinela llegó a Cuba en el siglo XVII, traída por colonos
+            españoles, especialmente canarios. Los guajiros adoptaron esta
+            forma poética y la hicieron suya.
           </p>
+          <p style={{ color: "#5C4033" }}>
+            <strong>Juan Cristóbal Nápoles Fajardo "El Cucalambé"</strong> (1829-1861) es
+            considerado el padre de la décima cubana moderna.
+          </p>
+        </div>
+
+        <div className="mb-8 border-l-4 pl-6" style={{ borderColor: "#C8A05C" }}>
+          <h3
+            className="text-2xl font-bold font-serif mb-4 flex items-center gap-2"
+            style={{ color: "#C8A05C" }}
+          >
+            El Repentismo: Arte de la Improvisación
+          </h3>
+          <p className="mb-4" style={{ color: "#5C4033" }}>
+            El <strong>repentismo</strong> es el arte de improvisar décimas en
+            vivo, respondiendo a temas propuestos por el público o a desafíos de
+            otros poetas.
+          </p>
+          <p style={{ color: "#5C4033" }}>
+            Los <strong>decimistas</strong> crean décimas perfectas en cuestión
+            de segundos, manteniendo la estructura ABBAACCDDC mientras responden
+            a temas complejos.
+          </p>
+        </div>
+
+        <div
+          className="mb-8 p-6 rounded-lg border-2"
+          style={{ backgroundColor: "#FEF3C7", borderColor: "#C8A05C" }}
+        >
+          <h3
+            className="text-2xl font-bold font-serif mb-4 flex items-center gap-2"
+            style={{ color: "#C8A05C" }}
+          >
+            Momento Cumbre 1955
+          </h3>
+          <p className="mb-4" style={{ color: "#5C4033" }}>
+            El <strong>28 de agosto de 1955</strong>, más de{" "}
+            <strong>diez mil personas</strong> llenaron el estadio Campo Armada
+            para presenciar la revancha entre <strong>El Indio Naborí</strong> y{" "}
+            <strong>Angelito Valiente</strong>.
+          </p>
+          <blockquote
+            className="border-l-4 pl-4 italic my-4"
+            style={{ borderColor: "#D97706", color: "#5C4033" }}
+          >
+            "Pongan ahí un cuarto jurado: yo mismo, que voto por Naborí."
+          </blockquote>
+        </div>
+
+        <div className="mb-8 border-l-4 pl-6" style={{ borderColor: "#C8A05C" }}>
+          <h3
+            className="text-2xl font-bold font-serif mb-4 flex items-center gap-2"
+            style={{ color: "#C8A05C" }}
+          >
+            Proeza Técnica: El Desafío de los 52 Segundos
+          </h3>
+          <p className="mb-4" style={{ color: "#5C4033" }}>
+            Componer una décima perfecta en menos de un minuto requiere:
+          </p>
+          <ul className="list-disc pl-5 space-y-2 mb-4" style={{ color: "#5C4033" }}>
+            <li><strong>Métrica octosílaba correcta</strong></li>
+            <li><strong>Rima consonante ABBAACCDDC impecable</strong></li>
+            <li><strong>Coherencia temática y narrativa</strong></li>
+            <li><strong>TODO en menos de 60 segundos</strong></li>
+          </ul>
+          <p className="font-bold" style={{ color: "#D97706" }}>
+            Solo los maestros lo logran.
+          </p>
+        </div>
+
+        <div
+          className="mb-8 p-6 rounded-lg border-2"
+          style={{ backgroundColor: "#D1FAE5", borderColor: "#10B981" }}
+        >
+          <h3
+            className="text-2xl font-bold font-serif mb-4 flex items-center gap-2"
+            style={{ color: "#059669" }}
+          >
+            Patrimonio Cultural Inmaterial de la Humanidad
+          </h3>
+          <p className="mb-4" style={{ color: "#5C4033" }}>
+            En <strong>2012</strong>, la <strong>UNESCO</strong> reconoció la
+            décima cubana como Patrimonio Cultural Inmaterial de la Humanidad.
+          </p>
+          <ul className="list-none space-y-2" style={{ color: "#5C4033" }}>
+            <li>La tradición viva de la improvisación oral</li>
+            <li>La preservación de la identidad cultural campesina</li>
+            <li>La transmisión intergeneracional del arte decimístico</li>
+            <li>El puente cultural entre España y América Latina</li>
+          </ul>
         </div>
 
         {/* Compendio de Poetas */}
-        <div className="mt-16 pt-16 border-t-2 border-[#C8A05C]/30">
-          <PoetsCompendium />
-        </div>
+        <PoetsCompendium />
       </div>
     </div>
   );

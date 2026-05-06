@@ -13,13 +13,16 @@ export function SiteFooter() {
             href="https://juanantoniodiaz.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[var(--vd-gold-glow)] hover:text-[var(--vd-gold-light)] transition-colors underline underline-offset-4"
+            className="text-[var(--vd-gold-glow)] hover:text(--vd-gold-light) transition-colors underline underline-offset-4"
           >
             JuanAntonioDiaz.com
           </a>
         </p>
         <p className="text-xs text-[var(--vd-tobacco-light)] mt-6">
           &copy; {currentYear} Emilio José Novo &middot; Patente Pendiente &middot; Creative Commons BY-NC-SA 4.0
+        </p>
+        <p className="text-xs text-[var(--vd-tobacco-light)] mt-2">
+          Desarrollado con <span className="text-[#D2691E]">❤</span> en Miami, Florida
         </p>
       </div>
     </footer>

@@ -1,13 +1,14 @@
-export default function TributeSection() {
+"use client"
+
+export function TributeSection() {
   return (
-    <section className="py-16 px-4 bg-gradient-to-b from-[#F5E6D3] to-white/90">
-      <div className="max-w-4xl mx-auto text-center">
-        <h2 className="text-4xl md:text-5xl font-bold text-[#C8A05C] mb-8 font-serif">
+    <section className="bg-[#8B4513] py-8 px-4">
+      <div className="container mx-auto max-w-3xl">
+        <h2 className="text-xl md:text-2xl font-serif font-bold text-[#F5E6D3] mb-6 text-center">
           Tributo a Calixto González, el Verdadero Guajiro de Hialeah
         </h2>
-        
-        <div className="cuban-card p-8 md:p-12 shadow-xl">
-          <div className="decima-text text-lg md:text-xl leading-relaxed space-y-2">
+        <div className="bg-[#F5E6D3]/90 rounded-xl p-6 md:p-8 border-2 border-[#C8A05C] shadow-lg">
+          <div className="space-y-1 text-[#5C4033] font-serif text-center text-base md:text-lg leading-relaxed">
             <p>Hoy que te vas con la muerte</p>
             <p>hacia una casa de cielo,</p>
             <p>la sequía del pañuelo</p>
@@ -17,14 +18,13 @@ export default function TributeSection() {
             <p>no existirá un solo día</p>
             <p>que se hable de ejemplo de Hombre</p>
             <p>que no se escuche tu nombre,</p>
-            <p className="font-bold text-[#D2691E]">Guajiro de Hialeah.</p>
+            <p className="text-[#D97706] font-bold text-lg md:text-xl mt-2">Guajiro de Hialeah.</p>
           </div>
-          
-          <div className="mt-8 text-right">
-            <p className="text-[#5C4033] font-semibold">— Juan Antonio Díaz</p>
-          </div>
+          <p className="text-right text-[#8B4513] font-semibold mt-4 text-sm">
+            — Juan Antonio Díaz
+          </p>
         </div>
       </div>
     </section>
-  );
+  )
 }
