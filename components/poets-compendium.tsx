@@ -127,7 +127,8 @@ const poets: Poet[] = [
     biography: [
       "Poeta repentista cubano considerado en el mundo como uno de los decimistas improvisadores más influyentes de su generación. El Indio Naborí afirmó sobre él: \"En la vanguardia de nuestros repentistas actuales, constituido por unos treinta jóvenes, figura y se destaca el ágil improvisador Juan Antonio Díaz de cuyos planos reales de sus recuerdos agropecuarios salen no pocas veces planos imaginativos sorprendentes\".",
       "Ha compartido escenario con maestros como Pablo León, Omar Mirabal, Luis Quintana, Leandro Camargo y Yoslay García. Su obra incluye tributos a figuras históricas del repentismo cubano, manteniendo viva la memoria de los grandes maestros.",
-      "Su estilo combina la herencia campesina pinareña con técnica depurada y capacidad de crear imágenes poéticas que conectan lo rural con lo universal. Ha publicado el libro \"Mi dolor tuyo\", donde sus décimas aupan todo el sufrimiento y la esperanza del cubano."    ]
+      "Su estilo combina la herencia campesina pinareña con técnica depurada y capacidad de crear imágenes poéticas que conectan lo rural con lo universal. Ha publicado el libro \"Mi dolor tuyo\", donde sus décimas aupan todo el sufrimiento y la esperanza del cubano."
+    ]
   },
   {
     name: "Julio Pablo \"El Principito\"",
@@ -135,7 +136,8 @@ const poets: Poet[] = [
     birth: "Pinar del Río, Cuba",
     biography: [
       "Destacado poeta repentista cubano conocido como \"El Principito\", representa la rica tradición decimística de la provincia de Pinar del Río, tierra fértil para el cultivo de la décima y el repentismo.",
-      "Su estilo se caracteriza por la elegancia en la construcción del verso y la profundidad de sus improvisaciones, participando en numerosas controversias donde su ingenio siempre brilla. Ha contribuido a mantener viva la tradición de la décima en su provincia natal, formando parte del legado de grandes poetas que han surgido de esa región occidental de Cuba."    ]
+      "Su estilo se caracteriza por la elegancia en la construcción del verso y la profundidad de sus improvisaciones, participando en numerosas controversias donde su ingenio siempre brilla. Ha contribuido a mantener viva la tradición de la décima en su provincia natal, formando parte del legado de grandes poetas que han surgido de esa región occidental de Cuba."
+    ]
   },
   {
     name: "Justo Vega",
@@ -296,70 +298,85 @@ export function PoetsCompendium() {
   };
 
   return (
-    <div className="space-y-4">
-      <h3
-        className="text-2xl font-bold font-serif mb-6 flex items-center gap-2"
-        style={{ color: "#C8A05C" }}
-      >
-        Los Maestros de la Décima: Compendio Completo
-      </h3>
+    <div className="max-w-4xl mx-auto px-4 py-8">
+      <div className="text-center mb-10 pb-6 border-b-2 border-[#C8A05C]/40">
+        <h3 className="text-3xl md:text-4xl font-serif font-bold mb-3 text-[#C8A05C] tracking-wide">
+          Los Maestros de la Décima
+        </h3>
+        <p className="text-sm md:text-base text-[#5C4033]/80 italic font-serif max-w-2xl mx-auto">
+          Compendio biográfico de los grandes maestros del repentismo cubano, ordenados alfabéticamente.
+        </p>
+      </div>
 
-      <p className="mb-6" style={{ color: "#5C4033" }}>
-        Biografías completas de los grandes maestros del repentismo cubano, ordenadas alfabéticamente.
-      </p>
-
-      {poets.map((poet) => (
-        <div
-          key={poet.name}
-          className="border-2 rounded-lg overflow-hidden"
-          style={{ borderColor: "#C8A05C", backgroundColor: "#FEF3C7" }}
-        >
-          <button
-            onClick={() => togglePoet(poet.name)}
-            className="w-full px-4 py-3 flex items-center justify-between text-left hover:bg-[#C8A05C]/20 transition-colors"
-          >
-            <div>
-              <span className="font-bold font-serif" style={{ color: "#8B4513" }}>
-                {poet.name}
-              </span>
-              <span className="ml-2 text-sm" style={{ color: "#D97706" }}>
-                ({poet.birth.split(" en ")[0]})
-              </span>
-              <p className="text-sm italic" style={{ color: "#5C4033" }}>
-                {poet.subtitle}
-              </p>
-            </div>
-            <span className="text-xl" style={{ color: "#C8A05C" }}>
-              {expandedPoet === poet.name ? "▲" : "▼"}
-            </span>
-          </button>
-
-          {expandedPoet === poet.name && (
-            <div className="px-4 pb-4 border-t" style={{ borderColor: "#C8A05C" }}>
-              <div className="mt-3 space-y-2 text-sm" style={{ color: "#5C4033" }}>
-                <p>
-                  <strong>Nacimiento:</strong> {poet.birth}
-                </p>
-                {poet.death && (
-                  <p>
-                    <strong>Fallecimiento:</strong> {poet.death}
+      <div className="space-y-3">
+        {poets.map((poet) => {
+          const isOpen = expandedPoet === poet.name;
+          return (
+            <div
+              key={poet.name}
+              className={`bg-[#F5E6D3]/60 border rounded-lg overflow-hidden transition-all duration-300 ${
+                isOpen
+                  ? "border-[#C8A05C] shadow-md"
+                  : "border-[#C8A05C]/40 hover:border-[#C8A05C] hover:shadow-sm"
+              }`}
+            >
+              <button
+                onClick={() => togglePoet(poet.name)}
+                className="w-full px-5 py-4 flex items-center justify-between text-left transition-colors"
+                aria-expanded={isOpen}
+              >
+                <div className="flex-1 pr-4">
+                  <div className="flex items-baseline gap-2 flex-wrap">
+                    <span className="font-serif font-bold text-lg md:text-xl text-[#5C4033]">
+                      {poet.name}
+                    </span>
+                    <span className="text-xs md:text-sm text-[#8B4513]/70 font-serif">
+                      ({poet.birth.split(" en ")[0]}
+                      {poet.death ? ` — ${poet.death.split(",")[0]}` : ""})
+                    </span>
+                  </div>
+                  <p className="text-sm italic text-[#D2691E] mt-1 font-serif">
+                    {poet.subtitle}
                   </p>
-                )}
-                {poet.location && (
-                  <p>
-                    <strong>Ubicación:</strong> {poet.location}
-                  </p>
-                )}
-                <div className="mt-4 space-y-3">
-                  {poet.biography.map((paragraph, idx) => (
-                    <p key={idx}>{paragraph}</p>
-                  ))}
                 </div>
-              </div>
+                <span
+                  className={`text-3xl text-[#C8A05C] font-light leading-none transition-transform duration-300 ${
+                    isOpen ? "rotate-45" : ""
+                  }`}
+                  aria-hidden="true"
+                >
+                  +
+                </span>
+              </button>
+
+              {isOpen && (
+                <div className="px-5 pb-5 border-t border-[#C8A05C]/30 bg-[#F5E6D3]/40 animate-in fade-in duration-300">
+                  <div className="mt-4 grid gap-1 text-sm md:text-base text-[#5C4033]">
+                    <p>
+                      <strong className="text-[#8B4513]">Nacimiento:</strong> {poet.birth}
+                    </p>
+                    {poet.death && (
+                      <p>
+                        <strong className="text-[#8B4513]">Fallecimiento:</strong> {poet.death}
+                      </p>
+                    )}
+                    {poet.location && (
+                      <p>
+                        <strong className="text-[#8B4513]">Ubicación:</strong> {poet.location}
+                      </p>
+                    )}
+                  </div>
+                  <div className="mt-5 space-y-3 text-sm md:text-base leading-relaxed text-[#5C4033] font-serif">
+                    {poet.biography.map((paragraph, idx) => (
+                      <p key={idx}>{paragraph}</p>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
-          )}
-        </div>
-      ))}
+          );
+        })}
+      </div>
     </div>
   );
 }

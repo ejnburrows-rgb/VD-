@@ -23,68 +23,15 @@ export function AboutModal({ open, onOpenChange }: AboutModalProps) {
         </DialogHeader>
 
         <div className="space-y-6 mt-4">
-          {/* Calixto González: El Verdadero Guajiro */}
-          <section className="space-y-4">
-            <h3 className="text-2xl font-serif font-bold flex items-center gap-2" style={{ color: '#C8A05C' }}>
-              Calixto González: Semblanza de una Vida
-            </h3>
-            <p className="leading-relaxed">
-              Calixto nació en <strong>La Coloma</strong>, Pinar del Río, un pueblo marcado por el salitre y la paciencia de los pescadores. 
-              Fue uno de dieciséis hermanos, creciendo en una Cuba donde la familia era el centro de todo. 
-              En La Habana, fue el dueño de una ferretería frente al Mercado Único, un espacio que respiraba la cultura de la época 
-              y donde tuvo el privilegio de sentarse a conversar con el gran <strong>Benny Moré</strong>.
-            </p>
-            <p className="leading-relaxed">
-              Hombre de principios firmes, Calixto compartía con orgullo sus vivencias y anécdotas de encuentro con 
-              <strong> Camilo Cienfuegos</strong>, el Señor de la Vanguardia, cuya imagen de sombrerón y sonrisa sincera 
-              resonaba con su propia autenticidad guajira. 
-            </p>
-            <p className="leading-relaxed">
-              El exilio lo llevó a <strong>Hialeah</strong>, donde manejó camiones para construir un futuro para los suyos en tierras lejanas. 
-              Pero su espíritu nunca dejó de ser el de aquel trovador de La Coloma. Su hogar fue siempre un refugio para la décima, 
-              donde la puerta estaba abierta para todo poeta que buscara un nudo de hermandad.
-            </p>
-
-            {/* LA DÉCIMA PARA JOSÉ (Piedra Angular de la Integridad) */}
-            <div className="p-6 bg-white/60 rounded-lg border-2 border-[#D2691E]/30 my-6 italic text-center text-lg leading-relaxed shadow-sm">
-              <p className="font-bold text-[#D2691E] mb-4 not-italic">"Décima para José" (de Calixto González)</p>
-              "Aquí me tienes, José, cantando en distinto idioma,<br/>
-              sin olvidar La Coloma que llorando la dejé.<br/>
-              Jamás me olvidaré de mi Madre, Padre y Tío,<br/>
-              y aquí estoy medio vacío, nada que me pueda llenar,<br/>
-              hasta poder regresar para bañarme en mi Río."
-            </div>
-
-            <p className="font-semibold" style={{ color: '#D2691E' }}>
-              Viajera Digital nace de este legado. Esta fue la primera décima que escuché en vivo, 
-              cantada por mi abuelo Calixto para mí. Honramos su memoria y la de todos los poetas 
-              que mantienen viva esta tradición milenaria.
-            </p>
-          </section>
-
-          {/* Armando González: Mención Familiar Correcta */}
-          <section className="p-5 bg-white/40 rounded-lg border-2 border-[#C8A05C]/30 space-y-4">
-            <h3 className="text-2xl font-serif font-bold flex items-center gap-2" style={{ color: '#C8A05C' }}>
-              Armando González y el Vínculo Familiar
-            </h3>
-            <p>
-              Mi tío Armando González es el hermano de Calixto. Juntos preservaron la herencia de la familia a través de los años. 
-              Fue en un viaje que realizaron juntos a La Coloma donde Calixto me trajo mi primera bicicleta, 
-              un regalo que simboliza la unión de los González a través de cualquier frontera. Armando ha sido 
-              el pilar incondicional que, junto a su esposa Leonor, nos acogió y ayudó a forjar nuestro camino en Miami.
-            </p>
-          </section>
-
           <section className="grid md:grid-cols-2 gap-6">
             <div className="p-4 bg-white/70 rounded-lg border border-[#C8A05C]/30">
-              <h4 className="text-lg font-bold flex items-center gap-2" style={{ color: '#D2691E' }}>
+              <h4 className="text-lg font-bold mb-2 text-[#D2691E]">
                 Desarrollo
               </h4>
               <p>Creada por: <strong>Emilio José Novo</strong></p>
-              <p>Versión: 2.0 Pro</p>
             </div>
             <div className="p-4 bg-white/70 rounded-lg border border-[#C8A05C]/30">
-              <h4 className="text-lg font-bold flex items-center gap-2" style={{ color: '#D2691E' }}>
+              <h4 className="text-lg font-bold mb-2 text-[#D2691E]">
                 Recursos Web
               </h4>
               <p>
@@ -102,7 +49,6 @@ export function AboutModal({ open, onOpenChange }: AboutModalProps) {
             </div>
           </section>
 
-          {/* Leonor Lopetegui: Historia Humanamente Verificada */}
           <section className="border-t border-[#C8A05C]/40 pt-4">
             <p className="text-sm font-semibold text-[#D2691E] mb-2">
               Agradecimientos por la creación a:
@@ -112,6 +58,7 @@ export function AboutModal({ open, onOpenChange }: AboutModalProps) {
               <button
                 onClick={() => setShowLeonorInfo(!showLeonorInfo)}
                 className="ml-2 text-[#D2691E] hover:text-[#C8A05C] transition-colors font-bold text-lg"
+                aria-label="Más sobre Leonor Lopetegui"
               >
                 *
               </button>
@@ -120,17 +67,16 @@ export function AboutModal({ open, onOpenChange }: AboutModalProps) {
             {showLeonorInfo && (
               <div className="mt-4 p-4 bg-[#F5E6D3] border-2 border-[#C8A05C] rounded-lg space-y-3 text-sm animate-in fade-in duration-300">
                 <p>
-                  Leonor Lopetegui ha sido mi maestra de español y consejera desde que llegué de Cuba a los cinco años, 
-                  traído por ella y su esposo, mi tío Armando González. 
+                  Leonor Lopetegui ha sido mi maestra de español y consejera desde que llegué de Cuba a los cinco años.
                 </p>
                 <p>
-                  Su trayectoria está marcada por honores monumentales: es <strong>Premio Cervantes de la Universidad Nova Southeastern</strong>, 
-                  fue <strong>Maestra del Año</strong> en la Escuela Primaria James H. Bright (2001-2002), y elegida 
+                  Su trayectoria está marcada por honores monumentales: es <strong>Premio Cervantes de la Universidad Nova Southeastern</strong>,
+                  fue <strong>Maestra del Año</strong> en la Escuela Primaria James H. Bright (2001-2002), y elegida
                   <strong> Educadora Bilingüe del Año</strong> por la Asociación Bilingüe de la Florida.
                 </p>
                 <p>
-                  Lideró por más de una década la División de Educación Bilingüe e Idiomas del Mundo para las Escuelas Públicas de Miami-Dade. 
-                  En reconocimiento a su impacto, la Ciudad de Sweetwater proclamó el <strong>6 de junio de 2014</strong> como el 
+                  Lideró por más de una década la División de Educación Bilingüe e Idiomas del Mundo para las Escuelas Públicas de Miami-Dade.
+                  En reconocimiento a su impacto, la Ciudad de Sweetwater proclamó el <strong>6 de junio de 2014</strong> como el
                   "Día de la Sra. Leonor Lopetegui".
                 </p>
               </div>
@@ -139,16 +85,11 @@ export function AboutModal({ open, onOpenChange }: AboutModalProps) {
 
           <div className="flex flex-wrap gap-2 justify-center mt-4">
             {['IA Claude Sonnet', 'NextJS 14', 'Transcripción de Audio', 'Análisis Académico', 'Patrimonio UNESCO'].map((label) => (
-              <Badge key={label} className="text-xs" style={{ backgroundColor: '#D97706', color: 'white', border: 'none' }}>
+              <Badge key={label} className="text-xs bg-[#C8A05C] text-[#F5E6D3]">
                 {label}
               </Badge>
             ))}
           </div>
-
-          <p className="text-center italic text-sm mt-6 text-[#5C4033]/70">
-            "Un algoritmo que siente la pasión del poeta, rescata del olvido cada improvisación, preserva intacta la lírica del corazón, y eterniza el arte vivo de la
-            décima completa."
-          </p>
         </div>
       </DialogContent>
     </Dialog>
