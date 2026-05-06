@@ -2,10 +2,12 @@
 
 import { useState } from 'react'
 import { NavigationTabs } from './navigation-tabs'
-import { GroqDecimaProcessor } from './groq-decima-processor'
+import { TributeSection } from './tribute-section'
+import { ProcessingSection } from './processing-section'
 import { DecimalsSection } from './decimals-section'
 import { AnalysisSection } from './analysis-section'
 import { ExportSection } from './export-section'
+import DemoSection from './demo-section'
 import { EducationSection } from './education-section'
 import { AboutModal } from './about-modal'
 
@@ -23,22 +25,15 @@ export function MainApp() {
 
   return (
     <>
+      <TributeSection />
       <NavigationTabs activeTab={activeTab} onTabChange={handleTabChange} />
 
-      <main className="min-h-screen bg-[#F5E6D3]">
-        {activeTab === 'process' && <GroqDecimaProcessor />}
+      <main className="min-h-screen bg-[#F5E6D3]" id="main-content">
+        {activeTab === 'process' && <ProcessingSection />}
         {activeTab === 'decimas' && <DecimalsSection />}
         {activeTab === 'analysis' && <AnalysisSection />}
         {activeTab === 'export' && <ExportSection />}
-        {activeTab === 'demo' && (
-          <div className="container mx-auto max-w-4xl px-4 py-8">
-            <div className="text-center py-12">
-              <p className="text-[#5C4033] text-lg">
-                Sección de demostración - Próximamente
-              </p>
-            </div>
-          </div>
-        )}
+        {activeTab === 'demo' && <DemoSection />}
         {activeTab === 'education' && <EducationSection />}
       </main>
 
@@ -46,4 +41,3 @@ export function MainApp() {
     </>
   )
 }
-

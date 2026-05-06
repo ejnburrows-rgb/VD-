@@ -1,80 +1,74 @@
 "use client"
 
-import Link from 'next/link'
+import { Shield, Heart, Scale } from 'lucide-react'
 
 export function Footer() {
+  const currentYear = new Date().getFullYear()
+
   return (
-    <footer className="bg-[#78350F] text-[#F5E6D3] py-8 px-4 mt-12 border-t-4 border-[#C8A05C]">
-      <div className="container mx-auto max-w-7xl">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Información del Proyecto */}
-          <div>
-            <h3 className="text-xl font-serif font-bold text-[#C8A05C] mb-4">
-              Viajera Digital
-            </h3>
-            <p className="text-sm text-[#F5E6D3]/80 mb-2">
+    <footer className="bg-[#4A3728] text-white py-8">
+      <div className="container mx-auto px-4">
+        <div className="grid md:grid-cols-3 gap-8 mb-6">
+          <div className="space-y-3">
+            <div className="flex items-center gap-2 mb-2">
+              <Shield className="w-5 h-5 text-[#C8A05C]" />
+              <h3 className="text-lg font-bold text-[#C8A05C]">El Guajiro de Hialeah</h3>
+            </div>
+            <p className="text-sm text-gray-300 leading-relaxed">
               Plataforma de transcripción y análisis de décima espinela cubana.
             </p>
-            <p className="text-sm text-[#F5E6D3]/80">
-              Preservando el patrimonio cultural cubano a través de la tecnología.
+            <p className="text-xs text-gray-400">
+              © {currentYear} El Guajiro de Hialeah. Todos los derechos reservados.
             </p>
           </div>
-
-          {/* Recursos */}
-          <div>
-            <h3 className="text-xl font-serif font-bold text-[#C8A05C] mb-4">
-              Recursos
-            </h3>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <Link
-                  href="https://juanantoniodiaz.com/acerca-de/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#F5E6D3]/80 hover:text-[#C8A05C] transition-colors underline"
-                >
-                  Juanantoniodiaz.com
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="https://youtube.com/@juanantoniodiaz9034"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#F5E6D3]/80 hover:text-[#C8A05C] transition-colors underline"
-                >
-                  Canal de YouTube
-                </Link>
-              </li>
-            </ul>
+          <div className="space-y-3">
+            <div className="flex items-center gap-2 mb-2">
+              <Heart className="w-5 h-5 text-[#D2691E]" />
+              <h3 className="text-lg font-bold text-[#D2691E]">Creador</h3>
+            </div>
+            <p className="text-sm">
+              <strong className="text-[#C8A05C]">Emilio José Novo</strong>
+            </p>
+            <p className="text-xs text-gray-300 leading-relaxed">
+              Desarrollador y arquitecto de la plataforma. Preservando el patrimonio cultural cubano a través de la tecnología.
+            </p>
+            <p className="text-xs text-gray-400 mt-2">
+              Propiedad intelectual protegida bajo las leyes de derechos de autor de Estados Unidos.
+            </p>
           </div>
-
-          {/* Créditos */}
-          <div>
-            <h3 className="text-xl font-serif font-bold text-[#C8A05C] mb-4">
-              Créditos
-            </h3>
-            <p className="text-sm text-[#F5E6D3]/80 mb-2">
-              <strong>Desarrollado por:</strong>
-            </p>
-            <p className="text-sm text-[#F5E6D3]/80 mb-4">
-              Emilio José Novo
-            </p>
-            <p className="text-xs text-[#F5E6D3]/60">
-              © {new Date().getFullYear()} Viajera Digital. Todos los derechos reservados.
-            </p>
+          <div className="space-y-3">
+            <div className="flex items-center gap-2 mb-2">
+              <Scale className="w-5 h-5 text-[#C8A05C]" />
+              <h3 className="text-lg font-bold text-[#C8A05C]">Legal &amp; Patentes</h3>
+            </div>
+            <div className="text-xs text-gray-300 space-y-2 leading-relaxed">
+              <p><strong className="text-white">Patente Pendiente:</strong> Tecnología de transcripción y análisis automatizado de décima espinela.</p>
+              <p><strong className="text-white">Copyright:</strong> Todo el contenido, diseño, código fuente y algoritmos están protegidos por derechos de autor.</p>
+              <p><strong className="text-white">Licencia:</strong> Creative Commons BY-NC-SA 4.0 (Uso no comercial con atribución)</p>
+            </div>
           </div>
         </div>
-
-        {/* Línea divisoria */}
-        <div className="border-t border-[#C8A05C]/30 mt-8 pt-6 text-center">
-          <p className="text-xs text-[#F5E6D3]/60">
-            En memoria de <strong className="text-[#C8A05C]">Calixto González</strong>, 
-            "El Guajiro de Hialeah" (1936-2024)
+        <div className="border-t border-[#C8A05C]/30 my-6" />
+        <div className="text-center space-y-2">
+          <p className="text-xs text-gray-400">
+            Desarrollado con <span className="text-[#D2691E]">❤</span> en Miami, Florida • En honor a{' '}
+            <strong className="text-[#C8A05C]">Calixto González</strong> "El Guajiro de Hialeah"
+          </p>
+          <p className="text-xs text-gray-500 italic mt-3">
+            "Un algoritmo que siente la pasión del poeta, rescata del olvido cada improvisación,
+            <br />
+            preserva intacta la lírica del corazón, y eterniza el arte vivo de la décima completa."
+          </p>
+          <p className="text-sm text-gray-300 mt-4">
+            © <strong className="text-[#C8A05C]">Emilio José Novo</strong>
+          </p>
+        </div>
+        <div className="mt-6 p-4 bg-[#3E2B24]/50 rounded-lg border border-[#C8A05C]/20">
+          <p className="text-xs text-gray-400 text-center leading-relaxed">
+            <strong className="text-[#C8A05C]">Aviso Legal:</strong> Este software y su contenido están protegidos por las leyes de propiedad intelectual de los Estados Unidos y tratados internacionales. El uso no autorizado, reproducción, distribución o modificación puede resultar en sanciones civiles y penales. Todos los análisis y transcripciones generados por esta plataforma son para fines educativos y de preservación cultural.
           </p>
         </div>
       </div>
     </footer>
   )
 }
-
