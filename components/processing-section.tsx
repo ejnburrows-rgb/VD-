@@ -197,7 +197,7 @@ export function ProcessingSection() {
               className="w-full bg-white border-[#C8A05C]/30"
             />
             <div className="flex items-center gap-2 mt-2">
-              <p className="text-sm text-[#5C4033]">🧪 URLs de prueba rápida:</p>
+              <p className="text-sm text-[#5C4033]">URLs de prueba rápida:</p>
               <button
                 onClick={() => {
                   setYoutubeUrl('https://youtu.be/7vThzpq8cHQ')
