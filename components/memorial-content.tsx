@@ -12,11 +12,13 @@ export function MemorialContent() {
         y eterniza el arte vivo de la décima completa.
       </blockquote>
       <p className="byline">
-        Un guajiro en Hialeah ·{" "}
+        — Emilio José Novo ·{" "}
         <a href="https://juanantoniodiaz.com" target="_blank" rel="noopener noreferrer">
-          JuanAntonioDiaz.com
+          juanantoniodiaz.com
         </a>
       </p>
+
+      <h3 className="text-2xl font-serif font-bold text-[#C8894D] mt-8 mb-4">Calixto González</h3>
 
       <p className="opening">
         La Coloma es un pueblo de pescadores al borde de Pinar del Río donde el Golfo se traga la luz entera cada atardecer
@@ -90,7 +92,7 @@ export function MemorialContent() {
         adultos intercambiaban versos y el cuarto se llenaba de esa energía particular que genera una canturía; mitad
         competencia, mitad reunión de familia, todo corazón. Calixto fue la primera persona que vi improvisar en vivo. Para
         mí, la décima era algo de la televisión o la radio. Sabía que era improvisada, entendía eso, pero nunca lo había
-        experimentado en persona. Nunca había sentido lo que se siente cuando alguien se paró frente a ti y construye un
+        experimentado en persona. Nunca había sentido lo que se siente cuando alguien se para frente a ti y construye un
         verso del aire mismo.
       </p>
 
@@ -140,7 +142,7 @@ export function MemorialContent() {
       </p>
 
       <p>
-        Cantó <em>"jamás me olvidaré"</em> — y cada cosa que hizo después lo confirmó. Él no se olvidó. Ese fue el ejemplo
+        Cantó <em>“jamás me olvidaré”</em> — y cada cosa que hizo después lo confirmó. Él no se olvidó. Ese fue el ejemplo
         que nos dejó.
       </p>
 
@@ -149,7 +151,9 @@ export function MemorialContent() {
         cantaron a su lado, ni de los que vienen detrás cargando la décima sin saber todavía cuánto pesa.
       </p>
 
-      <p className="seal">Jamás te olvidaremos.</p>
+      <p className="seal font-bold text-[#D2691E] text-lg">
+        Para el repentismo cubano en el exilio fue Calixto González; el Guajiro de Hialeah. Jamás te olvidaremos.
+      </p>
 
       <blockquote className="decima">
         Hoy que te vas con la muerte<br />
@@ -161,15 +165,15 @@ export function MemorialContent() {
         no existirá un solo día<br />
         que se hable de ejemplo de Hombre<br />
         que no se escuche tu nombre,<br />
-        Guajiro de Hialeah.
+        <strong>Guajiro de Hialeah.</strong>
         <footer>— Juan Antonio Díaz</footer>
       </blockquote>
 
       <Fleuron />
 
-      <p className="section-lead">
-        <em>Y junto a él, otra voz que nos enseñó a escuchar.</em>
-      </p>
+      <h3 className="text-2xl font-serif font-bold text-[#C8894D] mt-8 mb-4">Dedicatoria a Leonor Lopetegui</h3>
+
+      <p className="section-lead italic">A Leonor Lopetegui</p>
 
       <p>
         Hay personas que cambian una vida entera sin proponérselo. Para mí, una de ellas es Leonor Lopetegui. Fue mi maestra
@@ -184,11 +188,11 @@ export function MemorialContent() {
         Bright la nombró Maestra del Año (2001–2002). La Asociación Bilingüe de la Florida la distinguió como Educadora
         Bilingüe del Año. Durante más de diez años lideró la División de Educación Bilingüe e Idiomas del Mundo, escribió
         materiales educativos para niños, y compartió su experiencia en congresos nacionales e internacionales. La Ciudad de
-        Sweetwater proclamó el 6 de junio de 2014 como el "Día de la Sra. Leonor Lopetegui."
+        Sweetwater proclamó el 6 de junio de 2014 como el “Día de la Sra. Leonor Lopetegui.”
       </p>
 
       <p>
-        But cuando pienso en ella, no pienso primero en los premios ni en los cargos. La recuerdo en el suelo conmigo, tras
+        Pero cuando pienso en ella, no pienso primero en los premios ni en los cargos. La recuerdo en el suelo conmigo, tras
         un día entero enseñando español a otros niños. Yo tenía cinco años. Ella convertía una pizarra en juego, y el juego
         en clase. Ahí, en esas tardes, me enseñó mis primeras letras en español; a juntar sílabas, a leer despacio, a
         escribir mi nombre una y otra vez hasta que me saliera bien. La veo dibujando letras grandes y claras, escribiendo
@@ -211,9 +215,9 @@ export function MemorialContent() {
         Esta aplicación existe, en gran parte, gracias a lo que sembraste en mí desde niño.
       </p>
 
-      <p>Para muchos será siempre la profesora Leonor Lopetegui.</p>
+      <p className="font-bold">Para muchos será siempre la profesora Leonor Lopetegui.</p>
 
-      <p>
+      <p className="font-bold">
         Para mí, hoy y siempre, es y será mi <em>Tía Leonor</em>.
       </p>
 
