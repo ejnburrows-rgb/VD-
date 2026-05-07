@@ -2,74 +2,84 @@
 
 import { PoetsCompendium } from "./poets-compendium";
 
+const sectionBg = { backgroundColor: "#F5E6D3" };
+const headingGold = { color: "#C8A05C" };
+const headingOrange = { color: "#D97706" };
+const body = { color: "#5C4033" };
+const leftRule = { borderColor: "#C8A05C" };
+const featureCard = { backgroundColor: "#FFFFFF", borderColor: "#C8A05C" };
+const quoteRule = { borderColor: "#D97706", color: "#5C4033" };
+const accent = { color: "#D97706" };
+const unescoCard = { backgroundColor: "#FDF6E8", borderColor: "#C8A05C" };
+
 export function EducationSection() {
   return (
-    <div className="space-y-8 pb-12" style={{ backgroundColor: "#F5E6D3" }}>
+    <div className="space-y-8 pb-12" style={sectionBg}>
       <div className="container max-w-4xl py-8 px-4">
         <h2
           className="text-3xl font-serif font-bold mb-8 flex items-center gap-2"
-          style={{ color: "#C8A05C" }}
+          style={headingGold}
         >
           Educación Histórica
         </h2>
 
-        <p className="text-center mb-8" style={{ color: "#5C4033" }}>
+        <p className="text-center mb-8" style={body}>
           Conoce la rica historia de la décima espinela, desde sus orígenes
           españoles hasta su florecimiento en la tradición oral cubana.
         </p>
 
-        <div className="mb-8 border-l-4 pl-6" style={{ borderColor: "#C8A05C" }}>
+        <div className="mb-8 border-l-4 pl-6" style={leftRule}>
           <h3
             className="text-2xl font-bold font-serif mb-4 flex items-center gap-2"
-            style={{ color: "#C8A05C" }}
+            style={headingGold}
           >
             Arquitectura Poética, Raíz Compartida
           </h3>
-          <p className="mb-4" style={{ color: "#5C4033" }}>
+          <p className="mb-4" style={body}>
             La décima espinela despliega diez versos octosílabos organizados
             según el esquema <strong>ABBAACCDDC</strong>. Esta arquitectura,
             cristalizada por el poeta andaluz <strong>Vicente Espinel</strong> en
             1591 dentro de su obra <em>Diversas rimas</em>, sostiene siglos de
             expresión lírica.
           </p>
-          <p style={{ color: "#5C4033" }}>
+          <p style={body}>
             La décima llegó a América con la colonización española y echó raíces
             en Cuba, donde se convirtió en la forma poética preferida para la
             improvisación.
           </p>
         </div>
 
-        <div className="mb-8 border-l-4 pl-6" style={{ borderColor: "#C8A05C" }}>
+        <div className="mb-8 border-l-4 pl-6" style={leftRule}>
           <h3
             className="text-2xl font-bold font-serif mb-4 flex items-center gap-2"
-            style={{ color: "#C8A05C" }}
+            style={headingGold}
           >
             Raíces Cubanas: De España al Campo Cubano
           </h3>
-          <p className="mb-4" style={{ color: "#5C4033" }}>
+          <p className="mb-4" style={body}>
             La décima espinela llegó a Cuba en el siglo XVII, traída por colonos
             españoles, especialmente canarios. Los guajiros adoptaron esta
             forma poética y la hicieron suya.
           </p>
-          <p style={{ color: "#5C4033" }}>
-            <strong>Juan Cristóbal Nápoles Fajardo "El Cucalambé"</strong> (1829-1861) es
+          <p style={body}>
+            <strong>Juan Cristóbal Nápoles Fajardo “El Cucalambé”</strong> (1829-1861) es
             considerado el padre de la décima cubana moderna.
           </p>
         </div>
 
-        <div className="mb-8 border-l-4 pl-6" style={{ borderColor: "#C8A05C" }}>
+        <div className="mb-8 border-l-4 pl-6" style={leftRule}>
           <h3
             className="text-2xl font-bold font-serif mb-4 flex items-center gap-2"
-            style={{ color: "#C8A05C" }}
+            style={headingGold}
           >
             El Repentismo: Arte de la Improvisación
           </h3>
-          <p className="mb-4" style={{ color: "#5C4033" }}>
+          <p className="mb-4" style={body}>
             El <strong>repentismo</strong> es el arte de improvisar décimas en
             vivo, respondiendo a temas propuestos por el público o a desafíos de
             otros poetas.
           </p>
-          <p style={{ color: "#5C4033" }}>
+          <p style={body}>
             Los <strong>decimistas</strong> crean décimas perfectas en cuestión
             de segundos, manteniendo la estructura ABBAACCDDC mientras responden
             a temas complejos.
@@ -78,15 +88,15 @@ export function EducationSection() {
 
         <div
           className="mb-8 p-6 rounded-lg border-2"
-          style={{ backgroundColor: "#FEF3C7", borderColor: "#C8A05C" }}
+          style={featureCard}
         >
           <h3
             className="text-2xl font-bold font-serif mb-4 flex items-center gap-2"
-            style={{ color: "#C8A05C" }}
+            style={headingGold}
           >
             Momento Cumbre 1955
           </h3>
-          <p className="mb-4" style={{ color: "#5C4033" }}>
+          <p className="mb-4" style={body}>
             El <strong>28 de agosto de 1955</strong>, más de{" "}
             <strong>diez mil personas</strong> llenaron el estadio Campo Armada
             para presenciar la revancha entre <strong>El Indio Naborí</strong> y{" "}
@@ -94,48 +104,48 @@ export function EducationSection() {
           </p>
           <blockquote
             className="border-l-4 pl-4 italic my-4"
-            style={{ borderColor: "#D97706", color: "#5C4033" }}
+            style={quoteRule}
           >
-            "Pongan ahí un cuarto jurado: yo mismo, que voto por Naborí."
+            “Pongan ahí un cuarto jurado: yo mismo, que voto por Naborí.”
           </blockquote>
         </div>
 
-        <div className="mb-8 border-l-4 pl-6" style={{ borderColor: "#C8A05C" }}>
+        <div className="mb-8 border-l-4 pl-6" style={leftRule}>
           <h3
             className="text-2xl font-bold font-serif mb-4 flex items-center gap-2"
-            style={{ color: "#C8A05C" }}
+            style={headingGold}
           >
             Proeza Técnica: El Desafío de los 52 Segundos
           </h3>
-          <p className="mb-4" style={{ color: "#5C4033" }}>
+          <p className="mb-4" style={body}>
             Componer una décima perfecta en menos de un minuto requiere:
           </p>
-          <ul className="list-disc pl-5 space-y-2 mb-4" style={{ color: "#5C4033" }}>
+          <ul className="list-disc pl-5 space-y-2 mb-4" style={body}>
             <li><strong>Métrica octosílaba correcta</strong></li>
             <li><strong>Rima consonante ABBAACCDDC impecable</strong></li>
             <li><strong>Coherencia temática y narrativa</strong></li>
             <li><strong>TODO en menos de 60 segundos</strong></li>
           </ul>
-          <p className="font-bold" style={{ color: "#D97706" }}>
+          <p className="font-bold" style={accent}>
             Solo los maestros lo logran.
           </p>
         </div>
 
         <div
           className="mb-8 p-6 rounded-lg border-2"
-          style={{ backgroundColor: "#D1FAE5", borderColor: "#10B981" }}
+          style={unescoCard}
         >
           <h3
             className="text-2xl font-bold font-serif mb-4 flex items-center gap-2"
-            style={{ color: "#059669" }}
+            style={headingOrange}
           >
             Patrimonio Cultural Inmaterial de la Humanidad
           </h3>
-          <p className="mb-4" style={{ color: "#5C4033" }}>
+          <p className="mb-4" style={body}>
             En <strong>2012</strong>, la <strong>UNESCO</strong> reconoció la
             décima cubana como Patrimonio Cultural Inmaterial de la Humanidad.
           </p>
-          <ul className="list-none space-y-2" style={{ color: "#5C4033" }}>
+          <ul className="list-none space-y-2" style={body}>
             <li>La tradición viva de la improvisación oral</li>
             <li>La preservación de la identidad cultural campesina</li>
             <li>La transmisión intergeneracional del arte decimístico</li>
