@@ -13,6 +13,10 @@ interface AboutModalProps {
 export function AboutModal({ open, onOpenChange }: AboutModalProps) {
   const [showLeonorInfo, setShowLeonorInfo] = useState(false)
 
+  const brownText = { color: '#5C4033' }
+  const orangeText = { color: '#D2691E' }
+  const goldBadge = { backgroundColor: '#C8A05C', color: '#F5E6D3' }
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto bg-[#F5E6D3] text-[#5C4033] border-2 border-[#C8A05C]">
@@ -38,7 +42,7 @@ export function AboutModal({ open, onOpenChange }: AboutModalProps) {
             <p>para bañarme en mi río.</p>
           </div>
 
-          <p className="font-semibold" style= color: '#5C4033' >
+          <p className="font-semibold" style={brownText}>
             Viajera Digital nace de este legado. Esta fue la primera décima que escuché en vivo,
             cantada por mi abuelo Calixto para mí. Honramos su memoria y la de todos los poetas
             que mantienen viva esta tradición milenaria.
@@ -46,14 +50,14 @@ export function AboutModal({ open, onOpenChange }: AboutModalProps) {
 
           <section className="grid md:grid-cols-2 gap-6">
             <div className="p-4 bg-white/70 rounded-lg border border-[#C8A05C]/30">
-              <h4 className="text-lg font-bold flex items-center gap-2" style= color: '#D2691E' >
+              <h4 className="text-lg font-bold flex items-center gap-2" style={orangeText}>
                 Desarrollo
               </h4>
               <p>Creada por: <strong>Emilio José Novo</strong></p>
               <p>Versión: 2.0 Pro</p>
             </div>
             <div className="p-4 bg-white/70 rounded-lg border border-[#C8A05C]/30">
-              <h4 className="text-lg font-bold flex items-center gap-2" style= color: '#D2691E' >
+              <h4 className="text-lg font-bold flex items-center gap-2" style={orangeText}>
                 Recursos Web
               </h4>
               <p>
@@ -109,7 +113,7 @@ export function AboutModal({ open, onOpenChange }: AboutModalProps) {
 
           <div className="flex flex-wrap gap-2 justify-center mt-4">
             {['IA Claude Sonnet', 'NextJS 14', 'Transcripción de Audio', 'Análisis Académico', 'Patrimonio UNESCO'].map((label) => (
-              <Badge key={label} className="text-xs" style= backgroundColor: '#C8A05C', color: '#F5E6D3' >
+              <Badge key={label} className="text-xs" style={goldBadge}>
                 {label}
               </Badge>
             ))}
