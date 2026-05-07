@@ -23,7 +23,6 @@ export function HeroSection() {
       {/* Centered card - positioned at bottom */}
       <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 w-[90%] max-w-2xl z-10">
         <div className="vintage-card text-center p-8 bg-[#F5E6D3]/95 backdrop-blur-sm">
-          <div className="text-4xl mb-2">🌴</div>
           <h1 className="text-5xl font-serif font-bold text-[#C8A05C] mb-2">
             El Guajiro de Hialeah
           </h1>
