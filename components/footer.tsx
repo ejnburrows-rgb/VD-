@@ -51,7 +51,7 @@ export function Footer() {
         <div className="border-t border-[#C8A05C]/30 my-6" />
         <div className="text-center space-y-2">
           <p className="text-xs text-gray-400">
-            Desarrollado con <span className="text-[#D2691E]">❤</span> en Miami, Florida • En honor a{' '}
+            Desarrollado con cariño en Miami, Florida • En honor a{' '}
             <strong className="text-[#C8A05C]">Calixto González</strong> "El Guajiro de Hialeah"
           </p>
           <p className="text-xs text-gray-500 italic mt-3">
