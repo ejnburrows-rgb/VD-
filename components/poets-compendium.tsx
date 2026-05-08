@@ -133,7 +133,7 @@ const poets: Poet[] = [
   },
   {
     name: "Julio Pablo Travieso Martínez",
-    subtitle: "Arquitecto de Versos en Tiempo Presente",
+    subtitle: "El Príncipe Pinareño",
     birth: "1996 en Pinar del Río, Cuba",
     biography: [
       "Joven maestro pinareño nacido en 1996, transforma silencio en arquitectura sonora — décimas que construyen puentes entre siglos, generaciones e islas. No preserva tradiciones como reliquias en vitrinas: las respira, las reinterpreta, las expande. Tradición y renovación, memoria y creación, ambas siempre.",
@@ -142,6 +142,7 @@ const poets: Poet[] = [
       "Travieso merece también el título de \"Mago del Momento\" — designación que captura la naturaleza efímera y milagrosa del repentismo. No existe ensayo para la improvisación. No hay segunda oportunidad para el verso que nace y muere en el instante de su pronunciación. El poeta sostiene la audiencia en suspenso compartido cuando pensamiento se vuelve palabra, cuando palabra se cristaliza en forma perfecta.",
       "Pertenece a la generación que heredó responsabilidad histórica: mantener viva una tradición oral en era digital. Junto a Anabeybi Rodríguez — \"la princesa pinareña\" — y otros jóvenes repentistas, forma una red de artistas que entienden que preservar no significa congelar. Aplican formas centenarias a preocupaciones actuales, documentan procesos creativos que maestros como Basilio Echevarría Acosta, \"El Negro\", transmitieron exclusivamente mediante ejemplo directo.",
       "Cada verso que improvisa lleva la marca de su provincia occidental. Pinar del Río — donde el punto guajiro no es género musical sino lenguaje materno, donde la décima estructura pensamiento colectivo — habla a través de él. El título \"Príncipe Pinareño\" reconoce esa doble función: maestría personal que representa herencia colectiva. Lo específicamente cubano ilumina lo fundamentalmente humano.",
+      "Conocer a Julio Pablo Travieso. Llamarlo mi mejor amigo. Reconocerlo como hermano. Para mí es el Príncipe Pinareño, sí — pero también el Mago del Momento, porque nadie que yo conozca vive esa verdad con más convicción. Presenciar su maestría en persona — ver cómo la mente transforma experiencia en verso mientras el verso se pronuncia — revela algo que ninguna grabación captura del todo. El arte del pueblo no es primitivo. No es simple. Es sofisticado en su ejecución, profundo en lo que implica, y accesible sin sacrificar un gramo de complejidad. Su presencia confirma una verdad que cargo con gratitud diaria: que la amistad verdadera, como la décima improvisada, se entrega entera en el momento y no se ensaya.",
       "Cada controversia que sostiene, cada festival donde participa, cada alumno que forma, constituye acto de resistencia cultural: testimonio viviente de que tradiciones orales permanecen vibrantes cuando artistas talentosos las encarnan con compromiso contemporáneo. Sus versos aseguran que generaciones futuras heredarán tradición viva, no archivo histórico, y que Pinar del Río mantendrá su voz distintiva en conversaciones culturales nacionales e internacionales."
     ]
   },
