@@ -34,7 +34,7 @@ export function HeroSection() {
             <p>y eterniza el arte vivo de la décima completa.</p>
           </div>
           <p className="text-xs mt-4 text-[#5C4033]">
-            — Emilio José Novo | juanantoniodiaz.com
+            — Emilio José Novo | Juanantoniodiaz.com
           </p>
         </div>
       </div>

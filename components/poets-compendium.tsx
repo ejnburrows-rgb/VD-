@@ -127,16 +127,22 @@ const poets: Poet[] = [
     biography: [
       "Poeta repentista cubano considerado en el mundo como uno de los decimistas improvisadores más influyentes de su generación. El Indio Naborí afirmó sobre él: \"En la vanguardia de nuestros repentistas actuales, constituido por unos treinta jóvenes, figura y se destaca el ágil improvisador Juan Antonio Díaz de cuyos planos reales de sus recuerdos agropecuarios salen no pocas veces planos imaginativos sorprendentes\".",
       "Ha compartido escenario con maestros como Pablo León, Omar Mirabal, Luis Quintana, Leandro Camargo y Yoslay García. Su obra incluye tributos a figuras históricas del repentismo cubano, manteniendo viva la memoria de los grandes maestros.",
-      "Su estilo combina la herencia campesina pinareña con técnica depurada y capacidad de crear imágenes poéticas que conectan lo rural con lo universal. Ha publicado el libro \"Mi dolor tuyo\", donde sus décimas aupan todo el sufrimiento y la esperanza del cubano."
+      "Su estilo combina la herencia campesina pinareña con técnica depurada y capacidad de crear imágenes poéticas que conectan lo rural con lo universal. Ha publicado el libro \"Mi dolor tuyo\", donde sus décimas aupan todo el sufrimiento y la esperanza del cubano.",
+      "Desde aquel primer encuentro en La Coloma en el año 1997, cuando el Guajiro de Hialeah y él forjaron una amistad que el tiempo no ha podido desgastar, Juan Antonio ha sido, por sobre todas las cosas, un gran amigo y más que eso es parte de la familia. Siempre ahí, presente en cada puerto que tocamos, ofreciendo su mano y su palabra, devolviendo con creces el amor que siempre supo entregar. Porque más que un amigo, ha sido un pilar: el hombre que, con su guitarra al hombro y la décima en los labios, nos recuerda que la verdadera patria es la que se construye con el afecto."
     ]
   },
   {
-    name: "Julio Pablo \"El Principito\"",
-    subtitle: "Voz Pinareña de la Tradición",
-    birth: "Pinar del Río, Cuba",
+    name: "Julio Pablo Travieso Martínez",
+    subtitle: "Arquitecto de Versos en Tiempo Presente",
+    birth: "1996 en Pinar del Río, Cuba",
     biography: [
-      "Destacado poeta repentista cubano conocido como \"El Principito\", representa la rica tradición decimística de la provincia de Pinar del Río, tierra fértil para el cultivo de la décima y el repentismo.",
-      "Su estilo se caracteriza por la elegancia en la construcción del verso y la profundidad de sus improvisaciones, participando en numerosas controversias donde su ingenio siempre brilla. Ha contribuido a mantener viva la tradición de la décima en su provincia natal, formando parte del legado de grandes poetas que han surgido de esa región occidental de Cuba."
+      "Joven maestro pinareño nacido en 1996, transforma silencio en arquitectura sonora — décimas que construyen puentes entre siglos, generaciones e islas. No preserva tradiciones como reliquias en vitrinas: las respira, las reinterpreta, las expande. Tradición y renovación, memoria y creación, ambas siempre.",
+      "La Casa de la Décima \"Celestino García\" — fundada en 2008 como ecosistema cultural — nutrió las semillas que hoy florecen ante audiencias nacionales e internacionales. Desde esa institución emblemática, Travieso cultivó el dominio técnico que transforma la improvisación en precisión controlada: diez versos octosílabos que contienen universos.",
+      "Oralitura Habana 2019 lo vio compartir escenario con decimistas cuyas voces cruzaban océanos. Las controversias con Yoniel Perdomo en febrero de 2025, sobre infancia campesina, duraron horas y revelaron la resistencia física y mental que exige el arte oral sostenido. La conversación poética con el puertorriqueño Julio César Sanabria demostró que la décima borra fronteras geográficas mediante resonancia cultural compartida.",
+      "Travieso merece también el título de \"Mago del Momento\" — designación que captura la naturaleza efímera y milagrosa del repentismo. No existe ensayo para la improvisación. No hay segunda oportunidad para el verso que nace y muere en el instante de su pronunciación. El poeta sostiene la audiencia en suspenso compartido cuando pensamiento se vuelve palabra, cuando palabra se cristaliza en forma perfecta.",
+      "Pertenece a la generación que heredó responsabilidad histórica: mantener viva una tradición oral en era digital. Junto a Anabeybi Rodríguez — \"la princesa pinareña\" — y otros jóvenes repentistas, forma una red de artistas que entienden que preservar no significa congelar. Aplican formas centenarias a preocupaciones actuales, documentan procesos creativos que maestros como Basilio Echevarría Acosta, \"El Negro\", transmitieron exclusivamente mediante ejemplo directo.",
+      "Cada verso que improvisa lleva la marca de su provincia occidental. Pinar del Río — donde el punto guajiro no es género musical sino lenguaje materno, donde la décima estructura pensamiento colectivo — habla a través de él. El título \"Príncipe Pinareño\" reconoce esa doble función: maestría personal que representa herencia colectiva. Lo específicamente cubano ilumina lo fundamentalmente humano.",
+      "Cada controversia que sostiene, cada festival donde participa, cada alumno que forma, constituye acto de resistencia cultural: testimonio viviente de que tradiciones orales permanecen vibrantes cuando artistas talentosos las encarnan con compromiso contemporáneo. Sus versos aseguran que generaciones futuras heredarán tradición viva, no archivo histórico, y que Pinar del Río mantendrá su voz distintiva en conversaciones culturales nacionales e internacionales."
     ]
   },
   {
