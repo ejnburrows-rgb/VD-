@@ -13,6 +13,68 @@ interface Poet {
 
 const poets: Poet[] = [
   {
+    name: "Pablo León Alonso",
+    subtitle: "El León de los Poetas",
+    birth: "1 de septiembre de 1927 en Puerta del Sol, Consolación del Sur, Pinar del Río",
+    death: "31 de enero de 2012 en Miami, Estados Unidos (84 años)",
+    biography: [
+      "Pablo León Alonso — 'el León de los Poetas' — fue una de las figuras más influyentes del repentismo cubano del siglo XX. Nacido en Puerta del Sol, dentro de Consolación del Sur, en plena zona vueltabajera de Pinar del Río, perteneció a la generación que sacó la décima improvisada del bohío y la convirtió en patrimonio nacional reconocido sin pedirle que cambiara nada de sí misma para caber en la pantalla.",
+      "Aprendió a improvisar desde niño, en el bohío y en las fiestas guajiras de Pinar del Río. Sus primeros pasos en la radio fueron en la emisora CMAB de Pinar del Río y la CMAC de San Cristóbal, antes de saltar a La Habana, donde participó en los programas que definieron la edad de oro de la radio campesina cubana: Patria Guajira, Meridiano Campesino y, sobre todo, Palmas y Cañas — la cita televisiva semanal de la décima cubana.",
+      "Sostuvo controversias con prácticamente todos los grandes de su época: el Indio Naborí, Angelito Valiente, Pedro Guerra, Justo Vega, José Marichal, Gustavo Tacoronte, Manuel Soriano y Guelo Ramírez. La crítica especializada — entre ellos Alexis Díaz-Pimienta — señala a Pablo León y a Tacoronte como las dos influencias secundarias más importantes (después de Naborí) en el estilo de los repentistas que vinieron después: en figuras como Tuto García y Julito Martínez se reconoce su huella técnica con la misma claridad que la del propio Naborí.",
+      "Su estilo se distinguió por la precisión métrica, la riqueza metafórica y una serenidad poco común en escena — el sello que le ganó el apodo. No improvisaba para ganar; improvisaba para resolver. Una controversia con Pablo León no terminaba con un golpe espectacular: terminaba con una décima que dejaba el tema cerrado por dentro.",
+      "En 1984 salió de Cuba — Panamá, República Dominicana, Puerto Rico — y se estableció primero en Nueva Jersey y luego en Miami, donde pasó la última etapa de su vida cantando en los programas Guateque Campesino y Parnaso Dominical, y participando en peñas y canturías de la diáspora junto a otros maestros del exilio. Cantó hasta sus últimos años. Falleció el 31 de enero de 2012 en Miami, a los 84 años.",
+      "Entre sus décimas más recordadas está la que condensa la voz que tenía en escena:",
+      "La décima mía vino / de Ovas y de Viñales / dejando mis iniciales / a lo largo del camino.",
+      "Y 'La Sombra' — décima que muestra, en diez versos, la maestría técnica y la capacidad para construir imágenes que lo distinguían dentro del repentismo cubano:",
+      "La sombra que va conmigo, / copia de abstracto charol, / según el punto del Sol / me persigue o la persigo. / En ella a veces consigo / mirar mi cuerpo al revés — / será que mi sombra es / mi propia radiografía, / que se esconde al mediodía / en la planta de mis pies.",
+      "Diez versos, ABBAACCDDC exacto, octosílabos limpios. Y dentro de ese marco, una imagen central sostenida del primer verso al último: la sombra como copia, como persecución mutua, como radiografía propia, hasta el cierre — la sombra que se esconde al mediodía debajo de los pies. Imagen central sostenida sin perder ni una sílaba, sin forzar ni una rima.",
+      "Calixto contaba una historia que conviene dejar escrita. En uno de sus viajes de visita a Cuba, Calixto pasó por casa del Indio Naborí, en San Miguel del Padrón. Allí conversaron mucho tiempo. Al despedirse, Calixto quiso dejarle un regalo y le dijo: 'esto es para el mejor poeta de Cuba.' Naborí le devolvió el regalo y le contestó: 'No, eso no lo puedo aceptar. Si quieres darle un regalo al mejor poeta de Cuba, tienes que regresar a la Florida y dárselo a Pablo León Alonso — ese es el poeta más grande que tiene Cuba. Y el único que lo va a poder igualar es el muchacho ese que está cantando en Pinar del Río, Juan Antonio.'",
+      "La anécdota — contada por Calixto, en palabras de Naborí — sitúa a Pablo León en la cima del repentismo cubano del siglo XX, reconocido por el más grande de sus contemporáneos. Y deja la línea de sucesión nombrada en voz alta: de Pablo León a Juan Antonio Díaz, y de ahí a los repentistas pinareños que hoy cantan en Cuba y en Hialeah."
+    ]
+  },
+  {
+    name: "El Indio Naborí",
+    subtitle: "Voz Lírica del Siglo XX",
+    birth: "30 de septiembre de 1922 en Los Zapotes, San Miguel del Padrón",
+    death: "30 de diciembre de 2005",
+    biography: [
+      "Jesús Orta Ruiz representa la figura más representativa de la décima en Cuba del siglo XX. Nació en el seno de una familia campesina. Su vida estuvo marcada por la generosidad, sencillez y bondad, características atribuidas a sus humildes orígenes y a las múltiples ocupaciones que asumió desde joven para subsistir: pastor de ovejas, operario de zapatero y dependiente de comercio.",
+      "Desde niño despertó admiración con sus improvisaciones. Se desempeñó como trovador y escritor radial en Radio Progreso, poniendo su arte al servicio de la organización de la Asociación Nacional Campesina en 1940. En 1946 comenzó su trabajo en el programa radial \"Dímelo cantando\", donde sus primeras obras humorísticas como \"Mi suegra Doña Glaudiosa\" y \"La vieja de Caimito\" alcanzaron gran popularidad.",
+      "Publicaciones: Guardarraya Sonora (1946), Bandurria y Violín (1948), Estampas y Elegías (1955).",
+      "En 1961, cuando se creó el semanario Palante, fue convocado para dirigir la página campesina \"Dímelo cantando\", consolidando una sección que se extendió a cientos de miles de lectores rurales en toda Cuba.",
+      "Revitalizó la décima cubana con un aire de modernidad consecuencia del estudio profundo de la poesía española, especialmente de la vanguardia. Recibió el Premio Nacional de Literatura en 1995, el Premio de la Crítica Literaria en 1996 y la Distinción por la Cultura Nacional en 1981.",
+      "Sus décimas improvisadas combinaron recursos literarios sofisticados con rapidez de pensamiento, estableciendo un nivel de altura literaria sin precedentes para la décima oral. Debido a su ceguera, asumió una nueva arquitectura para la creación de sus poemas, dirigiéndose a lograr un peso mayor en el pensamiento abstracto."
+    ]
+  },
+  {
+    name: "Juan Antonio Díaz",
+    subtitle: "Planos Imaginativos que Sorprenden",
+    birth: "26 de mayo de 1970 en la finca \"La Caoba\", San Diego de los Baños, Pinar del Río",
+    biography: [
+      "Poeta repentista cubano considerado en el mundo como uno de los decimistas improvisadores más influyentes de su generación. El Indio Naborí afirmó sobre él: \"En la vanguardia de nuestros repentistas actuales, constituido por unos treinta jóvenes, figura y se destaca el ágil improvisador Juan Antonio Díaz de cuyos planos reales de sus recuerdos agropecuarios salen no pocas veces planos imaginativos sorprendentes\".",
+      "Ha compartido escenario con maestros como Pablo León, Omar Mirabal, Luis Quintana, Leandro Camargo y Yoslay García. Su obra incluye tributos a figuras históricas del repentismo cubano, manteniendo viva la memoria de los grandes maestros.",
+      "Su estilo combina la herencia campesina pinareña con técnica depurada y capacidad para construir imágenes poéticas de gran alcance. Ha publicado el libro \"Mi dolor tuyo\", donde sus décimas recogen el sufrimiento y la esperanza del cubano, y prepara para 2026 la salida en Amazon de su nuevo libro \"Arraigo\" — décimas que ordenan en forma escrita el trabajo de toda una vida en el repentismo.",
+      "Esa misma escena de Calixto en casa de Naborí — la que aparece en la entrada de Pablo León — termina nombrando a Juan Antonio. Calixto contaba que, en uno de sus viajes de visita a Cuba, pasó por casa del Indio Naborí, en San Miguel del Padrón. Allí conversaron mucho tiempo. Al despedirse, Calixto le quiso dejar un regalo 'para el mejor poeta de Cuba.' Naborí le devolvió el regalo y le contestó que se lo llevara de vuelta a la Florida y se lo entregara a Pablo León Alonso — 'ese es el poeta más grande que tiene Cuba' — y añadió, sin que nadie se lo pidiera: 'Y el único que lo va a poder igualar es el muchacho ese que está cantando en Pinar del Río, Juan Antonio.'",
+      "Que Naborí lo nombrara así, sin titubear, cuando Juan Antonio era todavía joven y cantaba en Pinar del Río, registra su estatura dentro de la tradición mejor que cualquier ficha biográfica. Naborí no repartía elogios sueltos. Si lo dijo, era porque lo había escuchado cantar.",
+      "Desde aquel primer encuentro en La Coloma en el año 1997, cuando el Guajiro de Hialeah y él forjaron una amistad que el tiempo no ha podido desgastar, Juan Antonio ha sido, por sobre todas las cosas, un gran amigo y más que eso es parte de la familia. Siempre ahí, presente cuando hizo falta, ofreciendo su mano y su palabra. Más que un amigo, ha sido un pilar: el hombre que, con su guitarra al hombro y la décima en los labios, nos recuerda que la verdadera patria es la que se construye con el afecto."
+    ]
+  },
+  {
+    name: "Julio Pablo Travieso Martínez",
+    subtitle: "El Príncipe Pinareño",
+    birth: "1996 en Pinar del Río, Cuba",
+    biography: [
+      "Joven maestro pinareño nacido en 1996. Sus décimas trabajan tradición y renovación a la vez — respiran las formas heredadas, las reinterpretan, las extienden a temas y registros que las generaciones anteriores no habían tocado todavía. No conserva la décima improvisada como pieza de museo: la mantiene en uso.",
+      "La Casa de la Décima \"Celestino García\" — fundada en 2008 — fue donde se formó. Desde esa institución pinareña cultivó el dominio técnico que convierte la improvisación en precisión controlada: diez versos octosílabos resueltos en tiempo real, con métrica exacta y rima consonante, sin segundas tomas.",
+      "En Oralitura Habana 2019 compartió escenario con decimistas de Cuba y de varios países de habla hispana. Las controversias con Yoniel Perdomo en febrero de 2025, sobre infancia campesina, duraron horas y revelaron la resistencia física y mental que exige el arte oral sostenido. La conversación poética con el puertorriqueño Julio César Sanabria mostró cómo la décima funciona como lengua común entre repentistas de tradiciones distintas dentro del mismo idioma.",
+      "Travieso merece también el título de \"Mago del Momento\" — designación que captura la naturaleza efímera del repentismo. No existe ensayo para la improvisación. No hay segunda oportunidad para el verso que nace y muere en el instante de su pronunciación. El poeta sostiene a la audiencia en suspenso compartido durante el tiempo exacto que tarda en cerrar la décima.",
+      "Pertenece a la generación que heredó una responsabilidad concreta: mantener viva una tradición oral en era digital. Junto a Anabeybi Rodríguez — \"la princesa pinareña\" — y otros jóvenes repentistas, forma parte de una red de artistas que entienden que preservar no significa congelar. Aplican formas centenarias a preocupaciones actuales y documentan procesos creativos que maestros como Basilio Echevarría Acosta, \"El Negro\", transmitieron exclusivamente mediante ejemplo directo.",
+      "Cada verso que improvisa lleva la marca de su provincia. Pinar del Río — donde el punto guajiro no es género musical sino lenguaje materno, donde la décima estructura pensamiento colectivo — habla a través de él. El título \"Príncipe Pinareño\" reconoce esa doble función: maestría personal que representa herencia colectiva.",
+      "Conocer a Julio Pablo Travieso. Llamarlo mi mejor amigo. Reconocerlo como hermano. Para mí es el Príncipe Pinareño, sí — pero también el Mago del Momento, porque nadie que yo conozca vive esa verdad con más convicción. Presenciar su maestría en persona — ver cómo la mente transforma experiencia en verso mientras el verso se pronuncia — revela algo que ninguna grabación captura del todo. El arte del pueblo no es primitivo. No es simple. Es sofisticado en su ejecución, profundo en lo que implica, y accesible al mismo tiempo. Su presencia confirma una verdad que cargo con gratitud diaria: que la amistad verdadera, como la décima improvisada, se entrega entera en el momento y no se ensaya.",
+      "Cada controversia que sostiene, cada festival donde participa, cada alumno que forma, suma a un trabajo más largo que él: el de mantener la décima improvisada cubana viva en su forma exigente, no como recuerdo. Sus versos aseguran que las próximas generaciones la reciban como tradición en uso, y que Pinar del Río conserve su voz dentro del repentismo cubano e internacional."
+    ]
+  },
+  {
     name: "Adolfo Alfonso",
     subtitle: "Compenetración sin Réplica",
     birth: "8 de julio de 1924 en Melena del Sur, Cuba",
@@ -107,46 +169,6 @@ const poets: Poet[] = [
     ]
   },
   {
-    name: "El Indio Naborí",
-    subtitle: "Voz Lírica del Siglo XX",
-    birth: "30 de septiembre de 1922 en Los Zapotes, San Miguel del Padrón",
-    death: "30 de diciembre de 2005",
-    biography: [
-      "Jesús Orta Ruiz representa la figura más representativa de la décima en Cuba del siglo XX. Nació en el seno de una familia campesina. Su vida estuvo marcada por la generosidad, sencillez y bondad, características atribuidas a sus humildes orígenes y a las múltiples ocupaciones que asumió desde joven para subsistir: pastor de ovejas, operario de zapatero y dependiente de comercio.",
-      "Desde niño despertó admiración con sus improvisaciones. Se desempeñó como trovador y escritor radial en Radio Progreso, poniendo su arte al servicio de la organización de la Asociación Nacional Campesina en 1940. En 1946 comenzó su trabajo en el programa radial \"Dímelo cantando\", donde sus primeras obras humorísticas como \"Mi suegra Doña Glaudiosa\" y \"La vieja de Caimito\" alcanzaron gran popularidad.",
-      "Publicaciones: Guardarraya Sonora (1946), Bandurria y Violín (1948), Estampas y Elegías (1955).",
-      "En 1961, cuando se creó el semanario Palante, fue convocado para dirigir la página campesina \"Dímelo cantando\", consolidando una sección que se extendió a cientos de miles de lectores rurales en toda Cuba.",
-      "Revitalizó la décima cubana con un aire de modernidad consecuencia del estudio profundo de la poesía española, especialmente de la vanguardia. Recibió el Premio Nacional de Literatura en 1995, el Premio de la Crítica Literaria en 1996 y la Distinción por la Cultura Nacional en 1981.",
-      "Sus décimas improvisadas combinaron recursos literarios sofisticados con rapidez de pensamiento, estableciendo un nivel de altura literaria sin precedentes para la décima oral. Debido a su ceguera, asumió una nueva arquitectura para la creación de sus poemas, dirigiéndose a lograr un peso mayor en el pensamiento abstracto."
-    ]
-  },
-  {
-    name: "Juan Antonio Díaz",
-    subtitle: "Planos Imaginativos que Sorprenden",
-    birth: "26 de mayo de 1970 en la finca \"La Caoba\", San Diego de los Baños, Pinar del Río",
-    biography: [
-      "Poeta repentista cubano considerado en el mundo como uno de los decimistas improvisadores más influyentes de su generación. El Indio Naborí afirmó sobre él: \"En la vanguardia de nuestros repentistas actuales, constituido por unos treinta jóvenes, figura y se destaca el ágil improvisador Juan Antonio Díaz de cuyos planos reales de sus recuerdos agropecuarios salen no pocas veces planos imaginativos sorprendentes\".",
-      "Ha compartido escenario con maestros como Pablo León, Omar Mirabal, Luis Quintana, Leandro Camargo y Yoslay García. Su obra incluye tributos a figuras históricas del repentismo cubano, manteniendo viva la memoria de los grandes maestros.",
-      "Su estilo combina la herencia campesina pinareña con técnica depurada y capacidad de crear imágenes poéticas que conectan lo rural con lo universal. Ha publicado el libro \"Mi dolor tuyo\", donde sus décimas aupan todo el sufrimiento y la esperanza del cubano.",
-      "Desde aquel primer encuentro en La Coloma en el año 1997, cuando el Guajiro de Hialeah y él forjaron una amistad que el tiempo no ha podido desgastar, Juan Antonio ha sido, por sobre todas las cosas, un gran amigo y más que eso es parte de la familia. Siempre ahí, presente en cada puerto que tocamos, ofreciendo su mano y su palabra, devolviendo con creces el amor que siempre supo entregar. Porque más que un amigo, ha sido un pilar: el hombre que, con su guitarra al hombro y la décima en los labios, nos recuerda que la verdadera patria es la que se construye con el afecto."
-    ]
-  },
-  {
-    name: "Julio Pablo Travieso Martínez",
-    subtitle: "El Príncipe Pinareño",
-    birth: "1996 en Pinar del Río, Cuba",
-    biography: [
-      "Joven maestro pinareño nacido en 1996, transforma silencio en arquitectura sonora — décimas que construyen puentes entre siglos, generaciones e islas. No preserva tradiciones como reliquias en vitrinas: las respira, las reinterpreta, las expande. Tradición y renovación, memoria y creación, ambas siempre.",
-      "La Casa de la Décima \"Celestino García\" — fundada en 2008 como ecosistema cultural — nutrió las semillas que hoy florecen ante audiencias nacionales e internacionales. Desde esa institución emblemática, Travieso cultivó el dominio técnico que transforma la improvisación en precisión controlada: diez versos octosílabos que contienen universos.",
-      "Oralitura Habana 2019 lo vio compartir escenario con decimistas cuyas voces cruzaban océanos. Las controversias con Yoniel Perdomo en febrero de 2025, sobre infancia campesina, duraron horas y revelaron la resistencia física y mental que exige el arte oral sostenido. La conversación poética con el puertorriqueño Julio César Sanabria demostró que la décima borra fronteras geográficas mediante resonancia cultural compartida.",
-      "Travieso merece también el título de \"Mago del Momento\" — designación que captura la naturaleza efímera y milagrosa del repentismo. No existe ensayo para la improvisación. No hay segunda oportunidad para el verso que nace y muere en el instante de su pronunciación. El poeta sostiene la audiencia en suspenso compartido cuando pensamiento se vuelve palabra, cuando palabra se cristaliza en forma perfecta.",
-      "Pertenece a la generación que heredó responsabilidad histórica: mantener viva una tradición oral en era digital. Junto a Anabeybi Rodríguez — \"la princesa pinareña\" — y otros jóvenes repentistas, forma una red de artistas que entienden que preservar no significa congelar. Aplican formas centenarias a preocupaciones actuales, documentan procesos creativos que maestros como Basilio Echevarría Acosta, \"El Negro\", transmitieron exclusivamente mediante ejemplo directo.",
-      "Cada verso que improvisa lleva la marca de su provincia occidental. Pinar del Río — donde el punto guajiro no es género musical sino lenguaje materno, donde la décima estructura pensamiento colectivo — habla a través de él. El título \"Príncipe Pinareño\" reconoce esa doble función: maestría personal que representa herencia colectiva. Lo específicamente cubano ilumina lo fundamentalmente humano.",
-      "Conocer a Julio Pablo Travieso. Llamarlo mi mejor amigo. Reconocerlo como hermano. Para mí es el Príncipe Pinareño, sí — pero también el Mago del Momento, porque nadie que yo conozca vive esa verdad con más convicción. Presenciar su maestría en persona — ver cómo la mente transforma experiencia en verso mientras el verso se pronuncia — revela algo que ninguna grabación captura del todo. El arte del pueblo no es primitivo. No es simple. Es sofisticado en su ejecución, profundo en lo que implica, y accesible sin sacrificar un gramo de complejidad. Su presencia confirma una verdad que cargo con gratitud diaria: que la amistad verdadera, como la décima improvisada, se entrega entera en el momento y no se ensaya.",
-      "Cada controversia que sostiene, cada festival donde participa, cada alumno que forma, constituye acto de resistencia cultural: testimonio viviente de que tradiciones orales permanecen vibrantes cuando artistas talentosos las encarnan con compromiso contemporáneo. Sus versos aseguran que generaciones futuras heredarán tradición viva, no archivo histórico, y que Pinar del Río mantendrá su voz distintiva en conversaciones culturales nacionales e internacionales."
-    ]
-  },
-  {
     name: "Justo Vega",
     subtitle: "El Caballero de la Décima Improvisada",
     birth: "9 de agosto de 1909 en Matanzas",
@@ -159,13 +181,15 @@ const poets: Poet[] = [
   },
   {
     name: "Leandro Camargo",
-    subtitle: "Defensor Poético de Símbolos",
-    birth: "1987 en Los Palacios, Pinar del Río",
+    subtitle: "El Inmenso de Pinar del Río",
+    birth: "19 de abril de 1987 en Paso Real de San Diego, Los Palacios, Pinar del Río",
     biography: [
-      "Joven y talentoso poeta, más conocido por su amplia y deslumbrante ejecutoria como repentista en los escenarios de la décima oral improvisada. Es igualmente relevante en la investigación, la docencia y la escritura de la poesía en estrofas de diez versos.",
-      "En 2007, con solo 20 años, alcanzó el Premio en la XL Jornada Cucalambeana en el emblemático Concurso Nacional de Improvisación Justo Vega, anualmente celebrada en Las Tunas. Su precocidad creativa se manifestó desde los 14 años, cuando en 2001 actuó en el encuentro titulado \"La canturía más larga\" en Güines.",
-      "En 2010 ganó el concurso de repentismo Francisco Pereira, organizado por la Casa Naborí, de Limonar, Matanzas.",
-      "Una nueva generación de poetas como él le ha obsequiado a la décima la merced de la improvisación sobre temas históricos y patrióticos. En 2019, en una seguidilla improvisada sobre la bandera cubana, expresó: \"Y no es que haya que adorarla / en sustitución de un dios, / es que hay que limpiar la voz / de sombras para nombrarla. / El que aprende a respetarla / sus orígenes no olvida, / y allí está, firme y erguida / donde el cubano la vea / para que Cuba no sea / traicionada ni ofendida\"."
+      "Leandro Camargo Pérez — conocido en los escenarios como 'El Inmenso' — es uno de los repentistas más completos de su generación. Su trabajo no se limita al canto improvisado: investiga, enseña y escribe poesía en décimas con la misma dedicación con que la canta. Es miembro de la UNEAC y de la SCAP, y participa en proyectos de formación de nuevos poetas dentro de Pinar del Río.",
+      "Su precocidad creativa se manifestó desde los catorce años, cuando en 2001 actuó en el encuentro 'La canturía más larga' en Güines. En 2007, con apenas veinte años, alcanzó el Premio en la XL Jornada Cucalambeana en el emblemático Concurso Nacional de Improvisación Justo Vega — el galardón más codiciado del repentismo cubano. En 2010 ganó el concurso de repentismo Francisco Pereira, organizado por la Casa Naborí de Limonar, Matanzas. En 2019 obtuvo el Premio Chamán, otra de las distinciones de mayor peso dentro de la décima improvisada cubana.",
+      "Ha llevado el repentismo cubano a escenarios de Colombia, España, Alemania, Estados Unidos y México, manteniendo la vertiente vueltabajera del punto guajiro en cada presentación. Pertenece a la generación que tomó la responsabilidad de sostener la tradición oral en el siglo XXI sin convertirla en pieza de museo: aplica formas centenarias a temas contemporáneos, documenta procesos creativos de los maestros mayores y forma a los repentistas que vendrán después.",
+      "Una nueva generación de poetas como él le ha obsequiado a la décima la merced de la improvisación sobre temas históricos y patrióticos. En 2019, en una seguidilla improvisada sobre la bandera cubana, expresó:",
+      "Y no es que haya que adorarla / en sustitución de un dios, / es que hay que limpiar la voz / de sombras para nombrarla. / El que aprende a respetarla / sus orígenes no olvida, / y allí está, firme y erguida / donde el cubano la vea / para que Cuba no sea / traicionada ni ofendida.",
+      "El apodo 'El Inmenso' no es exageración popular: refleja el reconocimiento que sus contemporáneos — y los maestros que lo precedieron — han hecho de su capacidad para sostener controversias largas con métrica impecable, dominio del pie forzado y temas que van desde lo patriótico hasta lo filosófico. Dentro del repentismo pinareño contemporáneo, junto a Juan Antonio Díaz, Leandro Camargo es referencia obligada."
     ]
   },
   {
@@ -207,25 +231,13 @@ const poets: Poet[] = [
   },
   {
     name: "Oniesis Gil",
-    subtitle: "Elevación de la Improvisación",
-    birth: "Cuba",
+    subtitle: "El Tsunami Pinareño",
+    birth: "San Diego de los Baños, Pinar del Río",
     biography: [
-      "Poeta improvisador conocido por su estilo único y profunda conexión con la cultura popular. Destacado poeta improvisador (repentista) cubano que desarrolla su arte dentro de la tradición de la décima campesina y el repentismo. Forma parte de la nueva generación de poetas que han elevado la improvisación a niveles de excelencia.",
-      "Junto a Yoslay García, constituyen no sólo la vanguardia del repentismo cubano de principio del siglo XXI, sino las voces más alzadas de la nueva generación. Ha compartido escenario con las principales figuras del repentismo cubano contemporáneo, incluyendo Juan Antonio Díaz, Luis Quintana y otros maestros.",
-      "En una controversia memorable con Luis Quintana, Oniesis demostró su nivel extraordinario de improvisación. Ha protagonizado una encendida controversia en homenaje a la popular improvisadora cubana Tomasita Quiala.",
-      "Su estilo se caracteriza por una profunda conexión con las raíces de la tradición oral cubana, combinada con innovación técnica y capacidad de sorprender al público con construcciones poéticas de gran originalidad."
-    ]
-  },
-  {
-    name: "Pablo León Alonso",
-    subtitle: "Arquitecto de Paradojas Memorables",
-    birth: "1 de septiembre de 1927 en Consolación del Sur, Pinar del Río",
-    death: "31 de enero de 2012 en Miami, Estados Unidos (84 años)",
-    biography: [
-      "Fue una de las figuras más influyentes en la tradición del repentismo cubano. Su estilo se distinguió por la precisión métrica, la riqueza metafórica y una serenidad que le otorgó un sello único dentro del arte de la improvisación poética.",
-      "Desde sus primeros años mostró una inclinación natural hacia la décima, consolidándose como un poeta de gran profundidad y creatividad. Su capacidad para construir versos espontáneos con una estructura impecable lo convirtió en un referente dentro de la tradición oral cubana.",
-      "A lo largo de su trayectoria, Pablo León llevó su arte más allá de las fronteras de Cuba, estableciendo vínculos con la comunidad cubana en el exilio. Pasó la etapa final de su vida en Estados Unidos, donde continuó su labor decimística en ciudades como Miami, Nueva York y Nueva Jersey, participando en conciertos y programas radiales dedicados a la música campesina y la improvisación poética.",
-      "Entre sus versos memorables destaca la décima que condensa profundidad filosófica: \"La muerte se hizo más fuerte / con la muerte de Martí, / porque sin muertos así / se moriría la muerte\". La paradoja productiva revela verdades que desafían lógica simple mientras mantienen estructura impecable."
+      "Oniesis Gil — apodado 'El Tsunami Pinareño' por la fuerza con que entra en escena — es uno de los repentistas más reconocidos de la generación que tomó el relevo del repentismo cubano a comienzos del siglo XXI. Nació en San Diego de los Baños, el mismo pueblo de Pinar del Río donde nació Juan Antonio Díaz, y desde joven se formó dentro de la tradición vueltabajera del punto guajiro.",
+      "Junto a Yoslay García, constituyen no sólo la vanguardia del repentismo cubano de principio del siglo XXI, sino las voces más alzadas de la nueva generación. Su estilo combina la profundidad de las raíces orales cubanas con una capacidad técnica para sostener pies forzados largos sin perder métrica ni tema. Cuando entra en controversia, la velocidad de sus respuestas y la densidad metafórica que carga cada décima justifican el apodo: el público no recibe versos sueltos, recibe oleaje.",
+      "Ha protagonizado controversias memorables con Luis Quintana, Lenier, Tomasita Quiala, Juan Antonio Díaz, Leandro Camargo y José Antonio Tejeda — la lista misma traza un mapa de la décima improvisada cubana contemporánea. En la canturía con Tomasita Quiala, en homenaje a la propia repentista, demostró el respeto al contrincante que la tradición exige sin renunciar a la exigencia técnica del intercambio.",
+      "Lo distingue, además de la velocidad, una memoria poética inusual: cita maestros, hila temas históricos, devuelve pies forzados con referencias que el contrincante no esperaba. Esa combinación — fuerza bruta de improvisación y profundidad de lectura — es lo que ha hecho de Oniesis Gil una figura imprescindible para entender hacia dónde va la décima cubana en este siglo."
     ]
   },
   {
@@ -272,13 +284,13 @@ const poets: Poet[] = [
   },
   {
     name: "Yoslay García Lanzarique",
-    subtitle: "Solidez Matancera",
+    subtitle: "El Astro Matancero",
     birth: "1978 en Matanzas",
     biography: [
-      "Joven decimista natural de Matanzas, representa la continuidad del arte en las nuevas generaciones y se erige como uno de los poetas repentistas más importantes de su generación. La solidez de su décima lo distingue en el escenario.",
-      "En el uso del contrapunteo tiene marcado respeto a sus contrincantes, no utiliza palabras burlescas, y posee el don de con poco decir mucho, sorprendiendo al público. No utiliza un lenguaje sencillo; más bien se arma de recursos literarios para resolver el pie forzado, revelándose como un escritor artero.",
-      "Junto a Oniesis Gil y otros jóvenes repentistas, Yoslay García constituyen no sólo la vanguardia del repentismo cubano de principio del siglo XXI, sino las voces más alzadas de la nueva generación.",
-      "Su estilo matancero—sólido, meditado, profundo—contrasta con estilos más teatrales o explosivos, ofreciendo una alternativa de contemplación poética dentro del dinamismo del repentismo."
+      "Yoslay García Lanzarique — 'El Astro Matancero' — es uno de los poetas repentistas más importantes de su generación. Nació en una familia de poetas (los hermanos García de Matanzas son una dinastía dentro del repentismo cubano), y desde joven se formó en la tradición de la décima improvisada matancera, con su característica solidez métrica y aprecio por la imagen trabajada.",
+      "Es discípulo cercano de Alexis Díaz-Pimienta y figura activa dentro de Oralitura Habana, el proyecto que ha sistematizado el llamado Método Pimienta para la enseñanza de la improvisación. Esa formación se le nota: cuando responde un pie forzado, no responde sólo con instinto, responde con técnica consciente y oficio.",
+      "En el uso del contrapunteo tiene marcado respeto a sus contrincantes, no utiliza palabras burlescas, y posee el don de con poco decir mucho — una de las cualidades más difíciles del repentismo, donde la tentación de llenar con palabras está siempre presente. No utiliza un lenguaje sencillo: se arma de recursos literarios para resolver el pie forzado, se vale del humor y de la ironía como armas secundarias, y revela en cada décima un escritor artero detrás del improvisador.",
+      "Junto a Oniesis Gil y otros jóvenes repentistas, Yoslay García constituyen no sólo la vanguardia del repentismo cubano de principio del siglo XXI, sino las voces más alzadas de la nueva generación. Su estilo matancero — sólido, meditado, profundo — contrasta con estilos más teatrales o explosivos, ofreciendo una alternativa de contemplación poética dentro del dinamismo del repentismo. Demuestra que la décima improvisada admite registros distintos sin perder identidad: se puede ser repentista sin gritar."
     ]
   },
   {
@@ -311,7 +323,7 @@ export function PoetsCompendium() {
           Los Maestros de la Décima
         </h3>
         <p className="text-sm md:text-base text-[#5C4033]/80 italic font-serif max-w-2xl mx-auto">
-          Compendio biográfico de los grandes maestros del repentismo cubano, ordenados alfabéticamente.
+          Compendio biográfico de los grandes maestros del repentismo cubano.
         </p>
       </div>
 
