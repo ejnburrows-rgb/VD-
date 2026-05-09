@@ -13,7 +13,12 @@ export function MemorialContent() {
       </blockquote>
       <p className="byline">
         — Emilio José Novo ·{" "}
-        <a href="https://juanantoniodiaz.com" target="_blank" rel="noopener noreferrer">
+        <a
+          href="https://juanantoniodiaz.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[#C8894D] underline hover:text-[#D2691E] transition-colors"
+        >
           juanantoniodiaz.com
         </a>
       </p>
@@ -169,15 +174,16 @@ export function MemorialContent() {
         <strong>Guajiro de Hialeah.</strong>
         <footer>
           —{" "}
-          <a href="https://juanantoniodiaz.com" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://juanantoniodiaz.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[#C8894D] underline hover:text-[#D2691E] transition-colors"
+          >
             Juan Antonio Díaz
           </a>
         </footer>
       </blockquote>
-
-      <p className="seal font-bold text-[#D2691E] text-lg">
-        Para el repentismo cubano en el exilio fue Calixto González: el Guajiro de Hialeah. Jamás olvidaremos.
-      </p>
 
       <Fleuron />
 
