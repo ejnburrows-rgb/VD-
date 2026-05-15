@@ -18,11 +18,11 @@ export function HeroSection() {
       </div>
       
       {/* Gradient SOLO en bottom - NO full screen */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-transparent" />
       
       {/* Centered card - positioned at bottom */}
       <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 w-[90%] max-w-2xl z-10">
-        <div className="vintage-card text-center p-8 bg-[#F5E6D3]/95 backdrop-blur-sm">
+        <div className="vintage-card text-center p-8 bg-[#E8D2B8]/90 backdrop-blur-[2px]">
           <h1 className="text-5xl font-serif font-bold text-[#C8A05C] mb-2">
             El Guajiro de Hialeah
           </h1>
