@@ -28,8 +28,8 @@ export function MainApp() {
       <TributeSection />
       <NavigationTabs activeTab={activeTab} onTabChange={handleTabChange} />
 
-      <main className="min-h-screen bg-gradient-to-b from-[#F7EBD8] via-[#FFF8EC] to-[#F2DFC4]" id="main-content">
-        <div className="mx-auto max-w-6xl px-2 py-2 md:px-4 md:py-4">
+      <main className="min-h-screen bg-[#120B08]" id="main-content">
+        <div className="mx-auto max-w-6xl px-3 py-8 md:px-6 md:py-12">
           {activeTab === 'process' && <ProcessingSection />}
           {activeTab === 'decimas' && <DecimalsSection />}
           {activeTab === 'analysis' && <AnalysisSection />}
