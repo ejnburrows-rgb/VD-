@@ -8,6 +8,8 @@ interface DemoSectionProps {
   videoId?: string;
 }
 
+const GEMINI_GEM_URL = "https://gemini.google.com/gem/6e58e93575ee";
+
 export default function DemoSection({ videoId }: DemoSectionProps) {
   // Default demo video ID (can be changed)
   const defaultVideoId = videoId || "";
@@ -97,7 +99,15 @@ export default function DemoSection({ videoId }: DemoSectionProps) {
             <div>
               <h4 className="font-semibold text-[#D2691E] mb-1">Transcripción automática</h4>
               <p className="text-sm leading-relaxed">
-                Google Gemini transcribe y formatea automáticamente todas las décimas siguiendo las reglas tradicionales de la décima espinela.
+                <a
+                  href={GEMINI_GEM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-[#D2691E] underline underline-offset-2 hover:text-[#A0522D] transition-colors"
+                >
+                  Google Gemini
+                </a>{" "}
+                transcribe y formatea automáticamente todas las décimas siguiendo las reglas tradicionales de la décima espinela.
               </p>
             </div>
           </div>
@@ -149,9 +159,14 @@ export default function DemoSection({ videoId }: DemoSectionProps) {
           Ve a la sección <strong>"Procesar Transcripción"</strong> para comenzar a analizar 
           tus videos favoritos de décimas cubanas.
         </p>
-        <div className="inline-block px-6 py-2 bg-[#C8A05C] text-white rounded-lg font-medium hover:bg-[#D2691E] transition-colors cursor-pointer">
-          Comenzar Ahora
-        </div>
+        <a
+          href={GEMINI_GEM_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block px-6 py-2 bg-[#C8A05C] text-white rounded-lg font-medium hover:bg-[#D2691E] transition-colors"
+        >
+          Abrir Gemini
+        </a>
       </div>
     </div>
   );
