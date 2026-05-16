@@ -17,22 +17,24 @@ export function NavigationTabs({ activeTab, onTabChange }: NavigationTabsProps) 
   ]
 
   return (
-    <div className="sticky top-[58px] z-40 border-b border-[#F4D58D]/20 bg-[#20130D]/92 px-3 py-3 backdrop-blur-md md:top-[66px]">
-      <div className="mx-auto max-w-5xl overflow-x-auto">
-        <div className="flex min-w-max items-center justify-center gap-2 px-1">
-          {tabs.map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => onTabChange(tab.id)}
-              className={`rounded-full border px-4 py-2 font-serif text-sm font-semibold transition-all duration-300 md:text-base ${
-                activeTab === tab.id
-                  ? 'border-[#F4D58D] bg-[#F4D58D] text-[#20130D] shadow-lg'
-                  : 'border-[#F4D58D]/25 bg-white/5 text-[#FFF3D6] hover:border-[#F4D58D]/70 hover:bg-[#F4D58D]/10'
-              }`}
-            >
-              {tab.title}
-            </button>
-          ))}
+    <div className="sticky top-[60px] z-40 bg-[#F7EBD8] px-4 py-3 shadow-md md:top-[68px]">
+      <div className="container mx-auto max-w-4xl">
+        <div className="rounded-2xl border border-[#C8A05C]/45 bg-[#FFF8EC] p-2.5 shadow-lg">
+          <div className="flex flex-wrap justify-center gap-2">
+            {tabs.map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => onTabChange(tab.id)}
+                className={`min-h-11 rounded-xl px-4 py-2.5 font-serif text-base font-bold transition-all duration-200 ${
+                  activeTab === tab.id
+                    ? 'bg-[#B65C17] text-[#FFF8EC] shadow-md ring-2 ring-[#C8A05C]/35'
+                    : 'text-[#4A2F24] hover:bg-[#F0D9B5] hover:text-[#3A241A]'
+                }`}
+              >
+                {tab.title}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
     </div>
