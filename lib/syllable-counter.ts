@@ -1,14 +1,18 @@
 // Spanish syllable counter for décima validation
 
+const VOWELS = 'aeiouáéíóúüAEIOUÁÉÍÓÚÜ'
+const DIPHTHONGS = ['ai', 'ei', 'oi', 'au', 'eu', 'ou', 'ia', 'ie', 'io', 'ua', 'ue', 'uo']
+const DIPHTHONG_REGEXES = DIPHTHONGS.map(d => new RegExp(d, 'gi'))
+const PUNCTUATION_REGEX = /[.,;:!?¡¿]/g
+
 export function countSyllables(word: string): number {
   if (!word) return 0
   
   let count = 0
-  const vowels = 'aeiouáéíóúüAEIOUÁÉÍÓÚÜ'
   let previousWasVowel = false
   
   for (let i = 0; i < word.length; i++) {
-    const isVowel = vowels.includes(word[i])
+    const isVowel = VOWELS.includes(word[i])
     
     if (isVowel) {
       if (!previousWasVowel) {
@@ -21,9 +25,7 @@ export function countSyllables(word: string): number {
   }
   
   // Handle diphthongs and triphthongs
-  const diphthongs = ['ai', 'ei', 'oi', 'au', 'eu', 'ou', 'ia', 'ie', 'io', 'ua', 'ue', 'uo']
-  for (const diphthong of diphthongs) {
-    const regex = new RegExp(diphthong, 'gi')
+  for (const regex of DIPHTHONG_REGEXES) {
     const matches = word.match(regex)
     if (matches) {
       count -= matches.length
@@ -31,7 +33,7 @@ export function countSyllables(word: string): number {
   }
   
   // Handle word endings that affect syllable count
-  if (word.endsWith('ión') || word.endsWith('ión')) {
+  if (word.endsWith('ión')) {
     count++
   }
   
@@ -43,9 +45,8 @@ export function countVerseSyllables(verse: string): number {
   let total = 0
   
   for (const word of words) {
-    total += countSyllables(word.replace(/[.,;:!?¡¿]/g, ''))
+    total += countSyllables(word.replace(PUNCTUATION_REGEX, ''))
   }
   
   return total
 }
-
