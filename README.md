@@ -1,38 +1,29 @@
 # Viajera Digital
 
-**Décima Transcription & Heritage Poetry Platform**
+A digital preservation and analysis platform for the Cuban décima espinela tradition. Viajera Digital turns recorded performances into searchable transcriptions, structural analysis, educational material, and exportable cultural records.
 
-Viajera Digital is a Next.js application for capturing, transcribing, analyzing, and preserving the Cuban décima espinela tradition. It combines a polished audio experience with AI-assisted Spanish transcription and structural analysis for oral poetry.
+## What it does
 
----
+1. Processes uploaded or linked performance audio.
+2. Produces Spanish transcription with AI-assisted tooling.
+3. Analyzes décima structure, rhyme, verse form, and performance cues.
+4. Presents preserved poets, performances, and educational material in a polished bilingual-ready web experience.
+5. Exports and shares processed material through the app's supported output flows.
 
-## Product Focus
-
-Viajera Digital helps preserve live décima performances by turning audio into searchable, analyzable cultural records.
-
-Core workflow:
-
-1. Upload or process audio of décima performances.
-2. Transcribe Spanish poetic speech with AI-assisted transcription.
-3. Analyze décima structure, including rhyme, verse shape, and performance cues.
-4. Browse and study preserved performances through a clean web interface.
-
----
-
-## Tech Stack
+## Stack
 
 | Layer | Technology |
 |---|---|
-| App | Next.js · React · TypeScript |
+| App | Next.js 14 · React 18 · TypeScript |
 | Styling | Tailwind CSS |
 | AI | Groq SDK · Google Generative AI |
+| Data | Prisma |
+| Email | Resend |
 | Audio helpers | `@distube/ytdl-core` |
 | Deployment | Vercel |
-| Runtime target | Node.js 22+ |
+| Runtime | Node.js 22+ |
 
----
-
-## Local Development
+## Local development
 
 ```bash
 git clone https://github.com/ejnburrows-rgb/VD-.git
@@ -43,51 +34,43 @@ npm run dev
 
 Open `http://localhost:3000`.
 
-Required local secrets should live in `.env.local`. Do not commit `.env*`, `.claude/`, Vercel state, logs, build outputs, or local editor settings.
+Copy `.env.local.example` to `.env.local` and provide only the keys required for the workflow you are testing. Never commit real secrets.
 
----
-
-## Quality Checks
+## Quality checks
 
 ```bash
 npm run lint
 npm run build
 ```
 
-Before merging deployment changes, confirm the Vercel preview build passes.
-
----
+Run both before releasing changes to `main`.
 
 ## Deployment
 
-This repo is configured for Vercel:
+The repository is configured for Vercel.
 
 - Framework: Next.js
-- Install: `npm ci`
+- Install: `npm install`
 - Build: `npm run build`
-- Runtime target: Node.js 22+
 - Region: `iad1`
+- Authoritative release branch: `main`
 
----
+## Repository rules
 
-## GitHub Hygiene
+- `main` is the release source of truth.
+- Short-lived branches are for active work only; merged or superseded branches should be removed.
+- Old restore branches are historical references, not release instructions.
+- One-off audit/debug scripts should not accumulate in the repository unless they remain part of the supported workflow.
+- Keep cultural content, attribution, transcription behavior, and décima analysis faithful to verified source material.
+- Keep `docs/STATUS.md` current when release state changes.
 
-Keep the repository focused on app source, configuration, docs, and production assets. Avoid committing:
+## Documentation
 
-- local IDE folders
-- `.claude/` or AI tool caches
-- debug logs
-- generated build folders
-- experimental one-off scripts unless they are productized
-
----
+- `docs/STATUS.md` — current repository state
+- `AGENTS.md` — concise working rules for contributors
 
 ## License
 
 MIT
 
----
-
-**Built by NBO — Novo Business Order**\
-© Emilio José Novo 2026
-<!-- build: 2026-04-30 -->
+Built by NBO — Novo Business Order.
