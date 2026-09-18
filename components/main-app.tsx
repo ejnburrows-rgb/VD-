@@ -28,13 +28,15 @@ export function MainApp() {
       <TributeSection />
       <NavigationTabs activeTab={activeTab} onTabChange={handleTabChange} />
 
-      <main className="min-h-screen bg-[#F5E6D3]" id="main-content">
-        {activeTab === 'process' && <ProcessingSection />}
-        {activeTab === 'decimas' && <DecimalsSection />}
-        {activeTab === 'analysis' && <AnalysisSection />}
-        {activeTab === 'export' && <ExportSection />}
-        {activeTab === 'demo' && <DemoSection />}
-        {activeTab === 'education' && <EducationSection />}
+      <main className="min-h-screen bg-[#120B08]" id="main-content">
+        <div className="mx-auto max-w-6xl px-3 py-8 md:px-6 md:py-12">
+          {activeTab === 'process' && <ProcessingSection />}
+          {activeTab === 'decimas' && <DecimalsSection />}
+          {activeTab === 'analysis' && <AnalysisSection />}
+          {activeTab === 'export' && <ExportSection />}
+          {activeTab === 'demo' && <DemoSection />}
+          {activeTab === 'education' && <EducationSection />}
+        </div>
       </main>
 
       <AboutModal open={aboutModalOpen} onOpenChange={setAboutModalOpen} />

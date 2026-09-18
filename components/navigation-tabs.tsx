@@ -17,18 +17,18 @@ export function NavigationTabs({ activeTab, onTabChange }: NavigationTabsProps) 
   ]
 
   return (
-    <div className="sticky top-[52px] z-40 bg-[#F5E6D3] px-4 py-2">
+    <div className="sticky top-[60px] z-40 bg-[#F7EBD8] px-4 py-3 shadow-md md:top-[68px]">
       <div className="container mx-auto max-w-4xl">
-        <div className="bg-[#F5E6D3] rounded-xl p-2 border-2 border-[#C8A05C]">
-          <div className="flex flex-wrap justify-center gap-1">
+        <div className="rounded-2xl border border-[#C8A05C]/45 bg-[#FFF8EC] p-2.5 shadow-lg">
+          <div className="flex flex-wrap justify-center gap-2">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => onTabChange(tab.id)}
-                className={`px-3 py-2 flex items-center justify-center rounded-lg text-sm font-serif font-semibold transition-all ${
+                className={`min-h-11 rounded-xl px-4 py-2.5 font-serif text-base font-bold transition-all duration-200 ${
                   activeTab === tab.id
-                    ? 'bg-[#D97706] text-[#F5E6D3] shadow-md'
-                    : 'text-[#5C4033] hover:bg-[#C8A05C]/30'
+                    ? 'bg-[#B65C17] text-[#FFF8EC] shadow-md ring-2 ring-[#C8A05C]/35'
+                    : 'text-[#4A2F24] hover:bg-[#F0D9B5] hover:text-[#3A241A]'
                 }`}
               >
                 {tab.title}
