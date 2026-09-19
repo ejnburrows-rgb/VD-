@@ -1,0 +1,47 @@
+name: One-time Viajera branch cleanup
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/one-time-branch-cleanup.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Preserve historical restore snapshots as tags
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin '+refs/heads/*:refs/remotes/origin/*' --prune
+
+          preserve () {
+            branch="$1"
+            tag="$2"
+            if git show-ref --verify --quiet "refs/remotes/origin/$branch"; then
+              git tag -f "$tag" "refs/remotes/origin/$branch"
+              git push origin "refs/tags/$tag" --force
+            fi
+          }
+
+          preserve "restore-mar30-owner-verified-2026-05-06" "archive/restore-mar30-owner-verified-2026-05-06"
+          preserve "restore-pre-merge-2026-05-06" "archive/restore-pre-merge-2026-05-06"
+          preserve "ui/revert-original-keep-content-2026-05-06" "archive/ui-revert-original-keep-content-2026-05-06"
+
+      - name: Delete merged and superseded branches
+        run: |
+          for b in             "cleanup/remove-junk-files"             "cleanup/repo-cruft"             "fix/add-resend-dependency"             "perf-optimize-syllable-counter-14317091858406966047"             "polish/about-star-icon"             "polish/ui-final"             "polish/vercel-github-cleanup"             "restore-mar30-owner-verified-2026-05-06"             "restore-pre-merge-2026-05-06"             "ui/revert-original-keep-content-2026-05-06"             "ui-premium-alt"
+          do
+            if git ls-remote --exit-code --heads origin "$b" >/dev/null 2>&1; then
+              git push origin --delete "$b"
+            fi
+          done
